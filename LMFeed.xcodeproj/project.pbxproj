@@ -1,0 +1,737 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		581DD1A5CA7AB9BB7669D88B /* Pods_LMFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA73FCA637CF13312463676 /* Pods_LMFeed.framework */; };
+		F41416A1299E41C000622058 /* LMFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = F41416A0299E41C000622058 /* LMFeed.docc */; };
+		F41416A2299E41C000622058 /* LMFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = F414169F299E41C000622058 /* LMFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F41416A9299E41F500622058 /* LMFeedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416A8299E41F500622058 /* LMFeedClient.swift */; };
+		F41416B7299E495700622058 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416B4299E495700622058 /* AppManager.swift */; };
+		F41416B8299E495700622058 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416B5299E495700622058 /* ServiceConfiguration.swift */; };
+		F41416B9299E495700622058 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416B6299E495700622058 /* ServiceRequest.swift */; };
+		F41416BF299E4B4E00622058 /* RefreshAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416BB299E4B4D00622058 /* RefreshAccessToken.swift */; };
+		F41416C0299E4B4E00622058 /* DataNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416BC299E4B4D00622058 /* DataNetwork.swift */; };
+		F41416C1299E4B4E00622058 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416BD299E4B4D00622058 /* TokenManager.swift */; };
+		F41416C2299E4B4E00622058 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416BE299E4B4D00622058 /* AuthManager.swift */; };
+		F41416C6299E97B800622058 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416C5299E97B800622058 /* Reachability.swift */; };
+		F41416D429A27D2B00622058 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416D329A27D2B00622058 /* Post.swift */; };
+		F41416D629A27D7400622058 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416D529A27D7400622058 /* Attachment.swift */; };
+		F41416D829A27D9D00622058 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416D729A27D9D00622058 /* MenuItem.swift */; };
+		F41416DD29A27F4000622058 /* GetFeedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416DC29A27F4000622058 /* GetFeedRequest.swift */; };
+		F41416E029A2800400622058 /* GetFeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416DF29A2800400622058 /* GetFeedResponse.swift */; };
+		F41416E329A280E700622058 /* LMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416E229A280E700622058 /* LMResponse.swift */; };
+		F41416E529A2826100622058 /* AddPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416E429A2826100622058 /* AddPostRequest.swift */; };
+		F41416EE29A36CBD00622058 /* AttachmentMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416ED29A36CBD00622058 /* AttachmentMeta.swift */; };
+		F41416F029A370F500622058 /* OGTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416EF29A370F400622058 /* OGTags.swift */; };
+		F41416F229A3759900622058 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F129A3759900622058 /* Reply.swift */; };
+		F41416F429A37A3100622058 /* GetFeedPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F329A37A3100622058 /* GetFeedPostRequest.swift */; };
+		F41416F629A37A6600622058 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F529A37A6600622058 /* File.swift */; };
+		F41416F829A37B9F00622058 /* GetFeedPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */; };
+		F41416FA29A37C9200622058 /* GetPostLikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F929A37C9200622058 /* GetPostLikesRequest.swift */; };
+		F41416FC29A37D3B00622058 /* DeletePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416FB29A37D3B00622058 /* DeletePostRequest.swift */; };
+		F41416FE29A37D4D00622058 /* LikePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416FD29A37D4D00622058 /* LikePostRequest.swift */; };
+		F414170229A3967B00622058 /* AddCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414170129A3967B00622058 /* AddCommentRequest.swift */; };
+		F414170429A3975300622058 /* GetCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414170329A3975300622058 /* GetCommentRequest.swift */; };
+		F414170629A3978E00622058 /* GetCommentLikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414170529A3978E00622058 /* GetCommentLikesRequest.swift */; };
+		F414170829A3981F00622058 /* LikeCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414170729A3981F00622058 /* LikeCommentRequest.swift */; };
+		F414171229A3995500622058 /* GetMemberStateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171129A3995500622058 /* GetMemberStateRequest.swift */; };
+		F414171429A3999F00622058 /* GetFeedRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171329A3999F00622058 /* GetFeedRoomRequest.swift */; };
+		F414171629A39AD000622058 /* GetPostLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171529A39AD000622058 /* GetPostLikeResponse.swift */; };
+		F414171829A39AE700622058 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171729A39AE700622058 /* Like.swift */; };
+		F414171A29A39B8700622058 /* LikeUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171929A39B8700622058 /* LikeUsers.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5CA73FCA637CF13312463676 /* Pods_LMFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LMFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98E48C4FE8E1C3992C85A67A /* Pods-LMFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LMFeed.debug.xcconfig"; path = "Target Support Files/Pods-LMFeed/Pods-LMFeed.debug.xcconfig"; sourceTree = "<group>"; };
+		F0C10B3D0F35992B85ACD527 /* Pods-LMFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LMFeed.release.xcconfig"; path = "Target Support Files/Pods-LMFeed/Pods-LMFeed.release.xcconfig"; sourceTree = "<group>"; };
+		F414169C299E41C000622058 /* LMFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LMFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F414169F299E41C000622058 /* LMFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMFeed.h; sourceTree = "<group>"; };
+		F41416A0299E41C000622058 /* LMFeed.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = LMFeed.docc; sourceTree = "<group>"; };
+		F41416A8299E41F500622058 /* LMFeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMFeedClient.swift; sourceTree = "<group>"; };
+		F41416B4299E495700622058 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		F41416B5299E495700622058 /* ServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
+		F41416B6299E495700622058 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		F41416BB299E4B4D00622058 /* RefreshAccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAccessToken.swift; sourceTree = "<group>"; };
+		F41416BC299E4B4D00622058 /* DataNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataNetwork.swift; sourceTree = "<group>"; };
+		F41416BD299E4B4D00622058 /* TokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		F41416BE299E4B4D00622058 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		F41416C5299E97B800622058 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		F41416D329A27D2B00622058 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F41416D529A27D7400622058 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		F41416D729A27D9D00622058 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		F41416DC29A27F4000622058 /* GetFeedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedRequest.swift; sourceTree = "<group>"; };
+		F41416DF29A2800400622058 /* GetFeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedResponse.swift; sourceTree = "<group>"; };
+		F41416E229A280E700622058 /* LMResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMResponse.swift; sourceTree = "<group>"; };
+		F41416E429A2826100622058 /* AddPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostRequest.swift; sourceTree = "<group>"; };
+		F41416ED29A36CBD00622058 /* AttachmentMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentMeta.swift; sourceTree = "<group>"; };
+		F41416EF29A370F400622058 /* OGTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGTags.swift; sourceTree = "<group>"; };
+		F41416F129A3759900622058 /* Reply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
+		F41416F329A37A3100622058 /* GetFeedPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedPostRequest.swift; sourceTree = "<group>"; };
+		F41416F529A37A6600622058 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedPostResponse.swift; sourceTree = "<group>"; };
+		F41416F929A37C9200622058 /* GetPostLikesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostLikesRequest.swift; sourceTree = "<group>"; };
+		F41416FB29A37D3B00622058 /* DeletePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostRequest.swift; sourceTree = "<group>"; };
+		F41416FD29A37D4D00622058 /* LikePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostRequest.swift; sourceTree = "<group>"; };
+		F414170129A3967B00622058 /* AddCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentRequest.swift; sourceTree = "<group>"; };
+		F414170329A3975300622058 /* GetCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommentRequest.swift; sourceTree = "<group>"; };
+		F414170529A3978E00622058 /* GetCommentLikesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommentLikesRequest.swift; sourceTree = "<group>"; };
+		F414170729A3981F00622058 /* LikeCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCommentRequest.swift; sourceTree = "<group>"; };
+		F414171129A3995500622058 /* GetMemberStateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMemberStateRequest.swift; sourceTree = "<group>"; };
+		F414171329A3999F00622058 /* GetFeedRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedRoomRequest.swift; sourceTree = "<group>"; };
+		F414171529A39AD000622058 /* GetPostLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostLikeResponse.swift; sourceTree = "<group>"; };
+		F414171729A39AE700622058 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		F414171929A39B8700622058 /* LikeUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUsers.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4141699299E41C000622058 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				581DD1A5CA7AB9BB7669D88B /* Pods_LMFeed.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		817660CCE83C43316F0DF128 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5CA73FCA637CF13312463676 /* Pods_LMFeed.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B225E8A19E3A94DAD7097CE6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				98E48C4FE8E1C3992C85A67A /* Pods-LMFeed.debug.xcconfig */,
+				F0C10B3D0F35992B85ACD527 /* Pods-LMFeed.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F4141692299E41C000622058 = {
+			isa = PBXGroup;
+			children = (
+				F414169E299E41C000622058 /* LMFeed */,
+				F414169D299E41C000622058 /* Products */,
+				B225E8A19E3A94DAD7097CE6 /* Pods */,
+				817660CCE83C43316F0DF128 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F414169D299E41C000622058 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F414169C299E41C000622058 /* LMFeed.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F414169E299E41C000622058 /* LMFeed */ = {
+			isa = PBXGroup;
+			children = (
+				F41416BA299E4B4D00622058 /* Network */,
+				F41416B3299E48D300622058 /* LMFeedService */,
+				F41416AA299E442300622058 /* Model */,
+				F414169F299E41C000622058 /* LMFeed.h */,
+				F41416A0299E41C000622058 /* LMFeed.docc */,
+				F41416A8299E41F500622058 /* LMFeedClient.swift */,
+			);
+			path = LMFeed;
+			sourceTree = "<group>";
+		};
+		F41416AA299E442300622058 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F41416E129A280D200622058 /* Base */,
+				F41416B2299E454F00622058 /* FeedGroup */,
+				F41416B1299E451C00622058 /* FeedRoom */,
+				F41416B0299E450100622058 /* PostLike */,
+				F41416AF299E44F200622058 /* CommentsLikes */,
+				F41416AE299E448A00622058 /* MemberState */,
+				F41416AD299E447D00622058 /* Comments */,
+				F41416AC299E444000622058 /* Posts */,
+				F41416AB299E442C00622058 /* UniversalFeed */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F41416AB299E442C00622058 /* UniversalFeed */ = {
+			isa = PBXGroup;
+			children = (
+				F41416DE29A27FE800622058 /* Response */,
+				F41416DB29A27E7300622058 /* Request */,
+			);
+			path = UniversalFeed;
+			sourceTree = "<group>";
+		};
+		F41416AC299E444000622058 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				F41416DA29A27E6900622058 /* Request */,
+				F41416D929A27E5200622058 /* Response */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		F41416AD299E447D00622058 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				F414170029A3965C00622058 /* Response */,
+				F41416FF29A3965300622058 /* Request */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		F41416AE299E448A00622058 /* MemberState */ = {
+			isa = PBXGroup;
+			children = (
+				F414170E29A3991600622058 /* Response */,
+				F414170D29A3990E00622058 /* Request */,
+			);
+			path = MemberState;
+			sourceTree = "<group>";
+		};
+		F41416AF299E44F200622058 /* CommentsLikes */ = {
+			isa = PBXGroup;
+			children = (
+				F414170A29A3987F00622058 /* Response */,
+				F414170929A3987700622058 /* Request */,
+			);
+			path = CommentsLikes;
+			sourceTree = "<group>";
+		};
+		F41416B0299E450100622058 /* PostLike */ = {
+			isa = PBXGroup;
+			children = (
+				F414170C29A398A800622058 /* Response */,
+				F414170B29A398A100622058 /* Request */,
+			);
+			path = PostLike;
+			sourceTree = "<group>";
+		};
+		F41416B1299E451C00622058 /* FeedRoom */ = {
+			isa = PBXGroup;
+			children = (
+				F414171029A3993200622058 /* Response */,
+				F414170F29A3992B00622058 /* Request */,
+			);
+			path = FeedRoom;
+			sourceTree = "<group>";
+		};
+		F41416B2299E454F00622058 /* FeedGroup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FeedGroup;
+			sourceTree = "<group>";
+		};
+		F41416B3299E48D300622058 /* LMFeedService */ = {
+			isa = PBXGroup;
+			children = (
+				F41416B4299E495700622058 /* AppManager.swift */,
+				F41416B5299E495700622058 /* ServiceConfiguration.swift */,
+				F41416B6299E495700622058 /* ServiceRequest.swift */,
+			);
+			path = LMFeedService;
+			sourceTree = "<group>";
+		};
+		F41416BA299E4B4D00622058 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F41416C5299E97B800622058 /* Reachability.swift */,
+				F41416BB299E4B4D00622058 /* RefreshAccessToken.swift */,
+				F41416BC299E4B4D00622058 /* DataNetwork.swift */,
+				F41416BD299E4B4D00622058 /* TokenManager.swift */,
+				F41416BE299E4B4D00622058 /* AuthManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F41416D929A27E5200622058 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				F41416D329A27D2B00622058 /* Post.swift */,
+				F41416D529A27D7400622058 /* Attachment.swift */,
+				F41416D729A27D9D00622058 /* MenuItem.swift */,
+				F41416ED29A36CBD00622058 /* AttachmentMeta.swift */,
+				F41416EF29A370F400622058 /* OGTags.swift */,
+				F41416F129A3759900622058 /* Reply.swift */,
+				F41416F529A37A6600622058 /* File.swift */,
+				F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		F41416DA29A27E6900622058 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F41416E429A2826100622058 /* AddPostRequest.swift */,
+				F41416F329A37A3100622058 /* GetFeedPostRequest.swift */,
+				F41416FB29A37D3B00622058 /* DeletePostRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F41416DB29A27E7300622058 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F41416DC29A27F4000622058 /* GetFeedRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F41416DE29A27FE800622058 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				F41416DF29A2800400622058 /* GetFeedResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		F41416E129A280D200622058 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F41416E229A280E700622058 /* LMResponse.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		F41416FF29A3965300622058 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F414170129A3967B00622058 /* AddCommentRequest.swift */,
+				F414170329A3975300622058 /* GetCommentRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F414170029A3965C00622058 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		F414170929A3987700622058 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F414170529A3978E00622058 /* GetCommentLikesRequest.swift */,
+				F414170729A3981F00622058 /* LikeCommentRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F414170A29A3987F00622058 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		F414170B29A398A100622058 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F41416F929A37C9200622058 /* GetPostLikesRequest.swift */,
+				F41416FD29A37D4D00622058 /* LikePostRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F414170C29A398A800622058 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				F414171529A39AD000622058 /* GetPostLikeResponse.swift */,
+				F414171729A39AE700622058 /* Like.swift */,
+				F414171929A39B8700622058 /* LikeUsers.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		F414170D29A3990E00622058 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F414171129A3995500622058 /* GetMemberStateRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F414170E29A3991600622058 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		F414170F29A3992B00622058 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F414171329A3999F00622058 /* GetFeedRoomRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		F414171029A3993200622058 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F4141697299E41C000622058 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F41416A2299E41C000622058 /* LMFeed.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F414169B299E41C000622058 /* LMFeed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F41416A5299E41C000622058 /* Build configuration list for PBXNativeTarget "LMFeed" */;
+			buildPhases = (
+				27D74607E40F857F6F6E9BF7 /* [CP] Check Pods Manifest.lock */,
+				F4141697299E41C000622058 /* Headers */,
+				F4141698299E41C000622058 /* Sources */,
+				F4141699299E41C000622058 /* Frameworks */,
+				F414169A299E41C000622058 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LMFeed;
+			productName = LMFeed;
+			productReference = F414169C299E41C000622058 /* LMFeed.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4141693299E41C000622058 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					F414169B299E41C000622058 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = F4141696299E41C000622058 /* Build configuration list for PBXProject "LMFeed" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F4141692299E41C000622058;
+			productRefGroup = F414169D299E41C000622058 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F414169B299E41C000622058 /* LMFeed */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F414169A299E41C000622058 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27D74607E40F857F6F6E9BF7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LMFeed-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4141698299E41C000622058 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F41416B9299E495700622058 /* ServiceRequest.swift in Sources */,
+				F41416D429A27D2B00622058 /* Post.swift in Sources */,
+				F41416C2299E4B4E00622058 /* AuthManager.swift in Sources */,
+				F414170229A3967B00622058 /* AddCommentRequest.swift in Sources */,
+				F414171829A39AE700622058 /* Like.swift in Sources */,
+				F41416EE29A36CBD00622058 /* AttachmentMeta.swift in Sources */,
+				F41416F029A370F500622058 /* OGTags.swift in Sources */,
+				F41416E329A280E700622058 /* LMResponse.swift in Sources */,
+				F41416F229A3759900622058 /* Reply.swift in Sources */,
+				F41416C1299E4B4E00622058 /* TokenManager.swift in Sources */,
+				F41416D629A27D7400622058 /* Attachment.swift in Sources */,
+				F414170429A3975300622058 /* GetCommentRequest.swift in Sources */,
+				F41416F629A37A6600622058 /* File.swift in Sources */,
+				F41416E529A2826100622058 /* AddPostRequest.swift in Sources */,
+				F414171429A3999F00622058 /* GetFeedRoomRequest.swift in Sources */,
+				F414171629A39AD000622058 /* GetPostLikeResponse.swift in Sources */,
+				F41416FA29A37C9200622058 /* GetPostLikesRequest.swift in Sources */,
+				F41416C0299E4B4E00622058 /* DataNetwork.swift in Sources */,
+				F41416E029A2800400622058 /* GetFeedResponse.swift in Sources */,
+				F41416F829A37B9F00622058 /* GetFeedPostResponse.swift in Sources */,
+				F414171A29A39B8700622058 /* LikeUsers.swift in Sources */,
+				F41416D829A27D9D00622058 /* MenuItem.swift in Sources */,
+				F414170829A3981F00622058 /* LikeCommentRequest.swift in Sources */,
+				F41416FE29A37D4D00622058 /* LikePostRequest.swift in Sources */,
+				F41416B7299E495700622058 /* AppManager.swift in Sources */,
+				F414171229A3995500622058 /* GetMemberStateRequest.swift in Sources */,
+				F41416A1299E41C000622058 /* LMFeed.docc in Sources */,
+				F41416FC29A37D3B00622058 /* DeletePostRequest.swift in Sources */,
+				F41416BF299E4B4E00622058 /* RefreshAccessToken.swift in Sources */,
+				F414170629A3978E00622058 /* GetCommentLikesRequest.swift in Sources */,
+				F41416B8299E495700622058 /* ServiceConfiguration.swift in Sources */,
+				F41416C6299E97B800622058 /* Reachability.swift in Sources */,
+				F41416DD29A27F4000622058 /* GetFeedRequest.swift in Sources */,
+				F41416A9299E41F500622058 /* LMFeedClient.swift in Sources */,
+				F41416F429A37A3100622058 /* GetFeedPostRequest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F41416A3299E41C000622058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F41416A4299E41C000622058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F41416A6299E41C000622058 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98E48C4FE8E1C3992C85A67A /* Pods-LMFeed.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sdk.LMFeed;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F41416A7299E41C000622058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0C10B3D0F35992B85ACD527 /* Pods-LMFeed.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sdk.LMFeed;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4141696299E41C000622058 /* Build configuration list for PBXProject "LMFeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F41416A3299E41C000622058 /* Debug */,
+				F41416A4299E41C000622058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F41416A5299E41C000622058 /* Build configuration list for PBXNativeTarget "LMFeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F41416A6299E41C000622058 /* Debug */,
+				F41416A7299E41C000622058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4141693299E41C000622058 /* Project object */;
+}
