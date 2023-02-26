@@ -7,10 +7,10 @@
 
 import Foundation
 
-// MARK: - DataClass
-struct GetPostLikeResponse: Codable {
-    let likes: [Like]
-    let totalCount: Int
+// MARK: - GetPostLikeResponse
+public struct GetPostLikeResponse: Codable {
+    public let likes: [Like]?
+    public let totalCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case likes

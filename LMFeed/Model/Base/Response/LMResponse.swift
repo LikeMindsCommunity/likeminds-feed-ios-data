@@ -16,6 +16,11 @@ public struct LMResponse<T: Decodable>: Decodable {
         case success, data
         case errorMessage = "error_message"
     }
+    private init(_ success: Bool, errorMessage: String) {
+        self.success = success
+        self.errorMessage = errorMessage
+        self.data = nil
+    }
     
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -23,4 +28,10 @@ public struct LMResponse<T: Decodable>: Decodable {
         errorMessage = try values.decodeIfPresent(String.self, forKey: .errorMessage)
         data = try values.decodeIfPresent(T.self, forKey: .data)
     }
+    
+    static func failureResponse(_ errorMessage: String) -> LMResponse {
+        return LMResponse(false, errorMessage: errorMessage)
+    }
 }
+
+public struct NoData: Decodable {}

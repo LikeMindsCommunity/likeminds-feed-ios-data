@@ -8,8 +8,8 @@
 import Foundation
 
 public class AddPostRequest: Encodable {
-    var text: String?
-    var attachments: [Attachment]?
+    public var text: String?
+    public var attachments: [Attachment]?
     
     /// Initiate method with post text
     public init(text: String) {

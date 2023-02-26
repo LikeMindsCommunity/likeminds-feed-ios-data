@@ -8,8 +8,8 @@
 import Foundation
 
 public class GetCommentLikesRequest: Encodable {
-    var postId: String
-    var commentId: String
+    public var postId: String
+    public var commentId: String
     
     public init(postId: String, commentId: String) {
         self.postId = postId

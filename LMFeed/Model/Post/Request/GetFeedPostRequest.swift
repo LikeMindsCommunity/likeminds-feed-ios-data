@@ -8,8 +8,8 @@
 import Foundation
 
 public class GetFeedPostRequest: Encodable {
-    var page: Int
-    var pageSize: Int = 10
+    public var page: Int
+    public var pageSize: Int = 10
     
     public init(page: Int) {
         self.page = page

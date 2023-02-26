@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		581DD1A5CA7AB9BB7669D88B /* Pods_LMFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA73FCA637CF13312463676 /* Pods_LMFeed.framework */; };
+		BADF6E14249AF1FB37662A2C /* Pods_LMFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6537C78B9E5C1E5CCF2A34C6 /* Pods_LMFeed.framework */; };
 		F41416A1299E41C000622058 /* LMFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = F41416A0299E41C000622058 /* LMFeed.docc */; };
 		F41416A2299E41C000622058 /* LMFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = F414169F299E41C000622058 /* LMFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F41416A9299E41F500622058 /* LMFeedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416A8299E41F500622058 /* LMFeedClient.swift */; };
-		F41416B7299E495700622058 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416B4299E495700622058 /* AppManager.swift */; };
+		F41416B7299E495700622058 /* BuildManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416B4299E495700622058 /* BuildManager.swift */; };
 		F41416B8299E495700622058 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416B5299E495700622058 /* ServiceConfiguration.swift */; };
 		F41416B9299E495700622058 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416B6299E495700622058 /* ServiceRequest.swift */; };
 		F41416BF299E4B4E00622058 /* RefreshAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416BB299E4B4D00622058 /* RefreshAccessToken.swift */; };
 		F41416C0299E4B4E00622058 /* DataNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416BC299E4B4D00622058 /* DataNetwork.swift */; };
 		F41416C1299E4B4E00622058 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416BD299E4B4D00622058 /* TokenManager.swift */; };
-		F41416C2299E4B4E00622058 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416BE299E4B4D00622058 /* AuthManager.swift */; };
 		F41416C6299E97B800622058 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416C5299E97B800622058 /* Reachability.swift */; };
 		F41416D429A27D2B00622058 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416D329A27D2B00622058 /* Post.swift */; };
 		F41416D629A27D7400622058 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416D529A27D7400622058 /* Attachment.swift */; };
@@ -30,7 +29,6 @@
 		F41416F029A370F500622058 /* OGTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416EF29A370F400622058 /* OGTags.swift */; };
 		F41416F229A3759900622058 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F129A3759900622058 /* Reply.swift */; };
 		F41416F429A37A3100622058 /* GetFeedPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F329A37A3100622058 /* GetFeedPostRequest.swift */; };
-		F41416F629A37A6600622058 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F529A37A6600622058 /* File.swift */; };
 		F41416F829A37B9F00622058 /* GetFeedPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */; };
 		F41416FA29A37C9200622058 /* GetPostLikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F929A37C9200622058 /* GetPostLikesRequest.swift */; };
 		F41416FC29A37D3B00622058 /* DeletePostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416FB29A37D3B00622058 /* DeletePostRequest.swift */; };
@@ -44,23 +42,59 @@
 		F414171629A39AD000622058 /* GetPostLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171529A39AD000622058 /* GetPostLikeResponse.swift */; };
 		F414171829A39AE700622058 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171729A39AE700622058 /* Like.swift */; };
 		F414171A29A39B8700622058 /* LikeUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171929A39B8700622058 /* LikeUsers.swift */; };
+		F48125E629A61659003AB8FA /* AWSAttachmentUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125E529A61659003AB8FA /* AWSAttachmentUploader.swift */; };
+		F48125E829A6171A003AB8FA /* AWSS3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125E729A6171A003AB8FA /* AWSS3Manager.swift */; };
+		F48125EB29A631C4003AB8FA /* ReplyOnCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125EA29A631C4003AB8FA /* ReplyOnCommentRequest.swift */; };
+		F48125ED29A6363E003AB8FA /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125EC29A6363E003AB8FA /* Comment.swift */; };
+		F48125EF29A63705003AB8FA /* GetRepliesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125EE29A63705003AB8FA /* GetRepliesResponse.swift */; };
+		F48125F129A6374B003AB8FA /* GetCommentsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F029A6374B003AB8FA /* GetCommentsResponse.swift */; };
+		F48125F329A63965003AB8FA /* CommentedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F229A63965003AB8FA /* CommentedUser.swift */; };
+		F48125F529A63BB4003AB8FA /* GetCommentsLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F429A63BB4003AB8FA /* GetCommentsLikeResponse.swift */; };
+		F48125FB29A782C1003AB8FA /* PreferencesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F729A782C0003AB8FA /* PreferencesFactory.swift */; };
+		F48125FC29A782C1003AB8FA /* PersistentPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F829A782C1003AB8FA /* PersistentPreferences.swift */; };
+		F48125FD29A782C1003AB8FA /* PreferencesImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F929A782C1003AB8FA /* PreferencesImplementation.swift */; };
+		F48125FE29A782C1003AB8FA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125FA29A782C1003AB8FA /* Preferences.swift */; };
+		F481260029A7831D003AB8FA /* PreferenceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125FF29A7831D003AB8FA /* PreferenceConstants.swift */; };
+		F481260329A7847A003AB8FA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F481260229A7847A003AB8FA /* Date+Extension.swift */; };
+		F481260529A7AC0E003AB8FA /* GetPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F481260429A7AC0E003AB8FA /* GetPostRequest.swift */; };
+		F481260729A7ACA8003AB8FA /* GetPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F481260629A7ACA8003AB8FA /* GetPostResponse.swift */; };
+		F481260929A7AD0D003AB8FA /* LMFeedServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F481260829A7AD0D003AB8FA /* LMFeedServiceRequest.swift */; };
+		F4BB412F29A8AE840033F26E /* FeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB412E29A8AE840033F26E /* FeedClientServiceRequest.swift */; };
+		F4BB413129A8B67F0033F26E /* LMFeedClient+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB413029A8B67F0033F26E /* LMFeedClient+Extension.swift */; };
+		F4BB413529AB24C10033F26E /* LMLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB413429AB24C10033F26E /* LMLogger.swift */; };
+		F4BB413829AB73630033F26E /* GetFeedNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB413729AB73630033F26E /* GetFeedNotificationRequest.swift */; };
+		F4BB413A29AB737F0033F26E /* GetFeedNotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB413929AB737F0033F26E /* GetFeedNotificationResponse.swift */; };
+		F4BB413D29ABB8290033F26E /* GetMemberStateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB413C29ABB8290033F26E /* GetMemberStateResponse.swift */; };
+		F4BB413F29ABB9C50033F26E /* MemberRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB413E29ABB9C50033F26E /* MemberRight.swift */; };
+		F4BB414129ABBB980033F26E /* GetFeedGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB414029ABBB980033F26E /* GetFeedGroupRequest.swift */; };
+		F4BB414429ABBE7E0033F26E /* GetFeedGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB414329ABBE7E0033F26E /* GetFeedGroupResponse.swift */; };
+		F4BDCEFC29A60F9300F0AB17 /* BrandingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEEE29A60F9300F0AB17 /* BrandingRequest.swift */; };
+		F4BDCEFD29A60F9300F0AB17 /* BrandingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEEF29A60F9300F0AB17 /* BrandingResponse.swift */; };
+		F4BDCEFF29A60F9300F0AB17 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEF229A60F9300F0AB17 /* Fonts.swift */; };
+		F4BDCF0029A60F9300F0AB17 /* LMChatClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEF329A60F9300F0AB17 /* LMChatClient.swift */; };
+		F4BDCF0129A60F9300F0AB17 /* InitiateUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEF529A60F9300F0AB17 /* InitiateUserResponse.swift */; };
+		F4BDCF0229A60F9300F0AB17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEF629A60F9300F0AB17 /* User.swift */; };
+		F4BDCF0329A60F9300F0AB17 /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEF729A60F9300F0AB17 /* Community.swift */; };
+		F4BDCF0429A60F9300F0AB17 /* InitiateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEF829A60F9300F0AB17 /* InitiateUserRequest.swift */; };
+		F4BDCF0529A60F9300F0AB17 /* RegisterDeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEFA29A60F9300F0AB17 /* RegisterDeviceRequest.swift */; };
+		F4BDCF0629A60F9300F0AB17 /* RegisterDeviceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEFB29A60F9300F0AB17 /* RegisterDeviceResponse.swift */; };
+		F4BDCF0929A60FA900F0AB17 /* LMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCF0829A60FA900F0AB17 /* LMClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5CA73FCA637CF13312463676 /* Pods_LMFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LMFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		98E48C4FE8E1C3992C85A67A /* Pods-LMFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LMFeed.debug.xcconfig"; path = "Target Support Files/Pods-LMFeed/Pods-LMFeed.debug.xcconfig"; sourceTree = "<group>"; };
-		F0C10B3D0F35992B85ACD527 /* Pods-LMFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LMFeed.release.xcconfig"; path = "Target Support Files/Pods-LMFeed/Pods-LMFeed.release.xcconfig"; sourceTree = "<group>"; };
+		240BAB222441574C3C2CED56 /* Pods-LMFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LMFeed.release.xcconfig"; path = "Target Support Files/Pods-LMFeed/Pods-LMFeed.release.xcconfig"; sourceTree = "<group>"; };
+		6537C78B9E5C1E5CCF2A34C6 /* Pods_LMFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LMFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		797C756D9F6FCD2F511C5186 /* Pods-LMFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LMFeed.debug.xcconfig"; path = "Target Support Files/Pods-LMFeed/Pods-LMFeed.debug.xcconfig"; sourceTree = "<group>"; };
 		F414169C299E41C000622058 /* LMFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LMFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F414169F299E41C000622058 /* LMFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMFeed.h; sourceTree = "<group>"; };
 		F41416A0299E41C000622058 /* LMFeed.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = LMFeed.docc; sourceTree = "<group>"; };
 		F41416A8299E41F500622058 /* LMFeedClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMFeedClient.swift; sourceTree = "<group>"; };
-		F41416B4299E495700622058 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		F41416B4299E495700622058 /* BuildManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildManager.swift; sourceTree = "<group>"; };
 		F41416B5299E495700622058 /* ServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
 		F41416B6299E495700622058 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		F41416BB299E4B4D00622058 /* RefreshAccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAccessToken.swift; sourceTree = "<group>"; };
 		F41416BC299E4B4D00622058 /* DataNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataNetwork.swift; sourceTree = "<group>"; };
 		F41416BD299E4B4D00622058 /* TokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
-		F41416BE299E4B4D00622058 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		F41416C5299E97B800622058 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F41416D329A27D2B00622058 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F41416D529A27D7400622058 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
@@ -73,7 +107,6 @@
 		F41416EF29A370F400622058 /* OGTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGTags.swift; sourceTree = "<group>"; };
 		F41416F129A3759900622058 /* Reply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		F41416F329A37A3100622058 /* GetFeedPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedPostRequest.swift; sourceTree = "<group>"; };
-		F41416F529A37A6600622058 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedPostResponse.swift; sourceTree = "<group>"; };
 		F41416F929A37C9200622058 /* GetPostLikesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostLikesRequest.swift; sourceTree = "<group>"; };
 		F41416FB29A37D3B00622058 /* DeletePostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostRequest.swift; sourceTree = "<group>"; };
@@ -87,6 +120,43 @@
 		F414171529A39AD000622058 /* GetPostLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostLikeResponse.swift; sourceTree = "<group>"; };
 		F414171729A39AE700622058 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		F414171929A39B8700622058 /* LikeUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUsers.swift; sourceTree = "<group>"; };
+		F48125E529A61659003AB8FA /* AWSAttachmentUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAttachmentUploader.swift; sourceTree = "<group>"; };
+		F48125E729A6171A003AB8FA /* AWSS3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSS3Manager.swift; sourceTree = "<group>"; };
+		F48125EA29A631C4003AB8FA /* ReplyOnCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyOnCommentRequest.swift; sourceTree = "<group>"; };
+		F48125EC29A6363E003AB8FA /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		F48125EE29A63705003AB8FA /* GetRepliesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRepliesResponse.swift; sourceTree = "<group>"; };
+		F48125F029A6374B003AB8FA /* GetCommentsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommentsResponse.swift; sourceTree = "<group>"; };
+		F48125F229A63965003AB8FA /* CommentedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentedUser.swift; sourceTree = "<group>"; };
+		F48125F429A63BB4003AB8FA /* GetCommentsLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommentsLikeResponse.swift; sourceTree = "<group>"; };
+		F48125F729A782C0003AB8FA /* PreferencesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesFactory.swift; sourceTree = "<group>"; };
+		F48125F829A782C1003AB8FA /* PersistentPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentPreferences.swift; sourceTree = "<group>"; };
+		F48125F929A782C1003AB8FA /* PreferencesImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesImplementation.swift; sourceTree = "<group>"; };
+		F48125FA29A782C1003AB8FA /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		F48125FF29A7831D003AB8FA /* PreferenceConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceConstants.swift; sourceTree = "<group>"; };
+		F481260229A7847A003AB8FA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		F481260429A7AC0E003AB8FA /* GetPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostRequest.swift; sourceTree = "<group>"; };
+		F481260629A7ACA8003AB8FA /* GetPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostResponse.swift; sourceTree = "<group>"; };
+		F481260829A7AD0D003AB8FA /* LMFeedServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMFeedServiceRequest.swift; sourceTree = "<group>"; };
+		F4BB412E29A8AE840033F26E /* FeedClientServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedClientServiceRequest.swift; sourceTree = "<group>"; };
+		F4BB413029A8B67F0033F26E /* LMFeedClient+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LMFeedClient+Extension.swift"; sourceTree = "<group>"; };
+		F4BB413429AB24C10033F26E /* LMLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMLogger.swift; sourceTree = "<group>"; };
+		F4BB413729AB73630033F26E /* GetFeedNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedNotificationRequest.swift; sourceTree = "<group>"; };
+		F4BB413929AB737F0033F26E /* GetFeedNotificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedNotificationResponse.swift; sourceTree = "<group>"; };
+		F4BB413C29ABB8290033F26E /* GetMemberStateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMemberStateResponse.swift; sourceTree = "<group>"; };
+		F4BB413E29ABB9C50033F26E /* MemberRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRight.swift; sourceTree = "<group>"; };
+		F4BB414029ABBB980033F26E /* GetFeedGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedGroupRequest.swift; sourceTree = "<group>"; };
+		F4BB414329ABBE7E0033F26E /* GetFeedGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedGroupResponse.swift; sourceTree = "<group>"; };
+		F4BDCEEE29A60F9300F0AB17 /* BrandingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandingRequest.swift; sourceTree = "<group>"; };
+		F4BDCEEF29A60F9300F0AB17 /* BrandingResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandingResponse.swift; sourceTree = "<group>"; };
+		F4BDCEF229A60F9300F0AB17 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		F4BDCEF329A60F9300F0AB17 /* LMChatClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMChatClient.swift; sourceTree = "<group>"; };
+		F4BDCEF529A60F9300F0AB17 /* InitiateUserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiateUserResponse.swift; sourceTree = "<group>"; };
+		F4BDCEF629A60F9300F0AB17 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F4BDCEF729A60F9300F0AB17 /* Community.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
+		F4BDCEF829A60F9300F0AB17 /* InitiateUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiateUserRequest.swift; sourceTree = "<group>"; };
+		F4BDCEFA29A60F9300F0AB17 /* RegisterDeviceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDeviceRequest.swift; sourceTree = "<group>"; };
+		F4BDCEFB29A60F9300F0AB17 /* RegisterDeviceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDeviceResponse.swift; sourceTree = "<group>"; };
+		F4BDCF0829A60FA900F0AB17 /* LMClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,17 +164,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				581DD1A5CA7AB9BB7669D88B /* Pods_LMFeed.framework in Frameworks */,
+				BADF6E14249AF1FB37662A2C /* Pods_LMFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		817660CCE83C43316F0DF128 /* Frameworks */ = {
+		333A2B1C81009D16D6D8BA00 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5CA73FCA637CF13312463676 /* Pods_LMFeed.framework */,
+				6537C78B9E5C1E5CCF2A34C6 /* Pods_LMFeed.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,10 +182,9 @@
 		B225E8A19E3A94DAD7097CE6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				98E48C4FE8E1C3992C85A67A /* Pods-LMFeed.debug.xcconfig */,
-				F0C10B3D0F35992B85ACD527 /* Pods-LMFeed.release.xcconfig */,
+				797C756D9F6FCD2F511C5186 /* Pods-LMFeed.debug.xcconfig */,
+				240BAB222441574C3C2CED56 /* Pods-LMFeed.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -125,7 +194,7 @@
 				F414169E299E41C000622058 /* LMFeed */,
 				F414169D299E41C000622058 /* Products */,
 				B225E8A19E3A94DAD7097CE6 /* Pods */,
-				817660CCE83C43316F0DF128 /* Frameworks */,
+				333A2B1C81009D16D6D8BA00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,12 +209,16 @@
 		F414169E299E41C000622058 /* LMFeed */ = {
 			isa = PBXGroup;
 			children = (
+				F481260129A783FE003AB8FA /* Extensions */,
+				F48125F629A78264003AB8FA /* PreferenceManager */,
+				F4BDCF0729A60FA900F0AB17 /* FeedClient */,
 				F41416BA299E4B4D00622058 /* Network */,
 				F41416B3299E48D300622058 /* LMFeedService */,
 				F41416AA299E442300622058 /* Model */,
 				F414169F299E41C000622058 /* LMFeed.h */,
-				F41416A0299E41C000622058 /* LMFeed.docc */,
 				F41416A8299E41F500622058 /* LMFeedClient.swift */,
+				F4BB413029A8B67F0033F26E /* LMFeedClient+Extension.swift */,
+				F41416A0299E41C000622058 /* LMFeed.docc */,
 			);
 			path = LMFeed;
 			sourceTree = "<group>";
@@ -153,6 +226,9 @@
 		F41416AA299E442300622058 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4BB413629AB73490033F26E /* FeedNotification */,
+				F48125E929A63146003AB8FA /* ReplyOnComment */,
+				F4BDCEEC29A60F9300F0AB17 /* CoreFeed */,
 				F41416E129A280D200622058 /* Base */,
 				F41416B2299E454F00622058 /* FeedGroup */,
 				F41416B1299E451C00622058 /* FeedRoom */,
@@ -160,7 +236,7 @@
 				F41416AF299E44F200622058 /* CommentsLikes */,
 				F41416AE299E448A00622058 /* MemberState */,
 				F41416AD299E447D00622058 /* Comments */,
-				F41416AC299E444000622058 /* Posts */,
+				F41416AC299E444000622058 /* Post */,
 				F41416AB299E442C00622058 /* UniversalFeed */,
 			);
 			path = Model;
@@ -175,13 +251,13 @@
 			path = UniversalFeed;
 			sourceTree = "<group>";
 		};
-		F41416AC299E444000622058 /* Posts */ = {
+		F41416AC299E444000622058 /* Post */ = {
 			isa = PBXGroup;
 			children = (
 				F41416DA29A27E6900622058 /* Request */,
 				F41416D929A27E5200622058 /* Response */,
 			);
-			path = Posts;
+			path = Post;
 			sourceTree = "<group>";
 		};
 		F41416AD299E447D00622058 /* Comments */ = {
@@ -232,6 +308,8 @@
 		F41416B2299E454F00622058 /* FeedGroup */ = {
 			isa = PBXGroup;
 			children = (
+				F4BB414029ABBB980033F26E /* GetFeedGroupRequest.swift */,
+				F4BB414329ABBE7E0033F26E /* GetFeedGroupResponse.swift */,
 			);
 			path = FeedGroup;
 			sourceTree = "<group>";
@@ -239,9 +317,9 @@
 		F41416B3299E48D300622058 /* LMFeedService */ = {
 			isa = PBXGroup;
 			children = (
-				F41416B4299E495700622058 /* AppManager.swift */,
 				F41416B5299E495700622058 /* ServiceConfiguration.swift */,
-				F41416B6299E495700622058 /* ServiceRequest.swift */,
+				F481260829A7AD0D003AB8FA /* LMFeedServiceRequest.swift */,
+				F4BB412E29A8AE840033F26E /* FeedClientServiceRequest.swift */,
 			);
 			path = LMFeedService;
 			sourceTree = "<group>";
@@ -249,11 +327,12 @@
 		F41416BA299E4B4D00622058 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				F41416C5299E97B800622058 /* Reachability.swift */,
-				F41416BB299E4B4D00622058 /* RefreshAccessToken.swift */,
 				F41416BC299E4B4D00622058 /* DataNetwork.swift */,
-				F41416BD299E4B4D00622058 /* TokenManager.swift */,
-				F41416BE299E4B4D00622058 /* AuthManager.swift */,
+				F41416B6299E495700622058 /* ServiceRequest.swift */,
+				F41416C5299E97B800622058 /* Reachability.swift */,
+				F4BB413329AA68760033F26E /* TokenManager */,
+				F4BB413229AA685A0033F26E /* AWSS3Manager */,
+				F4BB413429AB24C10033F26E /* LMLogger.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -267,8 +346,8 @@
 				F41416ED29A36CBD00622058 /* AttachmentMeta.swift */,
 				F41416EF29A370F400622058 /* OGTags.swift */,
 				F41416F129A3759900622058 /* Reply.swift */,
-				F41416F529A37A6600622058 /* File.swift */,
 				F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */,
+				F481260629A7ACA8003AB8FA /* GetPostResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -279,6 +358,7 @@
 				F41416E429A2826100622058 /* AddPostRequest.swift */,
 				F41416F329A37A3100622058 /* GetFeedPostRequest.swift */,
 				F41416FB29A37D3B00622058 /* DeletePostRequest.swift */,
+				F481260429A7AC0E003AB8FA /* GetPostRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -302,7 +382,7 @@
 		F41416E129A280D200622058 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				F41416E229A280E700622058 /* LMResponse.swift */,
+				F4BB414229ABBBE20033F26E /* Response */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -319,6 +399,9 @@
 		F414170029A3965C00622058 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				F48125EC29A6363E003AB8FA /* Comment.swift */,
+				F48125F029A6374B003AB8FA /* GetCommentsResponse.swift */,
+				F48125F229A63965003AB8FA /* CommentedUser.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -335,6 +418,7 @@
 		F414170A29A3987F00622058 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				F48125F429A63BB4003AB8FA /* GetCommentsLikeResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -369,6 +453,8 @@
 		F414170E29A3991600622058 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				F4BB413C29ABB8290033F26E /* GetMemberStateResponse.swift */,
+				F4BB413E29ABB9C50033F26E /* MemberRight.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -386,6 +472,128 @@
 			children = (
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		F48125E929A63146003AB8FA /* ReplyOnComment */ = {
+			isa = PBXGroup;
+			children = (
+				F48125EA29A631C4003AB8FA /* ReplyOnCommentRequest.swift */,
+				F48125EE29A63705003AB8FA /* GetRepliesResponse.swift */,
+			);
+			path = ReplyOnComment;
+			sourceTree = "<group>";
+		};
+		F48125F629A78264003AB8FA /* PreferenceManager */ = {
+			isa = PBXGroup;
+			children = (
+				F48125FF29A7831D003AB8FA /* PreferenceConstants.swift */,
+				F48125F829A782C1003AB8FA /* PersistentPreferences.swift */,
+				F48125FA29A782C1003AB8FA /* Preferences.swift */,
+				F48125F729A782C0003AB8FA /* PreferencesFactory.swift */,
+				F48125F929A782C1003AB8FA /* PreferencesImplementation.swift */,
+			);
+			path = PreferenceManager;
+			sourceTree = "<group>";
+		};
+		F481260129A783FE003AB8FA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F481260229A7847A003AB8FA /* Date+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F4BB413229AA685A0033F26E /* AWSS3Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F48125E529A61659003AB8FA /* AWSAttachmentUploader.swift */,
+				F48125E729A6171A003AB8FA /* AWSS3Manager.swift */,
+			);
+			path = AWSS3Manager;
+			sourceTree = "<group>";
+		};
+		F4BB413329AA68760033F26E /* TokenManager */ = {
+			isa = PBXGroup;
+			children = (
+				F41416B4299E495700622058 /* BuildManager.swift */,
+				F41416BB299E4B4D00622058 /* RefreshAccessToken.swift */,
+				F41416BD299E4B4D00622058 /* TokenManager.swift */,
+			);
+			path = TokenManager;
+			sourceTree = "<group>";
+		};
+		F4BB413629AB73490033F26E /* FeedNotification */ = {
+			isa = PBXGroup;
+			children = (
+				F4BB413729AB73630033F26E /* GetFeedNotificationRequest.swift */,
+				F4BB413929AB737F0033F26E /* GetFeedNotificationResponse.swift */,
+			);
+			path = FeedNotification;
+			sourceTree = "<group>";
+		};
+		F4BB414229ABBBE20033F26E /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				F41416E229A280E700622058 /* LMResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		F4BDCEEC29A60F9300F0AB17 /* CoreFeed */ = {
+			isa = PBXGroup;
+			children = (
+				F4BDCEED29A60F9300F0AB17 /* Branding */,
+				F4BDCEF029A60F9300F0AB17 /* Core */,
+				F4BDCEF429A60F9300F0AB17 /* InitiateUser */,
+				F4BDCEF929A60F9300F0AB17 /* RegisterDevice */,
+			);
+			path = CoreFeed;
+			sourceTree = "<group>";
+		};
+		F4BDCEED29A60F9300F0AB17 /* Branding */ = {
+			isa = PBXGroup;
+			children = (
+				F4BDCEEE29A60F9300F0AB17 /* BrandingRequest.swift */,
+				F4BDCEEF29A60F9300F0AB17 /* BrandingResponse.swift */,
+			);
+			path = Branding;
+			sourceTree = "<group>";
+		};
+		F4BDCEF029A60F9300F0AB17 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F4BDCEF229A60F9300F0AB17 /* Fonts.swift */,
+				F4BDCEF329A60F9300F0AB17 /* LMChatClient.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		F4BDCEF429A60F9300F0AB17 /* InitiateUser */ = {
+			isa = PBXGroup;
+			children = (
+				F4BDCEF529A60F9300F0AB17 /* InitiateUserResponse.swift */,
+				F4BDCEF629A60F9300F0AB17 /* User.swift */,
+				F4BDCEF729A60F9300F0AB17 /* Community.swift */,
+				F4BDCEF829A60F9300F0AB17 /* InitiateUserRequest.swift */,
+			);
+			path = InitiateUser;
+			sourceTree = "<group>";
+		};
+		F4BDCEF929A60F9300F0AB17 /* RegisterDevice */ = {
+			isa = PBXGroup;
+			children = (
+				F4BDCEFA29A60F9300F0AB17 /* RegisterDeviceRequest.swift */,
+				F4BDCEFB29A60F9300F0AB17 /* RegisterDeviceResponse.swift */,
+			);
+			path = RegisterDevice;
+			sourceTree = "<group>";
+		};
+		F4BDCF0729A60FA900F0AB17 /* FeedClient */ = {
+			isa = PBXGroup;
+			children = (
+				F4BDCF0829A60FA900F0AB17 /* LMClient.swift */,
+			);
+			path = FeedClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,7 +614,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F41416A5299E41C000622058 /* Build configuration list for PBXNativeTarget "LMFeed" */;
 			buildPhases = (
-				27D74607E40F857F6F6E9BF7 /* [CP] Check Pods Manifest.lock */,
+				AFC8518A0D34CB6B689E4EF0 /* [CP] Check Pods Manifest.lock */,
 				F4141697299E41C000622058 /* Headers */,
 				F4141698299E41C000622058 /* Sources */,
 				F4141699299E41C000622058 /* Frameworks */,
@@ -464,7 +672,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27D74607E40F857F6F6E9BF7 /* [CP] Check Pods Manifest.lock */ = {
+		AFC8518A0D34CB6B689E4EF0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -495,38 +703,73 @@
 			files = (
 				F41416B9299E495700622058 /* ServiceRequest.swift in Sources */,
 				F41416D429A27D2B00622058 /* Post.swift in Sources */,
-				F41416C2299E4B4E00622058 /* AuthManager.swift in Sources */,
+				F4BDCEFC29A60F9300F0AB17 /* BrandingRequest.swift in Sources */,
+				F481260029A7831D003AB8FA /* PreferenceConstants.swift in Sources */,
+				F481260329A7847A003AB8FA /* Date+Extension.swift in Sources */,
+				F4BB412F29A8AE840033F26E /* FeedClientServiceRequest.swift in Sources */,
+				F4BDCF0129A60F9300F0AB17 /* InitiateUserResponse.swift in Sources */,
+				F48125F129A6374B003AB8FA /* GetCommentsResponse.swift in Sources */,
 				F414170229A3967B00622058 /* AddCommentRequest.swift in Sources */,
 				F414171829A39AE700622058 /* Like.swift in Sources */,
 				F41416EE29A36CBD00622058 /* AttachmentMeta.swift in Sources */,
 				F41416F029A370F500622058 /* OGTags.swift in Sources */,
+				F48125E829A6171A003AB8FA /* AWSS3Manager.swift in Sources */,
 				F41416E329A280E700622058 /* LMResponse.swift in Sources */,
+				F4BDCF0329A60F9300F0AB17 /* Community.swift in Sources */,
 				F41416F229A3759900622058 /* Reply.swift in Sources */,
+				F4BB413529AB24C10033F26E /* LMLogger.swift in Sources */,
 				F41416C1299E4B4E00622058 /* TokenManager.swift in Sources */,
 				F41416D629A27D7400622058 /* Attachment.swift in Sources */,
 				F414170429A3975300622058 /* GetCommentRequest.swift in Sources */,
-				F41416F629A37A6600622058 /* File.swift in Sources */,
+				F48125FB29A782C1003AB8FA /* PreferencesFactory.swift in Sources */,
+				F4BDCF0629A60F9300F0AB17 /* RegisterDeviceResponse.swift in Sources */,
+				F48125F529A63BB4003AB8FA /* GetCommentsLikeResponse.swift in Sources */,
+				F4BDCEFD29A60F9300F0AB17 /* BrandingResponse.swift in Sources */,
+				F48125FE29A782C1003AB8FA /* Preferences.swift in Sources */,
 				F41416E529A2826100622058 /* AddPostRequest.swift in Sources */,
+				F48125FD29A782C1003AB8FA /* PreferencesImplementation.swift in Sources */,
 				F414171429A3999F00622058 /* GetFeedRoomRequest.swift in Sources */,
 				F414171629A39AD000622058 /* GetPostLikeResponse.swift in Sources */,
+				F48125FC29A782C1003AB8FA /* PersistentPreferences.swift in Sources */,
+				F48125EF29A63705003AB8FA /* GetRepliesResponse.swift in Sources */,
+				F4BB413A29AB737F0033F26E /* GetFeedNotificationResponse.swift in Sources */,
+				F4BB414429ABBE7E0033F26E /* GetFeedGroupResponse.swift in Sources */,
 				F41416FA29A37C9200622058 /* GetPostLikesRequest.swift in Sources */,
+				F4BDCF0229A60F9300F0AB17 /* User.swift in Sources */,
 				F41416C0299E4B4E00622058 /* DataNetwork.swift in Sources */,
+				F4BDCF0429A60F9300F0AB17 /* InitiateUserRequest.swift in Sources */,
 				F41416E029A2800400622058 /* GetFeedResponse.swift in Sources */,
+				F4BDCF0929A60FA900F0AB17 /* LMClient.swift in Sources */,
+				F4BB413F29ABB9C50033F26E /* MemberRight.swift in Sources */,
 				F41416F829A37B9F00622058 /* GetFeedPostResponse.swift in Sources */,
 				F414171A29A39B8700622058 /* LikeUsers.swift in Sources */,
 				F41416D829A27D9D00622058 /* MenuItem.swift in Sources */,
+				F4BDCF0529A60F9300F0AB17 /* RegisterDeviceRequest.swift in Sources */,
 				F414170829A3981F00622058 /* LikeCommentRequest.swift in Sources */,
 				F41416FE29A37D4D00622058 /* LikePostRequest.swift in Sources */,
-				F41416B7299E495700622058 /* AppManager.swift in Sources */,
+				F41416B7299E495700622058 /* BuildManager.swift in Sources */,
+				F48125ED29A6363E003AB8FA /* Comment.swift in Sources */,
+				F4BB414129ABBB980033F26E /* GetFeedGroupRequest.swift in Sources */,
+				F4BDCEFF29A60F9300F0AB17 /* Fonts.swift in Sources */,
 				F414171229A3995500622058 /* GetMemberStateRequest.swift in Sources */,
 				F41416A1299E41C000622058 /* LMFeed.docc in Sources */,
 				F41416FC29A37D3B00622058 /* DeletePostRequest.swift in Sources */,
+				F48125EB29A631C4003AB8FA /* ReplyOnCommentRequest.swift in Sources */,
+				F481260929A7AD0D003AB8FA /* LMFeedServiceRequest.swift in Sources */,
 				F41416BF299E4B4E00622058 /* RefreshAccessToken.swift in Sources */,
 				F414170629A3978E00622058 /* GetCommentLikesRequest.swift in Sources */,
+				F48125E629A61659003AB8FA /* AWSAttachmentUploader.swift in Sources */,
+				F4BB413D29ABB8290033F26E /* GetMemberStateResponse.swift in Sources */,
+				F481260729A7ACA8003AB8FA /* GetPostResponse.swift in Sources */,
 				F41416B8299E495700622058 /* ServiceConfiguration.swift in Sources */,
+				F4BB413129A8B67F0033F26E /* LMFeedClient+Extension.swift in Sources */,
 				F41416C6299E97B800622058 /* Reachability.swift in Sources */,
+				F481260529A7AC0E003AB8FA /* GetPostRequest.swift in Sources */,
 				F41416DD29A27F4000622058 /* GetFeedRequest.swift in Sources */,
+				F4BDCF0029A60F9300F0AB17 /* LMChatClient.swift in Sources */,
+				F48125F329A63965003AB8FA /* CommentedUser.swift in Sources */,
 				F41416A9299E41F500622058 /* LMFeedClient.swift in Sources */,
+				F4BB413829AB73630033F26E /* GetFeedNotificationRequest.swift in Sources */,
 				F41416F429A37A3100622058 /* GetFeedPostRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,7 +828,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -642,7 +885,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -656,7 +899,7 @@
 		};
 		F41416A6299E41C000622058 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98E48C4FE8E1C3992C85A67A /* Pods-LMFeed.debug.xcconfig */;
+			baseConfigurationReference = 797C756D9F6FCD2F511C5186 /* Pods-LMFeed.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -684,7 +927,7 @@
 		};
 		F41416A7299E41C000622058 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0C10B3D0F35992B85ACD527 /* Pods-LMFeed.release.xcconfig */;
+			baseConfigurationReference = 240BAB222441574C3C2CED56 /* Pods-LMFeed.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

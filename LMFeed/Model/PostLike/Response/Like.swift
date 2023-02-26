@@ -8,15 +8,15 @@
 import Foundation
 
 // MARK: - Like
-struct Like: Codable {
-    let id: String
-    let createdAt, updatedAt: Int
-    let user: User
+public struct Like: Codable {
+    public let id: String
+    public let createdAt, updatedAt: Int?
+    public let userId: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case user
+        case userId = "user_id"
     }
 }

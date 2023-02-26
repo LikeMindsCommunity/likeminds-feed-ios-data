@@ -6,34 +6,32 @@
 //
 
 import Foundation
-import LMCore
 
 public class LMFeedClient {
     
-    public func getFeed() {}
+    public static let shared = LMFeedClient()
     
-    public func addPost() {}
+    private init() {}
     
-    public func getPost() {}
+    /// This function configure and initialize dependency frameworks
+    /// - Parameter extras: required to Initiation of the SDK
+    public func initiateLikeMindsFeed(_ extras: LMChatClient) {
+        saveExtrasValuesInLocalPreferences(extras: extras)
+        //        BrandingData.shared.invalidateFonts(extras.getFonts())
+        initialize()
+    }
     
-    public func getPostLikes() {}
+    func initialize() {
+        AWSS3Manager().initializeS3()
+    }
     
-    public func deletePost() {}
-    
-    public func likePost() {}
-    
-    public func addComment() {}
-    
-    public func getComment() {}
-    
-    public func getCommentLikes() {}
-    
-    public func likeComment() {}
-    
-    public func getMemberState() {}
-    
-    public func getFeedRoom() {}
-    
-    public func getFeedOfFeedRoom() {}
+    func saveExtrasValuesInLocalPreferences(extras: LMChatClient) {
+        let preferences = PreferencesFactory.userPreferences()
+        preferences.put(extras.getApiKey(), forKey: kPrefSdkApiKey)
+        if let domain = extras.getDomainUrl() {
+            preferences.put(domain, forKey: kPrefDomainUrl)
+        }
+        _ = preferences.save()
+    }
     
 }

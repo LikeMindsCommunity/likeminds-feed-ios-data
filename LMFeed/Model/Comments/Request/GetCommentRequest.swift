@@ -8,7 +8,7 @@
 import Foundation
 
 public class GetCommentRequest: Encodable {
-    var postId: String?
+    var postId: String
     
     public init(postId: String) {
         self.postId = postId

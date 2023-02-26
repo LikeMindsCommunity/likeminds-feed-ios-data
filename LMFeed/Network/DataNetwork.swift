@@ -43,6 +43,10 @@ enum NetworkServiceError:Error  {
     case noResponseData(HTTPURLResponse)
     ///    Status code is `400` or higher thus return the entire `HTTPURLResponse` and `Data` so caller can figure out what happened.
     case endpointError(HTTPURLResponse, Data?)
+    ///  token expire
+    case tokenExpire
+    /// Parsing error
+    case failedJsonParse(_ errorMessage: String)
 }
 
 struct RequestParam {
@@ -94,10 +98,10 @@ internal final class DataNetwork {
         }
         
         let request = AF.request(url,
-                                        method: httpMethod,
-                                        parameters: parameters,
-                                        encoding: encoding,
-                                        headers: headers)
+                                 method: httpMethod,
+                                 parameters: parameters,
+                                 encoding: encoding,
+                                 headers: headers)
         
         downloadResourceParams?.append(RequestParam(successCallback: successCallback, failureCallback: failureCallback, request: request, moduleName: moduleName))
         
@@ -123,14 +127,68 @@ internal final class DataNetwork {
                jsondataString.range(of: "Invalid LTM!") != nil
             {
                 lmLog("response - \(String(describing: jsondataString))")
-//                AuthManager.shared.refreshLMToken {}
-                failureCallback(moduleName, .noResponse)
+                TokenManager.shared.refreshLMToken {}
+                failureCallback(moduleName, .tokenExpire)
                 return
             }
             lmLog("response - \(String(describing: jsondataString))")
             lmLog("--------------------------")
             dataIntercepter(data: responseData)
             successCallback(moduleName, responseData)
+        }
+    }
+    
+    func request<T: Decodable>(for url:URL, withHTTPMethod httpMethod: Alamofire.HTTPMethod, headers: HTTPHeaders, withParameters parameters: Parameters? = nil, withEncoding encoding: ParameterEncoding, withResponseType objectType: T.Type, withModuleName moduleName:String, successCallback:@escaping SuccessCompletionBlock, failureCallback:@escaping FailureCompletionBlock) {
+        guard Reachability.currentReachabilityStatus != .notReachable else {
+            failureCallback(moduleName, .noInternet)
+            return
+        }
+        let request = AF.request(url,
+                                 method: httpMethod,
+                                 parameters: parameters,
+                                 encoding: encoding,
+                                 headers: headers)
+        
+        downloadResourceParams?.append(RequestParam(successCallback: successCallback, failureCallback: failureCallback, request: request, moduleName: moduleName))
+        
+        request.responseData { (response) in
+            lmLog("--------------------------")
+            lmLog("url - \(url)")
+            lmLog("request - \(request)")
+            lmLog("moduleName - \(moduleName)")
+            if let urlRequest = request.request, let httpBody = urlRequest.httpBody {
+                debugPrint("http request body - \(String(describing: String(data: httpBody, encoding: .utf8)))")
+            }
+            lmLog("headers - \(headers)")
+            guard let responseData = response.data else {
+                lmLog("failureCallback - \(response)")
+                dataIntercepter(data: response.data)
+                failureCallback(moduleName, .noResponse)
+                lmLog("--------------------------")
+                return
+            }
+            
+            if let httpResponse = response.response,
+               httpResponse.statusCode == 401
+            {
+                let jsondataString = responseData.jsonString()
+                if jsondataString.range(of: "Invalid LTM!") != nil {
+                    lmLog("response - \(String(describing: jsondataString))")
+                    TokenManager.shared.refreshLMToken{}
+                    failureCallback(moduleName, .tokenExpire)
+                    return
+                }
+                failureCallback(moduleName, .noResponse)
+            }
+            do {
+                let lmResponse  = try JSONDecoder().decode(LMResponse<T>.self, from: responseData)
+                lmLog("response - \(String(describing: lmResponse))")
+                successCallback(moduleName, lmResponse)
+            } catch let error {
+                lmLog("response - \(String(describing: responseData.jsonString()))")
+                failureCallback(moduleName, .failedJsonParse(error.localizedDescription))
+            }
+            lmLog("--------------------------")
         }
     }
 }

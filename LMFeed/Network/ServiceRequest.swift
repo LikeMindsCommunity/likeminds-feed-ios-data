@@ -8,15 +8,15 @@
 
 import Foundation
 import Alamofire
-import LMCore
 
 class ServiceRequest {
     
     static func httpHeaders() -> HTTPHeaders {
-        let loggedInMemberID = ""
-        let sdkApiKey = ""
-        let accessToken = ""
-        let buildVersion = ""
+        let preferences = PreferencesFactory.userPreferences()
+        let loggedInMemberID = preferences.string(forKey: kPrefMemberId)
+        let sdkApiKey = preferences.string(forKey: kPrefSdkApiKey)
+        let accessToken = TokenManager.shared.accessToken ?? ""
+        let buildVersion = BuildManager.buildVersion
         let deviceId = ""
         
         return ["x-member-id": loggedInMemberID,
@@ -33,8 +33,6 @@ class ServiceRequest {
         return ["\(headerKey)": sdkApiKey,
                 "Cookie":""]
     }
-    
-    
     
     static func cancelRequests(withModuleName moduleName: String) {
         DataNetwork.shared.cancelAllDownloads(for: moduleName)

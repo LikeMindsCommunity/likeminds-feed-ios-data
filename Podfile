@@ -7,5 +7,8 @@ target 'LMFeed' do
 
   # Pods for LMFeed
   pod 'Alamofire'
+  pod 'AWSCore'
+  pod 'AWSCognito'
+  pod 'AWSS3'
 
 end
