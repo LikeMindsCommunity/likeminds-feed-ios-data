@@ -8,17 +8,56 @@
 import Foundation
 
 // MARK: - AttachmentMeta
-public struct AttachmentMeta: Codable {
-    public let url: String?
-    public let format, duration, size: String?
-    public let pageCount: Int?
-    public let ogTags: OGTags?
+public class AttachmentMeta: Codable {
+    public var attachmentUrl: String?
+    public var format: String?
+    public var pageCount, duration, size: Int?
+    public var ogTags: OGTags?
+    
+    public init() {
+    }
+    
+    required public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.attachmentUrl = try container.decodeIfPresent(String.self, forKey: .attachmentUrl)
+        self.format = try container.decodeIfPresent(String.self, forKey: .format)
+        self.size = try container.decodeIfPresent(Int.self, forKey: .size)
+        self.duration = try container.decodeIfPresent(Int.self, forKey: .duration)
+        self.pageCount = try container.decodeIfPresent(Int.self, forKey: .pageCount)
+        self.ogTags = try container.decodeIfPresent(OGTags.self, forKey: .ogTags)
+    }
     
     enum CodingKeys: String, CodingKey {
-        case url
+        case attachmentUrl = "url"
         case format
         case size, duration
         case pageCount = "page_count"
         case ogTags = "og_tags"
     }
+    
+    public func attachmentUrl(_ attachmentUrl: String) -> AttachmentMeta {
+        self.attachmentUrl = attachmentUrl
+        return self
+    }
+    
+    public func format(_ format: String) -> AttachmentMeta {
+        self.format = format
+        return self
+    }
+    
+    public func duration(_ duration: Int) -> AttachmentMeta {
+        self.duration = duration
+        return self
+    }
+    
+    public func size(_ size: Int) -> AttachmentMeta {
+        self.size = size
+        return self
+    }
+    
+    public func ogTags(_ ogTags: OGTags) -> AttachmentMeta {
+        self.ogTags = ogTags
+        return self
+    }
+    
 }

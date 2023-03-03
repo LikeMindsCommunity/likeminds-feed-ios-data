@@ -39,7 +39,7 @@ public class LMChatClient {
     }
     
     /// get the api key
-    public func getApiKey() -> String { return self.apiKey }
+    func getApiKey() -> String { return self.apiKey }
     /// get the domain url
-    public func getDomainUrl() -> String? { return self.domain }
+    func getDomainUrl() -> String? { return self.domain }
 }

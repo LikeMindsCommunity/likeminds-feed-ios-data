@@ -7,14 +7,14 @@
 
 import Foundation
 
-class LMServiceRequest: ServiceRequest {
+class LMFeedServiceRequest: ServiceRequest {
     
     static func getFeeds(_ request: GetFeedRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.universalFeed(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -35,7 +35,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -56,7 +56,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -77,7 +77,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -98,7 +98,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -119,7 +119,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -140,7 +140,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -156,18 +156,60 @@ class LMServiceRequest: ServiceRequest {
         }
     }
     
-    static func getComment(_ request: GetCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentsResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.getComments(request)
+    static func replyOnComment(_ request: ReplyOnCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.replyOnComment(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
             guard let data = responseData as? Data else {return}
             do {
-                let result = try JSONDecoder().decode(LMResponse<GetCommentsResponse>.self, from: data)
+                let result = try JSONDecoder().decode(LMResponse<NoData>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
+    
+    static func getComment(_ request: GetCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.getComment(request)
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<GetCommentResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
+    
+    static func getRepliesOnComment(_ request: GetRepliesOnCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetRepliesResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.getCommentsReplies(request)
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<GetRepliesResponse>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))
@@ -182,7 +224,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -203,7 +245,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -224,7 +266,7 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -245,13 +287,34 @@ class LMServiceRequest: ServiceRequest {
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpHeaders(),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
             guard let data = responseData as? Data else {return}
             do {
                 let result = try JSONDecoder().decode(LMResponse<GetFeedGroupResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
+    
+    static func getNotificationFeed(_ request: GetFeedNotificationRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedNotificationResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.getFeedNotifications(request)
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<GetFeedNotificationResponse>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))

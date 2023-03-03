@@ -11,10 +11,12 @@ class FeedClientServiceRequest: ServiceRequest {
     
     static func initiateChatService(_ request: InitiateUserRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.initiateChatClient(request)
+        let preferences = PreferencesFactory.userPreferences()
+        let sdkAPIKey = preferences.string(forKey: kPrefSdkApiKey)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(),
+                                   headers: ServiceRequest.httpSdkHeaders(value: sdkAPIKey),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in

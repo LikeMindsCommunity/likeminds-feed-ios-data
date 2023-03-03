@@ -8,9 +8,9 @@
 import Foundation
 
 public struct LikePostRequest: Encodable {
-    public let postId: Int
+    public let postId: String
     
-    public init(postId: Int) {
+    public init(postId: String) {
         self.postId = postId
     }
     

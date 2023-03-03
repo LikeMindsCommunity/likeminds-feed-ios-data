@@ -8,11 +8,11 @@
 import Foundation
 
 public class GetPostLikesRequest: Encodable {
-    var postId: Int
+    var postId: String
     var pageSize: Int = 10 //
     var page: Int // Page no
     
-    public init(postId: Int, page: Int) {
+    public init(postId: String, page: Int) {
         self.postId = postId
         self.page = page
     }

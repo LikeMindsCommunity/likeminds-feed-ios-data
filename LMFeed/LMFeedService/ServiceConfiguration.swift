@@ -76,11 +76,12 @@ struct ServiceAPIRequest {
         case likePost(_ request: LikePostRequest)
         case likeComment(_ request: LikeCommentRequest)
         case replyOnComment(_ request: ReplyOnCommentRequest)
+        case report(_ reqeust: String)
         case getPost(_ request: GetPostRequest)
         case getPostLikes(_ request: GetPostLikesRequest)
         case getCommentsLikes(_ request: GetCommentLikesRequest)
-        case getComments(_ request: GetCommentRequest)
-        case getCommentsReplies(_ request: ReplyOnCommentRequest)
+        case getComment(_ request: GetCommentRequest)
+        case getCommentsReplies(_ request: GetRepliesOnCommentRequest)
         case getFeedNotifications(_ resquest: GetFeedNotificationRequest)
         case deletePost(_ request: DeletePostRequest)
         case getMemberState(_ request: GetMemberStateRequest)
@@ -105,8 +106,8 @@ struct ServiceAPIRequest {
                 return "feed/post/\(request.postId)"
             case .addPost:
                 return "feed/post"
-            case .getComments(let request):
-                return "feed/post/\(request.postId)/comment"
+            case .getComment(let request):
+                return "feed/post/\(request.postId)/comment/\(request.commentId)"
             case .addComment(let request):
                 return "feed/post/\(request.postId)/comment"
             case .getPostLikes(let request):
@@ -129,6 +130,8 @@ struct ServiceAPIRequest {
                 return "community/member/state?member_id=" + "\(request.memberId)" + "&community_id=" + "\(request.communityId)"
             case .getFeedGroup(let request):
                 return "feed/group?feedroom_id=\(request.feedroomId)"
+            case .report(let request):
+                return "community/report"
             case .logout:
                 return "user/logout"
             }
@@ -140,7 +143,7 @@ struct ServiceAPIRequest {
                  .getPostLikes,
                  .getBranding,
                  .getPost,
-                 .getComments,
+                 .getComment,
                  .getCommentsLikes,
                  .getCommentsReplies,
                  .getFeedNotifications,
@@ -154,6 +157,7 @@ struct ServiceAPIRequest {
                  .addPost,
                  .addComment,
                  .replyOnComment,
+                 .report,
                  .logout:
                 return .post
             case .likePost,
@@ -183,6 +187,8 @@ struct ServiceAPIRequest {
                 return request.requestParam()
             case .addComment(let request):
                 return request.requestParam()
+            case .report(let request):
+                return [:]
             case .logout(let refreshToken):
                 return ["refresh_token":refreshToken]
             default:

@@ -11,7 +11,7 @@ import AWSCognito
 import AWSS3
 
 
-enum uploaderType{
+enum UploaderType{
     case image
     case video
     case audio
@@ -19,11 +19,11 @@ enum uploaderType{
 }
 
 
-class UploadManager {
+class AWSAttachmentUploader {
     
-    static let sharedInstance = UploadManager()
+    static let sharedInstance = AWSAttachmentUploader()
     
-    func awsUploader(uploaderType: uploaderType, filePath: String = "", image: Data, path: String = "", content: String = "", thumbNailUrl:String? = nil,index: Int?, progress: ProgressBlock?, completion: CompletionBlock?) {
+    func awsUploader(uploaderType: UploaderType, filePath: String = "", image: Data, path: String = "", content: String = "", thumbNailUrl:String? = nil,index: Int?, progress: ProgressBlock?, completion: CompletionBlock?) {
         
         if uploaderType == .video {
             awsUploadVideo(filePath: filePath, videoPath: path, thumbNail: thumbNailUrl ?? "", progress: {( uploadProgress) in
@@ -105,7 +105,7 @@ class UploadManager {
         
     }
     
-    func fireBaseUploader(uploaderType:uploaderType, progress: ProgressBlock?, completion: CompletionBlock?) {
+    func fireBaseUploader(uploaderType:UploaderType, progress: ProgressBlock?, completion: CompletionBlock?) {
         if uploaderType == .video {
             
         }else if uploaderType == .audio {
@@ -137,7 +137,7 @@ class UploadManager {
     }
 }
 
-extension UploadManager {
+extension AWSAttachmentUploader {
     private func awsUploadImage(filePath: String = "", imageData: Data?, index: Int?, progress: ProgressBlock?, completion: CompletionBlock?) {
         AWSS3Manager.shared.uploadImage(filePath: filePath, imageData: imageData, index: index, progress: {(progressValue) in
             

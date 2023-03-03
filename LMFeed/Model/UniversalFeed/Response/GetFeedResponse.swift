@@ -8,5 +8,5 @@
 import Foundation
 
 public struct GetFeedResponse: Decodable {
-    public let feed: [Post]?
+    public let posts: [Post]?
 }

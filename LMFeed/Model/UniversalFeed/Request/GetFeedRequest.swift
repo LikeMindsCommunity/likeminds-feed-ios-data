@@ -9,7 +9,7 @@ import Foundation
 
 public class GetFeedRequest: Encodable {
     var page: Int //page number of home feed chat
-    var pageSize: Int?
+    var pageSize: Int = 10
     
     /// Initiate method with userUniqueId key param
     public init(page: Int) {

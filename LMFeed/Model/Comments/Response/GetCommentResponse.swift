@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - GetCommentsResponse
-public struct GetCommentsResponse: Codable {
-    public let comment: [Comment]?
-    public let users: [CommentedUser]?
+public struct GetCommentResponse: Codable {
+    public let comment: Comment?
+    public let users: [ String: User]?
 }

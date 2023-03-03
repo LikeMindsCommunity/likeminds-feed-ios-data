@@ -8,7 +8,7 @@
 import Foundation
 
 public struct LMResponse<T: Decodable>: Decodable {
-    public let success: Bool?
+    public let success: Bool
     public let errorMessage: String?
     public let data: T?
     
@@ -24,7 +24,7 @@ public struct LMResponse<T: Decodable>: Decodable {
     
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        success = try values.decodeIfPresent(Bool.self, forKey: .success)
+        success = try values.decodeIfPresent(Bool.self, forKey: .success) ?? false
         errorMessage = try values.decodeIfPresent(String.self, forKey: .errorMessage)
         data = try values.decodeIfPresent(T.self, forKey: .data)
     }

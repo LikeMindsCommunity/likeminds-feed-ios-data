@@ -8,9 +8,9 @@
 import Foundation
 
 public struct GetPostRequest: Encodable {
-    public let postId: Int
+    let postId: String
     
-    public init(postId: Int) {
+    public init(postId: String) {
         self.postId = postId
     }
     

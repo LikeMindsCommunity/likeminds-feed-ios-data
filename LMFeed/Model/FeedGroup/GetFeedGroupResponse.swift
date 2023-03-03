@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - DataClass
-struct GetFeedGroupResponse: Decodable {
-    let posts: [Post]?
-    let users: [LikedUser]
+public struct GetFeedGroupResponse: Decodable {
+    public let posts: [Post]?
+    public let users: [LikedUser]
 }

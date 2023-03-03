@@ -8,7 +8,7 @@
 import Foundation
 
 public struct BrandingResponse: Decodable, Encodable {
-    public var basicColor: AdvanceColor?
+    public var basicColor: BasicColor?
     public var advanceColor: AdvanceColor?
     
     enum CodingKeys: String, CodingKey {
