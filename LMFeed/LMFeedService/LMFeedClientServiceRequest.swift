@@ -7,9 +7,9 @@
 
 import Foundation
 
-class LMFeedServiceRequest: ServiceRequest {
+class LMFeedClientServiceRequest: ServiceRequest {
     
-    static func getFeeds(_ request: GetFeedRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedResponse>?) {
+    static func getUniversalFeeds(_ request: GetFeedRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.universalFeed(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
@@ -30,7 +30,38 @@ class LMFeedServiceRequest: ServiceRequest {
         }
     }
     
-    static func addPost(_ request: AddPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+    static func addPostWithAttachment(_ request: AddPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        if let attachments = request.attachments, attachments.count > 0 {
+            var uploadRequests = [AWSFileUploadRequest]()
+            let awsFilePath = "feed/post/\(PreferencesFactory.userPreferences().string(forKey: kPrefMemberId))/"
+            for attachment in attachments {
+                guard let meta = attachment.attachmentMeta, let url = meta.attachmentUrl, let type = attachment.attachmentType else { continue }
+                switch type {
+                case .image:
+                    let uploadRequest = AWSFileUploadRequest(fileUrl: url, awsFilePath: awsFilePath, fileType: .image, index: 0)
+                    uploadRequests.append(uploadRequest)
+                case .video:
+                    let uploadRequest = AWSFileUploadRequest(fileUrl: url, awsFilePath: awsFilePath, fileType: .video, index: 0)
+                    uploadRequests.append(uploadRequest)
+                case .audio:
+                    let uploadRequest = AWSFileUploadRequest(fileUrl: url, awsFilePath: awsFilePath, fileType: .audio, index: 0)
+                    uploadRequests.append(uploadRequest)
+                case .doc:
+                    let uploadRequest = AWSFileUploadRequest(fileUrl: url, awsFilePath: awsFilePath, fileType: .file, index: 0)
+                    uploadRequests.append(uploadRequest)
+                default:
+                    break
+                }
+            }
+            AWSFileUtility.shared.uploadFiles(uploadFilesRequest: uploadRequests) { progress in
+                print("file uploaded: \(progress)/\(uploadRequests.count)")
+            } completion: { responses in
+                
+            }
+        }
+    }
+    
+    static func addPost(_ request: AddPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPostResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.addPost(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
@@ -41,7 +72,50 @@ class LMFeedServiceRequest: ServiceRequest {
                                    withModuleName: moduleName) { (moduleName, responseData) in
             guard let data = responseData as? Data else {return}
             do {
-                let result = try JSONDecoder().decode(LMResponse<NoData>.self, from: data)
+                let result = try JSONDecoder().decode(LMResponse<GetPostResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
+    
+    static func uploadAttachment(_ fileUrl: String, awsPath: String, imageData: Data?, fileType: AttachmentType, index: Int?, completion: CompletionBlock?) {
+        var uploaderType: UploaderType = .image
+        switch fileType {
+        case .image:
+            uploaderType = .image
+        case .video:
+            uploaderType = .video
+        case .doc:
+            uploaderType = .file
+        case .audio:
+            uploaderType = .audio
+        default:
+            return
+        }
+        
+        AWSAttachmentUploader.sharedInstance.awsUploader(uploaderType: uploaderType, awsFilePath: awsPath, image: imageData, localFilePath: fileUrl, index: index) { progress in
+            
+        } completion: { response, thumbNail, error, index in
+            completion?(response, thumbNail, error, index)
+        }
+    }
+    
+    static func getOGTags(_ request: GetOGTagsRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetOGTagsResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.urlDetails(request)
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<GetOGTagsResponse>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))
@@ -95,6 +169,27 @@ class LMFeedServiceRequest: ServiceRequest {
     
     static func deletePost(_ request: DeletePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.deletePost(request)
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<NoData>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
+    
+    static func deleteComment(_ request: DeleteCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.deleteComment(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
@@ -282,7 +377,7 @@ class LMFeedServiceRequest: ServiceRequest {
         }
     }
     
-    static func getFeedGroup(_ request: GetFeedGroupRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedGroupResponse>?) {
+    static func getFeedOfFeedRoom(_ request: GetFeedOfFeedRoomRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedOfFeedRoomResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getFeedGroup(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
@@ -293,7 +388,7 @@ class LMFeedServiceRequest: ServiceRequest {
                                    withModuleName: moduleName) { (moduleName, responseData) in
             guard let data = responseData as? Data else {return}
             do {
-                let result = try JSONDecoder().decode(LMResponse<GetFeedGroupResponse>.self, from: data)
+                let result = try JSONDecoder().decode(LMResponse<GetFeedOfFeedRoomResponse>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))
@@ -303,7 +398,7 @@ class LMFeedServiceRequest: ServiceRequest {
         }
     }
     
-    static func getNotificationFeed(_ request: GetFeedNotificationRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedNotificationResponse>?) {
+    static func getFeedNotifications(_ request: GetFeedNotificationRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedNotificationResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getFeedNotifications(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
@@ -315,6 +410,27 @@ class LMFeedServiceRequest: ServiceRequest {
             guard let data = responseData as? Data else {return}
             do {
                 let result = try JSONDecoder().decode(LMResponse<GetFeedNotificationResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
+    
+    static func report(_ request: ReportRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.report(request)
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<NoData>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))

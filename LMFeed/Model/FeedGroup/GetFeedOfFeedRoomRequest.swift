@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GetFeedGroupRequest: Encodable {
+public struct GetFeedOfFeedRoomRequest: Encodable {
     let feedroomId: String
     
     public init(feedroomId: String) {

@@ -32,30 +32,6 @@ class FeedClientServiceRequest: ServiceRequest {
         }
     }
     
-    static func refreshChatServiceToken(refreshToken: String, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
-        let preferences = PreferencesFactory.userPreferences()
-        let sdkRefreshKey = preferences.string(forKey: kPrefSdkRefreshKey)
-        
-        let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken(rtm: "")
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
-        DataNetwork.shared.request(for: url,
-                                   withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: sdkRefreshKey),
-                                   withParameters: networkPath.parameters,
-                                   withEncoding: networkPath.encoding,
-                                   withModuleName: moduleName) { (moduleName, responseData) in
-            guard let data = responseData as? Data else {return}
-            do {
-                let result = try JSONDecoder().decode(LMResponse<InitiateUserResponse>.self, from: data)
-                response?(result)
-            } catch let error {
-                response?(LMResponse.failureResponse(error.localizedDescription))
-            }
-        } failureCallback: { (moduleName, error) in
-            response?(LMResponse.failureResponse(error.localizedDescription))
-        }
-    }
-    
     static func registerDevice(request: RegisterDeviceRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<RegisterDeviceResponse>?) {
         let preferences = PreferencesFactory.userPreferences()
         let memberId = preferences.string(forKey: kPrefMemberId)

@@ -116,7 +116,6 @@ internal final class DataNetwork {
             lmLog("headers - \(headers)")
             guard let responseData = response.data else {
                 lmLog("failureCallback - \(response)")
-                dataIntercepter(data: response.data)
                 failureCallback(moduleName, .noResponse)
                 lmLog("--------------------------")
                 return
@@ -127,13 +126,12 @@ internal final class DataNetwork {
                jsondataString.range(of: "Invalid LTM!") != nil
             {
                 lmLog("response - \(String(describing: jsondataString))")
-                TokenManager.shared.refreshLMToken {}
+                TokenManager.shared.refreshInterceptor {}
                 failureCallback(moduleName, .tokenExpire)
                 return
             }
             lmLog("response - \(String(describing: jsondataString))")
             lmLog("--------------------------")
-            dataIntercepter(data: responseData)
             successCallback(moduleName, responseData)
         }
     }
@@ -162,7 +160,7 @@ internal final class DataNetwork {
             lmLog("headers - \(headers)")
             guard let responseData = response.data else {
                 lmLog("failureCallback - \(response)")
-                dataIntercepter(data: response.data)
+//                dataIntercepter(data: response.data)
                 failureCallback(moduleName, .noResponse)
                 lmLog("--------------------------")
                 return
@@ -174,7 +172,7 @@ internal final class DataNetwork {
                 let jsondataString = responseData.jsonString()
                 if jsondataString.range(of: "Invalid LTM!") != nil {
                     lmLog("response - \(String(describing: jsondataString))")
-                    TokenManager.shared.refreshLMToken{}
+                    TokenManager.shared.refreshInterceptor {}
                     failureCallback(moduleName, .tokenExpire)
                     return
                 }

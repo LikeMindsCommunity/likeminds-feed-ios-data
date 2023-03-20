@@ -8,11 +8,11 @@
 import Foundation
 
 public enum AttachmentType: Int, Encodable {
-    case video
-    case image
-    case doc
-    case gif
-    case audio
+    case image = 1
+    case video = 2
+    case doc = 3
+    case link = 4
+    case audio = 5
     case unknown = -1
 }
 

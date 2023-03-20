@@ -7,14 +7,21 @@
 
 import Foundation
 
-public struct DeletePostRequest: Encodable {
-    public let postId: Int
+public class DeletePostRequest: Encodable {
+    public let postId: String
+    public var reason: String?
     
-    public init(postId: Int) {
+    public init(postId: String) {
         self.postId = postId
     }
     
     enum CodingKeys: String, CodingKey {
         case postId = "post_id"
+        case reason = "delete_reason"
+    }
+    
+    public func deleteReason(_ reason: String) -> DeletePostRequest {
+        self.reason = reason
+        return self
     }
 }

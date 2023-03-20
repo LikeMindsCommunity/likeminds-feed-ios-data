@@ -15,14 +15,13 @@ public enum ReportEntityType: Int, Encodable {
 
 public class ReportRequest: Encodable {
     var entityId: String
-    var entityCreatorId: String
-    var entityType: ReportEntityType
+    var entityCreatorId: String?
+    var entityType: ReportEntityType?
+    var reason: String?
     
-    /// Initiate method with postid and text
-    public init(_ entityId: String, _ entityCreatorId: String, _ entityType: ReportEntityType) {
+    /// Initiate method with entityId
+    public init(_ entityId: String) {
         self.entityId = entityId
-        self.entityCreatorId = entityCreatorId
-        self.entityType = entityType
     }
     
     enum CodingKeys: String, CodingKey {
@@ -31,4 +30,18 @@ public class ReportRequest: Encodable {
         case entityType = "entity_type"
     }
     
+    public func entityType(_ entityType: ReportEntityType) -> ReportRequest {
+        self.entityType = entityType
+        return self
+    }
+    
+    public func entityCreatorId(_ entityCreatorId: String) -> ReportRequest {
+        self.entityCreatorId = entityCreatorId
+        return self
+    }
+    
+    public func reason(_ reason: String) -> ReportRequest {
+        self.reason = reason
+        return self
+    }
 }

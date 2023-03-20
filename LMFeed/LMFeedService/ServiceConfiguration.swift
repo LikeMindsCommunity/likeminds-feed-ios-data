@@ -76,7 +76,7 @@ struct ServiceAPIRequest {
         case likePost(_ request: LikePostRequest)
         case likeComment(_ request: LikeCommentRequest)
         case replyOnComment(_ request: ReplyOnCommentRequest)
-        case report(_ reqeust: String)
+        case report(_ reqeust: ReportRequest)
         case getPost(_ request: GetPostRequest)
         case getPostLikes(_ request: GetPostLikesRequest)
         case getCommentsLikes(_ request: GetCommentLikesRequest)
@@ -84,9 +84,11 @@ struct ServiceAPIRequest {
         case getCommentsReplies(_ request: GetRepliesOnCommentRequest)
         case getFeedNotifications(_ resquest: GetFeedNotificationRequest)
         case deletePost(_ request: DeletePostRequest)
+        case deleteComment(_ request: DeleteCommentRequest)
         case getMemberState(_ request: GetMemberStateRequest)
-        case getFeedGroup(_ request: GetFeedGroupRequest)
+        case getFeedGroup(_ request: GetFeedOfFeedRoomRequest)
         case logout(_ refreshToken: String)
+        case urlDetails(_ request: GetOGTagsRequest)
         
         var apiURL: String {
             switch self {
@@ -101,7 +103,7 @@ struct ServiceAPIRequest {
             case .onboardingChatService:
                 return "sdk/onboarding"
             case .universalFeed(let request):
-                return "feed/universal?page=\(request.page)&page_size=\(request.pageSize ?? 10)"
+                return "feed/universal?page=\(request.page)&page_size=\(request.pageSize)"
             case .getPost(let request):
                 return "feed/post/\(request.postId)"
             case .addPost:
@@ -114,6 +116,8 @@ struct ServiceAPIRequest {
                 return "feed/post/\(request.postId)/like?page=\(request.page)&page_size=\(request.pageSize)"
             case .deletePost(let request):
                 return "feed/post/\(request.postId)"
+            case .deleteComment(let request):
+                return "feed/post/\(request.postId)/comment/\(request.commentId)"
             case .likePost(let request):
                 return "feed/post/\(request.postId)/like"
             case .likeComment(let request):
@@ -130,8 +134,13 @@ struct ServiceAPIRequest {
                 return "community/member/state?member_id=" + "\(request.memberId)" + "&community_id=" + "\(request.communityId)"
             case .getFeedGroup(let request):
                 return "feed/group?feedroom_id=\(request.feedroomId)"
-            case .report(let request):
+            case .report:
                 return "community/report"
+            case .urlDetails(let request):
+                guard let Url = URL(string: request.link) else {
+                    return ""
+                }
+                return "helper/url?url=\(Url.absoluteString)"
             case .logout:
                 return "user/logout"
             }
@@ -149,6 +158,7 @@ struct ServiceAPIRequest {
                  .getFeedNotifications,
                  .getMemberState,
                  .getFeedGroup,
+                 .urlDetails,
                  .onboardingChatService:
                 return .get
             case .initiateChatClient,
@@ -163,7 +173,8 @@ struct ServiceAPIRequest {
             case .likePost,
                  .likeComment:
                 return .put
-            case .deletePost:
+            case .deletePost,
+                 .deleteComment:
                 return .delete
             }
         }
@@ -188,9 +199,13 @@ struct ServiceAPIRequest {
             case .addComment(let request):
                 return request.requestParam()
             case .report(let request):
-                return [:]
+                return request.requestParam()
             case .logout(let refreshToken):
                 return ["refresh_token":refreshToken]
+            case .deletePost(let request):
+                return request.requestParam()
+            case .deleteComment(let request):
+                return request.requestParam()
             default:
                 return nil
             }

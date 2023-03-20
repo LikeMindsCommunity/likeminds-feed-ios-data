@@ -14,18 +14,20 @@ class ServiceRequest {
     static func httpHeaders() -> HTTPHeaders {
         let preferences = PreferencesFactory.userPreferences()
         let loggedInMemberID = preferences.string(forKey: kPrefMemberId)
-        let sdkApiKey = preferences.string(forKey: kPrefSdkApiKey)
+//        let sdkApiKey = preferences.string(forKey: kPrefSdkApiKey)
         let accessToken = TokenManager.shared.accessToken ?? ""
         let buildVersion = BuildManager.buildVersion
         let deviceId = ""
         
-        return ["x-member-id": loggedInMemberID,
+        return [
+//                "x-member-id": loggedInMemberID,
                 "x-platform-code": "ios",
                 "x-version-code": buildVersion,
-                "x-api-key": sdkApiKey,
+//                "x-api-key": sdkApiKey,
                 "Cookie":"",
                 "x-device-id": deviceId,
-                "Authorization": "Bearer " + accessToken]
+                "Authorization": "Bearer " + accessToken
+        ]
     }
     
     static func httpSdkHeaders(headerKey: String = "x-api-key", value: String = "") -> HTTPHeaders {

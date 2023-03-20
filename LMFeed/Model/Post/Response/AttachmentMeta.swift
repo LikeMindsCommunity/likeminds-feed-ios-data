@@ -60,4 +60,16 @@ public class AttachmentMeta: Codable {
         return self
     }
     
+    public func attachmentMetaData() -> AttachmentMeta {
+        do {
+            guard let url = URL(string: attachmentUrl ?? "") else {
+                return self
+            }
+            let attachmentData = try Data(contentsOf: url)
+            self.size = attachmentData.count/1000
+        } catch let error {
+            print(error)
+        }
+        return self
+    }
 }
