@@ -104,7 +104,7 @@ class LMFeedClientServiceRequest: ServiceRequest {
         }
     }
     
-    static func getOGTags(_ request: GetOGTagsRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetOGTagsResponse>?) {
+    static func getOGTags(_ request: DecodeUrlRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<DecodeUrlResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.urlDetails(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
@@ -115,7 +115,7 @@ class LMFeedClientServiceRequest: ServiceRequest {
                                    withModuleName: moduleName) { (moduleName, responseData) in
             guard let data = responseData as? Data else {return}
             do {
-                let result = try JSONDecoder().decode(LMResponse<GetOGTagsResponse>.self, from: data)
+                let result = try JSONDecoder().decode(LMResponse<DecodeUrlResponse>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))
@@ -169,6 +169,27 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func deletePost(_ request: DeletePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.deletePost(request)
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<NoData>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
+    
+    static func savePost(_ request: SavePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.savePost(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,

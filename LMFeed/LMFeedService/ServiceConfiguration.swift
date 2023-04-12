@@ -24,34 +24,25 @@ extension URL {
     }
 }
 
-struct ServiceAPI {
+public struct ServiceAPI {
     static let requestTimeout = TimeInterval(30)
-    static let baseURL = ServiceConfiguration.baseURL
     static let authBaseURL = ServiceConfiguration.authBaseURL
-    static let subscriptionURL = ServiceConfiguration.subscriptionURL
-    static let renewalURL = ServiceConfiguration.renewalURL
-    static let bucketURL = ServiceConfiguration.bucketURL
-    static let awsPoolIdCognito = ServiceConfiguration.awsPoolIdCognito
-    static let secretAccessKey = ServiceConfiguration.secretAccessKey
-    static let accessKey = ServiceConfiguration.accessKey
+    public static let bucketURL = ServiceConfiguration.bucketURL
+    public static let awsPoolIdCognito = ServiceConfiguration.awsPoolIdCognito
+    public static let secretAccessKey = ServiceConfiguration.secretAccessKey
+    public static let accessKey = ServiceConfiguration.accessKey
 }
 
 struct ServiceConfigurationURLs {
     struct Production {
-        static let baseURL = "https://www.likeminds.community/"
         static let authBaseUrl = "https://auth.likeminds.community/"
-        static let subscriptionURL = "https://subscription.likeminds.community/"
-        static let renewalURL = "https://web.likeminds.community/"
         static let bucketURL = "prod-likeminds-media"
         static let awsPoolIdCognito = "d73bc2ed-bede-42c8-bab7-0abe0a001325"
         static let secretAccessKey = "hnhMpeHVw7N3YjDmuYJ+mNL+wf6umv+oHaz9fgfa"
         static let accessKey = "AKIA3HMTDICCWBSGV67Z"
     }
     struct DevTest {
-        static let baseURL =  "https://beta.likeminds.community/"
         static let authBaseUrl = "https://betaauth.likeminds.community/"
-        static let subscriptionURL =  "https://betasubscription.likeminds.community/"
-        static let renewalURL = "https://betaweb.likeminds.community/"
         static let bucketURL = "beta-likeminds-media"
         static let awsPoolIdCognito = "181963ba-f2db-450b-8199-964a941b38c2"
         static let secretAccessKey = "9gKyjFCwxCDVT9XhyMWuH4GBqu/UI7pAQJFk6gun"
@@ -87,8 +78,9 @@ struct ServiceAPIRequest {
         case deleteComment(_ request: DeleteCommentRequest)
         case getMemberState(_ request: GetMemberStateRequest)
         case getFeedGroup(_ request: GetFeedOfFeedRoomRequest)
+        case savePost(_ request: SavePostRequest)
         case logout(_ refreshToken: String)
-        case urlDetails(_ request: GetOGTagsRequest)
+        case urlDetails(_ request: DecodeUrlRequest)
         
         var apiURL: String {
             switch self {
@@ -109,7 +101,7 @@ struct ServiceAPIRequest {
             case .addPost:
                 return "feed/post"
             case .getComment(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)"
+                return "feed/post/\(request.postId)/comment/\(request.commentId)?page=\(request.page)&page_size=\(request.pageSize)"
             case .addComment(let request):
                 return "feed/post/\(request.postId)/comment"
             case .getPostLikes(let request):
@@ -123,7 +115,7 @@ struct ServiceAPIRequest {
             case .likeComment(let request):
                 return "feed/post/\(request.postId)/comment/\(request.commentId)/like"
             case  .getCommentsLikes(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)/like"
+                return "feed/post/\(request.postId)/comment/\(request.commentId)/like?page=\(request.page)&page_size=\(request.pageSize)"
             case .replyOnComment(let request):
                 return "feed/post/\(request.postId)/comment/\(request.commentId)/comment"
             case .getCommentsReplies(let request):
@@ -141,6 +133,8 @@ struct ServiceAPIRequest {
                     return ""
                 }
                 return "helper/url?url=\(Url.absoluteString)"
+            case .savePost(let request):
+                return "feed/post/\(request.postId)/save"
             case .logout:
                 return "user/logout"
             }
@@ -171,6 +165,7 @@ struct ServiceAPIRequest {
                  .logout:
                 return .post
             case .likePost,
+                 .savePost,
                  .likeComment:
                 return .put
             case .deletePost,
@@ -240,47 +235,11 @@ struct ServiceAPIRequest {
 
 struct ServiceConfiguration {
 
-    static let baseURL:String = {
-        var url = ServiceConfigurationURLs.Production.baseURL
-        switch BuildManager.environment {
-        case .devtest:
-            url = ServiceConfigurationURLs.DevTest.baseURL
-            break
-        case .production:
-            break
-        }
-        return url
-    }()
-    
     static let authBaseURL:String = {
         var url = ServiceConfigurationURLs.Production.authBaseUrl
         switch BuildManager.environment {
         case .devtest:
             url = ServiceConfigurationURLs.DevTest.authBaseUrl
-            break
-        case .production:
-            break
-        }
-        return url
-    }()
-
-    static let renewalURL:String = {
-        var url = ServiceConfigurationURLs.Production.renewalURL
-        switch BuildManager.environment {
-        case .devtest:
-            url = ServiceConfigurationURLs.DevTest.renewalURL
-            break
-        case .production:
-            break
-        }
-        return url
-    }()
-
-    static let subscriptionURL:String = {
-        var url = ServiceConfigurationURLs.Production.subscriptionURL
-        switch BuildManager.environment {
-        case .devtest:
-            url = ServiceConfigurationURLs.DevTest.subscriptionURL
             break
         case .production:
             break

@@ -11,9 +11,10 @@ import Foundation
 public struct GetPostLikeResponse: Codable {
     public let likes: [Like]?
     public let totalCount: Int?
+    public let users: [String: User]
     
     enum CodingKeys: String, CodingKey {
-        case likes
+        case likes, users
         case totalCount = "total_count"
     }
 }

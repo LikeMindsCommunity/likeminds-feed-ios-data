@@ -9,4 +9,5 @@ import Foundation
 
 public struct GetFeedResponse: Decodable {
     public let posts: [Post]?
+    public let users: [String: User]?
 }

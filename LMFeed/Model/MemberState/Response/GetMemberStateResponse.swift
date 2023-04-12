@@ -7,13 +7,19 @@
 
 import Foundation
 
+public enum MemberState:Int, Codable {
+    case admin = 1
+    case member = 4
+}
+
 // MARK: - MemberStateResponse
 public struct GetMemberStateResponse: Codable {
     public let createdAt: Int
     public let editRequired: Bool
     public let member: User?
     public let memberRights: [MemberRight]
-    public let state, toolState: Int?
+    public let state: Int?
+    public let toolState: MemberState?
     
     enum CodingKeys: String, CodingKey {
         case createdAt = "created_at"

@@ -26,8 +26,6 @@ extension LMFeedClient {
     }
     
     public func initiateUser(_ request: InitiateUserRequest, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
-        let entityType = ReportRequest("test")
-        print(entityType.requestParam())
         LMClient.shared.initiateUser(request: request) { result in
             response?(result)
         }
@@ -71,6 +69,12 @@ extension LMFeedClient {
     
     public func likePost(_ request: LikePostRequest, _ response:  LMFeedClientResponse<NoData>?) {
         LMFeedClientServiceRequest.likePost(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func savePost(_ request: SavePostRequest, _ response:  LMFeedClientResponse<NoData>?) {
+        LMFeedClientServiceRequest.savePost(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }
@@ -135,6 +139,12 @@ extension LMFeedClient {
     
     public func report(_ request: ReportRequest, _ response:  LMFeedClientResponse<NoData>?) {
         LMFeedClientServiceRequest.report(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func decodeUrl(_ request: DecodeUrlRequest, _ response: LMFeedClientResponse<DecodeUrlResponse>?) {
+        LMFeedClientServiceRequest.getOGTags(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }

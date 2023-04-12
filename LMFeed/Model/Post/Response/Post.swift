@@ -12,10 +12,12 @@ public struct Post: Decodable {
     public let id: String
     public let attachments: [Attachment]?
     public let commentsCount, communityID, createdAt: Int?
-    public let isPinned, isSaved, isDeleted: Bool?
+    public let isPinned, isSaved, isEdited, isDeleted: Bool?
+    public let isLiked: Bool?
     public let likesCount: Int?
     public let menuItems: [MenuItem]?
     public let text: String?
+    public let heading: String?
     public let updatedAt: Int?
     public let userID, deletedBy, deleteReason: String?
     public let replies: [Reply]?
@@ -28,9 +30,11 @@ public struct Post: Decodable {
         case createdAt = "created_at"
         case isPinned = "is_pinned"
         case isSaved = "is_saved"
+        case isLiked = "is_liked"
+        case isEdited = "is_edited"
         case likesCount = "likes_count"
         case menuItems = "menu_items"
-        case text
+        case text, heading
         case updatedAt = "updated_at"
         case userID = "user_id"
         case deletedBy = "deleted_by"

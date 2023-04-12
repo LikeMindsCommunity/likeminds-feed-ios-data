@@ -9,7 +9,7 @@ import Foundation
 
 public struct InitiateUserResponse: Decodable {
     public let accessToken: String
-    public let appAccess: Bool
+    public let appAccess: Bool?
     public let community: Community?
     public let hasAnswers: Bool?
     public let refreshToken: String?

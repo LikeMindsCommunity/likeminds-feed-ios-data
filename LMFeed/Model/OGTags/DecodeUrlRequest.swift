@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class GetOGTagsRequest: Encodable {
+public class DecodeUrlRequest: Encodable {
     var link: String
     
     ///

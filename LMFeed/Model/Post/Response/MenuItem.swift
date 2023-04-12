@@ -9,5 +9,6 @@ import Foundation
 
 // MARK: - MenuItem
 public struct MenuItem: Codable {
+    public let id: Int
     public let title: String?
 }

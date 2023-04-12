@@ -38,7 +38,7 @@ class FeedClientServiceRequest: ServiceRequest {
         let request = request.userId(memberId)
         
         let networkPath = ServiceAPIRequest.NetworkPath.pushToken(request)
-        guard let url:URL = URL(string: ServiceAPI.baseURL + networkPath.apiURL) else {return}
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -59,7 +59,7 @@ class FeedClientServiceRequest: ServiceRequest {
     
     static func getBranding(request: BrandingRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<BrandingResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getBranding(request)
-        guard let url:URL = URL(string: ServiceAPI.baseURL + networkPath.apiURL) else {return}
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),

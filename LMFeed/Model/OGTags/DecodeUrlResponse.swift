@@ -7,8 +7,8 @@
 
 import Foundation
 
-public struct GetOGTagsResponse: Decodable {
-    public let oGTags: [OGTags]?
+public struct DecodeUrlResponse: Decodable {
+    public let oGTags: OGTags?
     
     enum CodingKeys: String, CodingKey {
         case oGTags = "og_tags"

@@ -11,7 +11,7 @@ import Foundation
 public struct GetCommentsLikeResponse: Codable {
     public let likes: [Like]
     public let totalLikes: Int
-    public let users: [LikedUser]?
+    public let users: [String: User]?
     
     enum CodingKeys: String, CodingKey {
         case likes

@@ -11,7 +11,7 @@ import Foundation
 public class AttachmentMeta: Codable {
     public var attachmentUrl: String?
     public var format: String?
-    public var pageCount, duration, size: Int?
+    public var pageCount, duration, size: Int? // size in bytes, duration in seconds
     public var ogTags: OGTags?
     
     public init() {
