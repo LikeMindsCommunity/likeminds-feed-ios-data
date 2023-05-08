@@ -23,12 +23,12 @@ public class GetCommentRequest: Encodable {
         case commentId = "comment_id"
     }
     
-    func page(_ page: Int) -> GetCommentRequest {
+    public func page(_ page: Int) -> GetCommentRequest {
         self.page = page
         return self
     }
     
-    func pageSize(_ pageSize: Int) -> GetCommentRequest {
+    public func pageSize(_ pageSize: Int) -> GetCommentRequest {
         self.pageSize = pageSize
         return self
     }

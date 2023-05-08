@@ -460,4 +460,25 @@ class LMFeedClientServiceRequest: ServiceRequest {
             response?(LMResponse.failureResponse(error.localizedDescription))
         }
     }
+    
+    static func getReportTags(_ request: GetReportTagRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetReportTagResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.getReportTags(request)
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<GetReportTagResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
 }

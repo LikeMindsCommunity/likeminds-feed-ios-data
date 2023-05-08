@@ -81,6 +81,7 @@ struct ServiceAPIRequest {
         case savePost(_ request: SavePostRequest)
         case logout(_ refreshToken: String)
         case urlDetails(_ request: DecodeUrlRequest)
+        case getReportTags(_ request: GetReportTagRequest)
         
         var apiURL: String {
             switch self {
@@ -97,7 +98,7 @@ struct ServiceAPIRequest {
             case .universalFeed(let request):
                 return "feed/universal?page=\(request.page)&page_size=\(request.pageSize)"
             case .getPost(let request):
-                return "feed/post/\(request.postId)"
+                return "feed/post/\(request.postId)?page=\(request.page)&page_size=\(request.pageSize)"
             case .addPost:
                 return "feed/post"
             case .getComment(let request):
@@ -137,6 +138,8 @@ struct ServiceAPIRequest {
                 return "feed/post/\(request.postId)/save"
             case .logout:
                 return "user/logout"
+            case .getReportTags(let request):
+                return "community/report/tag?type=\(request.type)"
             }
         }
 
@@ -153,6 +156,7 @@ struct ServiceAPIRequest {
                  .getMemberState,
                  .getFeedGroup,
                  .urlDetails,
+                 .getReportTags,
                  .onboardingChatService:
                 return .get
             case .initiateChatClient,

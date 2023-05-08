@@ -148,4 +148,10 @@ extension LMFeedClient {
             response?(result)
         }
     }
+    
+    public func getReportTags(_ request: GetReportTagRequest, _ response:  LMFeedClientResponse<GetReportTagResponse>?) {
+        LMFeedClientServiceRequest.getReportTags(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
 }

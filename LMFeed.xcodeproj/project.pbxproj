@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F405D0F729E7D6DA0074F531 /* GetReportTagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405D0F629E7D6DA0074F531 /* GetReportTagRequest.swift */; };
+		F405D0F929E7D6ED0074F531 /* GetReportTagResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405D0F829E7D6ED0074F531 /* GetReportTagResponse.swift */; };
 		F41416A1299E41C000622058 /* LMFeed.docc in Sources */ = {isa = PBXBuildFile; fileRef = F41416A0299E41C000622058 /* LMFeed.docc */; };
 		F41416A2299E41C000622058 /* LMFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = F414169F299E41C000622058 /* LMFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F41416A9299E41F500622058 /* LMFeedClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416A8299E41F500622058 /* LMFeedClient.swift */; };
@@ -26,7 +28,6 @@
 		F41416E529A2826100622058 /* AddPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416E429A2826100622058 /* AddPostRequest.swift */; };
 		F41416EE29A36CBD00622058 /* AttachmentMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416ED29A36CBD00622058 /* AttachmentMeta.swift */; };
 		F41416F029A370F500622058 /* OGTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416EF29A370F400622058 /* OGTags.swift */; };
-		F41416F229A3759900622058 /* Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F129A3759900622058 /* Reply.swift */; };
 		F41416F429A37A3100622058 /* GetFeedPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F329A37A3100622058 /* GetFeedPostRequest.swift */; };
 		F41416F829A37B9F00622058 /* GetFeedPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */; };
 		F41416FA29A37C9200622058 /* GetPostLikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41416F929A37C9200622058 /* GetPostLikesRequest.swift */; };
@@ -47,7 +48,6 @@
 		F48125ED29A6363E003AB8FA /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125EC29A6363E003AB8FA /* Comment.swift */; };
 		F48125EF29A63705003AB8FA /* GetRepliesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125EE29A63705003AB8FA /* GetRepliesResponse.swift */; };
 		F48125F129A6374B003AB8FA /* GetCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F029A6374B003AB8FA /* GetCommentResponse.swift */; };
-		F48125F329A63965003AB8FA /* CommentedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F229A63965003AB8FA /* CommentedUser.swift */; };
 		F48125F529A63BB4003AB8FA /* GetCommentsLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F429A63BB4003AB8FA /* GetCommentsLikeResponse.swift */; };
 		F48125FB29A782C1003AB8FA /* PreferencesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F729A782C0003AB8FA /* PreferencesFactory.swift */; };
 		F48125FC29A782C1003AB8FA /* PersistentPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125F829A782C1003AB8FA /* PersistentPreferences.swift */; };
@@ -92,6 +92,8 @@
 		240BAB222441574C3C2CED56 /* Pods-LMFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LMFeed.release.xcconfig"; path = "Target Support Files/Pods-LMFeed/Pods-LMFeed.release.xcconfig"; sourceTree = "<group>"; };
 		6537C78B9E5C1E5CCF2A34C6 /* Pods_LMFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LMFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		797C756D9F6FCD2F511C5186 /* Pods-LMFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LMFeed.debug.xcconfig"; path = "Target Support Files/Pods-LMFeed/Pods-LMFeed.debug.xcconfig"; sourceTree = "<group>"; };
+		F405D0F629E7D6DA0074F531 /* GetReportTagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReportTagRequest.swift; sourceTree = "<group>"; };
+		F405D0F829E7D6ED0074F531 /* GetReportTagResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReportTagResponse.swift; sourceTree = "<group>"; };
 		F414169C299E41C000622058 /* LMFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LMFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F414169F299E41C000622058 /* LMFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LMFeed.h; sourceTree = "<group>"; };
 		F41416A0299E41C000622058 /* LMFeed.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = LMFeed.docc; sourceTree = "<group>"; };
@@ -112,7 +114,6 @@
 		F41416E429A2826100622058 /* AddPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostRequest.swift; sourceTree = "<group>"; };
 		F41416ED29A36CBD00622058 /* AttachmentMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentMeta.swift; sourceTree = "<group>"; };
 		F41416EF29A370F400622058 /* OGTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGTags.swift; sourceTree = "<group>"; };
-		F41416F129A3759900622058 /* Reply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reply.swift; sourceTree = "<group>"; };
 		F41416F329A37A3100622058 /* GetFeedPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedPostRequest.swift; sourceTree = "<group>"; };
 		F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFeedPostResponse.swift; sourceTree = "<group>"; };
 		F41416F929A37C9200622058 /* GetPostLikesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostLikesRequest.swift; sourceTree = "<group>"; };
@@ -133,7 +134,6 @@
 		F48125EC29A6363E003AB8FA /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		F48125EE29A63705003AB8FA /* GetRepliesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRepliesResponse.swift; sourceTree = "<group>"; };
 		F48125F029A6374B003AB8FA /* GetCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommentResponse.swift; sourceTree = "<group>"; };
-		F48125F229A63965003AB8FA /* CommentedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentedUser.swift; sourceTree = "<group>"; };
 		F48125F429A63BB4003AB8FA /* GetCommentsLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommentsLikeResponse.swift; sourceTree = "<group>"; };
 		F48125F729A782C0003AB8FA /* PreferencesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesFactory.swift; sourceTree = "<group>"; };
 		F48125F829A782C1003AB8FA /* PersistentPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentPreferences.swift; sourceTree = "<group>"; };
@@ -202,6 +202,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F405D0F529E7D6650074F531 /* ReportTags */ = {
+			isa = PBXGroup;
+			children = (
+				F405D0F629E7D6DA0074F531 /* GetReportTagRequest.swift */,
+				F405D0F829E7D6ED0074F531 /* GetReportTagResponse.swift */,
+			);
+			path = ReportTags;
+			sourceTree = "<group>";
+		};
 		F4141692299E41C000622058 = {
 			isa = PBXGroup;
 			children = (
@@ -241,8 +250,9 @@
 		F41416AA299E442300622058 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F4BCD70E29B9D70700A230D1 /* OGTags */,
+				F405D0F529E7D6650074F531 /* ReportTags */,
 				F491983E29AF0822007D3C61 /* Report */,
+				F4BCD70E29B9D70700A230D1 /* OGTags */,
 				F4BB413629AB73490033F26E /* FeedNotification */,
 				F48125E929A63146003AB8FA /* ReplyOnComment */,
 				F4BDCEEC29A60F9300F0AB17 /* CoreFeed */,
@@ -362,7 +372,6 @@
 				F41416D729A27D9D00622058 /* MenuItem.swift */,
 				F41416ED29A36CBD00622058 /* AttachmentMeta.swift */,
 				F41416EF29A370F400622058 /* OGTags.swift */,
-				F41416F129A3759900622058 /* Reply.swift */,
 				F41416F729A37B9F00622058 /* GetFeedPostResponse.swift */,
 				F481260629A7ACA8003AB8FA /* GetPostResponse.swift */,
 			);
@@ -420,7 +429,6 @@
 			children = (
 				F48125EC29A6363E003AB8FA /* Comment.swift */,
 				F48125F029A6374B003AB8FA /* GetCommentResponse.swift */,
-				F48125F229A63965003AB8FA /* CommentedUser.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -762,12 +770,12 @@
 				F48125E829A6171A003AB8FA /* AWSS3Manager.swift in Sources */,
 				F41416E329A280E700622058 /* LMResponse.swift in Sources */,
 				F4BDCF0329A60F9300F0AB17 /* Community.swift in Sources */,
-				F41416F229A3759900622058 /* Reply.swift in Sources */,
 				F4BCD71229B9D77600A230D1 /* DecodeUrlResponse.swift in Sources */,
 				F4BB413529AB24C10033F26E /* LMLogger.swift in Sources */,
 				F4BCD71729B9E0F800A230D1 /* AWSFileUtility.swift in Sources */,
 				F491983D29AE065A007D3C61 /* GetRepliesOnCommentRequest.swift in Sources */,
 				F41416C1299E4B4E00622058 /* TokenManager.swift in Sources */,
+				F405D0F729E7D6DA0074F531 /* GetReportTagRequest.swift in Sources */,
 				F41416D629A27D7400622058 /* Attachment.swift in Sources */,
 				F414170429A3975300622058 /* GetCommentRequest.swift in Sources */,
 				F4BCD71029B9D72300A230D1 /* DecodeUrlRequest.swift in Sources */,
@@ -821,7 +829,7 @@
 				F41416DD29A27F4000622058 /* GetFeedRequest.swift in Sources */,
 				F4BDCF0029A60F9300F0AB17 /* LMChatClient.swift in Sources */,
 				F491984029AF083E007D3C61 /* ReportRequest.swift in Sources */,
-				F48125F329A63965003AB8FA /* CommentedUser.swift in Sources */,
+				F405D0F929E7D6ED0074F531 /* GetReportTagResponse.swift in Sources */,
 				F41416A9299E41F500622058 /* LMFeedClient.swift in Sources */,
 				F4BB413829AB73630033F26E /* GetFeedNotificationRequest.swift in Sources */,
 				F41416F429A37A3100622058 /* GetFeedPostRequest.swift in Sources */,
