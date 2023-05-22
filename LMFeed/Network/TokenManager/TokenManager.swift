@@ -45,12 +45,13 @@ final class TokenManager {
         self.isRefreshingToken = true
         self.refreshAccessToken(refreshToken: refreshToken, withModuleName: "Token-Manager") { [weak self] response in
             guard let initiateResponse = response.data, response.errorMessage == nil else {
-//                PreferenceManager.sharedInstance.newUser()
                 self?.clearToken()
+                self?.isRefreshingToken = false
                 self?.lmCallback?.loginRequiredCallback()
                 return
             }
             self?.updateToken(initiateResponse.accessToken, initiateResponse.refreshToken)
+            self?.isRefreshingToken = false
             completion()
         }
     }

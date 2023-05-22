@@ -15,7 +15,7 @@ public struct GetCommentsLikeResponse: Codable {
     
     enum CodingKeys: String, CodingKey {
         case likes
-        case totalLikes = "total_likes"
+        case totalLikes = "total_count"
         case users
     }
 }

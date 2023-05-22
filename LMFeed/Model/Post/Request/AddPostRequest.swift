@@ -8,16 +8,19 @@
 import Foundation
 
 public class AddPostRequest: Encodable {
-    public var text: String?
-    public var attachments: [Attachment]?
+    var text: String?
+    var attachments: [Attachment]?
     
     /// Initiate method with post text
-    public init(text: String) {
-        self.text = text
-    }
+    public init() {}
     
     public func attachments(_ attachments: [Attachment]) -> AddPostRequest {
         self.attachments = attachments
+        return self
+    }
+    
+    public func text(_ text: String?) -> AddPostRequest {
+        self.text = text
         return self
     }
 }

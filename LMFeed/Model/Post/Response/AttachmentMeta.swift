@@ -10,7 +10,7 @@ import Foundation
 // MARK: - AttachmentMeta
 public class AttachmentMeta: Codable {
     public var attachmentUrl: String?
-    public var format: String?
+    public var format, name: String?
     public var pageCount, duration, size: Int? // size in bytes, duration in seconds
     public var ogTags: OGTags?
     
@@ -29,7 +29,7 @@ public class AttachmentMeta: Codable {
     
     enum CodingKeys: String, CodingKey {
         case attachmentUrl = "url"
-        case format
+        case format, name
         case size, duration
         case pageCount = "page_count"
         case ogTags = "og_tags"
@@ -40,8 +40,18 @@ public class AttachmentMeta: Codable {
         return self
     }
     
+    public func pageCount(_ pageCount: Int) -> AttachmentMeta {
+        self.pageCount = pageCount
+        return self
+    }
+    
     public func format(_ format: String) -> AttachmentMeta {
         self.format = format
+        return self
+    }
+    
+    public func name(_ name: String) -> AttachmentMeta {
+        self.name = name
         return self
     }
     

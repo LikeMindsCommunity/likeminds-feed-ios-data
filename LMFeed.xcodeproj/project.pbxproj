@@ -42,8 +42,6 @@
 		F414171629A39AD000622058 /* GetPostLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171529A39AD000622058 /* GetPostLikeResponse.swift */; };
 		F414171829A39AE700622058 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171729A39AE700622058 /* Like.swift */; };
 		F414171A29A39B8700622058 /* LikeUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F414171929A39B8700622058 /* LikeUsers.swift */; };
-		F48125E629A61659003AB8FA /* AWSAttachmentUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125E529A61659003AB8FA /* AWSAttachmentUploader.swift */; };
-		F48125E829A6171A003AB8FA /* AWSS3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125E729A6171A003AB8FA /* AWSS3Manager.swift */; };
 		F48125EB29A631C4003AB8FA /* ReplyOnCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125EA29A631C4003AB8FA /* ReplyOnCommentRequest.swift */; };
 		F48125ED29A6363E003AB8FA /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125EC29A6363E003AB8FA /* Comment.swift */; };
 		F48125EF29A63705003AB8FA /* GetRepliesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48125EE29A63705003AB8FA /* GetRepliesResponse.swift */; };
@@ -73,7 +71,6 @@
 		F4BCD71029B9D72300A230D1 /* DecodeUrlRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BCD70F29B9D72300A230D1 /* DecodeUrlRequest.swift */; };
 		F4BCD71229B9D77600A230D1 /* DecodeUrlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BCD71129B9D77600A230D1 /* DecodeUrlResponse.swift */; };
 		F4BCD71529B9E0DF00A230D1 /* FileUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BCD71429B9E0DF00A230D1 /* FileUtility.swift */; };
-		F4BCD71729B9E0F800A230D1 /* AWSFileUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BCD71629B9E0F800A230D1 /* AWSFileUtility.swift */; };
 		F4BCD71929B9E1F100A230D1 /* DeleteCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BCD71829B9E1F100A230D1 /* DeleteCommentRequest.swift */; };
 		F4BDCEFC29A60F9300F0AB17 /* BrandingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEEE29A60F9300F0AB17 /* BrandingRequest.swift */; };
 		F4BDCEFD29A60F9300F0AB17 /* BrandingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEEF29A60F9300F0AB17 /* BrandingResponse.swift */; };
@@ -86,6 +83,8 @@
 		F4BDCF0529A60F9300F0AB17 /* RegisterDeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEFA29A60F9300F0AB17 /* RegisterDeviceRequest.swift */; };
 		F4BDCF0629A60F9300F0AB17 /* RegisterDeviceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCEFB29A60F9300F0AB17 /* RegisterDeviceResponse.swift */; };
 		F4BDCF0929A60FA900F0AB17 /* LMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BDCF0829A60FA900F0AB17 /* LMClient.swift */; };
+		F4CE0F1F2A0C10090089D743 /* GetTaggingListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE0F1E2A0C10090089D743 /* GetTaggingListRequest.swift */; };
+		F4CE0F212A0C101A0089D743 /* GetTaggingListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CE0F202A0C101A0089D743 /* GetTaggingListResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,8 +127,6 @@
 		F414171529A39AD000622058 /* GetPostLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPostLikeResponse.swift; sourceTree = "<group>"; };
 		F414171729A39AE700622058 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		F414171929A39B8700622058 /* LikeUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUsers.swift; sourceTree = "<group>"; };
-		F48125E529A61659003AB8FA /* AWSAttachmentUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAttachmentUploader.swift; sourceTree = "<group>"; };
-		F48125E729A6171A003AB8FA /* AWSS3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSS3Manager.swift; sourceTree = "<group>"; };
 		F48125EA29A631C4003AB8FA /* ReplyOnCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyOnCommentRequest.swift; sourceTree = "<group>"; };
 		F48125EC29A6363E003AB8FA /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		F48125EE29A63705003AB8FA /* GetRepliesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRepliesResponse.swift; sourceTree = "<group>"; };
@@ -159,7 +156,6 @@
 		F4BCD70F29B9D72300A230D1 /* DecodeUrlRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeUrlRequest.swift; sourceTree = "<group>"; };
 		F4BCD71129B9D77600A230D1 /* DecodeUrlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeUrlResponse.swift; sourceTree = "<group>"; };
 		F4BCD71429B9E0DF00A230D1 /* FileUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtility.swift; sourceTree = "<group>"; };
-		F4BCD71629B9E0F800A230D1 /* AWSFileUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSFileUtility.swift; sourceTree = "<group>"; };
 		F4BCD71829B9E1F100A230D1 /* DeleteCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCommentRequest.swift; sourceTree = "<group>"; };
 		F4BDCEEE29A60F9300F0AB17 /* BrandingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandingRequest.swift; sourceTree = "<group>"; };
 		F4BDCEEF29A60F9300F0AB17 /* BrandingResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandingResponse.swift; sourceTree = "<group>"; };
@@ -172,6 +168,8 @@
 		F4BDCEFA29A60F9300F0AB17 /* RegisterDeviceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDeviceRequest.swift; sourceTree = "<group>"; };
 		F4BDCEFB29A60F9300F0AB17 /* RegisterDeviceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDeviceResponse.swift; sourceTree = "<group>"; };
 		F4BDCF0829A60FA900F0AB17 /* LMClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMClient.swift; sourceTree = "<group>"; };
+		F4CE0F1E2A0C10090089D743 /* GetTaggingListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTaggingListRequest.swift; sourceTree = "<group>"; };
+		F4CE0F202A0C101A0089D743 /* GetTaggingListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTaggingListResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +248,7 @@
 		F41416AA299E442300622058 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4CE0F1D2A0C0F6C0089D743 /* TaggingList */,
 				F405D0F529E7D6650074F531 /* ReportTags */,
 				F491983E29AF0822007D3C61 /* Report */,
 				F4BCD70E29B9D70700A230D1 /* OGTags */,
@@ -358,7 +357,6 @@
 				F41416B6299E495700622058 /* ServiceRequest.swift */,
 				F41416C5299E97B800622058 /* Reachability.swift */,
 				F4BB413329AA68760033F26E /* TokenManager */,
-				F4BB413229AA685A0033F26E /* AWSS3Manager */,
 				F4BB413429AB24C10033F26E /* LMLogger.swift */,
 			);
 			path = Network;
@@ -539,16 +537,6 @@
 			path = Report;
 			sourceTree = "<group>";
 		};
-		F4BB413229AA685A0033F26E /* AWSS3Manager */ = {
-			isa = PBXGroup;
-			children = (
-				F48125E529A61659003AB8FA /* AWSAttachmentUploader.swift */,
-				F48125E729A6171A003AB8FA /* AWSS3Manager.swift */,
-				F4BCD71629B9E0F800A230D1 /* AWSFileUtility.swift */,
-			);
-			path = AWSS3Manager;
-			sourceTree = "<group>";
-		};
 		F4BB413329AA68760033F26E /* TokenManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +636,15 @@
 				F4BDCF0829A60FA900F0AB17 /* LMClient.swift */,
 			);
 			path = FeedClient;
+			sourceTree = "<group>";
+		};
+		F4CE0F1D2A0C0F6C0089D743 /* TaggingList */ = {
+			isa = PBXGroup;
+			children = (
+				F4CE0F1E2A0C10090089D743 /* GetTaggingListRequest.swift */,
+				F4CE0F202A0C101A0089D743 /* GetTaggingListResponse.swift */,
+			);
+			path = TaggingList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -764,15 +761,15 @@
 				F4BDCF0129A60F9300F0AB17 /* InitiateUserResponse.swift in Sources */,
 				F48125F129A6374B003AB8FA /* GetCommentResponse.swift in Sources */,
 				F414170229A3967B00622058 /* AddCommentRequest.swift in Sources */,
+				F4CE0F1F2A0C10090089D743 /* GetTaggingListRequest.swift in Sources */,
 				F414171829A39AE700622058 /* Like.swift in Sources */,
 				F41416EE29A36CBD00622058 /* AttachmentMeta.swift in Sources */,
 				F41416F029A370F500622058 /* OGTags.swift in Sources */,
-				F48125E829A6171A003AB8FA /* AWSS3Manager.swift in Sources */,
 				F41416E329A280E700622058 /* LMResponse.swift in Sources */,
 				F4BDCF0329A60F9300F0AB17 /* Community.swift in Sources */,
 				F4BCD71229B9D77600A230D1 /* DecodeUrlResponse.swift in Sources */,
 				F4BB413529AB24C10033F26E /* LMLogger.swift in Sources */,
-				F4BCD71729B9E0F800A230D1 /* AWSFileUtility.swift in Sources */,
+				F4CE0F212A0C101A0089D743 /* GetTaggingListResponse.swift in Sources */,
 				F491983D29AE065A007D3C61 /* GetRepliesOnCommentRequest.swift in Sources */,
 				F41416C1299E4B4E00622058 /* TokenManager.swift in Sources */,
 				F405D0F729E7D6DA0074F531 /* GetReportTagRequest.swift in Sources */,
@@ -819,7 +816,6 @@
 				F481260929A7AD0D003AB8FA /* LMFeedClientServiceRequest.swift in Sources */,
 				F41416BF299E4B4E00622058 /* RefreshAccessToken.swift in Sources */,
 				F414170629A3978E00622058 /* GetCommentLikesRequest.swift in Sources */,
-				F48125E629A61659003AB8FA /* AWSAttachmentUploader.swift in Sources */,
 				F4BB413D29ABB8290033F26E /* GetMemberStateResponse.swift in Sources */,
 				F481260729A7ACA8003AB8FA /* GetPostResponse.swift in Sources */,
 				F41416B8299E495700622058 /* ServiceConfiguration.swift in Sources */,

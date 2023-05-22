@@ -20,12 +20,11 @@ class ServiceRequest {
         let deviceId = ""
         
         return [
-//                "x-member-id": loggedInMemberID,
                 "x-platform-code": "ios",
                 "x-version-code": buildVersion,
-//                "x-api-key": sdkApiKey,
                 "Cookie":"",
                 "x-device-id": deviceId,
+                "x-source-sdk": "feed",
                 "Authorization": "Bearer " + accessToken
         ]
     }

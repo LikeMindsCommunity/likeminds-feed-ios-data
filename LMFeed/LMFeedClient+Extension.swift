@@ -13,7 +13,7 @@ public typealias LMFeedClientResponse<T: Decodable> = (LMResponse<T>) -> (Void)
 extension LMFeedClient {
     
     func initialize() {
-        AWSS3Manager().initializeS3()
+//        AWSS3Manager().initializeS3()
     }
     
     func saveExtrasValuesInLocalPreferences(extras: LMChatClient) {
@@ -79,13 +79,13 @@ extension LMFeedClient {
         }
     }
     
-    public func addComment(_ request: AddCommentRequest, _ response:  LMFeedClientResponse<NoData>?) {
+    public func addComment(_ request: AddCommentRequest, _ response:  LMFeedClientResponse<GetCommentResponse>?) {
         LMFeedClientServiceRequest.addComment(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }
     
-    public func replyOnComment(_ request: ReplyOnCommentRequest, _ response:  LMFeedClientResponse<NoData>?) {
+    public func replyOnComment(_ request: ReplyOnCommentRequest, _ response:  LMFeedClientResponse<GetCommentResponse>?) {
         LMFeedClientServiceRequest.replyOnComment(request, withModuleName: moduleName) { result in
             response?(result)
         }
@@ -151,6 +151,12 @@ extension LMFeedClient {
     
     public func getReportTags(_ request: GetReportTagRequest, _ response:  LMFeedClientResponse<GetReportTagResponse>?) {
         LMFeedClientServiceRequest.getReportTags(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func getTaggingList(_ request: GetTaggingListRequest, _ response:  LMFeedClientResponse<GetTaggingListResponse>?) {
+        LMFeedClientServiceRequest.getTaggingList(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }

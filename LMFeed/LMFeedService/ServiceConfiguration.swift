@@ -82,6 +82,8 @@ struct ServiceAPIRequest {
         case logout(_ refreshToken: String)
         case urlDetails(_ request: DecodeUrlRequest)
         case getReportTags(_ request: GetReportTagRequest)
+        case fetchTaggingList(_ request: GetTaggingListRequest)
+
         
         var apiURL: String {
             switch self {
@@ -140,6 +142,9 @@ struct ServiceAPIRequest {
                 return "user/logout"
             case .getReportTags(let request):
                 return "community/report/tag?type=\(request.type)"
+            case .fetchTaggingList(let request):
+                let requestUrl = "community/tag?page_size=\(request.pageSize)&page=\(request.page)" + (request.searchName.isEmpty ? "" : "&search_name=\(request.searchName)")
+                return requestUrl
             }
         }
 
@@ -157,6 +162,7 @@ struct ServiceAPIRequest {
                  .getFeedGroup,
                  .urlDetails,
                  .getReportTags,
+                 .fetchTaggingList,
                  .onboardingChatService:
                 return .get
             case .initiateChatClient,
@@ -212,23 +218,6 @@ struct ServiceAPIRequest {
 
         var encoding: Alamofire.ParameterEncoding {
             switch self {
-//            case .setMuteUnMuteStatus(_, _),
-//                 .sendEditConversation(_, _, _),
-//                 .chatRoomMarkRead(_),
-//                 .deleteChatRoom(_),
-//                 .transferOwnerShip(_,_,_),
-//                 .updatePendingChatroom(_),
-//                 .closeReport(_),
-//                 .addReaction(_),
-//                 .removeReaction(_),
-//                 .renameChatRoom(_, _, _):
-//                return URLEncoding.default
-//            case .removeUserAsCommunityManager(let memberID, let communityID):
-//                return BodyStringEncoding(body: "community_id=\(communityID)&user_id=\(memberID)")
-//            case .skipJoinCommunity(let communityID):
-//                return BodyStringEncoding(body: "community_id=\(communityID)")
-//            case .exitCommunity(let communityID):
-//                return BodyStringEncoding(body: "community_id=\(communityID)")
             default:
                 return JSONEncoding.default
             }
