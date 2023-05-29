@@ -324,8 +324,8 @@ class LMFeedClientServiceRequest: ServiceRequest {
         }
     }
     
-    static func getMemberState(_ request: GetMemberStateRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetMemberStateResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.getMemberState(request)
+    static func getMemberState(withModuleName moduleName: String, _ response: LMFeedClientResponse<GetMemberStateResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.getMemberState
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
@@ -338,6 +338,7 @@ class LMFeedClientServiceRequest: ServiceRequest {
                 let result = try JSONDecoder().decode(LMResponse<GetMemberStateResponse>.self, from: data)
                 response?(result)
             } catch let error {
+                print(error)
                 response?(LMResponse.failureResponse(error.localizedDescription))
             }
         } failureCallback: { (moduleName, error) in

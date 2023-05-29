@@ -20,7 +20,7 @@ public class DeletePostRequest: Encodable {
         case reason = "delete_reason"
     }
     
-    public func deleteReason(_ reason: String) -> DeletePostRequest {
+    public func deleteReason(_ reason: String?) -> DeletePostRequest {
         self.reason = reason
         return self
     }

@@ -13,11 +13,10 @@ class ServiceRequest {
     
     static func httpHeaders() -> HTTPHeaders {
         let preferences = PreferencesFactory.userPreferences()
-        let loggedInMemberID = preferences.string(forKey: kPrefMemberId)
 //        let sdkApiKey = preferences.string(forKey: kPrefSdkApiKey)
         let accessToken = TokenManager.shared.accessToken ?? ""
         let buildVersion = BuildManager.buildVersion
-        let deviceId = ""
+        let deviceId = preferences.string(forKey: kPrefDeviceUDID)
         
         return [
                 "x-platform-code": "ios",

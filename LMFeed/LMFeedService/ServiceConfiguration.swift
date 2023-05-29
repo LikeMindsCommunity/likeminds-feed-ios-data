@@ -76,7 +76,7 @@ struct ServiceAPIRequest {
         case getFeedNotifications(_ resquest: GetFeedNotificationRequest)
         case deletePost(_ request: DeletePostRequest)
         case deleteComment(_ request: DeleteCommentRequest)
-        case getMemberState(_ request: GetMemberStateRequest)
+        case getMemberState
         case getFeedGroup(_ request: GetFeedOfFeedRoomRequest)
         case savePost(_ request: SavePostRequest)
         case logout(_ refreshToken: String)
@@ -91,8 +91,8 @@ struct ServiceAPIRequest {
                 return "sdk/initiate"
             case .refreshServiceToken:
                 return "user/refresh"
-            case .pushToken(let request):
-                return "api/push?device_id=\(request.deviceId)&member_id=\(request.userId ?? "")&token=\(request.token)"
+            case .pushToken:
+                return "user/device/push"
             case .getBranding(let request):
                 return ""
             case .onboardingChatService:
@@ -125,8 +125,8 @@ struct ServiceAPIRequest {
                 return "feed/post/\(request.postId)/comment/\(request.commentId)"
             case .getFeedNotifications(let request):
                 return "feed/notification?page=\(request.page)&page_size=\(request.pageSize)"
-            case .getMemberState(let request):
-                return "community/member/state?member_id=" + "\(request.memberId)" + "&community_id=" + "\(request.communityId)"
+            case .getMemberState:
+                return "community/member/state"
             case .getFeedGroup(let request):
                 return "feed/group?feedroom_id=\(request.feedroomId)"
             case .report:
@@ -195,6 +195,8 @@ struct ServiceAPIRequest {
             switch self {
             case .initiateChatClient(let request):
                 return request.requestParam()
+            case .pushToken(let request):
+                return ["token": request.token]
             case .refreshServiceToken:
                 return [:]
             case .addPost(let request):

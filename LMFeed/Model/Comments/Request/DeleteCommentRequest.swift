@@ -20,10 +20,10 @@ public class DeleteCommentRequest: Encodable {
     enum CodingKeys: String, CodingKey {
         case postId = "post_id"
         case commentId = "comment_id"
-        case reason
+        case reason = "delete_reason"
     }
     
-    public func reason(_ reason: String) -> DeleteCommentRequest {
+    public func deleteReason(_ reason: String?) -> DeleteCommentRequest {
         self.reason = reason
         return self
     }

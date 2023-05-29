@@ -42,4 +42,6 @@ public class LMChatClient {
     func getApiKey() -> String { return self.apiKey }
     /// get the domain url
     func getDomainUrl() -> String? { return self.domain }
+    /// get the domain url
+    func getDeviceId() -> String? { return self.deviceUUID }
 }

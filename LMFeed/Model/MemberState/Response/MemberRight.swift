@@ -7,11 +7,26 @@
 
 import Foundation
 
+protocol CaseIterableDefaultsLast: Decodable & CaseIterable & RawRepresentable
+where RawValue: Decodable, AllCases: BidirectionalCollection { }
+
+extension CaseIterableDefaultsLast {
+    public init(from decoder: Decoder) throws {
+        self = try Self(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? Self.allCases.first!
+    }
+}
+
+public enum MemberRightState: Int, Codable, CaseIterableDefaultsLast {
+    case createPost = 9
+    case commentOrReplyOnPost = 10
+    case unknown = -1
+}
+
 // MARK: - MemberRight
 public struct MemberRight: Codable {
     public let id: Int?
     public let isLocked, isSelected: Bool?
-    public let state: Int?
+    public let state: MemberRightState?
     public let title: String?
     public let subTitle: String?
     

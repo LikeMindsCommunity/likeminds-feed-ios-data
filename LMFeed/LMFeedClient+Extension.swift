@@ -19,14 +19,19 @@ extension LMFeedClient {
     func saveExtrasValuesInLocalPreferences(extras: LMChatClient) {
         let preferences = PreferencesFactory.userPreferences()
         preferences.put(extras.getApiKey(), forKey: kPrefSdkApiKey)
+        if let deviceId = extras.getDeviceId() {
+            preferences.put(deviceId, forKey: kPrefDeviceUDID)
+        }
         if let domain = extras.getDomainUrl() {
             preferences.put(domain, forKey: kPrefDomainUrl)
         }
         _ = preferences.save()
     }
     
-    public func initiateUser(_ request: InitiateUserRequest, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
-        LMClient.shared.initiateUser(request: request) { result in
+    public func initiateUser(request: InitiateUserRequest, response: LMFeedClientResponse<InitiateUserResponse>?) {
+        FeedClientServiceRequest.initiateChatService(request, withModuleName: moduleName) { result in
+            TokenManager.shared.accessToken = result.data?.accessToken
+            TokenManager.shared.refreshToken = result.data?.refreshToken
             response?(result)
         }
     }
@@ -115,8 +120,8 @@ extension LMFeedClient {
         }
     }
     
-    public func getMemberState(_ request: GetMemberStateRequest, _ response:  LMFeedClientResponse<GetMemberStateResponse>?) {
-        LMFeedClientServiceRequest.getMemberState(request, withModuleName: moduleName) { result in
+    public func getMemberState(_ response:  LMFeedClientResponse<GetMemberStateResponse>?) {
+        LMFeedClientServiceRequest.getMemberState(withModuleName: moduleName) { result in
             response?(result)
         }
     }
@@ -159,5 +164,25 @@ extension LMFeedClient {
         LMFeedClientServiceRequest.getTaggingList(request, withModuleName: moduleName) { result in
             response?(result)
         }
+    }
+    
+    public func registerDevice(request: RegisterDeviceRequest, response: LMFeedClientResponse<RegisterDeviceResponse>?) {
+        FeedClientServiceRequest.registerDevice(request: request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func logout(response: LMFeedClientResponse<NoData>?) {
+        guard let refreshToken = TokenManager.shared.refreshToken else {
+            response?(LMResponse.failureResponse("Refresh token not present!"))
+            return
+        }
+        FeedClientServiceRequest.logout(refreshToken: refreshToken, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func domainUrl() -> String {
+        return PreferencesFactory.userPreferences().string(forKey: kPrefDomainUrl)
     }
 }

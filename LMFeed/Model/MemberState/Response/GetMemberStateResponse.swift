@@ -14,7 +14,7 @@ public enum MemberState:Int, Codable {
 
 // MARK: - MemberStateResponse
 public struct GetMemberStateResponse: Codable {
-    public let createdAt: Int
+    public let createdAt: String?
     public let editRequired: Bool
     public let member: User?
     public let memberRights: [MemberRight]

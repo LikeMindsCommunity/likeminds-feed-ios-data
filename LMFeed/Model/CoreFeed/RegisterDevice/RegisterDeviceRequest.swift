@@ -8,8 +8,8 @@
 import Foundation
 
 public class RegisterDeviceRequest: Encodable {
-    var deviceId: String //unique id of user
-    var token: String //user name
+    var deviceId: String //unique device id
+    var token: String // firebase token
     var userId: String?
     
     /// Initiate method with device id and device token key param
