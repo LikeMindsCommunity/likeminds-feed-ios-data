@@ -12,19 +12,28 @@ import Alamofire
 class ServiceRequest {
     
     static func httpHeaders() -> HTTPHeaders {
-        let preferences = PreferencesFactory.userPreferences()
-//        let sdkApiKey = preferences.string(forKey: kPrefSdkApiKey)
-        let accessToken = TokenManager.shared.accessToken ?? ""
+        let accessToken = FeedTokenManager.shared.accessToken ?? ""
         let buildVersion = BuildManager.buildVersion
-        let deviceId = preferences.string(forKey: kPrefDeviceUDID)
-        
         return [
                 "x-platform-code": "ios",
                 "x-version-code": buildVersion,
                 "Cookie":"",
-                "x-device-id": deviceId,
+//                "x-device-id": deviceId,
                 "x-source-sdk": "feed",
                 "Authorization": "Bearer " + accessToken
+        ]
+    }
+    
+    static func deviceRegisterHeaders(headerKey: String = "x-api-key", value: String = "") -> HTTPHeaders {
+        let accessToken = FeedTokenManager.shared.accessToken ?? ""
+        let buildVersion = BuildManager.buildVersion
+        return [
+            "x-platform-code": "ios",
+            "x-version-code": buildVersion,
+            "Cookie":"",
+            headerKey: value,
+            "x-source-sdk": "feed",
+            "Authorization": "Bearer " + accessToken
         ]
     }
     

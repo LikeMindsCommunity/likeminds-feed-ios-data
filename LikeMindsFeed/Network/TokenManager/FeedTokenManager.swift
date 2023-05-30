@@ -1,11 +1,12 @@
 //
-//  TokenManager.swift
+//  FeedTokenManager.swift
 //  LMCore
 //
 //  Created by Pushpendra Singh on 15/02/23.
 //
 
 import Foundation
+import Alamofire
 
 /**
  * A protocol to handle login requried action
@@ -21,9 +22,9 @@ public extension LMCallback {
     func loginRequiredCallback() {}
 }
 
-final class TokenManager {
+final class FeedTokenManager {
     /// Singleton object property
-    public static let shared = TokenManager()
+    public static let shared = FeedTokenManager()
     /// Token manager callback
     public weak var lmCallback: LMCallback?
     /// Refresh token completion block
@@ -56,9 +57,22 @@ final class TokenManager {
         }
     }
     
+    func commonInterceptor(_ key: String = "", value: String = "") -> HTTPHeaders {
+        let accessToken = FeedTokenManager.shared.accessToken ?? ""
+        let buildVersion = BuildManager.buildVersion
+        return [
+            "x-platform-code": "ios",
+            "x-version-code": buildVersion,
+            "Cookie":"",
+            "x-source-sdk": "feed",
+            "Authorization": "Bearer " + accessToken
+        ]
+    }
+    
     private func refreshAccessToken(refreshToken: String, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken(rtm: "")
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+//
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: refreshToken),

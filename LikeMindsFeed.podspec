@@ -15,8 +15,8 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = "LMFeed.podspec"
-  spec.version      = "0.5.0"
+  spec.name         = "LikeMindsFeed.podspec"
+  spec.version      = "1.0.0"
   spec.summary      = "A short description of LMFeed.podspec."
 
   # This description is used to generate tags and improve search results.
@@ -135,7 +135,4 @@ Pod::Spec.new do |spec|
   # spec.dependency "JSONKit", "~> 1.4"
   
   spec.dependency "Alamofire"
-  spec.dependency "AWSCore"
-  spec.dependency "AWSCognito"
-  spec.dependency "AWSS3"
 end

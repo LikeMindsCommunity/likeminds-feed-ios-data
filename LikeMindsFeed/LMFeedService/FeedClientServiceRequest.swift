@@ -11,12 +11,10 @@ class FeedClientServiceRequest: ServiceRequest {
     
     static func initiateChatService(_ request: InitiateUserRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.initiateChatClient(request)
-        let preferences = PreferencesFactory.userPreferences()
-        let sdkAPIKey = preferences.string(forKey: kPrefSdkApiKey)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(value: sdkAPIKey),
+                                   headers: ServiceRequest.httpSdkHeaders(value: request.apiKey),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
@@ -33,15 +31,12 @@ class FeedClientServiceRequest: ServiceRequest {
     }
     
     static func registerDevice(request: RegisterDeviceRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<RegisterDeviceResponse>?) {
-        let preferences = PreferencesFactory.userPreferences()
-        let memberId = preferences.string(forKey: kPrefMemberId)
-        let request = request.userId(memberId)
         
         let networkPath = ServiceAPIRequest.NetworkPath.pushToken(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpHeaders(),
+                                   headers: ServiceRequest.deviceRegisterHeaders(headerKey: "x-device-id", value: request.deviceId),
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in

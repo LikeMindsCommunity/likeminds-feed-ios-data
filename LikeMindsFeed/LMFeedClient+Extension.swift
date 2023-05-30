@@ -30,8 +30,8 @@ extension LMFeedClient {
     
     public func initiateUser(request: InitiateUserRequest, response: LMFeedClientResponse<InitiateUserResponse>?) {
         FeedClientServiceRequest.initiateChatService(request, withModuleName: moduleName) { result in
-            TokenManager.shared.accessToken = result.data?.accessToken
-            TokenManager.shared.refreshToken = result.data?.refreshToken
+            FeedTokenManager.shared.accessToken = result.data?.accessToken
+            FeedTokenManager.shared.refreshToken = result.data?.refreshToken
             response?(result)
         }
     }
@@ -173,7 +173,7 @@ extension LMFeedClient {
     }
     
     public func logout(response: LMFeedClientResponse<NoData>?) {
-        guard let refreshToken = TokenManager.shared.refreshToken else {
+        guard let refreshToken = FeedTokenManager.shared.refreshToken else {
             response?(LMResponse.failureResponse("Refresh token not present!"))
             return
         }

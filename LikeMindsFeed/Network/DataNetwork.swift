@@ -116,6 +116,15 @@ internal final class DataNetwork {
             lmLog("headers - \(headers)")
             guard let responseData = response.data else {
                 lmLog("failureCallback - \(response)")
+                if let error = response.error {
+                    switch error {
+                    case .sessionTaskFailed:
+                        self.request(for: url, withHTTPMethod: httpMethod, headers: headers, withParameters: parameters, withEncoding: encoding, withModuleName: moduleName, successCallback: successCallback, failureCallback: failureCallback)
+                        return
+                    default:
+                        break
+                    }
+                }
                 failureCallback(moduleName, .noResponse)
                 lmLog("--------------------------")
                 return
@@ -126,7 +135,7 @@ internal final class DataNetwork {
                jsondataString.range(of: "Invalid LTM!") != nil
             {
                 lmLog("response - \(String(describing: jsondataString))")
-                TokenManager.shared.refreshInterceptor {}
+                FeedTokenManager.shared.refreshInterceptor {}
                 failureCallback(moduleName, .tokenExpire)
                 return
             }
@@ -160,7 +169,15 @@ internal final class DataNetwork {
             lmLog("headers - \(headers)")
             guard let responseData = response.data else {
                 lmLog("failureCallback - \(response)")
-//                dataIntercepter(data: response.data)
+                if let error = response.error {
+                    switch error {
+                    case .sessionTaskFailed:
+                        self.request(for: url, withHTTPMethod: httpMethod, headers: headers, withParameters: parameters, withEncoding: encoding, withModuleName: moduleName, successCallback: successCallback, failureCallback: failureCallback)
+                        return
+                    default:
+                        break
+                    }
+                }
                 failureCallback(moduleName, .noResponse)
                 lmLog("--------------------------")
                 return
@@ -172,7 +189,7 @@ internal final class DataNetwork {
                 let jsondataString = responseData.jsonString()
                 if jsondataString.range(of: "Invalid LTM!") != nil {
                     lmLog("response - \(String(describing: jsondataString))")
-                    TokenManager.shared.refreshInterceptor {}
+                    FeedTokenManager.shared.refreshInterceptor {}
                     failureCallback(moduleName, .tokenExpire)
                     return
                 }
