@@ -22,7 +22,7 @@ public extension LMCallback {
     func loginRequiredCallback() {}
 }
 
-final class FeedTokenManager {
+final public class FeedTokenManager {
     /// Singleton object property
     public static let shared = FeedTokenManager()
     /// Token manager callback

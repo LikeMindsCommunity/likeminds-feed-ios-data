@@ -181,8 +181,4 @@ extension LMFeedClient {
             response?(result)
         }
     }
-    
-    public func domainUrl() -> String {
-        return PreferencesFactory.userPreferences().string(forKey: kPrefDomainUrl)
-    }
 }
