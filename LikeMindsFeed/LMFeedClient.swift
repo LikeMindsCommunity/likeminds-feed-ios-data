@@ -13,12 +13,4 @@ public class LMFeedClient {
     
     private init() {}
     
-    /// This function configure and initialize dependency frameworks
-    /// - Parameter extras: required to Initiation of the SDK
-    public func configureLikeMindsFeed(_ extras: LMChatClient) {
-        saveExtrasValuesInLocalPreferences(extras: extras)
-        //        BrandingData.shared.invalidateFonts(extras.getFonts())
-        initialize()
-    }
-    
 }

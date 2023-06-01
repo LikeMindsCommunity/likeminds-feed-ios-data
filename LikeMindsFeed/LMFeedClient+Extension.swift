@@ -126,7 +126,7 @@ extension LMFeedClient {
         }
     }
     
-    public func getFeedRoom(_ request: GetFeedRequest, _ response:  LMFeedClientResponse<GetFeedResponse>?) {
+    func getFeedRoom(_ request: GetFeedRequest, _ response:  LMFeedClientResponse<GetFeedResponse>?) {
         
     }
     

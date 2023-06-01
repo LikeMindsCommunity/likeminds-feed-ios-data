@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7163FB93EE91C049A313E215 /* Pods_LikeMindsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328FAAB8DE4E6C9E11287A03 /* Pods_LikeMindsFeed.framework */; };
 		F46E15512A25BF37003C43BA /* FeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14D92A25BF37003C43BA /* FeedClientServiceRequest.swift */; };
 		F46E15522A25BF37003C43BA /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14DA2A25BF37003C43BA /* ServiceConfiguration.swift */; };
 		F46E15532A25BF37003C43BA /* LMFeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14DB2A25BF37003C43BA /* LMFeedClientServiceRequest.swift */; };
@@ -86,6 +85,7 @@
 		F46E159C2A25BF37003C43BA /* GetCommentLikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E154D2A25BF37003C43BA /* GetCommentLikesRequest.swift */; };
 		F46E159D2A25BF37003C43BA /* LMFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = F46E154E2A25BF37003C43BA /* LMFeed.h */; };
 		F46E159E2A25BF37003C43BA /* FileUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15502A25BF37003C43BA /* FileUtility.swift */; };
+		F4E8489E2A270E0900B15666 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8489D2A270E0900B15666 /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +171,7 @@
 		F46E154D2A25BF37003C43BA /* GetCommentLikesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCommentLikesRequest.swift; sourceTree = "<group>"; };
 		F46E154E2A25BF37003C43BA /* LMFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMFeed.h; sourceTree = "<group>"; };
 		F46E15502A25BF37003C43BA /* FileUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtility.swift; sourceTree = "<group>"; };
+		F4E8489D2A270E0900B15666 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +179,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7163FB93EE91C049A313E215 /* Pods_LikeMindsFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,10 +224,10 @@
 			isa = PBXGroup;
 			children = (
 				F46E14D82A25BF37003C43BA /* LMFeedService */,
-				F46E14DC2A25BF37003C43BA /* LMFeedClient+Extension.swift */,
 				F46E14DD2A25BF37003C43BA /* Network */,
 				F46E14E62A25BF37003C43BA /* FeedClient */,
 				F46E14E82A25BF37003C43BA /* LMFeedClient.swift */,
+				F46E14DC2A25BF37003C43BA /* LMFeedClient+Extension.swift */,
 				F46E14E92A25BF37003C43BA /* Extensions */,
 				F46E14EB2A25BF37003C43BA /* PreferenceManager */,
 				F46E14F12A25BF37003C43BA /* LMFeed.docc */,
@@ -282,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				F46E14EA2A25BF37003C43BA /* Date+Extension.swift */,
+				F4E8489D2A270E0900B15666 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -812,6 +813,7 @@
 				F46E15962A25BF37003C43BA /* MemberRight.swift in Sources */,
 				F46E155D2A25BF37003C43BA /* LMFeedClient.swift in Sources */,
 				F46E158A2A25BF37003C43BA /* GetFeedOfFeedRoomRequest.swift in Sources */,
+				F4E8489E2A270E0900B15666 /* String+Extension.swift in Sources */,
 				F46E157D2A25BF37003C43BA /* Post.swift in Sources */,
 				F46E15852A25BF37003C43BA /* GetReportTagResponse.swift in Sources */,
 				F46E155E2A25BF37003C43BA /* Date+Extension.swift in Sources */,

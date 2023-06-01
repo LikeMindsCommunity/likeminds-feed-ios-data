@@ -38,15 +38,15 @@ struct ServiceConfigurationURLs {
         static let authBaseUrl = "https://auth.likeminds.community/"
         static let bucketURL = "prod-likeminds-media"
         static let awsPoolIdCognito = "d73bc2ed-bede-42c8-bab7-0abe0a001325"
-        static let secretAccessKey = "hnhMpeHVw7N3YjDmuYJ+mNL+wf6umv+oHaz9fgfa"
-        static let accessKey = "AKIA3HMTDICCWBSGV67Z"
+        static let secretAccessKey = "aG5oTXBlSFZ3N04zWWpEbXVZSittTkwrd2Y2dW12K29IYXo5ZmdmYQ=="
+        static let accessKey = "QUtJQTNITVRESUNDV0JTR1Y2N1o="
     }
     struct DevTest {
         static let authBaseUrl = "https://betaauth.likeminds.community/"
         static let bucketURL = "beta-likeminds-media"
         static let awsPoolIdCognito = "181963ba-f2db-450b-8199-964a941b38c2"
-        static let secretAccessKey = "9gKyjFCwxCDVT9XhyMWuH4GBqu/UI7pAQJFk6gun"
-        static let accessKey = "AKIA3HMTDICCYBBYGI6J"
+        static let secretAccessKey = "OWdLeWpGQ3d4Q0RWVDlYaHlNV3VINEdCcXUvVUk3cEFRSkZrNmd1bg=="
+        static let accessKey = "QUtJQTNITVRESUNDWUJCWUdJNko="
     }
     static let timeOutInterval:TimeInterval = 60
 }
@@ -255,10 +255,10 @@ struct ServiceConfiguration {
     }()
 
     static let secretAccessKey:String = {
-        var secretAccessKey = ServiceConfigurationURLs.Production.secretAccessKey
+        var secretAccessKey = ServiceConfigurationURLs.Production.secretAccessKey.fromBase64() ?? ""
         switch BuildManager.environment {
         case .devtest:
-            secretAccessKey = ServiceConfigurationURLs.DevTest.secretAccessKey
+            secretAccessKey = ServiceConfigurationURLs.DevTest.secretAccessKey.fromBase64() ?? ""
             break
         case .production:
             break
@@ -267,10 +267,10 @@ struct ServiceConfiguration {
     }()
 
     static let accessKey:String = {
-        var accessKey = ServiceConfigurationURLs.Production.accessKey
+        var accessKey = ServiceConfigurationURLs.Production.accessKey.fromBase64() ?? ""
         switch BuildManager.environment {
         case .devtest:
-            accessKey = ServiceConfigurationURLs.DevTest.accessKey
+            accessKey = ServiceConfigurationURLs.DevTest.accessKey.fromBase64() ?? ""
             break
         case .production:
             break

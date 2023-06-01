@@ -17,9 +17,18 @@ extension CaseIterableDefaultsLast {
 }
 
 public enum MemberRightState: Int, Codable, CaseIterableDefaultsLast {
+    case unknown = -1
+    case createChatRooms = 0
+    case createPolls = 1
+    case createEvents = 2
+    case respondsInChatRoom = 3
+    case inviteMemberFromPrivateLink = 4
+    case autoApproveCreatedChatroom = 5
+    case createSecretChatRoom = 6
+    case directMessage = 7
+    case noClearYet = 8
     case createPost = 9
     case commentOrReplyOnPost = 10
-    case unknown = -1
 }
 
 // MARK: - MemberRight
