@@ -19,7 +19,7 @@ class ServiceRequest {
                 "x-version-code": buildVersion,
                 "Cookie":"",
 //                "x-device-id": deviceId,
-                "x-source-sdk": "feed",
+                "x-sdk-source": "feed",
                 "Authorization": "Bearer " + accessToken
         ]
     }
@@ -32,7 +32,7 @@ class ServiceRequest {
             "x-version-code": buildVersion,
             "Cookie":"",
             headerKey: value,
-            "x-source-sdk": "feed",
+            "x-sdk-source": "feed",
             "Authorization": "Bearer " + accessToken
         ]
     }
