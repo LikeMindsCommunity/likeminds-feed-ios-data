@@ -17,6 +17,7 @@ public struct GetMemberStateResponse: Codable {
     public let createdAt: String?
     public let editRequired: Bool
     public let member: User?
+    public let managerRights: [ManagerRight]
     public let memberRights: [MemberRight]
     public let state: Int?
     public let toolState: MemberState?
@@ -26,6 +27,7 @@ public struct GetMemberStateResponse: Codable {
         case editRequired = "edit_required"
         case member
         case memberRights = "member_rights"
+        case managerRights = "manager_rights"
         case state
         case toolState = "tool_state"
     }

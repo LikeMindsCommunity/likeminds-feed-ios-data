@@ -64,7 +64,7 @@ final public class FeedTokenManager {
             "x-platform-code": "ios",
             "x-version-code": buildVersion,
             "Cookie":"",
-            "x-source-sdk": "feed",
+            "x-sdk-source": "feed",
             "Authorization": "Bearer " + accessToken
         ]
     }
