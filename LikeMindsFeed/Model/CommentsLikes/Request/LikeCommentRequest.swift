@@ -1,0 +1,23 @@
+//
+//  LikeCommentRequest.swift
+//  LMFeed
+//
+//  Created by Pushpendra Singh on 20/02/23.
+//
+
+import Foundation
+
+public class LikeCommentRequest: Encodable {
+    public var postId: String
+    public var commentId: String
+    
+    public init(postId: String, commentId: String) {
+        self.postId = postId
+        self.commentId = commentId
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case postId = "post_id"
+        case commentId = "comment_id"
+    }
+}
