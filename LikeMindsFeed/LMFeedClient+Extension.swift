@@ -175,4 +175,22 @@ extension LMFeedClient {
             response?(result)
         }
     }
+    
+    public func pinPost(_ request: PinPostRequest, _ response:  LMFeedClientResponse<NoData>?) {
+        LMFeedClientServiceRequest.pinPost(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func editPost(_ request: EditPostRequest, _ response:  LMFeedClientResponse<EditPostResponse>?) {
+        LMFeedClientServiceRequest.editPost(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func editComment(_ request: EditCommentRequest, _ response:  LMFeedClientResponse<EditCommentResponse>?) {
+        LMFeedClientServiceRequest.editComment(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
 }

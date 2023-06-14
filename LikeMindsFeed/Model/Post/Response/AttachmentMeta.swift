@@ -25,6 +25,7 @@ public class AttachmentMeta: Codable {
         self.duration = try container.decodeIfPresent(Int.self, forKey: .duration)
         self.pageCount = try container.decodeIfPresent(Int.self, forKey: .pageCount)
         self.ogTags = try container.decodeIfPresent(OGTags.self, forKey: .ogTags)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
     }
     
     enum CodingKeys: String, CodingKey {
