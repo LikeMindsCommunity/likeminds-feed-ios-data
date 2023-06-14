@@ -83,6 +83,9 @@ struct ServiceAPIRequest {
         case urlDetails(_ request: DecodeUrlRequest)
         case getReportTags(_ request: GetReportTagRequest)
         case fetchTaggingList(_ request: GetTaggingListRequest)
+        case pinPost(_ request: PinPostRequest)
+        case editPost(_ request: EditPostRequest)
+        case editComment(_ request: EditCommentRequest)
 
         
         var apiURL: String {
@@ -142,6 +145,12 @@ struct ServiceAPIRequest {
                 return "user/logout"
             case .getReportTags(let request):
                 return "community/report/tag?type=\(request.type)"
+            case .pinPost(let request):
+                return "feed/post/\(request.postId)/pin"
+            case .editPost(let request):
+                return "feed/post/\(request.postId)"
+            case .editComment(let request):
+                return "feed/post/\(request.postId)/comment/\(request.commentId)"
             case .fetchTaggingList(let request):
                 let requestUrl = "community/tag?page_size=\(request.pageSize)&page=\(request.page)" + (request.searchName.isEmpty ? "" : "&search_name=\(request.searchName)")
                 return requestUrl
@@ -176,6 +185,9 @@ struct ServiceAPIRequest {
                 return .post
             case .likePost,
                  .savePost,
+                 .pinPost,
+                 .editPost,
+                 .editComment,
                  .likeComment:
                 return .put
             case .deletePost,
@@ -212,6 +224,10 @@ struct ServiceAPIRequest {
             case .deletePost(let request):
                 return request.requestParam()
             case .deleteComment(let request):
+                return request.requestParam()
+            case .editPost(let request):
+                return request.requestParam()
+            case .editComment(let request):
                 return request.requestParam()
             default:
                 return nil
