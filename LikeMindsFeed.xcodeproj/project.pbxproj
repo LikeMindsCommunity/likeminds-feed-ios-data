@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		017F02B7AC81912DFC450473 /* Pods_LikeMindsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328FAAB8DE4E6C9E11287A03 /* Pods_LikeMindsFeed.framework */; };
 		F46E15512A25BF37003C43BA /* FeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14D92A25BF37003C43BA /* FeedClientServiceRequest.swift */; };
 		F46E15522A25BF37003C43BA /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14DA2A25BF37003C43BA /* ServiceConfiguration.swift */; };
 		F46E15532A25BF37003C43BA /* LMFeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14DB2A25BF37003C43BA /* LMFeedClientServiceRequest.swift */; };
@@ -86,7 +85,12 @@
 		F46E159C2A25BF37003C43BA /* GetCommentLikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E154D2A25BF37003C43BA /* GetCommentLikesRequest.swift */; };
 		F46E159D2A25BF37003C43BA /* LMFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = F46E154E2A25BF37003C43BA /* LMFeed.h */; };
 		F46E159E2A25BF37003C43BA /* FileUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15502A25BF37003C43BA /* FileUtility.swift */; };
+		F4AD15832A2BCB2C00B752C3 /* EditCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD15822A2BCB2C00B752C3 /* EditCommentResponse.swift */; };
+		F4AD15852A2BCB5400B752C3 /* EditPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD15842A2BCB5400B752C3 /* EditPostResponse.swift */; };
 		F4E8489E2A270E0900B15666 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8489D2A270E0900B15666 /* String+Extension.swift */; };
+		F4E848A42A290DC800B15666 /* PinPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A32A290DC700B15666 /* PinPostRequest.swift */; };
+		F4E848A62A290DDA00B15666 /* EditPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A52A290DDA00B15666 /* EditPostRequest.swift */; };
+		F4E848A82A290F8200B15666 /* EditCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A72A290F8200B15666 /* EditCommentRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,7 +176,12 @@
 		F46E154D2A25BF37003C43BA /* GetCommentLikesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCommentLikesRequest.swift; sourceTree = "<group>"; };
 		F46E154E2A25BF37003C43BA /* LMFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMFeed.h; sourceTree = "<group>"; };
 		F46E15502A25BF37003C43BA /* FileUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtility.swift; sourceTree = "<group>"; };
+		F4AD15822A2BCB2C00B752C3 /* EditCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentResponse.swift; sourceTree = "<group>"; };
+		F4AD15842A2BCB5400B752C3 /* EditPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostResponse.swift; sourceTree = "<group>"; };
 		F4E8489D2A270E0900B15666 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		F4E848A32A290DC700B15666 /* PinPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPostRequest.swift; sourceTree = "<group>"; };
+		F4E848A52A290DDA00B15666 /* EditPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostRequest.swift; sourceTree = "<group>"; };
+		F4E848A72A290F8200B15666 /* EditCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +189,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				017F02B7AC81912DFC450473 /* Pods_LikeMindsFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +355,7 @@
 			children = (
 				F46E14F82A25BF37003C43BA /* Comment.swift */,
 				F46E14F92A25BF37003C43BA /* GetCommentResponse.swift */,
+				F4AD15822A2BCB2C00B752C3 /* EditCommentResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -357,6 +366,7 @@
 				F46E14FB2A25BF37003C43BA /* DeleteCommentRequest.swift */,
 				F46E14FC2A25BF37003C43BA /* AddCommentRequest.swift */,
 				F46E14FD2A25BF37003C43BA /* GetCommentRequest.swift */,
+				F4E848A72A290F8200B15666 /* EditCommentRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -438,6 +448,7 @@
 				F46E15162A25BF37003C43BA /* GetPostResponse.swift */,
 				F46E15172A25BF37003C43BA /* Post.swift */,
 				F46E15182A25BF37003C43BA /* OGTags.swift */,
+				F4AD15842A2BCB5400B752C3 /* EditPostResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -450,6 +461,8 @@
 				F46E151C2A25BF37003C43BA /* SavePostRequest.swift */,
 				F46E151D2A25BF37003C43BA /* AddPostRequest.swift */,
 				F46E151E2A25BF37003C43BA /* GetFeedPostRequest.swift */,
+				F4E848A32A290DC700B15666 /* PinPostRequest.swift */,
+				F4E848A52A290DDA00B15666 /* EditPostRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -765,17 +778,20 @@
 				F46E15532A25BF37003C43BA /* LMFeedClientServiceRequest.swift in Sources */,
 				F46E15562A25BF37003C43BA /* DataNetwork.swift in Sources */,
 				F46E15982A25BF37003C43BA /* GetMemberStateRequest.swift in Sources */,
+				F4AD15832A2BCB2C00B752C3 /* EditCommentResponse.swift in Sources */,
 				F46E15572A25BF37003C43BA /* Reachability.swift in Sources */,
 				F46E15652A25BF37003C43BA /* DecodeUrlRequest.swift in Sources */,
 				F46E158B2A25BF37003C43BA /* GetFeedRoomRequest.swift in Sources */,
 				F46E15832A25BF37003C43BA /* GetFeedPostRequest.swift in Sources */,
 				F46E157C2A25BF37003C43BA /* GetPostResponse.swift in Sources */,
+				F4E848A82A290F8200B15666 /* EditCommentRequest.swift in Sources */,
 				F46E15902A25BF37003C43BA /* LikePostRequest.swift in Sources */,
 				F46E155C2A25BF37003C43BA /* LMClient.swift in Sources */,
 				F46E15802A25BF37003C43BA /* GetPostRequest.swift in Sources */,
 				F46E15762A25BF37003C43BA /* GetFeedNotificationRequest.swift in Sources */,
 				F46E15692A25BF37003C43BA /* DeleteCommentRequest.swift in Sources */,
 				F46E15522A25BF37003C43BA /* ServiceConfiguration.swift in Sources */,
+				F4AD15852A2BCB5400B752C3 /* EditPostResponse.swift in Sources */,
 				F46E15842A25BF37003C43BA /* GetReportTagRequest.swift in Sources */,
 				F46E158E2A25BF37003C43BA /* GetPostLikeResponse.swift in Sources */,
 				F46E15672A25BF37003C43BA /* Comment.swift in Sources */,
@@ -794,6 +810,7 @@
 				F46E15932A25BF37003C43BA /* ReportRequest.swift in Sources */,
 				F46E15722A25BF37003C43BA /* Community.swift in Sources */,
 				F46E157F2A25BF37003C43BA /* DeletePostRequest.swift in Sources */,
+				F4E848A62A290DDA00B15666 /* EditPostRequest.swift in Sources */,
 				F46E15742A25BF37003C43BA /* RegisterDeviceRequest.swift in Sources */,
 				F46E15512A25BF37003C43BA /* FeedClientServiceRequest.swift in Sources */,
 				F46E156E2A25BF37003C43BA /* Fonts.swift in Sources */,
@@ -822,6 +839,7 @@
 				F46E15972A25BF37003C43BA /* GetMemberStateResponse.swift in Sources */,
 				F46E15782A25BF37003C43BA /* AttachmentMeta.swift in Sources */,
 				F46E159A2A25BF37003C43BA /* GetCommentsLikeResponse.swift in Sources */,
+				F4E848A42A290DC800B15666 /* PinPostRequest.swift in Sources */,
 				F46E15862A25BF37003C43BA /* ReplyOnCommentRequest.swift in Sources */,
 				F46E15542A25BF37003C43BA /* LMFeedClient+Extension.swift in Sources */,
 				F46E15612A25BF37003C43BA /* Preferences.swift in Sources */,
