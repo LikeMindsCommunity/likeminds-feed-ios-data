@@ -135,13 +135,7 @@ extension LMFeedClient {
             response?(result)
         }
     }
-    
-    public func getFeedNotifications(_ request: GetFeedNotificationRequest, _ response:  LMFeedClientResponse<GetFeedNotificationResponse>?) {
-        LMFeedClientServiceRequest.getFeedNotifications(request, withModuleName: moduleName) { result in
-            response?(result)
-        }
-    }
-    
+
     public func report(_ request: ReportRequest, _ response:  LMFeedClientResponse<NoData>?) {
         LMFeedClientServiceRequest.report(request, withModuleName: moduleName) { result in
             response?(result)

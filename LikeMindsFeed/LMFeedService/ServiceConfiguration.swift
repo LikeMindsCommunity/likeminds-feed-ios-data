@@ -73,7 +73,6 @@ struct ServiceAPIRequest {
         case getCommentsLikes(_ request: GetCommentLikesRequest)
         case getComment(_ request: GetCommentRequest)
         case getCommentsReplies(_ request: GetRepliesOnCommentRequest)
-        case getFeedNotifications(_ resquest: GetFeedNotificationRequest)
         case deletePost(_ request: DeletePostRequest)
         case deleteComment(_ request: DeleteCommentRequest)
         case getMemberState
@@ -83,6 +82,9 @@ struct ServiceAPIRequest {
         case urlDetails(_ request: DecodeUrlRequest)
         case getReportTags(_ request: GetReportTagRequest)
         case fetchTaggingList(_ request: GetTaggingListRequest)
+        case getNotificationFeed(_ request: GetNotificationFeedRequest)
+        case markReadNotificationFeed(_ request: MarkReadNotificationRequest)
+        case getNotificationFeedUnreadCout
 
         
         var apiURL: String {
@@ -123,8 +125,6 @@ struct ServiceAPIRequest {
                 return "feed/post/\(request.postId)/comment/\(request.commentId)/comment"
             case .getCommentsReplies(let request):
                 return "feed/post/\(request.postId)/comment/\(request.commentId)"
-            case .getFeedNotifications(let request):
-                return "feed/notification?page=\(request.page)&page_size=\(request.pageSize)"
             case .getMemberState:
                 return "community/member/state"
             case .getFeedGroup(let request):
@@ -145,6 +145,12 @@ struct ServiceAPIRequest {
             case .fetchTaggingList(let request):
                 let requestUrl = "community/tag?page_size=\(request.pageSize)&page=\(request.page)" + (request.searchName.isEmpty ? "" : "&search_name=\(request.searchName)")
                 return requestUrl
+            case .getNotificationFeed(let request):
+                return "feed/user/activity?page=\(request.page)&page_size=\(request.pageSize)"
+            case .markReadNotificationFeed(let request):
+                return "feed/user/activity/\(request.activityId)/mark_read"
+            case .getNotificationFeedUnreadCout:
+                return "feed/user/activity/unread_count"
             }
         }
 
@@ -157,12 +163,13 @@ struct ServiceAPIRequest {
                  .getComment,
                  .getCommentsLikes,
                  .getCommentsReplies,
-                 .getFeedNotifications,
                  .getMemberState,
                  .getFeedGroup,
                  .urlDetails,
                  .getReportTags,
                  .fetchTaggingList,
+                 .getNotificationFeed,
+                 .getNotificationFeedUnreadCout,
                  .onboardingChatService:
                 return .get
             case .initiateChatClient,
@@ -172,6 +179,7 @@ struct ServiceAPIRequest {
                  .addComment,
                  .replyOnComment,
                  .report,
+                 .markReadNotificationFeed,
                  .logout:
                 return .post
             case .likePost,
