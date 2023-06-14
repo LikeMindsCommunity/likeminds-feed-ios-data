@@ -94,6 +94,8 @@
 		F4E848A42A290DC800B15666 /* PinPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A32A290DC700B15666 /* PinPostRequest.swift */; };
 		F4E848A62A290DDA00B15666 /* EditPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A52A290DDA00B15666 /* EditPostRequest.swift */; };
 		F4E848A82A290F8200B15666 /* EditCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A72A290F8200B15666 /* EditCommentRequest.swift */; };
+		F4F416652A399BAC001B6754 /* NotificationActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F416642A399BAC001B6754 /* NotificationActivity.swift */; };
+		F4F416672A399BF0001B6754 /* NotificationActivityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F416662A399BF0001B6754 /* NotificationActivityEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +190,8 @@
 		F4E848A32A290DC700B15666 /* PinPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPostRequest.swift; sourceTree = "<group>"; };
 		F4E848A52A290DDA00B15666 /* EditPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostRequest.swift; sourceTree = "<group>"; };
 		F4E848A72A290F8200B15666 /* EditCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentRequest.swift; sourceTree = "<group>"; };
+		F4F416642A399BAC001B6754 /* NotificationActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationActivity.swift; sourceTree = "<group>"; };
+		F4F416662A399BF0001B6754 /* NotificationActivityEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationActivityEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -677,6 +681,8 @@
 			children = (
 				F46E150F2A25BF37003C43BA /* GetNotificationFeedResponse.swift */,
 				F4A933062A39092100BBE257 /* GetUnreadNotificationCountResponse.swift */,
+				F4F416642A399BAC001B6754 /* NotificationActivity.swift */,
+				F4F416662A399BF0001B6754 /* NotificationActivityEntity.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -827,9 +833,11 @@
 				F46E155B2A25BF37003C43BA /* FeedTokenManager.swift in Sources */,
 				F46E157A2A25BF37003C43BA /* GetFeedPostResponse.swift in Sources */,
 				F46E15592A25BF37003C43BA /* RefreshAccessToken.swift in Sources */,
+				F4F416672A399BF0001B6754 /* NotificationActivityEntity.swift in Sources */,
 				F46E15892A25BF37003C43BA /* GetFeedOfFeedRoomResponse.swift in Sources */,
 				F46E159C2A25BF37003C43BA /* GetCommentLikesRequest.swift in Sources */,
 				F46E15602A25BF37003C43BA /* PreferencesFactory.swift in Sources */,
+				F4F416652A399BAC001B6754 /* NotificationActivity.swift in Sources */,
 				F46E15732A25BF37003C43BA /* InitiateUserRequest.swift in Sources */,
 				F46E159B2A25BF37003C43BA /* LikeCommentRequest.swift in Sources */,
 				F46E15702A25BF37003C43BA /* InitiateUserResponse.swift in Sources */,

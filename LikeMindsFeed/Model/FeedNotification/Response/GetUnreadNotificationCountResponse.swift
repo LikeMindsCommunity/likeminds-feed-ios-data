@@ -8,5 +8,5 @@
 import Foundation
 
 public struct GetUnreadNotificationCountResponse: Decodable {
-    let count: Int?
+    public let count: Int?
 }

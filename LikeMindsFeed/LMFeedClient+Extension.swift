@@ -193,4 +193,22 @@ extension LMFeedClient {
             response?(result)
         }
     }
+    
+    public func markReadNotification(_ request: MarkReadNotificationRequest, _ response:  LMFeedClientResponse<NoData>?) {
+        LMFeedClientServiceRequest.markReadNotification(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func getUnreadNotificationCount(_ response:  LMFeedClientResponse<GetUnreadNotificationCountResponse>?) {
+        LMFeedClientServiceRequest.getNotificationFeedUnreadCount(withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func getNotificationFeed(_ request: GetNotificationFeedRequest, _ response:  LMFeedClientResponse<GetNotificationFeedResponse>?) {
+        LMFeedClientServiceRequest.getNotificationFeed(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
 }
