@@ -45,8 +45,8 @@
 		F46E15732A25BF37003C43BA /* InitiateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15092A25BF37003C43BA /* InitiateUserRequest.swift */; };
 		F46E15742A25BF37003C43BA /* RegisterDeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E150B2A25BF37003C43BA /* RegisterDeviceRequest.swift */; };
 		F46E15752A25BF37003C43BA /* RegisterDeviceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E150C2A25BF37003C43BA /* RegisterDeviceResponse.swift */; };
-		F46E15762A25BF37003C43BA /* GetFeedNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E150E2A25BF37003C43BA /* GetFeedNotificationRequest.swift */; };
-		F46E15772A25BF37003C43BA /* GetFeedNotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E150F2A25BF37003C43BA /* GetFeedNotificationResponse.swift */; };
+		F46E15762A25BF37003C43BA /* GetNotificationFeedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E150E2A25BF37003C43BA /* GetNotificationFeedRequest.swift */; };
+		F46E15772A25BF37003C43BA /* GetNotificationFeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E150F2A25BF37003C43BA /* GetNotificationFeedResponse.swift */; };
 		F46E15782A25BF37003C43BA /* AttachmentMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15122A25BF37003C43BA /* AttachmentMeta.swift */; };
 		F46E15792A25BF37003C43BA /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15132A25BF37003C43BA /* Attachment.swift */; };
 		F46E157A2A25BF37003C43BA /* GetFeedPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15142A25BF37003C43BA /* GetFeedPostResponse.swift */; };
@@ -86,12 +86,17 @@
 		F46E159C2A25BF37003C43BA /* GetCommentLikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E154D2A25BF37003C43BA /* GetCommentLikesRequest.swift */; };
 		F46E159D2A25BF37003C43BA /* LMFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = F46E154E2A25BF37003C43BA /* LMFeed.h */; };
 		F46E159E2A25BF37003C43BA /* FileUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15502A25BF37003C43BA /* FileUtility.swift */; };
+		F4A933032A39060100BBE257 /* MarkReadNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933022A39060100BBE257 /* MarkReadNotificationRequest.swift */; };
+		F4A933052A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933042A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift */; };
+		F4A933072A39092100BBE257 /* GetUnreadNotificationCountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933062A39092100BBE257 /* GetUnreadNotificationCountResponse.swift */; };
 		F4AD15832A2BCB2C00B752C3 /* EditCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD15822A2BCB2C00B752C3 /* EditCommentResponse.swift */; };
 		F4AD15852A2BCB5400B752C3 /* EditPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD15842A2BCB5400B752C3 /* EditPostResponse.swift */; };
 		F4E8489E2A270E0900B15666 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8489D2A270E0900B15666 /* String+Extension.swift */; };
 		F4E848A42A290DC800B15666 /* PinPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A32A290DC700B15666 /* PinPostRequest.swift */; };
 		F4E848A62A290DDA00B15666 /* EditPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A52A290DDA00B15666 /* EditPostRequest.swift */; };
 		F4E848A82A290F8200B15666 /* EditCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E848A72A290F8200B15666 /* EditCommentRequest.swift */; };
+		F4F416652A399BAC001B6754 /* NotificationActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F416642A399BAC001B6754 /* NotificationActivity.swift */; };
+		F4F416672A399BF0001B6754 /* NotificationActivityEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F416662A399BF0001B6754 /* NotificationActivityEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,8 +141,8 @@
 		F46E15092A25BF37003C43BA /* InitiateUserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiateUserRequest.swift; sourceTree = "<group>"; };
 		F46E150B2A25BF37003C43BA /* RegisterDeviceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDeviceRequest.swift; sourceTree = "<group>"; };
 		F46E150C2A25BF37003C43BA /* RegisterDeviceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterDeviceResponse.swift; sourceTree = "<group>"; };
-		F46E150E2A25BF37003C43BA /* GetFeedNotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFeedNotificationRequest.swift; sourceTree = "<group>"; };
-		F46E150F2A25BF37003C43BA /* GetFeedNotificationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFeedNotificationResponse.swift; sourceTree = "<group>"; };
+		F46E150E2A25BF37003C43BA /* GetNotificationFeedRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNotificationFeedRequest.swift; sourceTree = "<group>"; };
+		F46E150F2A25BF37003C43BA /* GetNotificationFeedResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNotificationFeedResponse.swift; sourceTree = "<group>"; };
 		F46E15122A25BF37003C43BA /* AttachmentMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentMeta.swift; sourceTree = "<group>"; };
 		F46E15132A25BF37003C43BA /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		F46E15142A25BF37003C43BA /* GetFeedPostResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFeedPostResponse.swift; sourceTree = "<group>"; };
@@ -177,12 +182,17 @@
 		F46E154D2A25BF37003C43BA /* GetCommentLikesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCommentLikesRequest.swift; sourceTree = "<group>"; };
 		F46E154E2A25BF37003C43BA /* LMFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMFeed.h; sourceTree = "<group>"; };
 		F46E15502A25BF37003C43BA /* FileUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtility.swift; sourceTree = "<group>"; };
+		F4A933022A39060100BBE257 /* MarkReadNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkReadNotificationRequest.swift; sourceTree = "<group>"; };
+		F4A933042A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LMFeedClientServiceRequest+Extension.swift"; sourceTree = "<group>"; };
+		F4A933062A39092100BBE257 /* GetUnreadNotificationCountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUnreadNotificationCountResponse.swift; sourceTree = "<group>"; };
 		F4AD15822A2BCB2C00B752C3 /* EditCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentResponse.swift; sourceTree = "<group>"; };
 		F4AD15842A2BCB5400B752C3 /* EditPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostResponse.swift; sourceTree = "<group>"; };
 		F4E8489D2A270E0900B15666 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		F4E848A32A290DC700B15666 /* PinPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinPostRequest.swift; sourceTree = "<group>"; };
 		F4E848A52A290DDA00B15666 /* EditPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostRequest.swift; sourceTree = "<group>"; };
 		F4E848A72A290F8200B15666 /* EditCommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentRequest.swift; sourceTree = "<group>"; };
+		F4F416642A399BAC001B6754 /* NotificationActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationActivity.swift; sourceTree = "<group>"; };
+		F4F416662A399BF0001B6754 /* NotificationActivityEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationActivityEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +266,7 @@
 				F46E14D92A25BF37003C43BA /* FeedClientServiceRequest.swift */,
 				F46E14DA2A25BF37003C43BA /* ServiceConfiguration.swift */,
 				F46E14DB2A25BF37003C43BA /* LMFeedClientServiceRequest.swift */,
+				F4A933042A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift */,
 			);
 			path = LMFeedService;
 			sourceTree = "<group>";
@@ -425,8 +436,8 @@
 		F46E150D2A25BF37003C43BA /* FeedNotification */ = {
 			isa = PBXGroup;
 			children = (
-				F46E150E2A25BF37003C43BA /* GetFeedNotificationRequest.swift */,
-				F46E150F2A25BF37003C43BA /* GetFeedNotificationResponse.swift */,
+				F4F416632A3994FD001B6754 /* Request */,
+				F4F416622A3994F1001B6754 /* Response */,
 			);
 			path = FeedNotification;
 			sourceTree = "<group>";
@@ -667,6 +678,26 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		F4F416622A3994F1001B6754 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				F46E150F2A25BF37003C43BA /* GetNotificationFeedResponse.swift */,
+				F4A933062A39092100BBE257 /* GetUnreadNotificationCountResponse.swift */,
+				F4F416642A399BAC001B6754 /* NotificationActivity.swift */,
+				F4F416662A399BF0001B6754 /* NotificationActivityEntity.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		F4F416632A3994FD001B6754 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				F46E150E2A25BF37003C43BA /* GetNotificationFeedRequest.swift */,
+				F4A933022A39060100BBE257 /* MarkReadNotificationRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -790,8 +821,9 @@
 				F46E15902A25BF37003C43BA /* LikePostRequest.swift in Sources */,
 				F46E155C2A25BF37003C43BA /* LMClient.swift in Sources */,
 				F46E15802A25BF37003C43BA /* GetPostRequest.swift in Sources */,
-				F46E15762A25BF37003C43BA /* GetFeedNotificationRequest.swift in Sources */,
+				F46E15762A25BF37003C43BA /* GetNotificationFeedRequest.swift in Sources */,
 				F46E15692A25BF37003C43BA /* DeleteCommentRequest.swift in Sources */,
+				F4A933072A39092100BBE257 /* GetUnreadNotificationCountResponse.swift in Sources */,
 				F46E15522A25BF37003C43BA /* ServiceConfiguration.swift in Sources */,
 				F4AD15852A2BCB5400B752C3 /* EditPostResponse.swift in Sources */,
 				F46E15842A25BF37003C43BA /* GetReportTagRequest.swift in Sources */,
@@ -803,13 +835,16 @@
 				F46E155B2A25BF37003C43BA /* FeedTokenManager.swift in Sources */,
 				F46E157A2A25BF37003C43BA /* GetFeedPostResponse.swift in Sources */,
 				F46E15592A25BF37003C43BA /* RefreshAccessToken.swift in Sources */,
+				F4F416672A399BF0001B6754 /* NotificationActivityEntity.swift in Sources */,
 				F46E15892A25BF37003C43BA /* GetFeedOfFeedRoomResponse.swift in Sources */,
 				F46E159C2A25BF37003C43BA /* GetCommentLikesRequest.swift in Sources */,
 				F46E15602A25BF37003C43BA /* PreferencesFactory.swift in Sources */,
+				F4F416652A399BAC001B6754 /* NotificationActivity.swift in Sources */,
 				F46E15732A25BF37003C43BA /* InitiateUserRequest.swift in Sources */,
 				F46E159B2A25BF37003C43BA /* LikeCommentRequest.swift in Sources */,
 				F46E15702A25BF37003C43BA /* InitiateUserResponse.swift in Sources */,
 				F46E15932A25BF37003C43BA /* ReportRequest.swift in Sources */,
+				F4A933052A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift in Sources */,
 				F46E15722A25BF37003C43BA /* Community.swift in Sources */,
 				F46E157F2A25BF37003C43BA /* DeletePostRequest.swift in Sources */,
 				F4E848A62A290DDA00B15666 /* EditPostRequest.swift in Sources */,
@@ -821,6 +856,7 @@
 				F46E156C2A25BF37003C43BA /* BrandingRequest.swift in Sources */,
 				F46E157B2A25BF37003C43BA /* MenuItem.swift in Sources */,
 				F46E15952A25BF37003C43BA /* GetTaggingListResponse.swift in Sources */,
+				F4A933032A39060100BBE257 /* MarkReadNotificationRequest.swift in Sources */,
 				F46E159E2A25BF37003C43BA /* FileUtility.swift in Sources */,
 				F46E157E2A25BF37003C43BA /* OGTags.swift in Sources */,
 				F46E15632A25BF37003C43BA /* PersistentPreferences.swift in Sources */,
@@ -850,7 +886,7 @@
 				F46E15792A25BF37003C43BA /* Attachment.swift in Sources */,
 				F46E15712A25BF37003C43BA /* User.swift in Sources */,
 				F46E15552A25BF37003C43BA /* ServiceRequest.swift in Sources */,
-				F46E15772A25BF37003C43BA /* GetFeedNotificationResponse.swift in Sources */,
+				F46E15772A25BF37003C43BA /* GetNotificationFeedResponse.swift in Sources */,
 				F46E156A2A25BF37003C43BA /* AddCommentRequest.swift in Sources */,
 				F46E15872A25BF37003C43BA /* GetRepliesResponse.swift in Sources */,
 				F46E15622A25BF37003C43BA /* PreferenceConstants.swift in Sources */,

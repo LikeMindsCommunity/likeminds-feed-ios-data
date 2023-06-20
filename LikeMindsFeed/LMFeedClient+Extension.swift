@@ -135,13 +135,7 @@ extension LMFeedClient {
             response?(result)
         }
     }
-    
-    public func getFeedNotifications(_ request: GetFeedNotificationRequest, _ response:  LMFeedClientResponse<GetFeedNotificationResponse>?) {
-        LMFeedClientServiceRequest.getFeedNotifications(request, withModuleName: moduleName) { result in
-            response?(result)
-        }
-    }
-    
+
     public func report(_ request: ReportRequest, _ response:  LMFeedClientResponse<NoData>?) {
         LMFeedClientServiceRequest.report(request, withModuleName: moduleName) { result in
             response?(result)
@@ -196,6 +190,24 @@ extension LMFeedClient {
     
     public func editComment(_ request: EditCommentRequest, _ response:  LMFeedClientResponse<EditCommentResponse>?) {
         LMFeedClientServiceRequest.editComment(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func markReadNotification(_ request: MarkReadNotificationRequest, _ response:  LMFeedClientResponse<NoData>?) {
+        LMFeedClientServiceRequest.markReadNotification(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func getUnreadNotificationCount(_ response:  LMFeedClientResponse<GetUnreadNotificationCountResponse>?) {
+        LMFeedClientServiceRequest.getNotificationFeedUnreadCount(withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func getNotificationFeed(_ request: GetNotificationFeedRequest, _ response:  LMFeedClientResponse<GetNotificationFeedResponse>?) {
+        LMFeedClientServiceRequest.getNotificationFeed(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }

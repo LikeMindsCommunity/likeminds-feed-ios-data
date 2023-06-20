@@ -13,20 +13,22 @@ import Alamofire
  *
  */
 public protocol LMCallback: AnyObject {
-    /// This method called when login required
-    func loginRequiredCallback()
+    /// This method is called when the user is not logged in or guest
+    /// It is called when the user tries to perform an action that requires login
+    /// The user should be redirected to your appropriate login screen
+    func login()
 }
 
 /// Default implementation of delegate
 public extension LMCallback {
-    func loginRequiredCallback() {}
+    func login() {}
 }
 
 final public class FeedTokenManager {
     /// Singleton object property
-    public static let shared = FeedTokenManager()
+    public private(set) static var shared = FeedTokenManager()
     /// Token manager callback
-    public weak var lmCallback: LMCallback?
+    private weak var lmCallback: LMCallback?
     /// Refresh token completion block
     fileprivate var refreshTokenBlock: (() -> Void)?
     private var isRefreshingToken: Bool = false
@@ -34,12 +36,17 @@ final public class FeedTokenManager {
     var refreshToken: String?
     /// Restrict to create another object of this singleton class
     private init(){}
-    
+
+    public func lmCallback(_ lmCallback: LMCallback) -> FeedTokenManager {
+        Self.shared.lmCallback = lmCallback
+        return Self.shared
+    }
+
     /// Refresh access token api call
     func refreshInterceptor(_ completion: @escaping ()->Void ) {
         if isRefreshingToken { return }
         guard let refreshToken = self.refreshToken else {
-            lmCallback?.loginRequiredCallback()
+            lmCallback?.login()
             return
         }
         self.refreshTokenBlock = completion
@@ -48,7 +55,7 @@ final public class FeedTokenManager {
             guard let initiateResponse = response.data, response.errorMessage == nil else {
                 self?.clearToken()
                 self?.isRefreshingToken = false
-                self?.lmCallback?.loginRequiredCallback()
+                self?.lmCallback?.login()
                 return
             }
             self?.updateToken(initiateResponse.accessToken, initiateResponse.refreshToken)
@@ -72,7 +79,6 @@ final public class FeedTokenManager {
     private func refreshAccessToken(refreshToken: String, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken(rtm: "")
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
-//
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: refreshToken),
