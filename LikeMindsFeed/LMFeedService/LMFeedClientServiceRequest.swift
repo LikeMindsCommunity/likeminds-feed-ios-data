@@ -367,27 +367,6 @@ class LMFeedClientServiceRequest: ServiceRequest {
         }
     }
     
-    static func getFeedNotifications(_ request: GetFeedNotificationRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedNotificationResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.getFeedNotifications(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
-        DataNetwork.shared.request(for: url,
-                                   withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpHeaders(),
-                                   withParameters: networkPath.parameters,
-                                   withEncoding: networkPath.encoding,
-                                   withModuleName: moduleName) { (moduleName, responseData) in
-            guard let data = responseData as? Data else {return}
-            do {
-                let result = try JSONDecoder().decode(LMResponse<GetFeedNotificationResponse>.self, from: data)
-                response?(result)
-            } catch let error {
-                response?(LMResponse.failureResponse(error.localizedDescription))
-            }
-        } failureCallback: { (moduleName, error) in
-            response?(LMResponse.failureResponse(error.localizedDescription))
-        }
-    }
-    
     static func report(_ request: ReportRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.report(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}

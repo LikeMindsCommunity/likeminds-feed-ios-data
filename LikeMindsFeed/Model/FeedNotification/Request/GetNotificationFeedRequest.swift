@@ -1,5 +1,5 @@
 //
-//  GetFeedNotificationRequest.swift
+//  GetNotificationFeedRequest.swift
 //  LMFeed
 //
 //  Created by Pushpendra Singh on 26/02/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class GetFeedNotificationRequest: Encodable {
+public class GetNotificationFeedRequest: Encodable {
     var page: Int
     var pageSize: Int = 20
     
@@ -16,7 +16,7 @@ public class GetFeedNotificationRequest: Encodable {
         self.pageSize = pageSize
     }
     
-    public func pageSize(_ pageSize: Int) -> GetFeedNotificationRequest {
+    public func pageSize(_ pageSize: Int) -> GetNotificationFeedRequest {
         self.pageSize = pageSize
         return self
     }
