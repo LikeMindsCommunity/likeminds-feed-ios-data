@@ -15,12 +15,12 @@ public enum MemberState:Int, Codable {
 // MARK: - MemberStateResponse
 public struct GetMemberStateResponse: Codable {
     public let createdAt: String?
-    public let editRequired: Bool
+    public let editRequired: Bool?
     public let member: User?
-    public let managerRights: [ManagerRight]
-    public let memberRights: [MemberRight]
+    public let managerRights: [ManagerRight]?
+    public let memberRights: [MemberRight]?
     public let state: Int?
-    public let toolState: MemberState?
+    public let toolState: Int?
     
     enum CodingKeys: String, CodingKey {
         case createdAt = "created_at"

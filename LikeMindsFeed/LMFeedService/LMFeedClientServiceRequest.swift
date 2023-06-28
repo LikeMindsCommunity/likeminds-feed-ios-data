@@ -219,7 +219,7 @@ class LMFeedClientServiceRequest: ServiceRequest {
         }
     }
     
-    static func replyOnComment(_ request: ReplyOnCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentResponse>?) {
+    static func replyComment(_ request: ReplyCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<ReplyCommentResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.replyOnComment(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
@@ -230,7 +230,7 @@ class LMFeedClientServiceRequest: ServiceRequest {
                                    withModuleName: moduleName) { (moduleName, responseData) in
             guard let data = responseData as? Data else {return}
             do {
-                let result = try JSONDecoder().decode(LMResponse<GetCommentResponse>.self, from: data)
+                let result = try JSONDecoder().decode(LMResponse<ReplyCommentResponse>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))
@@ -252,27 +252,6 @@ class LMFeedClientServiceRequest: ServiceRequest {
             guard let data = responseData as? Data else {return}
             do {
                 let result = try JSONDecoder().decode(LMResponse<GetCommentResponse>.self, from: data)
-                response?(result)
-            } catch let error {
-                response?(LMResponse.failureResponse(error.localizedDescription))
-            }
-        } failureCallback: { (moduleName, error) in
-            response?(LMResponse.failureResponse(error.localizedDescription))
-        }
-    }
-    
-    static func getRepliesOnComment(_ request: GetRepliesOnCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetRepliesResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.getCommentsReplies(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
-        DataNetwork.shared.request(for: url,
-                                   withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpHeaders(),
-                                   withParameters: networkPath.parameters,
-                                   withEncoding: networkPath.encoding,
-                                   withModuleName: moduleName) { (moduleName, responseData) in
-            guard let data = responseData as? Data else {return}
-            do {
-                let result = try JSONDecoder().decode(LMResponse<GetRepliesResponse>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))
