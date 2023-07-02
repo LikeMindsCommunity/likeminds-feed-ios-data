@@ -160,16 +160,6 @@ extension LMFeedClient {
         }
     }
     
-//    public func logout(response: LMFeedClientResponse<NoData>?) {
-//        guard let refreshToken = FeedTokenManager.shared.refreshToken else {
-//            response?(LMResponse.failureResponse("Refresh token not present!"))
-//            return
-//        }
-//        FeedClientServiceRequest.logout(refreshToken: refreshToken, withModuleName: moduleName) { result in
-//            response?(result)
-//        }
-//    }
-    
     public func logout(request: LogoutRequest, response: LMFeedClientResponse<NoData>?) {
         FeedClientServiceRequest.logout(request: request, withModuleName: moduleName) { result in
             response?(result)

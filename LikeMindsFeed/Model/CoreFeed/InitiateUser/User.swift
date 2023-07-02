@@ -16,7 +16,7 @@ public struct User: Codable {
     public let isOwner: Bool?
     public let customTitle: String?
     public let state, updatedAt: Int?
-    public let sdkClientInfo: SDKClientInfo?
+    public let sdkClientInfo: SDKClientInfo
     
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -45,10 +45,10 @@ public struct User: Codable {
         self.customTitle = try container.decodeIfPresent(String.self, forKey: .customTitle)
         self.state = try container.decodeIfPresent(Int.self, forKey: .state)
         self.updatedAt = try container.decodeIfPresent(Int.self, forKey: .updatedAt)
-        self.sdkClientInfo = try container.decodeIfPresent(SDKClientInfo.self, forKey: .sdkClientInfo)
+        self.sdkClientInfo = try container.decode(SDKClientInfo.self, forKey: .sdkClientInfo) 
     }
     // Using UUID for user unique id
     public var userUniqueId: String? {
-        return self.sdkClientInfo?.uuid ?? self.userUniqueID
+        return self.sdkClientInfo.uuid
     }
 }
