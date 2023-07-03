@@ -10,7 +10,7 @@ import Foundation
 public struct User: Codable {
     public let id: Int?
     public let imageUrl, name, organisationName: String?
-    private let userUniqueID: String?
+    public let userUniqueID, uuid: String?
     public let isGuest: Bool
     public let isDeleted: Bool?
     public let isOwner: Bool?
@@ -30,6 +30,7 @@ public struct User: Codable {
         case state
         case updatedAt = "updated_at"
         case sdkClientInfo = "sdk_client_info"
+        case uuid
     }
     
     public init(from decoder: Decoder) throws {
@@ -45,10 +46,11 @@ public struct User: Codable {
         self.customTitle = try container.decodeIfPresent(String.self, forKey: .customTitle)
         self.state = try container.decodeIfPresent(Int.self, forKey: .state)
         self.updatedAt = try container.decodeIfPresent(Int.self, forKey: .updatedAt)
-        self.sdkClientInfo = try container.decode(SDKClientInfo.self, forKey: .sdkClientInfo) 
+        self.sdkClientInfo = try container.decode(SDKClientInfo.self, forKey: .sdkClientInfo)
+        self.uuid = try container.decodeIfPresent(String.self, forKey: .uuid)
     }
     // Using UUID for user unique id
-    public var userUniqueId: String? {
+    public var clientUUID: String? {
         return self.sdkClientInfo.uuid
     }
 }
