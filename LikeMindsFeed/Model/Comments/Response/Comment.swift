@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Comment
 public struct Comment: Codable {
-    public let id, userId, uuid: String?
+    public let id, userId, uuid, deletedByUUID: String?
     public let postId: String?
     public let commentsCount, createdAt, level, likesCount: Int?
     public let isEdited, isLiked: Bool?
@@ -22,6 +22,7 @@ public struct Comment: Codable {
         case id = "_id"
         case postId = "post_id"
         case userId = "user_id"
+        case deletedByUUID = "deleted_by_uuid"
         case isEdited = "is_edited"
         case isLiked = "is_liked"
         case commentsCount = "comments_count"
