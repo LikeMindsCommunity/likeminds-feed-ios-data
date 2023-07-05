@@ -72,12 +72,14 @@ class FeedClientServiceRequest: ServiceRequest {
         }
     }
     
-    static func logout(refreshToken: String, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.logout(refreshToken)
+    static func logout(request: LogoutRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.logout(request)
+        var headers = ServiceRequest.httpHeaders()
+        headers["x-device-id"] = request.deviceId ?? ""
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpHeaders(),
+                                   headers: headers,
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in

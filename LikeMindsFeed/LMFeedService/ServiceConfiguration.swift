@@ -66,19 +66,18 @@ struct ServiceAPIRequest {
         case addComment(_ request: AddCommentRequest)
         case likePost(_ request: LikePostRequest)
         case likeComment(_ request: LikeCommentRequest)
-        case replyOnComment(_ request: ReplyOnCommentRequest)
+        case replyOnComment(_ request: ReplyCommentRequest)
         case report(_ reqeust: ReportRequest)
         case getPost(_ request: GetPostRequest)
         case getPostLikes(_ request: GetPostLikesRequest)
         case getCommentsLikes(_ request: GetCommentLikesRequest)
         case getComment(_ request: GetCommentRequest)
-        case getCommentsReplies(_ request: GetRepliesOnCommentRequest)
         case deletePost(_ request: DeletePostRequest)
         case deleteComment(_ request: DeleteCommentRequest)
         case getMemberState
         case getFeedGroup(_ request: GetFeedOfFeedRoomRequest)
         case savePost(_ request: SavePostRequest)
-        case logout(_ refreshToken: String)
+        case logout(_ request: LogoutRequest)
         case urlDetails(_ request: DecodeUrlRequest)
         case getReportTags(_ request: GetReportTagRequest)
         case fetchTaggingList(_ request: GetTaggingListRequest)
@@ -125,8 +124,6 @@ struct ServiceAPIRequest {
                 return "feed/post/\(request.postId)/comment/\(request.commentId)/like?page=\(request.page)&page_size=\(request.pageSize)"
             case .replyOnComment(let request):
                 return "feed/post/\(request.postId)/comment/\(request.commentId)/comment"
-            case .getCommentsReplies(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)"
             case .getMemberState:
                 return "community/member/state"
             case .getFeedGroup(let request):
@@ -170,7 +167,6 @@ struct ServiceAPIRequest {
                  .getPost,
                  .getComment,
                  .getCommentsLikes,
-                 .getCommentsReplies,
                  .getMemberState,
                  .getFeedGroup,
                  .urlDetails,
@@ -226,8 +222,8 @@ struct ServiceAPIRequest {
                 return request.requestParam()
             case .report(let request):
                 return request.requestParam()
-            case .logout(let refreshToken):
-                return ["refresh_token":refreshToken]
+            case .logout(let request):
+                return request.requestParam()//["refresh_token":refreshToken]
             case .deletePost(let request):
                 return request.requestParam()
             case .deleteComment(let request):

@@ -33,11 +33,12 @@ public struct InitialUser: Decodable {
 
 // MARK: - SDKClientInfo
 public struct SDKClientInfo: Codable {
-    public let community: Int
-    public let userUniqueID, user: String
+    public let community, user: Int
+    public let userUniqueID, uuid: String
     
     enum CodingKeys: String, CodingKey {
         case community, user
         case userUniqueID = "user_unique_id"
+        case uuid
     }
 }
