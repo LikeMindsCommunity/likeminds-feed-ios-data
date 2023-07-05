@@ -11,6 +11,7 @@ import Foundation
 public struct Like: Codable {
     public let id: String
     public let createdAt, updatedAt: Int?
+    public let uuid: String?
     public let userId: String?
     
     enum CodingKeys: String, CodingKey {
@@ -18,5 +19,6 @@ public struct Like: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case userId = "user_id"
+        case uuid = "uuid"
     }
 }

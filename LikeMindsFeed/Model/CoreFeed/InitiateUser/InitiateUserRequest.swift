@@ -9,7 +9,7 @@ import Foundation
 
 public class InitiateUserRequest: Encodable {
     var isGuest: Bool? //true for guest user else false
-    var userUniqueId: String? //unique id of user
+    var uuid: String? //unique id of user
     var userName: String? //user name
     var apiKey: String
     var page: Int = 10 //page number of home feed chat
@@ -29,8 +29,8 @@ public class InitiateUserRequest: Encodable {
         return self
     }
     
-    public func userUniqueId(_ userUniqueId: String) -> InitiateUserRequest {
-        self.userUniqueId = userUniqueId
+    public func uuid(_ uuid: String) -> InitiateUserRequest {
+        self.uuid = uuid
         return self
     }
     
@@ -42,7 +42,7 @@ public class InitiateUserRequest: Encodable {
     enum CodingKeys: String, CodingKey {
         case userName = "user_name"
         case isGuest = "is_guest"
-        case userUniqueId = "user_unique_id"
+        case uuid = "uuid"
         case apiKey = "api_key"
         case page = "page"
     }

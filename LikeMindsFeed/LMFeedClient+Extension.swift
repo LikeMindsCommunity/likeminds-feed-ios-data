@@ -36,7 +36,7 @@ extension LMFeedClient {
         }
     }
     
-    public func getFeeds(_ request: GetFeedRequest, _ response: LMFeedClientResponse<GetFeedResponse>?) {
+    public func getFeed(_ request: GetFeedRequest, _ response: LMFeedClientResponse<GetFeedResponse>?) {
         LMFeedClientServiceRequest.getUniversalFeeds(request, withModuleName: moduleName) { result in
             response?(result)
         }
@@ -90,20 +90,14 @@ extension LMFeedClient {
         }
     }
     
-    public func replyOnComment(_ request: ReplyOnCommentRequest, _ response:  LMFeedClientResponse<GetCommentResponse>?) {
-        LMFeedClientServiceRequest.replyOnComment(request, withModuleName: moduleName) { result in
+    public func replyComment(_ request: ReplyCommentRequest, _ response:  LMFeedClientResponse<ReplyCommentResponse>?) {
+        LMFeedClientServiceRequest.replyComment(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }
     
     public func getComment(_ request: GetCommentRequest, _ response:  LMFeedClientResponse<GetCommentResponse>?) {
         LMFeedClientServiceRequest.getComment(request, withModuleName: moduleName) { result in
-            response?(result)
-        }
-    }
-    
-    public func getRepliesOnComment(_ request: GetRepliesOnCommentRequest, _ response:  LMFeedClientResponse<GetRepliesResponse>?) {
-        LMFeedClientServiceRequest.getRepliesOnComment(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }
@@ -166,12 +160,8 @@ extension LMFeedClient {
         }
     }
     
-    public func logout(response: LMFeedClientResponse<NoData>?) {
-        guard let refreshToken = FeedTokenManager.shared.refreshToken else {
-            response?(LMResponse.failureResponse("Refresh token not present!"))
-            return
-        }
-        FeedClientServiceRequest.logout(refreshToken: refreshToken, withModuleName: moduleName) { result in
+    public func logout(request: LogoutRequest, response: LMFeedClientResponse<NoData>?) {
+        FeedClientServiceRequest.logout(request: request, withModuleName: moduleName) { result in
             response?(result)
         }
     }

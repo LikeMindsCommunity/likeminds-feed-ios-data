@@ -16,7 +16,7 @@ public enum ReportEntityType: Int, Encodable {
 public class ReportRequest: Encodable {
     var tagId: Int?
     var entityId: String
-    var entityCreatorId: String?
+    var uuid: String?
     var entityType: ReportEntityType?
     var reason: String?
     
@@ -27,7 +27,7 @@ public class ReportRequest: Encodable {
     
     enum CodingKeys: String, CodingKey {
         case entityId = "entity_id"
-        case entityCreatorId = "entity_creator_id"
+        case uuid = "uuid"
         case entityType = "entity_type"
         case tagId = "tag_id"
         case reason
@@ -43,8 +43,8 @@ public class ReportRequest: Encodable {
         return self
     }
     
-    public func entityCreatorId(_ entityCreatorId: String) -> ReportRequest {
-        self.entityCreatorId = entityCreatorId
+    public func uuid(_ uuid: String) -> ReportRequest {
+        self.uuid = uuid
         return self
     }
     

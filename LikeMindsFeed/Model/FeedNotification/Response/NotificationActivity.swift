@@ -16,7 +16,7 @@ public struct Activity: Codable {
     public let activityEntityData: ActivityEntityData?
     public let activityText: String?
     public let createdAt: Int?
-    public let cta, entityID, entityOwnerID: String?
+    public let cta, entityID, entityOwnerID, uuid: String?
     public let entityType: Int?
     public let isRead: Bool?
     public let updatedAt: Int?
@@ -29,7 +29,7 @@ public struct Activity: Codable {
         case activityEntityData = "activity_entity_data"
         case activityText = "activity_text"
         case createdAt = "created_at"
-        case cta
+        case cta, uuid
         case entityID = "entity_id"
         case entityOwnerID = "entity_owner_id"
         case entityType = "entity_type"
