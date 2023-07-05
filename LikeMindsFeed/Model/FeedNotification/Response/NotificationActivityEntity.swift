@@ -18,7 +18,7 @@ public struct ActivityEntityData: Codable {
     public let menuItems: [MenuItem]?
     public let text: String?
     public let updatedAt: Int?
-    public let userID, uuid, deleteReason, deletedBy: String?
+    public let userId, uuid, deleteReason, deletedByUUID: String?
     public let isDeleted: Bool?
     
     enum CodingKeys: String, CodingKey {
@@ -36,10 +36,10 @@ public struct ActivityEntityData: Codable {
         case menuItems = "menu_items"
         case text
         case updatedAt = "updated_at"
-        case userID = "user_id"
+        case userId = "user_id"
         case uuid
         case deleteReason = "delete_reason"
-        case deletedBy = "deleted_by"
+        case deletedByUUID = "deleted_by_uuid"
         case isDeleted = "is_deleted"
     }
 }

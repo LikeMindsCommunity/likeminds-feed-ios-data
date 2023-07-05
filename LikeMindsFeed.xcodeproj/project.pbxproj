@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		830C20A23E230C38FBBF933E /* Pods_LikeMindsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328FAAB8DE4E6C9E11287A03 /* Pods_LikeMindsFeed.framework */; };
 		F46E15512A25BF37003C43BA /* FeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14D92A25BF37003C43BA /* FeedClientServiceRequest.swift */; };
 		F46E15522A25BF37003C43BA /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14DA2A25BF37003C43BA /* ServiceConfiguration.swift */; };
 		F46E15532A25BF37003C43BA /* LMFeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14DB2A25BF37003C43BA /* LMFeedClientServiceRequest.swift */; };
@@ -61,9 +60,7 @@
 		F46E15832A25BF37003C43BA /* GetFeedPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E151E2A25BF37003C43BA /* GetFeedPostRequest.swift */; };
 		F46E15842A25BF37003C43BA /* GetReportTagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15202A25BF37003C43BA /* GetReportTagRequest.swift */; };
 		F46E15852A25BF37003C43BA /* GetReportTagResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15212A25BF37003C43BA /* GetReportTagResponse.swift */; };
-		F46E15862A25BF37003C43BA /* ReplyOnCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15232A25BF37003C43BA /* ReplyOnCommentRequest.swift */; };
-		F46E15872A25BF37003C43BA /* GetRepliesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15242A25BF37003C43BA /* GetRepliesResponse.swift */; };
-		F46E15882A25BF37003C43BA /* GetRepliesOnCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15252A25BF37003C43BA /* GetRepliesOnCommentRequest.swift */; };
+		F46E15862A25BF37003C43BA /* ReplyCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15232A25BF37003C43BA /* ReplyCommentRequest.swift */; };
 		F46E15892A25BF37003C43BA /* GetFeedOfFeedRoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15272A25BF37003C43BA /* GetFeedOfFeedRoomResponse.swift */; };
 		F46E158A2A25BF37003C43BA /* GetFeedOfFeedRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15282A25BF37003C43BA /* GetFeedOfFeedRoomRequest.swift */; };
 		F46E158B2A25BF37003C43BA /* GetFeedRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E152C2A25BF37003C43BA /* GetFeedRoomRequest.swift */; };
@@ -89,6 +86,8 @@
 		F4A933032A39060100BBE257 /* MarkReadNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933022A39060100BBE257 /* MarkReadNotificationRequest.swift */; };
 		F4A933052A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933042A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift */; };
 		F4A933072A39092100BBE257 /* GetUnreadNotificationCountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933062A39092100BBE257 /* GetUnreadNotificationCountResponse.swift */; };
+		F4AA542B2A4B682700AA9D2B /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA542A2A4B682700AA9D2B /* LogoutRequest.swift */; };
+		F4AA542D2A4C0F5F00AA9D2B /* ReplyCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA542C2A4C0F5F00AA9D2B /* ReplyCommentResponse.swift */; };
 		F4AD15832A2BCB2C00B752C3 /* EditCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD15822A2BCB2C00B752C3 /* EditCommentResponse.swift */; };
 		F4AD15852A2BCB5400B752C3 /* EditPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AD15842A2BCB5400B752C3 /* EditPostResponse.swift */; };
 		F4E8489E2A270E0900B15666 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E8489D2A270E0900B15666 /* String+Extension.swift */; };
@@ -157,9 +156,7 @@
 		F46E151E2A25BF37003C43BA /* GetFeedPostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFeedPostRequest.swift; sourceTree = "<group>"; };
 		F46E15202A25BF37003C43BA /* GetReportTagRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetReportTagRequest.swift; sourceTree = "<group>"; };
 		F46E15212A25BF37003C43BA /* GetReportTagResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetReportTagResponse.swift; sourceTree = "<group>"; };
-		F46E15232A25BF37003C43BA /* ReplyOnCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyOnCommentRequest.swift; sourceTree = "<group>"; };
-		F46E15242A25BF37003C43BA /* GetRepliesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRepliesResponse.swift; sourceTree = "<group>"; };
-		F46E15252A25BF37003C43BA /* GetRepliesOnCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRepliesOnCommentRequest.swift; sourceTree = "<group>"; };
+		F46E15232A25BF37003C43BA /* ReplyCommentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyCommentRequest.swift; sourceTree = "<group>"; };
 		F46E15272A25BF37003C43BA /* GetFeedOfFeedRoomResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFeedOfFeedRoomResponse.swift; sourceTree = "<group>"; };
 		F46E15282A25BF37003C43BA /* GetFeedOfFeedRoomRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFeedOfFeedRoomRequest.swift; sourceTree = "<group>"; };
 		F46E152C2A25BF37003C43BA /* GetFeedRoomRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFeedRoomRequest.swift; sourceTree = "<group>"; };
@@ -185,6 +182,8 @@
 		F4A933022A39060100BBE257 /* MarkReadNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkReadNotificationRequest.swift; sourceTree = "<group>"; };
 		F4A933042A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LMFeedClientServiceRequest+Extension.swift"; sourceTree = "<group>"; };
 		F4A933062A39092100BBE257 /* GetUnreadNotificationCountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUnreadNotificationCountResponse.swift; sourceTree = "<group>"; };
+		F4AA542A2A4B682700AA9D2B /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
+		F4AA542C2A4C0F5F00AA9D2B /* ReplyCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyCommentResponse.swift; sourceTree = "<group>"; };
 		F4AD15822A2BCB2C00B752C3 /* EditCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentResponse.swift; sourceTree = "<group>"; };
 		F4AD15842A2BCB5400B752C3 /* EditPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostResponse.swift; sourceTree = "<group>"; };
 		F4E8489D2A270E0900B15666 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -200,7 +199,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				830C20A23E230C38FBBF933E /* Pods_LikeMindsFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +323,7 @@
 		F46E14F22A25BF37003C43BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4AA54292A4B680200AA9D2B /* Logout */,
 				F46E14F32A25BF37003C43BA /* OGTags */,
 				F46E14F62A25BF37003C43BA /* Comments */,
 				F46E14FE2A25BF37003C43BA /* CoreFeed */,
@@ -492,9 +491,8 @@
 		F46E15222A25BF37003C43BA /* ReplyOnComment */ = {
 			isa = PBXGroup;
 			children = (
-				F46E15232A25BF37003C43BA /* ReplyOnCommentRequest.swift */,
-				F46E15242A25BF37003C43BA /* GetRepliesResponse.swift */,
-				F46E15252A25BF37003C43BA /* GetRepliesOnCommentRequest.swift */,
+				F46E15232A25BF37003C43BA /* ReplyCommentRequest.swift */,
+				F4AA542C2A4C0F5F00AA9D2B /* ReplyCommentResponse.swift */,
 			);
 			path = ReplyOnComment;
 			sourceTree = "<group>";
@@ -678,6 +676,14 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		F4AA54292A4B680200AA9D2B /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				F4AA542A2A4B682700AA9D2B /* LogoutRequest.swift */,
+			);
+			path = Logout;
+			sourceTree = "<group>";
+		};
 		F4F416622A3994F1001B6754 /* Response */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,7 +813,6 @@
 				F46E155F2A25BF37003C43BA /* PreferencesImplementation.swift in Sources */,
 				F46E15642A25BF37003C43BA /* LMFeed.docc in Sources */,
 				F46E15942A25BF37003C43BA /* GetTaggingListRequest.swift in Sources */,
-				F46E15882A25BF37003C43BA /* GetRepliesOnCommentRequest.swift in Sources */,
 				F46E15532A25BF37003C43BA /* LMFeedClientServiceRequest.swift in Sources */,
 				F46E15562A25BF37003C43BA /* DataNetwork.swift in Sources */,
 				F46E15982A25BF37003C43BA /* GetMemberStateRequest.swift in Sources */,
@@ -822,6 +827,7 @@
 				F46E155C2A25BF37003C43BA /* LMClient.swift in Sources */,
 				F46E15802A25BF37003C43BA /* GetPostRequest.swift in Sources */,
 				F46E15762A25BF37003C43BA /* GetNotificationFeedRequest.swift in Sources */,
+				F4AA542B2A4B682700AA9D2B /* LogoutRequest.swift in Sources */,
 				F46E15692A25BF37003C43BA /* DeleteCommentRequest.swift in Sources */,
 				F4A933072A39092100BBE257 /* GetUnreadNotificationCountResponse.swift in Sources */,
 				F46E15522A25BF37003C43BA /* ServiceConfiguration.swift in Sources */,
@@ -830,6 +836,7 @@
 				F46E158E2A25BF37003C43BA /* GetPostLikeResponse.swift in Sources */,
 				F46E15672A25BF37003C43BA /* Comment.swift in Sources */,
 				F46E156B2A25BF37003C43BA /* GetCommentRequest.swift in Sources */,
+				F4AA542D2A4C0F5F00AA9D2B /* ReplyCommentResponse.swift in Sources */,
 				F46E15992A25BF37003C43BA /* LMResponse.swift in Sources */,
 				F46E15752A25BF37003C43BA /* RegisterDeviceResponse.swift in Sources */,
 				F46E155B2A25BF37003C43BA /* FeedTokenManager.swift in Sources */,
@@ -878,7 +885,7 @@
 				F46E15782A25BF37003C43BA /* AttachmentMeta.swift in Sources */,
 				F46E159A2A25BF37003C43BA /* GetCommentsLikeResponse.swift in Sources */,
 				F4E848A42A290DC800B15666 /* PinPostRequest.swift in Sources */,
-				F46E15862A25BF37003C43BA /* ReplyOnCommentRequest.swift in Sources */,
+				F46E15862A25BF37003C43BA /* ReplyCommentRequest.swift in Sources */,
 				F46E15542A25BF37003C43BA /* LMFeedClient+Extension.swift in Sources */,
 				F46E15612A25BF37003C43BA /* Preferences.swift in Sources */,
 				F46E15912A25BF37003C43BA /* GetFeedResponse.swift in Sources */,
@@ -888,7 +895,6 @@
 				F46E15552A25BF37003C43BA /* ServiceRequest.swift in Sources */,
 				F46E15772A25BF37003C43BA /* GetNotificationFeedResponse.swift in Sources */,
 				F46E156A2A25BF37003C43BA /* AddCommentRequest.swift in Sources */,
-				F46E15872A25BF37003C43BA /* GetRepliesResponse.swift in Sources */,
 				F46E15622A25BF37003C43BA /* PreferenceConstants.swift in Sources */,
 				F46E158F2A25BF37003C43BA /* GetPostLikesRequest.swift in Sources */,
 			);
