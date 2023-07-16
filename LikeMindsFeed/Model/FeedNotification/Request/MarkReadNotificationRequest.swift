@@ -8,10 +8,22 @@
 import Foundation
 
 public class MarkReadNotificationRequest: Encodable {
-    var activityId: String
+    var activityId: String?
     
-    public init(activityId: String) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> MarkReadNotificationRequest {
+        return MarkReadNotificationRequest()
+    }
+    
+    public func build() -> MarkReadNotificationRequest {
+        return self
+    }
+    
+    public func activityId(_ activityId: String) -> MarkReadNotificationRequest {
         self.activityId = activityId
+        return self
     }
 
     enum CodingKeys: String, CodingKey {

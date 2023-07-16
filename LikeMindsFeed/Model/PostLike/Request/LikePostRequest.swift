@@ -7,11 +7,23 @@
 
 import Foundation
 
-public struct LikePostRequest: Encodable {
-    public let postId: String
+public class LikePostRequest: Encodable {
+    var postId: String?
     
-    public init(postId: String) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> LikePostRequest {
+        return LikePostRequest()
+    }
+    
+    public func build() -> LikePostRequest {
+        return self
+    }
+    
+    public func postId(_ postId: String) -> LikePostRequest {
         self.postId = postId
+        return self
     }
     
     enum CodingKeys: String, CodingKey {

@@ -8,12 +8,23 @@
 import Foundation
 
 public class GetNotificationFeedRequest: Encodable {
-    var page: Int
+    var page: Int = 1
     var pageSize: Int = 20
     
-    public init(page: Int, pageSize: Int = 20) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> GetNotificationFeedRequest {
+        return GetNotificationFeedRequest()
+    }
+    
+    public func build() -> GetNotificationFeedRequest {
+        return self
+    }
+    
+    public func page(_ page: Int) -> GetNotificationFeedRequest {
         self.page = page
-        self.pageSize = pageSize
+        return self
     }
     
     public func pageSize(_ pageSize: Int) -> GetNotificationFeedRequest {

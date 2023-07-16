@@ -10,11 +10,11 @@ import Foundation
 // MARK: - Community
 public struct Community: Decodable {
     
-    let id: Int
-    let imageURL: String
-    let membersCount: Int
-    let name: String?
-    let updatedAt: Int?
+    public let id: Int
+    public let imageURL: String
+    public let membersCount: Int
+    public let name: String?
+    public let updatedAt: Int?
     
     enum CodingKeys: String, CodingKey {
         case id

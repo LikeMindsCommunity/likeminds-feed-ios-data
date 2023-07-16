@@ -8,12 +8,28 @@
 import Foundation
 
 public class LikeCommentRequest: Encodable {
-    public var postId: String
-    public var commentId: String
+    var postId: String?
+    var commentId: String?
     
-    public init(postId: String, commentId: String) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> LikeCommentRequest {
+        return LikeCommentRequest()
+    }
+    
+    public func build() -> LikeCommentRequest {
+        return self
+    }
+    
+    public func postId(_ postId: String) -> LikeCommentRequest {
         self.postId = postId
+        return self
+    }
+    
+    public func commentId(_ commentId: String) -> LikeCommentRequest {
         self.commentId = commentId
+        return self
     }
     
     enum CodingKeys: String, CodingKey {

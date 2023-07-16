@@ -8,16 +8,32 @@
 import Foundation
 
 public class GetMemberStateRequest: Encodable {
-    var memberId: String
-    var communityId: Int //
+    var uuid: String?
+    var communityId: Int? //
     
-    public init(memberId: String, communityId: Int) {
-        self.memberId = memberId
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> GetMemberStateRequest {
+        return GetMemberStateRequest()
+    }
+    
+    public func build() -> GetMemberStateRequest {
+        return self
+    }
+    
+    public func communityId(_ communityId: Int) -> GetMemberStateRequest {
         self.communityId = communityId
+        return self
+    }
+    
+    public func uuid(_ uuid: String) -> GetMemberStateRequest {
+        self.uuid = uuid
+        return self
     }
     
     enum CodingKeys: String, CodingKey {
-        case memberId = "member_id"
+        case uuid
         case communityId = "community_id"
     }
 }

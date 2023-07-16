@@ -8,20 +8,32 @@
 import Foundation
 
 public class DeletePostRequest: Encodable {
-    public let postId: String
-    public var reason: String?
+    var postId: String?
+    var reason: String?
     
-    public init(postId: String) {
-        self.postId = postId
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> DeletePostRequest {
+        return DeletePostRequest()
     }
     
-    enum CodingKeys: String, CodingKey {
-        case postId = "post_id"
-        case reason = "delete_reason"
+    public func build() -> DeletePostRequest {
+        return self
+    }
+    
+    public func postId(_ postId: String) -> DeletePostRequest {
+        self.postId = postId
+        return self
     }
     
     public func deleteReason(_ reason: String?) -> DeletePostRequest {
         self.reason = reason
         return self
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case postId = "post_id"
+        case reason = "delete_reason"
     }
 }

@@ -8,11 +8,23 @@
 import Foundation
 
 public class GetFeedPostRequest: Encodable {
-    public var page: Int
+    public var page: Int = 1
     public var pageSize: Int = 10
     
-    public init(page: Int) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> GetFeedPostRequest {
+        return GetFeedPostRequest()
+    }
+    
+    public func build() -> GetFeedPostRequest {
+        return self
+    }
+    
+    public func page(_ page: Int) -> GetFeedPostRequest {
         self.page = page
+        return self
     }
     
     public func pageSize(_ pageSize: Int) -> GetFeedPostRequest {

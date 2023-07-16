@@ -12,9 +12,21 @@ import Foundation
 //}
 
 public class GetReportTagRequest: Encodable {
-    var type: Int
+    var type: Int?
+
+    /// Initiate method
+    private init() {}
     
-    public init(_ type: Int) {
+    public static func builder() -> GetReportTagRequest {
+        return GetReportTagRequest()
+    }
+    
+    public func build() -> GetReportTagRequest {
+        return self
+    }
+    
+    public func type(_ type: Int) -> GetReportTagRequest {
         self.type = type
+        return self
     }
 }

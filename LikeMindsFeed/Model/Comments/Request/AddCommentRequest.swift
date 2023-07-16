@@ -8,13 +8,18 @@
 import Foundation
 
 public class AddCommentRequest: Encodable {
-    var text: String
-    var postId: String
+    var text: String?
+    var postId: String?
+
+    /// Initiate method
+    private init() {}
     
-    /// Initiate method with postid and text
-    public init(postId: String, text: String) {
-        self.text = text
-        self.postId = postId
+    public static func builder() -> AddCommentRequest {
+        return AddCommentRequest()
+    }
+    
+    public func build() -> AddCommentRequest {
+        return self
     }
     
     enum CodingKeys: String, CodingKey {
@@ -22,4 +27,13 @@ public class AddCommentRequest: Encodable {
         case text
     }
     
+    public func postId(_ postId: String) -> AddCommentRequest {
+        self.postId = postId
+        return self
+    }
+    
+    public func text(_ text: String) -> AddCommentRequest {
+        self.text = text
+        return self
+    }
 }

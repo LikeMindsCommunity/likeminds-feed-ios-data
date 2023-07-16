@@ -8,18 +8,30 @@
 import Foundation
 
 public class GetPostRequest: Encodable {
-    let postId: String
+    var postId: String?
     var page: Int = 1
     var pageSize: Int = 10
     
-    public init(postId: String) {
-        self.postId = postId
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> GetPostRequest {
+        return GetPostRequest()
+    }
+    
+    public func build() -> GetPostRequest {
+        return self
     }
     
     enum CodingKeys: String, CodingKey {
         case postId = "post_id"
         case page = "page"
         case pageSize = "page_size"
+    }
+    
+    public func postId(_ postId: String) -> GetPostRequest {
+        self.postId = postId
+        return self
     }
     
     public func page(_ page: Int) -> GetPostRequest {

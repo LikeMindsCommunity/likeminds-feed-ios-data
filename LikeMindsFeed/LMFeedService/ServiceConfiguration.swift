@@ -96,34 +96,44 @@ struct ServiceAPIRequest {
                 return "user/refresh"
             case .pushToken:
                 return "user/device/push"
-            case .getBranding(let request):
+            case .getBranding:
                 return ""
             case .onboardingChatService:
                 return "sdk/onboarding"
             case .universalFeed(let request):
                 return "feed/universal?page=\(request.page)&page_size=\(request.pageSize)"
             case .getPost(let request):
-                return "feed/post/\(request.postId)?page=\(request.page)&page_size=\(request.pageSize)"
+                guard let postId = request.postId else { return ""}
+                return "feed/post/\(postId)?page=\(request.page)&page_size=\(request.pageSize)"
             case .addPost:
                 return "feed/post"
             case .getComment(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)?page=\(request.page)&page_size=\(request.pageSize)"
+                guard let postId = request.postId, let commentId = request.commentId else { return ""}
+                return "feed/post/\(postId)/comment/\(commentId)?page=\(request.page)&page_size=\(request.pageSize)"
             case .addComment(let request):
-                return "feed/post/\(request.postId)/comment"
+                guard let postId = request.postId else { return ""}
+                return "feed/post/\(postId)/comment"
             case .getPostLikes(let request):
-                return "feed/post/\(request.postId)/like?page=\(request.page)&page_size=\(request.pageSize)"
+                guard let postId = request.postId else { return ""}
+                return "feed/post/\(postId)/like?page=\(request.page)&page_size=\(request.pageSize)"
             case .deletePost(let request):
-                return "feed/post/\(request.postId)"
+                guard let postId = request.postId else { return ""}
+                return "feed/post/\(postId)"
             case .deleteComment(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)"
+                guard let postId = request.postId, let commentId = request.commentId else { return ""}
+                return "feed/post/\(postId)/comment/\(commentId)"
             case .likePost(let request):
-                return "feed/post/\(request.postId)/like"
+                guard let postId = request.postId else { return ""}
+                return "feed/post/\(postId)/like"
             case .likeComment(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)/like"
+                guard let postId = request.postId, let commentId = request.commentId else { return ""}
+                return "feed/post/\(postId)/comment/\(commentId)/like"
             case  .getCommentsLikes(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)/like?page=\(request.page)&page_size=\(request.pageSize)"
+                guard let postId = request.postId, let commentId = request.commentId else { return ""}
+                return "feed/post/\(postId)/comment/\(commentId)/like?page=\(request.page)&page_size=\(request.pageSize)"
             case .replyOnComment(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)/comment"
+                guard let postId = request.postId, let commentId = request.commentId else { return ""}
+                return "feed/post/\(postId)/comment/\(commentId)/comment"
             case .getMemberState:
                 return "community/member/state"
             case .getFeedGroup(let request):
@@ -131,29 +141,35 @@ struct ServiceAPIRequest {
             case .report:
                 return "community/report"
             case .urlDetails(let request):
-                guard let Url = URL(string: request.link) else {
+                guard let link = request.link,
+                      let Url = URL(string: link) else {
                     return ""
                 }
                 return "helper/url?url=\(Url.absoluteString)"
             case .savePost(let request):
-                return "feed/post/\(request.postId)/save"
+                guard let postId = request.postId else { return ""}
+                return "feed/post/\(postId)/save"
             case .logout:
                 return "user/logout"
             case .getReportTags(let request):
-                return "community/report/tag?type=\(request.type)"
+                return "community/report/tag?type=\(request.type ?? 3)"
             case .pinPost(let request):
-                return "feed/post/\(request.postId)/pin"
+                guard let postId = request.postId else { return ""}
+                return "feed/post/\(postId)/pin"
             case .editPost(let request):
-                return "feed/post/\(request.postId)"
+                guard let postId = request.postId else { return ""}
+                return "feed/post/\(postId)"
             case .editComment(let request):
-                return "feed/post/\(request.postId)/comment/\(request.commentId)"
+                guard let postId = request.postId, let commentId = request.commentId else { return ""}
+                return "feed/post/\(postId)/comment/\(commentId)"
             case .fetchTaggingList(let request):
                 let requestUrl = "community/tag?page_size=\(request.pageSize)&page=\(request.page)" + (request.searchName.isEmpty ? "" : "&search_name=\(request.searchName)")
                 return requestUrl
             case .getNotificationFeed(let request):
                 return "feed/user/activity?page=\(request.page)&page_size=\(request.pageSize)"
             case .markReadNotificationFeed(let request):
-                return "feed/user/activity/\(request.activityId)/mark_read"
+                guard let activityId = request.activityId else { return ""}
+                return "feed/user/activity/\(activityId)/mark_read"
             case .getNotificationFeedUnreadCout:
                 return "feed/user/activity/unread_count"
             }
@@ -211,7 +227,7 @@ struct ServiceAPIRequest {
             case .initiateChatClient(let request):
                 return request.requestParam()
             case .pushToken(let request):
-                return ["token": request.token]
+                return ["token": request.token ?? ""]
             case .refreshServiceToken:
                 return [:]
             case .addPost(let request):
