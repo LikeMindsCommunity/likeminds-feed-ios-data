@@ -77,7 +77,6 @@
 		F46E15952A25BF37003C43BA /* GetTaggingListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E153E2A25BF37003C43BA /* GetTaggingListResponse.swift */; };
 		F46E15962A25BF37003C43BA /* MemberRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15412A25BF37003C43BA /* MemberRight.swift */; };
 		F46E15972A25BF37003C43BA /* GetMemberStateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15422A25BF37003C43BA /* GetMemberStateResponse.swift */; };
-		F46E15982A25BF37003C43BA /* GetMemberStateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15442A25BF37003C43BA /* GetMemberStateRequest.swift */; };
 		F46E15992A25BF37003C43BA /* LMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15472A25BF37003C43BA /* LMResponse.swift */; };
 		F46E159A2A25BF37003C43BA /* GetCommentsLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E154A2A25BF37003C43BA /* GetCommentsLikeResponse.swift */; };
 		F46E159B2A25BF37003C43BA /* LikeCommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E154C2A25BF37003C43BA /* LikeCommentRequest.swift */; };
@@ -817,7 +816,6 @@
 				F46E15942A25BF37003C43BA /* GetTaggingListRequest.swift in Sources */,
 				F46E15532A25BF37003C43BA /* LMFeedClientServiceRequest.swift in Sources */,
 				F46E15562A25BF37003C43BA /* DataNetwork.swift in Sources */,
-				F46E15982A25BF37003C43BA /* GetMemberStateRequest.swift in Sources */,
 				F4AD15832A2BCB2C00B752C3 /* EditCommentResponse.swift in Sources */,
 				F46E15572A25BF37003C43BA /* Reachability.swift in Sources */,
 				F46E15652A25BF37003C43BA /* DecodeUrlRequest.swift in Sources */,
