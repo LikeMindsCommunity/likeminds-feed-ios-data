@@ -8,12 +8,23 @@
 import Foundation
 
 public class GetFeedRequest: Encodable {
-    var page: Int //page number of home feed chat
+    var page: Int = 1 //page number of home feed chat
     var pageSize: Int = 10
     
-    /// Initiate method with userUniqueId key param
-    public init(page: Int) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> GetFeedRequest {
+        return GetFeedRequest()
+    }
+    
+    public func build() -> GetFeedRequest {
+        return self
+    }
+    
+    public func page(_ page: Int) -> GetFeedRequest {
         self.page = page
+        return self
     }
     
     public func pageSize(_ pageSize: Int) -> GetFeedRequest {
@@ -23,6 +34,6 @@ public class GetFeedRequest: Encodable {
     
     enum CodingKeys: String, CodingKey {
         case pageSize = "page_size"
-        case page = "page"
+        case page
     }
 }

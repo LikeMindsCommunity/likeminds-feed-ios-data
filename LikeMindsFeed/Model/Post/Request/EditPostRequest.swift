@@ -10,11 +10,22 @@ import Foundation
 public class EditPostRequest: Encodable {
     var text: String?
     var attachments: [Attachment]?
-    var postId: String
+    var postId: String?
     
-    /// Initiate method with post text
-    public init(_ postId: String) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> EditPostRequest {
+        return EditPostRequest()
+    }
+    
+    public func build() -> EditPostRequest {
+        return self
+    }
+    
+    public func postId(_ postId: String) -> EditPostRequest {
         self.postId = postId
+        return self
     }
     
     public func attachments(_ attachments: [Attachment]) -> EditPostRequest {

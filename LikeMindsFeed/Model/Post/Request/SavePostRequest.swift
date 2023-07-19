@@ -7,11 +7,23 @@
 
 import Foundation
 
-public struct SavePostRequest: Encodable {
-    let postId: String
+public class SavePostRequest: Encodable {
+    var postId: String?
     
-    public init(postId: String) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> SavePostRequest {
+        return SavePostRequest()
+    }
+    
+    public func build() -> SavePostRequest {
+        return self
+    }
+    
+    public func postId(_ postId: String) -> SavePostRequest {
         self.postId = postId
+        return self
     }
     
     enum CodingKeys: String, CodingKey {
