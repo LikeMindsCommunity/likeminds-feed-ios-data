@@ -135,8 +135,10 @@ internal final class DataNetwork {
                jsondataString.range(of: "Invalid LTM!") != nil
             {
                 lmLog("response - \(String(describing: jsondataString))")
-                FeedTokenManager.shared.refreshInterceptor {}
-                failureCallback(moduleName, .tokenExpire)
+                FeedTokenManager.shared.refreshInterceptor {[weak self] in
+                    self?.request(for: url, withHTTPMethod: httpMethod, headers: ServiceRequest.httpHeaders(), withParameters: parameters, withEncoding: encoding, withModuleName: moduleName, successCallback: successCallback, failureCallback: failureCallback)
+                }
+//                failureCallback(moduleName, .tokenExpire)
                 return
             }
             lmLog("response - \(String(describing: jsondataString))")

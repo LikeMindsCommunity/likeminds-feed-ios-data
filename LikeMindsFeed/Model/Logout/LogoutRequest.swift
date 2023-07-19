@@ -12,7 +12,15 @@ public class LogoutRequest: Encodable {
     var deviceId: String?
     
     /// Initiate method
-    public init() {}
+    private init() {}
+    
+    public static func builder() -> LogoutRequest {
+        return LogoutRequest()
+    }
+    
+    public func build() -> LogoutRequest {
+        return self
+    }
     
     enum CodingKeys: String, CodingKey {
         case refreshToken = "refresh_token"

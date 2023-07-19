@@ -8,14 +8,30 @@
 import Foundation
 
 public class GetCommentLikesRequest: Encodable {
-    public var postId: String
-    public var commentId: String
-    public var page: Int = 1
-    public var pageSize: Int = 10
+    var postId: String?
+    var commentId: String?
+    var page: Int = 1
+    var pageSize: Int = 10
     
-    public init(postId: String, commentId: String) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> GetCommentLikesRequest {
+        return GetCommentLikesRequest()
+    }
+    
+    public func build() -> GetCommentLikesRequest {
+        return self
+    }
+    
+    public func postId(_ postId: String) -> GetCommentLikesRequest {
         self.postId = postId
+        return self
+    }
+    
+    public func commentId(_ commentId: String) -> GetCommentLikesRequest {
         self.commentId = commentId
+        return self
     }
     
     public func page(_ page: Int) -> GetCommentLikesRequest {

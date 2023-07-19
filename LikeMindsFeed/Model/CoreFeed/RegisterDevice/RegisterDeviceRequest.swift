@@ -8,18 +8,33 @@
 import Foundation
 
 public class RegisterDeviceRequest: Encodable {
-    var deviceId: String //unique device id
-    var token: String // firebase token
+    var deviceId: String? //unique device id
+    var token: String? // firebase device token
     var userId: String?
     
-    /// Initiate method with device id and device token key param
-    public init(_ deviceId: String, token: String) {
-        self.deviceId = deviceId
-        self.token = token
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> RegisterDeviceRequest {
+        return RegisterDeviceRequest()
+    }
+    
+    public func build() -> RegisterDeviceRequest {
+        return self
     }
     
     public func userId(_ userId: String) -> RegisterDeviceRequest {
         self.userId = userId
+        return self
+    }
+    
+    public func token(_ token: String) -> RegisterDeviceRequest {
+        self.token = token
+        return self
+    }
+    
+    public func deviceId(_ deviceId: String) -> RegisterDeviceRequest {
+        self.deviceId = deviceId
         return self
     }
 

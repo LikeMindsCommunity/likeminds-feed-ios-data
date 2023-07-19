@@ -16,8 +16,8 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "LikeMindsFeed.podspec"
-  spec.version      = "1.3.0"
-  spec.summary      = "A short description of LMFeed.podspec."
+  spec.version      = "1.4.0"
+  spec.summary      = "LikeMindsFeed sdk  description of LikeMindsFeed.podspec."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,9 +25,10 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
+                      LikeMindsFeed description here..
                    DESC
 
-  spec.homepage     = "http://EXAMPLE/LMFeed.podspec"
+  spec.homepage     = "http://likeminds.community"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -38,7 +39,11 @@ Pod::Spec.new do |spec|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  spec.license      = "MIT (example)"
+  spec.license = { :type => 'Copyright', :text => <<-LICENSE
+                   Copyright 2023
+                   Permission is granted to...
+                  LICENSE
+                }
   # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -62,7 +67,9 @@ Pod::Spec.new do |spec|
   #  If this Pod runs only on iOS or OS X, then specify the platform and
   #  the deployment target. You can optionally include the target after the platform.
   #
-
+  spec.source       = { :path => "/Users/pushpendra/likeminds_workspace/LikeMinds-Feed-SDK/Feed-SDK", :tag => "#{spec.version}" }
+  spec.vendored_frameworks = "LikeMindsFeed.xcframework"
+  spec.swift_version = "5"
   # spec.platform     = :ios
   # spec.platform     = :ios, "5.0"
 
@@ -79,7 +86,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "http://EXAMPLE/LMFeed.git", :tag => "#{spec.version}" }
+  # spec.source       = { :git => "http://EXAMPLE/LMFeed.git", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

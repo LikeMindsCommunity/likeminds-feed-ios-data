@@ -11,8 +11,16 @@ public class AddPostRequest: Encodable {
     var text: String?
     var attachments: [Attachment]?
     
-    /// Initiate method with post text
-    public init() {}
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> AddPostRequest {
+        return AddPostRequest()
+    }
+    
+    public func build() -> AddPostRequest {
+        return self
+    }
     
     public func attachments(_ attachments: [Attachment]) -> AddPostRequest {
         self.attachments = attachments

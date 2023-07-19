@@ -10,12 +10,24 @@ import Foundation
 import Foundation
 
 public class GetTaggingListRequest: Encodable {
-    var searchName: String
+    var searchName: String = ""
     var pageSize: Int = 10 //
     var page: Int = 1
     
-    public init(searchName: String) {
+    /// Initiate method
+    private init() {}
+    
+    public static func builder() -> GetTaggingListRequest {
+        return GetTaggingListRequest()
+    }
+    
+    public func build() -> GetTaggingListRequest {
+        return self
+    }
+    
+    public func searchName(_ searchName: String) -> GetTaggingListRequest {
         self.searchName = searchName
+        return self
     }
     
     public func page(_ page: Int) -> GetTaggingListRequest {
