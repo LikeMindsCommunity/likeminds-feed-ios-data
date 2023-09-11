@@ -10,6 +10,6 @@ import Foundation
 import Foundation
 
 // MARK: - GetTaggingListResponse
-public struct GetTaggingListResponse: Codable {
+public struct GetTaggingListResponse: Decodable {
     public let members: [User]?
 }

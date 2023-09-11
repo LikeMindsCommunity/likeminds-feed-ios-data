@@ -6,7 +6,7 @@ target 'LikeMindsFeed' do
   use_frameworks!
 
   # Pods for LikeMindsFeed
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 5.7.1'
 end
 
 post_install do |installer|

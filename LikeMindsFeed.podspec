@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "LikeMindsFeed.podspec"
-  spec.version      = "1.4.0"
+  spec.version      = "1.5.0"
   spec.summary      = "LikeMindsFeed sdk  description of LikeMindsFeed.podspec."
 
   # This description is used to generate tags and improve search results.
@@ -69,12 +69,12 @@ Pod::Spec.new do |spec|
   #
   spec.source       = { :path => "/Users/pushpendra/likeminds_workspace/LikeMinds-Feed-SDK/Feed-SDK", :tag => "#{spec.version}" }
   spec.vendored_frameworks = "LikeMindsFeed.xcframework"
-  spec.swift_version = "5"
+  spec.swift_version = "5.0"
   # spec.platform     = :ios
   # spec.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-  # spec.ios.deployment_target = "5.0"
+  spec.ios.deployment_target = "13.0"
   # spec.osx.deployment_target = "10.7"
   # spec.watchos.deployment_target = "2.0"
   # spec.tvos.deployment_target = "9.0"
@@ -141,5 +141,5 @@ Pod::Spec.new do |spec|
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
   
-  spec.dependency "Alamofire"
+  spec.dependency "Alamofire", "~> 5.7.1"
 end

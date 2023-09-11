@@ -9,10 +9,17 @@ import Foundation
 
 public class AddPostRequest: Encodable {
     var text: String?
+    var heading: String?
+    var onBehalfOfUUID: String?
     var attachments: [Attachment]?
     
     /// Initiate method
     private init() {}
+    
+    enum CodingKeys: String, CodingKey {
+        case text, heading, attachments
+        case onBehalfOfUUID = "on_behalf_of_uuid"
+    }
     
     public static func builder() -> AddPostRequest {
         return AddPostRequest()
@@ -29,6 +36,16 @@ public class AddPostRequest: Encodable {
     
     public func text(_ text: String?) -> AddPostRequest {
         self.text = text
+        return self
+    }
+    
+    public func heading(_ heading: String?) -> AddPostRequest {
+        self.heading = heading
+        return self
+    }
+    
+    public func onBehalfOfUUID(_ onBehalfOfUUID: String?) -> AddPostRequest {
+        self.onBehalfOfUUID = onBehalfOfUUID
         return self
     }
 }
