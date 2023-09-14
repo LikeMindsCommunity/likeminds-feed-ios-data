@@ -13,6 +13,12 @@ public class AttachmentMeta: Codable {
     public var format, name: String?
     public var pageCount, duration, size: Int? // size in bytes, duration in seconds
     public var ogTags: OGTags?
+    public private(set) var coverImageUrl: String?
+    public private(set) var title: String?
+    public private(set) var body: String?
+    public private(set) var entityID: String?
+    public private(set) var thumbnailUrl: String?
+    
     
     public init() {
     }
@@ -26,14 +32,23 @@ public class AttachmentMeta: Codable {
         self.pageCount = try container.decodeIfPresent(Int.self, forKey: .pageCount)
         self.ogTags = try container.decodeIfPresent(OGTags.self, forKey: .ogTags)
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.entityID = try container.decodeIfPresent(String.self, forKey: .entityID)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+        self.body = try container.decodeIfPresent(String.self, forKey: .body)
+        self.coverImageUrl = try container.decodeIfPresent(String.self, forKey: .coverImageUrl)
+        self.thumbnailUrl = try container.decodeIfPresent(String.self, forKey: .thumbnailUrl)
+        
     }
     
     enum CodingKeys: String, CodingKey {
         case attachmentUrl = "url"
-        case format, name
+        case format, name, title, body
         case size, duration
         case pageCount = "page_count"
         case ogTags = "og_tags"
+        case coverImageUrl = "cover_image_url"
+        case entityID = "entity_id"
+        case thumbnailUrl = "thumbnail_url"
     }
     
     public func attachmentUrl(_ attachmentUrl: String) -> AttachmentMeta {
@@ -68,6 +83,31 @@ public class AttachmentMeta: Codable {
     
     public func ogTags(_ ogTags: OGTags) -> AttachmentMeta {
         self.ogTags = ogTags
+        return self
+    }
+    
+    public func thumbnailUrl(_ thumbnailUrl: String?) -> AttachmentMeta {
+        self.thumbnailUrl = thumbnailUrl
+        return self
+    }
+    
+    public func coverImageUrl(_ coverImageUrl: String) -> AttachmentMeta {
+        self.coverImageUrl = coverImageUrl
+        return self
+    }
+    
+    public func title(_ title: String) -> AttachmentMeta {
+        self.title = title
+        return self
+    }
+    
+    public func body(_ body: String) -> AttachmentMeta {
+        self.body = body
+        return self
+    }
+    
+    public func entityID(_ entityID: String) -> AttachmentMeta {
+        self.entityID = entityID
         return self
     }
     

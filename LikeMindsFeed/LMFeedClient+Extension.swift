@@ -201,4 +201,16 @@ extension LMFeedClient {
             response?(result)
         }
     }
+    
+    public func getAllMembers(_ request: GetAllMembersRequest, _ response:  LMFeedClientResponse<GetAllMembersResponse>?) {
+        LMFeedClientServiceRequest.getAllMembers(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func searchMembers(_ request: SearchMembersRequest, _ response:  LMFeedClientResponse<SearchMembersResponse>?) {
+        LMFeedClientServiceRequest.searchMembers(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
 }

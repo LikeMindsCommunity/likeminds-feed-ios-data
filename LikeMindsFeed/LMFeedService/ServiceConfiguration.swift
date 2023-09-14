@@ -87,6 +87,8 @@ struct ServiceAPIRequest {
         case pinPost(_ request: PinPostRequest)
         case editPost(_ request: EditPostRequest)
         case editComment(_ request: EditCommentRequest)
+        case getAllMembers(_ request: GetAllMembersRequest)
+        case searchMembers(_ request: SearchMembersRequest)
         
         var apiURL: String {
             switch self {
@@ -172,6 +174,12 @@ struct ServiceAPIRequest {
                 return "feed/user/activity/\(activityId)/mark_read"
             case .getNotificationFeedUnreadCout:
                 return "feed/user/activity/unread_count"
+            case .getAllMembers(let request):
+                return "community/member?page=\(request.page)&page_size=\(request.pageSize)"
+            case .searchMembers(let request):
+                let searchType = request.searchType ?? ""
+                let search = request.search ?? ""
+                return "community/member/search?page=\(request.page)&page_size=\(request.pageSize)&search_type=\(searchType)&search=\(search)"
             }
         }
 
@@ -190,6 +198,8 @@ struct ServiceAPIRequest {
                  .fetchTaggingList,
                  .getNotificationFeed,
                  .getNotificationFeedUnreadCout,
+                 .getAllMembers,
+                 .searchMembers,
                  .onboardingChatService:
                 return .get
             case .initiateChatClient,

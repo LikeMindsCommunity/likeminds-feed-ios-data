@@ -19,6 +19,14 @@ extension Data
         }
         return "Error in parsing"
     }
+    
+    var prettyPrintedJSONString: NSString? { /// NSString gives us a nice sanitized debugDescription
+        guard let object = try? JSONSerialization.jsonObject(with: self, options: []),
+              let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+              let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else { return nil }
+        
+        return prettyPrintedString
+    }
 }
 
 typealias SuccessCompletionBlock = (_ moduleName: String, _ responseData: Any?) -> Void
@@ -106,16 +114,14 @@ internal final class DataNetwork {
         downloadResourceParams?.append(RequestParam(successCallback: successCallback, failureCallback: failureCallback, request: request, moduleName: moduleName))
         
         request.responseData { (response) in
-            lmLog("--------------------------")
-            lmLog("url - \(url)")
-            lmLog("request - \(request)")
-            lmLog("moduleName - \(moduleName)")
-            if let urlRequest = request.request, let httpBody = urlRequest.httpBody {
-                debugPrint("http request body - \(String(describing: String(data: httpBody, encoding: .utf8)))")
-            }
-            lmLog("headers - \(headers)")
+            print("\n===Request Start===\n")
+            print(request.cURLDescription())
+            print("\n===Request End===\n")
+            
             guard let responseData = response.data else {
-                lmLog("failureCallback - \(response)")
+                print("\n===Response Start===\n")
+                debugPrint(response.data as Any)
+                print("\n===Response End===\n")
                 if let error = response.error {
                     switch error {
                     case .sessionTaskFailed:
@@ -126,9 +132,12 @@ internal final class DataNetwork {
                     }
                 }
                 failureCallback(moduleName, .noResponse)
-                lmLog("--------------------------")
                 return
             }
+            
+            print("\n===Response Start===\n")
+            debugPrint(responseData.prettyPrintedJSONString ?? "Unable To Parse JSON")
+            print("\n===Response End===\n")
             let jsondataString = responseData.jsonString()
             if let httpResponse = response.response,
                httpResponse.statusCode == 401,
@@ -141,8 +150,6 @@ internal final class DataNetwork {
 //                failureCallback(moduleName, .tokenExpire)
                 return
             }
-            lmLog("response - \(String(describing: jsondataString))")
-            lmLog("--------------------------")
             successCallback(moduleName, responseData)
         }
     }
