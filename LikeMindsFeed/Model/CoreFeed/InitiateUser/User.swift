@@ -52,8 +52,8 @@ public struct User: Codable {
 
 // MARK: - QuestionAnswer
 public struct QuestionAnswer: Codable {
-    public let question: UserQuestion?
-    public let answer: UserAnswer?
+    public let question: Question?
+    public let answer: Answer?
     
     enum CodingKeys: String, CodingKey {
         case question
@@ -62,7 +62,7 @@ public struct QuestionAnswer: Codable {
 }
 
 // MARK: - QuestionAnswer
-public struct UserQuestion: Codable {
+public struct Question: Codable {
     public let communityID: Int?
     public let directoryFields, isHidden: Bool?
     public let memberID, questionID: Int?
@@ -85,7 +85,7 @@ public struct UserQuestion: Codable {
 }
 
 // MARK: - QuestionAnswer
-public struct UserAnswer: Codable {
+public struct Answer: Codable {
     public let communityID, memberID, questionID: Int?
     public let answer: String?
     
