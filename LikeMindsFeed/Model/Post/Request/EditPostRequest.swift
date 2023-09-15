@@ -9,11 +9,19 @@ import Foundation
 
 public class EditPostRequest: Encodable {
     var text: String?
+    var heading: String?
     var attachments: [Attachment]?
     var postId: String?
+    var onBehalfOfUUID: String?
     
     /// Initiate method
     private init() {}
+    
+    enum CodingKeys: String, CodingKey {
+        case text, heading, attachments
+        case postId = "post_id"
+        case onBehalfOfUUID = "on_behalf_of_uuid"
+    }
     
     public static func builder() -> EditPostRequest {
         return EditPostRequest()
@@ -35,6 +43,16 @@ public class EditPostRequest: Encodable {
     
     public func text(_ text: String?) -> EditPostRequest {
         self.text = text
+        return self
+    }
+    
+    public func heading(_ heading: String?) -> EditPostRequest {
+        self.heading = heading
+        return self
+    }
+    
+    public func onBehalfOfUUID(_ onBehalfOfUUID: String?) -> EditPostRequest {
+        self.onBehalfOfUUID = onBehalfOfUUID
         return self
     }
 }

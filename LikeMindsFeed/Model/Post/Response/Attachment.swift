@@ -13,6 +13,8 @@ public enum AttachmentType: Int, Encodable {
     case doc = 3
     case link = 4
     case audio = 5
+    case poll = 6
+    case article = 7
     case unknown = -1
 }
 

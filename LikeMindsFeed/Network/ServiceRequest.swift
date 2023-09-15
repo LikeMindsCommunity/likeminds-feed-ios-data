@@ -18,7 +18,6 @@ class ServiceRequest {
                 "x-platform-code": "ios",
                 "x-version-code": buildVersion,
                 "Cookie":"",
-//                "x-device-id": deviceId,
                 "x-sdk-source": "feed",
                 "Authorization": "Bearer " + accessToken
         ]
