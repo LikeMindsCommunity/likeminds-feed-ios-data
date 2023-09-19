@@ -89,6 +89,7 @@ struct ServiceAPIRequest {
         case editComment(_ request: EditCommentRequest)
         case getAllMembers(_ request: GetAllMembersRequest)
         case searchMembers(_ request: SearchMembersRequest)
+        case getTopicFeed(_ request: TopicFeedRequest)
         
         var apiURL: String {
             switch self {
@@ -180,6 +181,18 @@ struct ServiceAPIRequest {
                 let searchType = request.searchType ?? ""
                 let search = request.search ?? ""
                 return "community/member/search?page=\(request.page)&page_size=\(request.pageSize)&search_type=\(searchType)&search=\(search)"
+            case .getTopicFeed(let request):
+                var url = "feed/topic?page=\(request.page)&page_size=\(request.pageSize)"
+                
+                if request.isEnabled {
+                    url.append("&is_enabled=true")
+                }
+                
+                if let search = request.search {
+                    url.append("&search=\(search)&search_type=\(request.searchType)")
+                }
+                
+                return url
             }
         }
 
@@ -200,7 +213,8 @@ struct ServiceAPIRequest {
                  .getNotificationFeedUnreadCout,
                  .getAllMembers,
                  .searchMembers,
-                 .onboardingChatService:
+                 .onboardingChatService,
+                 .getTopicFeed:
                 return .get
             case .initiateChatClient,
                  .refreshServiceToken,
@@ -274,8 +288,7 @@ struct ServiceAPIRequest {
 
 
 struct ServiceConfiguration {
-
-    static let authBaseURL:String = {
+    static let authBaseURL: String = {
         var url = ServiceConfigurationURLs.Production.authBaseUrl
         switch BuildManager.environment {
         case .devtest:
@@ -287,7 +300,7 @@ struct ServiceConfiguration {
         return url
     }()
 
-    static let bucketURL:String = {
+    static let bucketURL: String = {
         var url = ServiceConfigurationURLs.Production.bucketURL
         switch BuildManager.environment {
         case .devtest:
@@ -299,7 +312,7 @@ struct ServiceConfiguration {
         return url
     }()
 
-    static let secretAccessKey:String = {
+    static let secretAccessKey: String = {
         var secretAccessKey = ServiceConfigurationURLs.Production.secretAccessKey.fromBase64() ?? ""
         switch BuildManager.environment {
         case .devtest:
@@ -311,7 +324,7 @@ struct ServiceConfiguration {
         return secretAccessKey
     }()
 
-    static let accessKey:String = {
+    static let accessKey: String = {
         var accessKey = ServiceConfigurationURLs.Production.accessKey.fromBase64() ?? ""
         switch BuildManager.environment {
         case .devtest:
@@ -334,6 +347,4 @@ struct ServiceConfiguration {
         }
         return accessKey
     }()
-
-
 }

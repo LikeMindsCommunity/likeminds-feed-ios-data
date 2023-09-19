@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 public class GetTaggingListRequest: Encodable {
     var searchName: String = ""
     var pageSize: Int = 10 //
