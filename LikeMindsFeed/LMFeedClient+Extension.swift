@@ -213,4 +213,10 @@ extension LMFeedClient {
             response?(result)
         }
     }
+    
+    public func getTopicFeed(_ request: TopicFeedRequest, _ response: LMFeedClientResponse<TopicFeedResponse>?) {
+        LMFeedClientServiceRequest.getTopicFeed(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
 }
