@@ -13,14 +13,16 @@ public class EditPostRequest: Encodable {
     var attachments: [Attachment]?
     var postId: String?
     var onBehalfOfUUID: String?
+    var topics: [String]?
     
     /// Initiate method
     private init() {}
     
     enum CodingKeys: String, CodingKey {
         case text, heading, attachments
-        case postId = "post_id"
-        case onBehalfOfUUID = "on_behalf_of_uuid"
+        case postId = "post_id",
+             onBehalfOfUUID = "on_behalf_of_uuid",
+             topics = "topic_ids"
     }
     
     public static func builder() -> EditPostRequest {
@@ -53,6 +55,11 @@ public class EditPostRequest: Encodable {
     
     public func onBehalfOfUUID(_ onBehalfOfUUID: String?) -> EditPostRequest {
         self.onBehalfOfUUID = onBehalfOfUUID
+        return self
+    }
+    
+    public func addTopics(_ topics: [String]) -> EditPostRequest {
+        self.topics = topics
         return self
     }
 }

@@ -10,6 +10,6 @@ import Foundation
 public struct GetPostResponse: Decodable {
     public let post: Post?
     public let users: [String: User]?
-    public let topics: [String: Topic]?
+    public let topics: [String: TopicFeedResponse.TopicResponse]?
     public let widgets: [String: Widget]?
 }
