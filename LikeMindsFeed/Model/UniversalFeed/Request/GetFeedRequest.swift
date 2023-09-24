@@ -10,6 +10,7 @@ import Foundation
 public class GetFeedRequest: Encodable {
     var page: Int = 1 //page number of home feed chat
     var pageSize: Int = 10
+    var topics: [String] = []
     
     /// Initiate method
     private init() {}
@@ -32,8 +33,14 @@ public class GetFeedRequest: Encodable {
         return self
     }
     
+    public func topics(_ topics: [String]) -> GetFeedRequest {
+        self.topics = topics
+        return self
+    }
+    
     enum CodingKeys: String, CodingKey {
-        case pageSize = "page_size"
-        case page
+        case pageSize = "page_size",
+             topics = "topic_ids",
+             page
     }
 }

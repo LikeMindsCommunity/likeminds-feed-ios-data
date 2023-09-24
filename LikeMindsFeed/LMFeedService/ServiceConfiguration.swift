@@ -104,7 +104,13 @@ struct ServiceAPIRequest {
             case .onboardingChatService:
                 return "sdk/onboarding"
             case .universalFeed(let request):
-                return "feed/universal?page=\(request.page)&page_size=\(request.pageSize)"
+                var url = "feed/universal?page=\(request.page)&page_size=\(request.pageSize)"
+                if !request.topics.isEmpty {
+                    let topics = request.topics.joined(separator: ",").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+                    let top = "&topic_ids=[\(topics)]"
+                    url.append(top)
+                }
+                return url
             case .getPost(let request):
                 guard let postId = request.postId else { return ""}
                 return "feed/post/\(postId)?page=\(request.page)&page_size=\(request.pageSize)"
@@ -278,10 +284,7 @@ struct ServiceAPIRequest {
         }
 
         var encoding: Alamofire.ParameterEncoding {
-            switch self {
-            default:
-                return JSONEncoding.default
-            }
+            JSONEncoding.default
         }
     }
 }
