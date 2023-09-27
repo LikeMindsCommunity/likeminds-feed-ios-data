@@ -17,7 +17,8 @@ public struct Comment: Codable {
     public let replies: [Comment]?
     public let text: String?
     public let updatedAt: Int?
-    
+    public let tempId: String?
+
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case postId = "post_id"
@@ -32,5 +33,6 @@ public struct Comment: Codable {
         case menuItems = "menu_items"
         case replies, text, uuid
         case updatedAt = "updated_at"
+        case tempId = "temp_id"
     }
 }

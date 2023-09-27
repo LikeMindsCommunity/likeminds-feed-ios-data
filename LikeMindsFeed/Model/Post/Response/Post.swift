@@ -22,6 +22,7 @@ public struct Post: Decodable {
     public let userId, uuid, deletedByUUID, deleteReason: String?
     public let replies: [Comment]?
     public let topics: [String]?
+    public let tempId: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -44,5 +45,6 @@ public struct Post: Decodable {
         case replies,
              uuid,
              topics
+        case tempId = "temp_id"
     }
 }

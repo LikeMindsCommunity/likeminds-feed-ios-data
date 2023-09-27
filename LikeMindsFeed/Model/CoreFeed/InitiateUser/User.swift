@@ -71,6 +71,7 @@ public struct Question: Codable {
     public let tag: String?
     public let value: String?
     public let imageURL: String?
+    public let dropdownSelectionLimit: Int?
     
     enum CodingKeys: String, CodingKey {
         case communityID = "community_id"
@@ -81,6 +82,7 @@ public struct Question: Codable {
         case questionTitle = "question_title"
         case state, tag, value
         case imageURL = "image_url"
+        case dropdownSelectionLimit = "dropdown_selection_limit"
     }
 }
 

@@ -116,6 +116,7 @@ internal final class DataNetwork {
         request.responseData { (response) in
             print("\n===Request Start===\n")
             print(request.cURLDescription())
+            print("Response status: \(response.response?.statusCode ?? 0)")
             print("\n===Request End===\n")
             
             guard let responseData = response.data else {
@@ -147,7 +148,6 @@ internal final class DataNetwork {
                 FeedTokenManager.shared.refreshInterceptor {[weak self] in
                     self?.request(for: url, withHTTPMethod: httpMethod, headers: ServiceRequest.httpHeaders(), withParameters: parameters, withEncoding: encoding, withModuleName: moduleName, successCallback: successCallback, failureCallback: failureCallback)
                 }
-//                failureCallback(moduleName, .tokenExpire)
                 return
             }
             successCallback(moduleName, responseData)
