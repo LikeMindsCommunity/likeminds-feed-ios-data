@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E592881E2AB97CA50047297B /* TopicFeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592881D2AB97CA50047297B /* TopicFeedResponse.swift */; };
+		E5FD639A2AB9857C00F90466 /* TopicFeedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FD63992AB9857C00F90466 /* TopicFeedRequest.swift */; };
 		F46E15512A25BF37003C43BA /* FeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14D92A25BF37003C43BA /* FeedClientServiceRequest.swift */; };
 		F46E15522A25BF37003C43BA /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14DA2A25BF37003C43BA /* ServiceConfiguration.swift */; };
 		F46E15532A25BF37003C43BA /* LMFeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14DB2A25BF37003C43BA /* LMFeedClientServiceRequest.swift */; };
@@ -106,6 +108,8 @@
 		29B0CEC1A96B4126988A2002 /* Pods-LikeMindsFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LikeMindsFeed.release.xcconfig"; path = "Target Support Files/Pods-LikeMindsFeed/Pods-LikeMindsFeed.release.xcconfig"; sourceTree = "<group>"; };
 		328FAAB8DE4E6C9E11287A03 /* Pods_LikeMindsFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LikeMindsFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA5C6F47B73E5B6F9CC1003 /* Pods-LikeMindsFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LikeMindsFeed.debug.xcconfig"; path = "Target Support Files/Pods-LikeMindsFeed/Pods-LikeMindsFeed.debug.xcconfig"; sourceTree = "<group>"; };
+		E592881D2AB97CA50047297B /* TopicFeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFeedResponse.swift; sourceTree = "<group>"; };
+		E5FD63992AB9857C00F90466 /* TopicFeedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFeedRequest.swift; sourceTree = "<group>"; };
 		F414169C299E41C000622058 /* LikeMindsFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LikeMindsFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46E14D92A25BF37003C43BA /* FeedClientServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedClientServiceRequest.swift; sourceTree = "<group>"; };
 		F46E14DA2A25BF37003C43BA /* ServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
@@ -230,6 +234,31 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E592881A2AB97C250047297B /* TopicFeed */ = {
+			isa = PBXGroup;
+			children = (
+				E592881B2AB97C310047297B /* Request */,
+				E592881C2AB97C360047297B /* Response */,
+			);
+			path = TopicFeed;
+			sourceTree = "<group>";
+		};
+		E592881B2AB97C310047297B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E5FD63992AB9857C00F90466 /* TopicFeedRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		E592881C2AB97C360047297B /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				E592881D2AB97CA50047297B /* TopicFeedResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		F4141692299E41C000622058 = {
 			isa = PBXGroup;
 			children = (
@@ -331,24 +360,25 @@
 		F46E14F22A25BF37003C43BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F4AB7F4B2AA1A63A00135CD3 /* MembersData */,
-				F4AA54292A4B680200AA9D2B /* Logout */,
-				F46E14F32A25BF37003C43BA /* OGTags */,
-				F46E14F62A25BF37003C43BA /* Comments */,
-				F46E14FE2A25BF37003C43BA /* CoreFeed */,
-				F46E150D2A25BF37003C43BA /* FeedNotification */,
-				F46E15102A25BF37003C43BA /* Post */,
-				F46E151F2A25BF37003C43BA /* ReportTags */,
-				F46E15222A25BF37003C43BA /* ReplyOnComment */,
-				F46E15262A25BF37003C43BA /* FeedGroup */,
-				F46E15292A25BF37003C43BA /* FeedRoom */,
-				F46E152D2A25BF37003C43BA /* PostLike */,
-				F46E15352A25BF37003C43BA /* UniversalFeed */,
-				F46E153A2A25BF37003C43BA /* Report */,
-				F46E153C2A25BF37003C43BA /* TaggingList */,
-				F46E153F2A25BF37003C43BA /* MemberState */,
 				F46E15452A25BF37003C43BA /* Base */,
+				F46E14F62A25BF37003C43BA /* Comments */,
 				F46E15482A25BF37003C43BA /* CommentsLikes */,
+				F46E14FE2A25BF37003C43BA /* CoreFeed */,
+				F46E15262A25BF37003C43BA /* FeedGroup */,
+				F46E150D2A25BF37003C43BA /* FeedNotification */,
+				F46E15292A25BF37003C43BA /* FeedRoom */,
+				F4AA54292A4B680200AA9D2B /* Logout */,
+				F4AB7F4B2AA1A63A00135CD3 /* MembersData */,
+				F46E153F2A25BF37003C43BA /* MemberState */,
+				F46E14F32A25BF37003C43BA /* OGTags */,
+				F46E15102A25BF37003C43BA /* Post */,
+				F46E152D2A25BF37003C43BA /* PostLike */,
+				F46E15222A25BF37003C43BA /* ReplyOnComment */,
+				F46E153A2A25BF37003C43BA /* Report */,
+				F46E151F2A25BF37003C43BA /* ReportTags */,
+				F46E153C2A25BF37003C43BA /* TaggingList */,
+				E592881A2AB97C250047297B /* TopicFeed */,
+				F46E15352A25BF37003C43BA /* UniversalFeed */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -453,8 +483,8 @@
 		F46E15102A25BF37003C43BA /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				F46E15112A25BF37003C43BA /* Response */,
 				F46E15192A25BF37003C43BA /* Request */,
+				F46E15112A25BF37003C43BA /* Response */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -542,8 +572,8 @@
 		F46E152D2A25BF37003C43BA /* PostLike */ = {
 			isa = PBXGroup;
 			children = (
-				F46E152E2A25BF37003C43BA /* Response */,
 				F46E15322A25BF37003C43BA /* Request */,
+				F46E152E2A25BF37003C43BA /* Response */,
 			);
 			path = PostLike;
 			sourceTree = "<group>";
@@ -687,8 +717,8 @@
 		F4AB7F4B2AA1A63A00135CD3 /* MembersData */ = {
 			isa = PBXGroup;
 			children = (
-				F4AB7F512AA1A67C00135CD3 /* Response */,
 				F4AB7F502AA1A67200135CD3 /* Request */,
+				F4AB7F512AA1A67C00135CD3 /* Response */,
 			);
 			path = MembersData;
 			sourceTree = "<group>";
@@ -898,6 +928,7 @@
 				F4A933032A39060100BBE257 /* MarkReadNotificationRequest.swift in Sources */,
 				F46E159E2A25BF37003C43BA /* FileUtility.swift in Sources */,
 				F46E157E2A25BF37003C43BA /* OGTags.swift in Sources */,
+				E5FD639A2AB9857C00F90466 /* TopicFeedRequest.swift in Sources */,
 				F46E15632A25BF37003C43BA /* PersistentPreferences.swift in Sources */,
 				F46E15662A25BF37003C43BA /* DecodeUrlResponse.swift in Sources */,
 				F46E158C2A25BF37003C43BA /* Like.swift in Sources */,
@@ -907,6 +938,7 @@
 				F46E158D2A25BF37003C43BA /* LikeUsers.swift in Sources */,
 				F46E156D2A25BF37003C43BA /* BrandingResponse.swift in Sources */,
 				F46E15962A25BF37003C43BA /* MemberRight.swift in Sources */,
+				E592881E2AB97CA50047297B /* TopicFeedResponse.swift in Sources */,
 				F46E155D2A25BF37003C43BA /* LMFeedClient.swift in Sources */,
 				F46E158A2A25BF37003C43BA /* GetFeedOfFeedRoomRequest.swift in Sources */,
 				F4E8489E2A270E0900B15666 /* String+Extension.swift in Sources */,

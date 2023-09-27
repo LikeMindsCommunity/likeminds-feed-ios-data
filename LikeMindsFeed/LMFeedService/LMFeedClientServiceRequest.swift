@@ -472,4 +472,25 @@ class LMFeedClientServiceRequest: ServiceRequest {
         }
     }
     
+    static func getTopicFeed(_ request: TopicFeedRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<TopicFeedResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.getTopicFeed(request)
+        
+        guard let url =  URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else { return }
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<TopicFeedResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
 }

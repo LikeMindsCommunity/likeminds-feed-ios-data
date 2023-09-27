@@ -16,3 +16,4 @@ class BuildManager {
 //    static let environment: BuildEnvironment = .production
     static let buildVersion = "6"
 }
+
