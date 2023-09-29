@@ -13,7 +13,6 @@ public typealias LMFeedClientResponse<T: Decodable> = (LMResponse<T>) -> (Void)
 extension LMFeedClient {
     
     func initialize() {
-//        AWSS3Manager().initializeS3()
     }
     
     func saveExtrasValuesInLocalPreferences(extras: LMChatClient) {
@@ -210,6 +209,12 @@ extension LMFeedClient {
     
     public func searchMembers(_ request: SearchMembersRequest, _ response:  LMFeedClientResponse<SearchMembersResponse>?) {
         LMFeedClientServiceRequest.searchMembers(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func getTopicFeed(_ request: TopicFeedRequest, _ response: LMFeedClientResponse<TopicFeedResponse>?) {
+        LMFeedClientServiceRequest.getTopicFeed(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }

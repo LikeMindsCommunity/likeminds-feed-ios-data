@@ -11,6 +11,7 @@ public class ReplyCommentRequest: Encodable {
     var text: String?
     var postId: String?
     var commentId: String?
+    var tempId: String?
     
     /// Initiate method
     private init() {}
@@ -38,10 +39,16 @@ public class ReplyCommentRequest: Encodable {
         return self
     }
     
+    public func tempId(_ tempId: String?) -> ReplyCommentRequest {
+        self.tempId = tempId
+        return self
+    }
+    
     enum CodingKeys: String, CodingKey {
         case postId = "post_id"
         case text
         case commentId = "comment_id"
+        case tempId = "temp_id"
     }
     
 }

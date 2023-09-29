@@ -26,7 +26,7 @@ public struct Widget: Decodable {
 // MARK: - Metadata
 public struct WidgetMetadata: Decodable {
     public let body: String?
-    public let ogTags: Topic?
+    public let ogTags: TopicFeedResponse.TopicResponse?
     public let size: Int?
     public let title, name: String?
     public let coverImageURL: String?
@@ -37,9 +37,4 @@ public struct WidgetMetadata: Decodable {
         case size, title, name
         case coverImageURL = "cover_image_url"
     }
-}
-
-// MARK: - Topic
-public struct Topic: Decodable {
-    
 }

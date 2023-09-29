@@ -12,13 +12,19 @@ public class AddPostRequest: Encodable {
     var heading: String?
     var onBehalfOfUUID: String?
     var attachments: [Attachment]?
+    var topics: [String]?
+    var tempId: String?
     
     /// Initiate method
     private init() {}
     
     enum CodingKeys: String, CodingKey {
-        case text, heading, attachments
-        case onBehalfOfUUID = "on_behalf_of_uuid"
+        case text,
+             heading,
+             attachments
+        case onBehalfOfUUID = "on_behalf_of_uuid",
+             topics = "topic_ids",
+             tempId = "temp_id"
     }
     
     public static func builder() -> AddPostRequest {
@@ -44,8 +50,18 @@ public class AddPostRequest: Encodable {
         return self
     }
     
+    public func tempId(_ tempId: String) -> AddPostRequest {
+        self.tempId = tempId
+        return self
+    }
+    
     public func onBehalfOfUUID(_ onBehalfOfUUID: String?) -> AddPostRequest {
         self.onBehalfOfUUID = onBehalfOfUUID
+        return self
+    }
+    
+    public func addTopics(_ topics: [String]) -> AddPostRequest {
+        self.topics = topics
         return self
     }
 }
