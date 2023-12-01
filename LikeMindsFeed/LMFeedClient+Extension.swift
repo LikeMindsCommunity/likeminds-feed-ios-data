@@ -218,4 +218,10 @@ extension LMFeedClient {
             response?(result)
         }
     }
+    
+    public func getCommunityConfiguration(_ request: GetCommunityConfigurationRequest, _ response: LMFeedClientResponse<GetCommunityConfigurationResponse>?) {
+        LMFeedClientServiceRequest.getCommunityConfiguration(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
 }

@@ -90,9 +90,12 @@ struct ServiceAPIRequest {
         case getAllMembers(_ request: GetAllMembersRequest)
         case searchMembers(_ request: SearchMembersRequest)
         case getTopicFeed(_ request: TopicFeedRequest)
+        case getCommunityConfiguration(_ request: GetCommunityConfigurationRequest)
         
         var apiURL: String {
             switch self {
+            case .getCommunityConfiguration(let request):
+                return "community/configurations?configuration_types=\(request.configurationTypes ?? [])"
             case .initiateChatClient:
                 return "sdk/initiate"
             case .refreshServiceToken:
@@ -205,6 +208,7 @@ struct ServiceAPIRequest {
         var httpMethod: Alamofire.HTTPMethod {
             switch self {
             case .universalFeed,
+                 .getCommunityConfiguration,
                  .getPostLikes,
                  .getBranding,
                  .getPost,
