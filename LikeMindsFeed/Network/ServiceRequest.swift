@@ -39,6 +39,9 @@ class ServiceRequest {
     static func httpSdkHeaders(headerKey: String = "x-api-key", value: String = "") -> HTTPHeaders {
         let sdkApiKey = value.isEmpty ? "" : value
         return ["\(headerKey)": sdkApiKey,
+                "x-platform-code": "ios",
+                "x-version-code": BuildManager.buildVersion,
+                "x-sdk-source": "feed",
                 "Cookie":""]
     }
     
