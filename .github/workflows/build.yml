@@ -1,0 +1,70 @@
+name: Build and store xcframework
+
+on: 
+  push: 
+    branches: master
+
+permissions: write-all
+
+jobs:
+  build:
+    name: Build and store xcframework
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: check Xcode version
+        run: /usr/bin/xcodebuild -version
+
+      - name: CocoaPod Install
+        run: pod install
+
+      - name: Build archives
+        run: |
+          xcodebuild archive \
+          -workspace LikeMindsFeed.xcworkspace \
+          -scheme LikeMindsFeed \
+          -configuration Release \
+          -sdk iphoneos \
+          -archivePath LMFeedFramework/archives/ios_devices.xcarchive \
+          BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+          SKIP_INSTALL=NO \
+          
+          xcodebuild archive \
+          -workspace LikeMindsFeed.xcworkspace \
+          -scheme LikeMindsFeed \
+          -configuration Debug \
+          -sdk iphonesimulator \
+          -archivePath LMFeedFramework/archives/ios_simulators.xcarchive \
+          BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+          SKIP_INSTALL=NO \
+
+      - name: Build xcframework
+        run: |
+          xcodebuild \
+          -create-xcframework \
+          -framework LMFeedFramework/archives/ios_devices.xcarchive/Products/Library/Frameworks/LikeMindsFeed.framework \
+          -framework LMFeedFramework/archives/ios_simulators.xcarchive/Products/Library/Frameworks/LikeMindsFeed.framework \
+          -output LikeMindsFeed.xcframework
+
+      - name: Upload xcframework files as artefact
+        uses: actions/upload-artifact@v3
+        with:
+          name: xcframework-build
+          retention-days: 90
+          path: |
+            /Users/runner/work/LikeMinds-iOS-Feed-SDK/LikeMinds-iOS-Feed-SDK/LikeMindsFeed.xcframework
+            /Users/runner/work/LikeMinds-iOS-Feed-SDK/LikeMinds-iOS-Feed-SDK/LikeMindsFeed.podspec
+
+      - name: Trigger Cocoapods Deployment Workflow
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.PAT }}" \
+            https://api.github.com/repos/pushpendralike/LikeMinds-iOS-Feed-SDK/dispatches \
+            --data '{"event_type": "cocoapods-deploy"}'
+        env:
+          PAT: ${{ secrets.PAT }}
