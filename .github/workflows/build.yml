@@ -61,6 +61,8 @@ jobs:
 
       - name: Trigger Cocoapods Deployment Workflow
         run: |
+          sleep 10 
+          
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.PAT }}" \
