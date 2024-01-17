@@ -83,6 +83,8 @@
 		F46E159C2A25BF37003C43BA /* GetCommentLikesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E154D2A25BF37003C43BA /* GetCommentLikesRequest.swift */; };
 		F46E159D2A25BF37003C43BA /* LMFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = F46E154E2A25BF37003C43BA /* LMFeed.h */; };
 		F46E159E2A25BF37003C43BA /* FileUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E15502A25BF37003C43BA /* FileUtility.swift */; };
+		F4786E692B0B7CEA0056240D /* GetCommunityConfigurationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4786E682B0B7CE90056240D /* GetCommunityConfigurationRequest.swift */; };
+		F4786E6B2B0B7DD70056240D /* GetCommunityConfigurationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4786E6A2B0B7DD70056240D /* GetCommunityConfigurationResponse.swift */; };
 		F4A933032A39060100BBE257 /* MarkReadNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933022A39060100BBE257 /* MarkReadNotificationRequest.swift */; };
 		F4A933052A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933042A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift */; };
 		F4A933072A39092100BBE257 /* GetUnreadNotificationCountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A933062A39092100BBE257 /* GetUnreadNotificationCountResponse.swift */; };
@@ -185,6 +187,8 @@
 		F46E154D2A25BF37003C43BA /* GetCommentLikesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCommentLikesRequest.swift; sourceTree = "<group>"; };
 		F46E154E2A25BF37003C43BA /* LMFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMFeed.h; sourceTree = "<group>"; };
 		F46E15502A25BF37003C43BA /* FileUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtility.swift; sourceTree = "<group>"; };
+		F4786E682B0B7CE90056240D /* GetCommunityConfigurationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommunityConfigurationRequest.swift; sourceTree = "<group>"; };
+		F4786E6A2B0B7DD70056240D /* GetCommunityConfigurationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCommunityConfigurationResponse.swift; sourceTree = "<group>"; };
 		F4A933022A39060100BBE257 /* MarkReadNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkReadNotificationRequest.swift; sourceTree = "<group>"; };
 		F4A933042A3906B700BBE257 /* LMFeedClientServiceRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LMFeedClientServiceRequest+Extension.swift"; sourceTree = "<group>"; };
 		F4A933062A39092100BBE257 /* GetUnreadNotificationCountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUnreadNotificationCountResponse.swift; sourceTree = "<group>"; };
@@ -360,6 +364,7 @@
 		F46E14F22A25BF37003C43BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F4786E672B0B7CCF0056240D /* Community */,
 				F46E15452A25BF37003C43BA /* Base */,
 				F46E14F62A25BF37003C43BA /* Comments */,
 				F46E15482A25BF37003C43BA /* CommentsLikes */,
@@ -706,6 +711,15 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		F4786E672B0B7CCF0056240D /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				F4786E682B0B7CE90056240D /* GetCommunityConfigurationRequest.swift */,
+				F4786E6A2B0B7DD70056240D /* GetCommunityConfigurationResponse.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
 		F4AA54292A4B680200AA9D2B /* Logout */ = {
 			isa = PBXGroup;
 			children = (
@@ -894,6 +908,7 @@
 				F46E15522A25BF37003C43BA /* ServiceConfiguration.swift in Sources */,
 				F4AD15852A2BCB5400B752C3 /* EditPostResponse.swift in Sources */,
 				F46E15842A25BF37003C43BA /* GetReportTagRequest.swift in Sources */,
+				F4786E692B0B7CEA0056240D /* GetCommunityConfigurationRequest.swift in Sources */,
 				F46E158E2A25BF37003C43BA /* GetPostLikeResponse.swift in Sources */,
 				F46E15672A25BF37003C43BA /* Comment.swift in Sources */,
 				F46E156B2A25BF37003C43BA /* GetCommentRequest.swift in Sources */,
@@ -944,6 +959,7 @@
 				F4E8489E2A270E0900B15666 /* String+Extension.swift in Sources */,
 				F46E157D2A25BF37003C43BA /* Post.swift in Sources */,
 				F46E15852A25BF37003C43BA /* GetReportTagResponse.swift in Sources */,
+				F4786E6B2B0B7DD70056240D /* GetCommunityConfigurationResponse.swift in Sources */,
 				F46E155E2A25BF37003C43BA /* Date+Extension.swift in Sources */,
 				F46E15972A25BF37003C43BA /* GetMemberStateResponse.swift in Sources */,
 				F46E15782A25BF37003C43BA /* AttachmentMeta.swift in Sources */,
@@ -1092,7 +1108,7 @@
 			baseConfigurationReference = 4DA5C6F47B73E5B6F9CC1003 /* Pods-LikeMindsFeed.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1105,7 +1121,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdk.LMFeed;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1120,7 +1136,7 @@
 			baseConfigurationReference = 29B0CEC1A96B4126988A2002 /* Pods-LikeMindsFeed.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1133,7 +1149,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdk.LMFeed;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

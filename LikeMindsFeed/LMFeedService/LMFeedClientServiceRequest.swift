@@ -474,8 +474,8 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getTopicFeed(_ request: TopicFeedRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<TopicFeedResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getTopicFeed(request)
-        
-        guard let url =  URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else { return }
+        let urlString = (ServiceAPI.authBaseURL + networkPath.apiURL).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        guard let url =  URL(string: urlString) else { return }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),

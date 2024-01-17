@@ -97,4 +97,4 @@ Pod::Spec.new do |spec|
 
   
   spec.dependency "Alamofire", '~> 5.7.1'
-endx``
+end
