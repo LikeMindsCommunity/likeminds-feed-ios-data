@@ -11,4 +11,5 @@ public struct EditPostResponse: Decodable {
     public let post: Post?
     public let users: [String: User]?
     public let widgets: [String: Widget]?
+    public let topics: [String: TopicFeedResponse.TopicResponse]?
 }
