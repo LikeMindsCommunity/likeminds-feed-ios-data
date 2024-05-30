@@ -32,8 +32,6 @@ final public class FeedTokenManager {
     /// Refresh token completion block
     fileprivate var refreshTokenBlock: (() -> Void)?
     private var isRefreshingToken: Bool = false
-    var accessToken: String?
-    var refreshToken: String?
     /// Restrict to create another object of this singleton class
     private init(){}
 
@@ -45,7 +43,7 @@ final public class FeedTokenManager {
     /// Refresh access token api call
     func refreshInterceptor(_ completion: @escaping ()->Void ) {
         if isRefreshingToken { return }
-        guard let refreshToken = self.refreshToken else {
+        guard let refreshToken = LMFeedTokenManager.refreshToken else {
             lmCallback?.login()
             return
         }
@@ -65,7 +63,7 @@ final public class FeedTokenManager {
     }
     
     func commonInterceptor(_ key: String = "", value: String = "") -> HTTPHeaders {
-        let accessToken = FeedTokenManager.shared.accessToken ?? ""
+        let accessToken = LMFeedTokenManager.accessToken ?? ""
         let buildVersion = BuildManager.buildVersion
         return [
             "x-platform-code": "ios",
@@ -98,12 +96,58 @@ final public class FeedTokenManager {
     }
     
     func updateToken(_ accessToken: String?, _ refreshToken: String?) {
-        self.refreshToken = refreshToken
-        self.accessToken = accessToken
+        LMFeedTokenManager.refreshToken = refreshToken
+        LMFeedTokenManager.accessToken = accessToken
     }
     
     func clearToken() {
-        self.refreshToken = nil
-        self.accessToken = nil
+        LMFeedTokenManager.refreshToken = nil
+        LMFeedTokenManager.accessToken = nil
     }
+}
+
+
+@propertyWrapper
+struct UserDefaultsBacked<Value> {
+    let key: String
+    let userDefaults: UserDefaults
+
+    init(key: String, userDefaults: UserDefaults = .standard) {
+        self.key = key
+        self.userDefaults = userDefaults
+    }
+
+    var wrappedValue: Value? {
+        get {
+            return userDefaults.object(forKey: key) as? Value
+        }
+        set {
+            if let value = newValue {
+                userDefaults.set(value, forKey: key)
+            } else {
+                userDefaults.removeObject(forKey: key)
+            }
+        }
+    }
+}
+
+struct LMFeedTokenManager {
+    @UserDefaultsBacked(key: "lmFeedAccessToken")
+    static var accessToken: String?
+    
+    @UserDefaultsBacked(key: "lmFeedRefreshToken")
+    static var refreshToken: String?
+}
+
+struct UserDetails {
+    @UserDefaultsBacked(key: "lmFeedUserDetails")
+    static var userDetails: User?
+    
+    @UserDefaultsBacked(key: "lmFeedAPIKey")
+    static var apiKey: String?
+}
+
+public struct LMFeedTokenResponse: Decodable {
+    public let accessToken: String
+    public let refreshToken: String
 }

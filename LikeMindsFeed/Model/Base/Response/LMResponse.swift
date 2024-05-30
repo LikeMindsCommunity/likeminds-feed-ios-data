@@ -22,6 +22,12 @@ public struct LMResponse<T: Decodable>: Decodable {
         self.data = nil
     }
     
+    public init(success: Bool, data: T?, errorMessage: String?) {
+        self.success = success
+        self.data = data
+        self.errorMessage = errorMessage
+    }
+    
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         success = try values.decodeIfPresent(Bool.self, forKey: .success) ?? false

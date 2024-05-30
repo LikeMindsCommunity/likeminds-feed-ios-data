@@ -57,6 +57,7 @@ struct ServiceAPIRequest {
     enum NetworkPath {
         //MARK:- SDK APIs
         case initiateChatClient(_ request: InitiateUserRequest)
+        case validateUser
         case refreshServiceToken(rtm: String)
         case pushToken(_ request: RegisterDeviceRequest)
         case getBranding(_ request: BrandingRequest)
@@ -96,7 +97,8 @@ struct ServiceAPIRequest {
             switch self {
             case .getCommunityConfiguration(let request):
                 return "community/configurations?configuration_types=\(request.configurationTypes ?? [])"
-            case .initiateChatClient:
+            case .initiateChatClient,
+                    .validateUser:
                 return "sdk/initiate"
             case .refreshServiceToken:
                 return "user/refresh"
@@ -224,7 +226,8 @@ struct ServiceAPIRequest {
                  .getAllMembers,
                  .searchMembers,
                  .onboardingChatService,
-                 .getTopicFeed:
+                 .getTopicFeed,
+                 .validateUser:
                 return .get
             case .initiateChatClient,
                  .refreshServiceToken,

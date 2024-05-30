@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "LikeMindsFeed"
-  spec.version      = "1.7.2"
+  spec.version      = "1.7.3"
   spec.summary      = "LikeMindsFeed"
 
   # This description is used to generate tags and improve search results.
@@ -85,16 +85,15 @@ Pod::Spec.new do |spec|
   #
 
   spec.source       = { :git => "https://github.com/pushpendralike/LikeMinds-iOS-Feed-SDK.git", :tag => "#{spec.version}" }
-  spec.vendored_frameworks = "LikeMindsFeed.xcframework"
+  spec.source_files = 'LikeMindsFeed/**/*.swift'
+  # spec.vendored_frameworks = "LikeMindsFeed.xcframework"
   spec.swift_version = "5"
 
-  spec.pod_target_xcconfig = {
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-  }
-  spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  # spec.pod_target_xcconfig = {
+  #   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  # }
+  # spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   spec.framework  = "Foundation"
-
-  
   spec.dependency "Alamofire", '~> 5.7.1'
 end

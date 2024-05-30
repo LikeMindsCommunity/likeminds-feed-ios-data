@@ -7,9 +7,15 @@
 
 import Foundation
 
+public protocol LMFeedSDKCallback: AnyObject {
+    func onAccessTokenExpiredAndRefreshed(accessToken: String, refreshToken: String)
+    func onRefreshTokenExpired() -> (accessToken: String, refreshToken: String)?
+}
+
 public class LMFeedClient {
     let moduleName = "LMFeedClient-SDK"
     public private(set) static var shared = LMFeedClient()
+    weak private(set) var tokenManager: LMFeedSDKCallback?
     
     private init() {}
     
@@ -31,4 +37,29 @@ public class LMFeedClient {
         return Self.shared
     }
     
+    public func getTokens() -> LMResponse<LMFeedTokenResponse> {
+        guard let accessToken = LMFeedTokenManager.accessToken,
+              let refreshToken = LMFeedTokenManager.refreshToken,
+              !accessToken.isEmpty,
+              !refreshToken.isEmpty else { return .failureResponse("Tokens not found") }
+        
+        let tokens = LMFeedTokenResponse(accessToken: accessToken, refreshToken: refreshToken)
+        
+        return .init(success: true, data: tokens, errorMessage: nil)
+    }
+    
+    public func setTokenManager(with tokenManager: LMFeedSDKCallback) {
+        self.tokenManager = tokenManager
+    }
+    
+    public func getAPIKey() -> LMResponse<String> {
+        guard let apiKey = UserDetails.apiKey,
+              !apiKey.isEmpty else { return .failureResponse("API Key not found") }
+        
+        return .init(success: true, data: apiKey, errorMessage: nil)
+    }
+    
+    public func getUserDetails() -> User? {
+        UserDetails.userDetails
+    }
 }

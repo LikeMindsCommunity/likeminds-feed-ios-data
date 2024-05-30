@@ -11,26 +11,17 @@ import UIKit
 public typealias LMFeedClientResponse<T: Decodable> = (LMResponse<T>) -> (Void)
 
 extension LMFeedClient {
-    
-    func initialize() {
-    }
-    
-    func saveExtrasValuesInLocalPreferences(extras: LMChatClient) {
-        let preferences = PreferencesFactory.userPreferences()
-        preferences.put(extras.getApiKey(), forKey: kPrefSdkApiKey)
-        if let deviceId = extras.getDeviceId() {
-            preferences.put(deviceId, forKey: kPrefDeviceUDID)
-        }
-        if let domain = extras.getDomainUrl() {
-            preferences.put(domain, forKey: kPrefDomainUrl)
-        }
-        _ = preferences.save()
-    }
-    
     public func initiateUser(request: InitiateUserRequest, response: LMFeedClientResponse<InitiateUserResponse>?) {
         FeedClientServiceRequest.initiateChatService(request, withModuleName: moduleName) { result in
-            FeedTokenManager.shared.accessToken = result.data?.accessToken
-            FeedTokenManager.shared.refreshToken = result.data?.refreshToken
+            if result.success {
+                if result.data?.appAccess == true {
+                    UserDetails.apiKey = request.apiKey
+                    UserDetails.userDetails = result.data?.user
+                    LMFeedTokenManager.accessToken = result.data?.accessToken
+                    LMFeedTokenManager.refreshToken = result.data?.refreshToken
+                }
+            }
+            
             response?(result)
         }
     }
@@ -221,6 +212,19 @@ extension LMFeedClient {
     
     public func getCommunityConfiguration(_ request: GetCommunityConfigurationRequest, _ response: LMFeedClientResponse<GetCommunityConfigurationResponse>?) {
         LMFeedClientServiceRequest.getCommunityConfiguration(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func validateUser(_ request: ValidateUserRequest, response: LMFeedClientResponse<ValidateUserResponse>?) {
+        LMFeedClientServiceRequest.validateUser(request, withModuleName: moduleName) { result in
+            if result.success {
+                if result.data?.appAccess == true {
+                    UserDetails.userDetails = result.data?.user
+                    LMFeedTokenManager.accessToken = request.accessToken
+                    LMFeedTokenManager.refreshToken = request.refreshToken
+                }
+            }
             response?(result)
         }
     }

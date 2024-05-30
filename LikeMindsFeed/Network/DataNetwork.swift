@@ -9,15 +9,9 @@
 import Foundation
 import Alamofire
 
-extension Data
-{
-    func jsonString() -> String
-    {
-        if let JSONString = String(data: self, encoding: String.Encoding.utf8)
-        {
-            return JSONString
-        }
-        return "Error in parsing"
+extension Data {
+    func jsonString() -> String {
+        String(data: self, encoding: String.Encoding.utf8) ?? "Error in parsing"
     }
     
     var prettyPrintedJSONString: NSString? { /// NSString gives us a nice sanitized debugDescription
@@ -141,9 +135,7 @@ internal final class DataNetwork {
             print("\n===Response End===\n")
             let jsondataString = responseData.jsonString()
             if let httpResponse = response.response,
-               httpResponse.statusCode == 401,
-               jsondataString.range(of: "Invalid LTM!") != nil
-            {
+               httpResponse.statusCode == 401 {
                 lmLog("response - \(String(describing: jsondataString))")
                 FeedTokenManager.shared.refreshInterceptor {[weak self] in
                     self?.request(for: url, withHTTPMethod: httpMethod, headers: ServiceRequest.httpHeaders(), withParameters: parameters, withEncoding: encoding, withModuleName: moduleName, successCallback: successCallback, failureCallback: failureCallback)

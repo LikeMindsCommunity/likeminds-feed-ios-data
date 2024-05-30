@@ -493,4 +493,35 @@ class LMFeedClientServiceRequest: ServiceRequest {
             response?(LMResponse.failureResponse(error.localizedDescription))
         }
     }
+    
+    static func validateUser(_ request: ValidateUserRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<ValidateUserResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.validateUser
+        
+        guard let urlString = (ServiceAPI.authBaseURL + networkPath.apiURL).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: urlString) else { return }
+        
+        var headers = ServiceRequest.httpHeaders()
+        headers["Authorization"] = "Bearer \(request.accessToken)"
+        
+        DataNetwork.shared.request(
+            for: url,
+            withHTTPMethod: networkPath.httpMethod,
+            headers: headers,
+            withEncoding: networkPath.encoding,
+            withModuleName: moduleName) { (_, responseData) in
+                guard let data = responseData as? Data else {
+                    response?(LMResponse.failureResponse("Unable to convert to Data"))
+                    return
+                }
+                
+                do {
+                    let result = try JSONDecoder().decode(LMResponse<ValidateUserResponse>.self, from: data)
+                    response?(result)
+                } catch let error {
+                    response?(LMResponse.failureResponse(error.localizedDescription))
+                }
+            } failureCallback: { moduleName, error in
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+    }
 }
