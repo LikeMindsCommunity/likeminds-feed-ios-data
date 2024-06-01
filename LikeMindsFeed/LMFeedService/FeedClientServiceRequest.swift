@@ -16,8 +16,8 @@ class FeedClientServiceRequest: ServiceRequest {
         var parameters: [String: Any] = networkPath.parameters ?? [:]
         
         // Doing this for API Key Security Testing
-        parameters["token_expiry_beta"] = 2
-        parameters["rtm_token_expiry_beta"] = 3
+        parameters["token_expiry_beta"] = 1
+        parameters["rtm_token_expiry_beta"] = 2
         
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,

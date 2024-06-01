@@ -32,7 +32,11 @@ final public class FeedTokenManager {
     private var refreshTokenBlock: [((String?) -> Void)?] = []
     
     private var isRefreshingToken: Bool = false
-    private var isRefreshAccessToken: Bool = false
+    private var isRefreshAccessToken: Bool = false {
+        didSet {
+            
+        }
+    }
     
     /// Restrict to create another object of this singleton class
     private init(){}
@@ -41,12 +45,13 @@ final public class FeedTokenManager {
     func onRefreshTokenExpired() {
         if isRefreshingToken { return }
         
-        isRefreshingToken.toggle()
+        isRefreshingToken = true
         clearToken()
         
         LMFeedClient.tokenManager?.onRefreshTokenExpired { [weak self] tokens in
             guard let tokens else {
-                self?.isRefreshingToken.toggle()
+                self?.isRefreshAccessToken = false
+                self?.isRefreshingToken = false
                 self?.refreshTokenBlock.removeAll()
                 return
             }
@@ -57,7 +62,8 @@ final public class FeedTokenManager {
                 com?(tokens.accessToken)
             }
             self?.refreshTokenBlock.removeAll()
-            self?.isRefreshingToken.toggle()
+            self?.isRefreshAccessToken = false
+            self?.isRefreshingToken = false
         }
     }
     
@@ -66,15 +72,13 @@ final public class FeedTokenManager {
         
         if isRefreshAccessToken { return }
         
-        isRefreshAccessToken.toggle()
+        isRefreshAccessToken = true
         
         LMFeedClient.shared.refreshAccessToken { [weak self] response in
-            
-            
             guard response.success,
                   let accessToken = response.data?.accessToken,
                   let refreshToken = response.data?.refreshToken else {
-                self?.isRefreshAccessToken.toggle()
+                self?.isRefreshAccessToken = false
                 return
             }
             
@@ -86,7 +90,7 @@ final public class FeedTokenManager {
             self?.refreshTokenBlock.removeAll()
             
             LMFeedClient.tokenManager?.onAccessTokenExpiredAndRefreshed(accessToken: accessToken, refreshToken: refreshToken)
-            self?.isRefreshAccessToken.toggle()
+            self?.isRefreshAccessToken = false
         }
     }
     
