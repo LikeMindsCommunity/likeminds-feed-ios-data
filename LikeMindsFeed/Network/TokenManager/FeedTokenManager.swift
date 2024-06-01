@@ -27,71 +27,66 @@ public extension LMCallback {
 final public class FeedTokenManager {
     /// Singleton object property
     public private(set) static var shared = FeedTokenManager()
-    /// Token manager callback
-    private weak var lmCallback: LMCallback?
+    
     /// Refresh token completion block
-    fileprivate var refreshTokenBlock: (() -> Void)?
+    private var refreshTokenBlock: [((String?) -> Void)?] = []
+    
     private var isRefreshingToken: Bool = false
+    private var isRefreshAccessToken: Bool = false
+    
     /// Restrict to create another object of this singleton class
     private init(){}
-
-    public func lmCallback(_ lmCallback: LMCallback) -> FeedTokenManager {
-        Self.shared.lmCallback = lmCallback
-        return Self.shared
-    }
-
-    /// Refresh access token api call
-    func refreshInterceptor(_ completion: @escaping ()->Void ) {
+    
+    /// Fetch New Pair of Tokens
+    func onRefreshTokenExpired() {
         if isRefreshingToken { return }
-        guard let refreshToken = LMFeedTokenManager.refreshToken else {
-            lmCallback?.login()
-            return
-        }
-        self.refreshTokenBlock = completion
-        self.isRefreshingToken = true
-        self.refreshAccessToken(refreshToken: refreshToken, withModuleName: "Token-Manager") { [weak self] response in
-            guard let initiateResponse = response.data, response.errorMessage == nil else {
-                self?.clearToken()
-                self?.isRefreshingToken = false
-                self?.lmCallback?.login()
+        
+        isRefreshingToken.toggle()
+        clearToken()
+        
+        LMFeedClient.tokenManager?.onRefreshTokenExpired { [weak self] tokens in
+            guard let tokens else {
+                self?.isRefreshingToken.toggle()
+                self?.refreshTokenBlock.removeAll()
                 return
             }
-            self?.updateToken(initiateResponse.accessToken, initiateResponse.refreshToken)
-            self?.isRefreshingToken = false
-            completion()
+            
+            self?.updateToken(tokens.accessToken, tokens.refreshToken)
+            
+            self?.refreshTokenBlock.forEach { com in
+                com?(tokens.accessToken)
+            }
+            self?.refreshTokenBlock.removeAll()
+            self?.isRefreshingToken.toggle()
         }
     }
     
-    func commonInterceptor(_ key: String = "", value: String = "") -> HTTPHeaders {
-        let accessToken = LMFeedTokenManager.accessToken ?? ""
-        let buildVersion = BuildManager.buildVersion
-        return [
-            "x-platform-code": "ios",
-            "x-version-code": buildVersion,
-            "Cookie":"",
-            "x-sdk-source": "feed",
-            "Authorization": "Bearer " + accessToken
-        ]
-    }
-    
-    private func refreshAccessToken(refreshToken: String, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken(rtm: "")
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
-        DataNetwork.shared.request(for: url,
-                                   withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: refreshToken),
-                                   withParameters: networkPath.parameters,
-                                   withEncoding: networkPath.encoding,
-                                   withModuleName: moduleName) { (moduleName, responseData) in
-            guard let data = responseData as? Data else {return}
-            do {
-                let result = try JSONDecoder().decode(LMResponse<InitiateUserResponse>.self, from: data)
-                response?(result)
-            } catch let error {
-                response?(LMResponse.failureResponse(error.localizedDescription))
+    func refreshAccessToken(_ completion: @escaping (String?)->Void) {
+        refreshTokenBlock.append(completion)
+        
+        if isRefreshAccessToken { return }
+        
+        isRefreshAccessToken.toggle()
+        
+        LMFeedClient.shared.refreshAccessToken { [weak self] response in
+            
+            
+            guard response.success,
+                  let accessToken = response.data?.accessToken,
+                  let refreshToken = response.data?.refreshToken else {
+                self?.isRefreshAccessToken.toggle()
+                return
             }
-        } failureCallback: { (moduleName, error) in
-            response?(LMResponse.failureResponse(error.localizedDescription))
+            
+            self?.updateToken(accessToken, refreshToken)
+            
+            self?.refreshTokenBlock.forEach { com in
+                com?(accessToken)
+            }
+            self?.refreshTokenBlock.removeAll()
+            
+            LMFeedClient.tokenManager?.onAccessTokenExpiredAndRefreshed(accessToken: accessToken, refreshToken: refreshToken)
+            self?.isRefreshAccessToken.toggle()
         }
     }
     
@@ -108,7 +103,7 @@ final public class FeedTokenManager {
 
 
 @propertyWrapper
-struct UserDefaultsBacked<Value> {
+struct UserDefaultsBacked<Value: Codable> {
     let key: String
     let userDefaults: UserDefaults
 
@@ -119,14 +114,22 @@ struct UserDefaultsBacked<Value> {
 
     var wrappedValue: Value? {
         get {
-            return userDefaults.object(forKey: key) as? Value
+            guard let data = userDefaults.data(forKey: key) else {
+                return nil
+            }
+            let decoder = JSONDecoder()
+            return try? decoder.decode(Value.self, from: data)
         }
         set {
-            if let value = newValue {
-                userDefaults.set(value, forKey: key)
+            let encoder = JSONEncoder()
+            if let value = newValue, 
+                let data = try? encoder.encode(value) {
+                userDefaults.set(data, forKey: key)
             } else {
                 userDefaults.removeObject(forKey: key)
             }
+            
+            userDefaults.synchronize()
         }
     }
 }

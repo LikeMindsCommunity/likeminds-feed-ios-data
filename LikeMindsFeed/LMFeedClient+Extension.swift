@@ -17,8 +17,7 @@ extension LMFeedClient {
                 if result.data?.appAccess == true {
                     UserDetails.apiKey = request.apiKey
                     UserDetails.userDetails = result.data?.user
-                    LMFeedTokenManager.accessToken = result.data?.accessToken
-                    LMFeedTokenManager.refreshToken = result.data?.refreshToken
+                    FeedTokenManager.shared.updateToken(result.data?.accessToken, result.data?.refreshToken)
                 }
             }
             
@@ -217,15 +216,45 @@ extension LMFeedClient {
     }
     
     public func validateUser(_ request: ValidateUserRequest, response: LMFeedClientResponse<ValidateUserResponse>?) {
+        FeedTokenManager.shared.updateToken(request.accessToken, request.refreshToken)
+        
         LMFeedClientServiceRequest.validateUser(request, withModuleName: moduleName) { result in
             if result.success {
                 if result.data?.appAccess == true {
                     UserDetails.userDetails = result.data?.user
-                    LMFeedTokenManager.accessToken = request.accessToken
-                    LMFeedTokenManager.refreshToken = request.refreshToken
                 }
             }
             response?(result)
+        }
+    }
+    
+    func refreshAccessToken(_ response: LMFeedClientResponse<InitiateUserResponse>?) {
+        guard let refreshToken = LMFeedTokenManager.refreshToken else {
+            response?(.failureResponse("Unable To Fetch Refresh Token"))
+            return
+        }
+        
+        let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        
+        var parameters: [String: Any] = [:]
+        parameters["token_expiry_beta"] = 1
+        
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: refreshToken),
+                                   withParameters: parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<InitiateUserResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
         }
     }
 }

@@ -58,7 +58,7 @@ struct ServiceAPIRequest {
         //MARK:- SDK APIs
         case initiateChatClient(_ request: InitiateUserRequest)
         case validateUser
-        case refreshServiceToken(rtm: String)
+        case refreshServiceToken
         case pushToken(_ request: RegisterDeviceRequest)
         case getBranding(_ request: BrandingRequest)
         case onboardingChatService

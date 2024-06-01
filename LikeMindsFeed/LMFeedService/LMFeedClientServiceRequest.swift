@@ -524,4 +524,8 @@ class LMFeedClientServiceRequest: ServiceRequest {
                 response?(LMResponse.failureResponse(error.localizedDescription))
             }
     }
+    
+    static func refreshAccessToken() {
+        
+    }
 }

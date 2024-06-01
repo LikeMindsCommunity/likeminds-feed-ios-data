@@ -9,27 +9,18 @@ import Foundation
 
 public protocol LMFeedSDKCallback: AnyObject {
     func onAccessTokenExpiredAndRefreshed(accessToken: String, refreshToken: String)
-    func onRefreshTokenExpired() -> (accessToken: String, refreshToken: String)?
+    func onRefreshTokenExpired(_ completionHandler: (((accessToken: String, refreshToken: String)?) -> Void)?)
 }
 
 public class LMFeedClient {
     let moduleName = "LMFeedClient-SDK"
     public private(set) static var shared = LMFeedClient()
-    weak private(set) var tokenManager: LMFeedSDKCallback?
+    static weak private(set) var tokenManager: LMFeedSDKCallback?
     
     private init() {}
     
     public static func builder() -> LMFeedClient {
         Self.shared = LMFeedClient()
-        return Self.shared
-    }
-    
-    public func lmCallback(_ lmCallback: LMCallback?) -> LMFeedClient {
-        guard let lmCallback = lmCallback else {
-            print("--No lmCallback--")
-            return Self.shared
-        }
-        let _ = FeedTokenManager.shared.lmCallback(lmCallback)
         return Self.shared
     }
     
@@ -49,7 +40,7 @@ public class LMFeedClient {
     }
     
     public func setTokenManager(with tokenManager: LMFeedSDKCallback) {
-        self.tokenManager = tokenManager
+        Self.tokenManager = tokenManager
     }
     
     public func getAPIKey() -> LMResponse<String> {
