@@ -34,8 +34,7 @@ public class Attachment: Codable {
         self.attachmentMeta = try container.decodeIfPresent(AttachmentMeta.self, forKey: .attachmentMeta)
     }
     
-    public init() {
-    }
+    public init() { }
     
     public func attachmentMeta(_ attachmentMeta: AttachmentMeta) -> Attachment {
         self.attachmentMeta = attachmentMeta

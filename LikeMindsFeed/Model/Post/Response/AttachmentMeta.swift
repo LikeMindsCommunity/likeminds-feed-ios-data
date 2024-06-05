@@ -18,10 +18,15 @@ public class AttachmentMeta: Codable {
     public private(set) var body: String?
     public private(set) var entityID: String?
     public private(set) var thumbnailUrl: String?
+    public private(set) var expiryTime: Double?
+    public private(set) var pollOptions: [String]?
+    public private(set) var multiSelectState: String = "exactly"
+    public private(set) var pollType = "instant"
+    public private(set) var multSelectNo: Int = 1
+    public private(set) var isAnonymous: Bool = false
+    public private(set) var allowAddOptions: Bool = false
     
-    
-    public init() {
-    }
+    public init() { }
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -37,7 +42,13 @@ public class AttachmentMeta: Codable {
         self.body = try container.decodeIfPresent(String.self, forKey: .body)
         self.coverImageUrl = try container.decodeIfPresent(String.self, forKey: .coverImageUrl)
         self.thumbnailUrl = try container.decodeIfPresent(String.self, forKey: .thumbnailUrl)
-        
+        self.expiryTime = try container.decodeIfPresent(Double.self, forKey: .expiryTime)
+        self.pollOptions = try container.decodeIfPresent([String].self, forKey: .pollOptions)
+        self.multiSelectState = try container.decodeIfPresent(String.self, forKey: .multiSelectState) ?? "exactly"
+        self.pollType = try container.decodeIfPresent(String.self, forKey: .pollType) ?? "instant"
+        self.multSelectNo = try container.decodeIfPresent(Int.self, forKey: .multSelectNo) ?? 1
+        self.isAnonymous = try container.decodeIfPresent(Bool.self, forKey: .isAnonymous) ?? false
+        self.allowAddOptions = try container.decodeIfPresent(Bool.self, forKey: .allowAddOptions) ?? false
     }
     
     enum CodingKeys: String, CodingKey {
@@ -49,6 +60,13 @@ public class AttachmentMeta: Codable {
         case coverImageUrl = "cover_image_url"
         case entityID = "entity_id"
         case thumbnailUrl = "thumbnail_url"
+        case expiryTime = "expiry_time"
+        case pollOptions = "options"
+        case multiSelectState = "multiple_select_state"
+        case pollType = "poll_type"
+        case multSelectNo = "multiple_select_number"
+        case isAnonymous = "is_anonymous"
+        case allowAddOptions = "allow_add_options"
     }
     
     public func attachmentUrl(_ attachmentUrl: String) -> AttachmentMeta {
@@ -111,13 +129,48 @@ public class AttachmentMeta: Codable {
         return self
     }
     
+    public func expiryTime(_ expiryTime: Double) -> AttachmentMeta {
+        self.expiryTime = expiryTime
+        return self
+    }
+
+    public func pollOptions(_ pollOptions: [String]) -> AttachmentMeta {
+        self.pollOptions = pollOptions
+        return self
+    }
+
+    public func multiSelectState(_ multiSelectState: String) -> AttachmentMeta {
+        self.multiSelectState = multiSelectState
+        return self
+    }
+
+    public func pollType(_ pollType: String) -> AttachmentMeta {
+        self.pollType = pollType
+        return self
+    }
+
+    public func multSelectNo(_ multSelectNo: Int) -> AttachmentMeta {
+        self.multSelectNo = multSelectNo
+        return self
+    }
+
+    public func isAnonymous(_ isAnonymous: Bool) -> AttachmentMeta {
+        self.isAnonymous = isAnonymous
+        return self
+    }
+
+    public func allowAddOptions(_ allowAddOptions: Bool) -> AttachmentMeta {
+        self.allowAddOptions = allowAddOptions
+        return self
+    }
+    
     public func attachmentMetaData() -> AttachmentMeta {
         do {
             guard let url = URL(string: attachmentUrl ?? "") else {
                 return self
             }
             let attachmentData = try Data(contentsOf: url)
-            self.size = attachmentData.count/1000
+            self.size = attachmentData.count / 1000
         } catch let error {
             print(error)
         }
