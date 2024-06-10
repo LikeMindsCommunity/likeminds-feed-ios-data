@@ -66,7 +66,7 @@ public class AttachmentMeta: Codable {
         case pollType = "poll_type"
         case multSelectNo = "multiple_select_number"
         case isAnonymous = "is_anonymous"
-        case allowAddOptions = "allow_add_options"
+        case allowAddOptions = "allow_add_option"
     }
     
     public func attachmentUrl(_ attachmentUrl: String) -> AttachmentMeta {
