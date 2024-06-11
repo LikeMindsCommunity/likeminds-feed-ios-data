@@ -18,7 +18,7 @@ public class AttachmentMeta: Codable {
     public private(set) var body: String?
     public private(set) var entityID: String?
     public private(set) var thumbnailUrl: String?
-    public private(set) var expiryTime: Double?
+    public private(set) var expiryTime: Int?
     public private(set) var pollOptions: [String]?
     public private(set) var multiSelectState: String = "exactly"
     public private(set) var pollType = "instant"
@@ -42,7 +42,7 @@ public class AttachmentMeta: Codable {
         self.body = try container.decodeIfPresent(String.self, forKey: .body)
         self.coverImageUrl = try container.decodeIfPresent(String.self, forKey: .coverImageUrl)
         self.thumbnailUrl = try container.decodeIfPresent(String.self, forKey: .thumbnailUrl)
-        self.expiryTime = try container.decodeIfPresent(Double.self, forKey: .expiryTime)
+        self.expiryTime = try container.decodeIfPresent(Int.self, forKey: .expiryTime)
         self.pollOptions = try container.decodeIfPresent([String].self, forKey: .pollOptions)
         self.multiSelectState = try container.decodeIfPresent(String.self, forKey: .multiSelectState) ?? "exactly"
         self.pollType = try container.decodeIfPresent(String.self, forKey: .pollType) ?? "instant"
@@ -129,7 +129,7 @@ public class AttachmentMeta: Codable {
         return self
     }
     
-    public func expiryTime(_ expiryTime: Double) -> AttachmentMeta {
+    public func expiryTime(_ expiryTime: Int) -> AttachmentMeta {
         self.expiryTime = expiryTime
         return self
     }
