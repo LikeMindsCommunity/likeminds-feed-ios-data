@@ -134,4 +134,62 @@ extension LMFeedClientServiceRequest {
             response?(LMResponse.failureResponse(error.localizedDescription))
         }
     }
+    
+    static func submitPollVote(_ request: SubmitPollVoteRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.submitVote(request)
+        
+        guard let url = URL(string: "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)") else {
+            response?(.failureResponse("Invalid Request"))
+            return
+        }
+        
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (_, responseData) in
+            guard let data = responseData as? Data else { return }
+            
+            do {
+                let result = try JSONDecoder().decode(LMResponse<NoData>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { moduleName, error in
+            response?(LMResponse.failureResponse(error.localizedDescription))
+        }
+    }
+    
+    
+    static func addPollOption(_ request: AddPollOptionRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<AddPollOptionResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.addPollOption(request)
+        
+        guard let url = URL(string: "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)") else {
+            response?(.failureResponse("Invalid Request"))
+            return
+        }
+        
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (_, responseData) in
+            guard let data = responseData as? Data else {
+                response?(.failureResponse("Unable to parse Data"))
+                return
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(LMResponse<AddPollOptionResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { moduleName, error in
+            response?(.failureResponse(error.localizedDescription))
+        }
+    }
 }

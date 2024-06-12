@@ -224,4 +224,16 @@ extension LMFeedClient {
             response?(result)
         }
     }
+    
+    public func submitPollVoteRequest(_ request: SubmitPollVoteRequest, _ response: LMFeedClientResponse<NoData>?) {
+        LMFeedClientServiceRequest.submitPollVote(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func addPollOption(_ request: AddPollOptionRequest, _ response: LMFeedClientResponse<AddPollOptionResponse>?) {
+        LMFeedClientServiceRequest.addPollOption(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
 }

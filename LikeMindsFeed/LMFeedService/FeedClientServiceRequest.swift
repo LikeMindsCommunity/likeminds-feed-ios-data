@@ -94,5 +94,4 @@ class FeedClientServiceRequest: ServiceRequest {
             response?(LMResponse.failureResponse(error.localizedDescription))
         }
     }
-    
 }
