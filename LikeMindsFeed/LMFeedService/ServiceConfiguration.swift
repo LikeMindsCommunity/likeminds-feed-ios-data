@@ -93,6 +93,7 @@ struct ServiceAPIRequest {
         case getCommunityConfiguration(_ request: GetCommunityConfigurationRequest)
         case submitVote(_ request: SubmitPollVoteRequest)
         case addPollOption(_ request: AddPollOptionRequest)
+        case getPollVotes(_ request: GetPollVotesRequest)
         
         var apiURL: String {
             switch self {
@@ -211,6 +212,9 @@ struct ServiceAPIRequest {
                 guard let pollID = request.pollID,
                       request.pollText != nil else { return "" }
                 return "poll/\(pollID)"
+            case .getPollVotes(let request):
+                guard let pollID = request.pollID else { return "" }
+                return "poll/\(pollID)/vote?votes=\(request.options)&page=\(request.page)&page_size=\(request.pageSize)"
             }
         }
 
@@ -233,7 +237,8 @@ struct ServiceAPIRequest {
                  .getAllMembers,
                  .searchMembers,
                  .onboardingChatService,
-                 .getTopicFeed:
+                 .getTopicFeed,
+                 .getPollVotes:
                 return .get
             case .initiateChatClient,
                  .refreshServiceToken,

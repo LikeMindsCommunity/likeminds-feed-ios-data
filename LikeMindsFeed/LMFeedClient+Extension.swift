@@ -236,4 +236,10 @@ extension LMFeedClient {
             response?(result)
         }
     }
+    
+    public func getPollVotes(_ request: GetPollVotesRequest, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
+        LMFeedClientServiceRequest.getPollVotes(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
 }

@@ -192,4 +192,36 @@ extension LMFeedClientServiceRequest {
             response?(.failureResponse(error.localizedDescription))
         }
     }
+    
+    static func getPollVotes(_ request: GetPollVotesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.getPollVotes(request)
+        
+        let path = "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: path ?? "") else {
+            response?(.failureResponse("Invalid Request"))
+            return
+        }
+        
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpHeaders(),
+                                   withParameters: nil,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (_, responseData) in
+            guard let data = responseData as? Data else {
+                response?(.failureResponse("Unable to parse Data"))
+                return
+            }
+            
+            do {
+                let result = try JSONDecoder().decode(LMResponse<GetPollVotesResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { moduleName, error in
+            response?(.failureResponse(error.localizedDescription))
+        }
+    }
 }
