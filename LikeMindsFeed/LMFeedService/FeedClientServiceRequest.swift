@@ -13,16 +13,10 @@ class FeedClientServiceRequest: ServiceRequest {
         let networkPath = ServiceAPIRequest.NetworkPath.initiateChatClient(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         
-        var parameters: [String: Any] = networkPath.parameters ?? [:]
-        
-        // Doing this for API Key Security Testing
-        parameters["token_expiry_beta"] = 1
-        parameters["rtm_token_expiry_beta"] = 2
-        
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpSdkHeaders(value: request.apiKey ?? ""),
-                                   withParameters: parameters,
+                                   withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
             guard let data = responseData as? Data else {return}

@@ -317,7 +317,6 @@ class LMFeedClientServiceRequest: ServiceRequest {
                 let result = try JSONDecoder().decode(LMResponse<GetMemberStateResponse>.self, from: data)
                 response?(result)
             } catch let error {
-                print(error)
                 response?(LMResponse.failureResponse(error.localizedDescription))
             }
         } failureCallback: { (moduleName, error) in

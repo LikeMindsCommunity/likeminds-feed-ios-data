@@ -151,6 +151,11 @@ extension LMFeedClient {
     
     public func logout(request: LogoutRequest, response: LMFeedClientResponse<NoData>?) {
         FeedClientServiceRequest.logout(request: request, withModuleName: moduleName) { result in
+            if result.success {
+                /// Clearing Tokens if logout is successful
+                FeedTokenManager.shared.clearToken()
+            }
+            
             response?(result)
         }
     }
@@ -235,15 +240,12 @@ extension LMFeedClient {
         }
         
         let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
-        
-        var parameters: [String: Any] = [:]
-        parameters["token_expiry_beta"] = 1
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else { return }
         
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: refreshToken),
-                                   withParameters: parameters,
+                                   withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
             guard let data = responseData as? Data else {return}

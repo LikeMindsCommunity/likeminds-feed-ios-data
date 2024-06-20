@@ -32,11 +32,7 @@ final public class FeedTokenManager {
     private var refreshTokenBlock: [((String?) -> Void)?] = []
     
     private var isRefreshingToken: Bool = false
-    private var isRefreshAccessToken: Bool = false {
-        didSet {
-            
-        }
-    }
+    private var isRefreshAccessToken: Bool = false
     
     /// Restrict to create another object of this singleton class
     private init(){}
@@ -103,58 +99,4 @@ final public class FeedTokenManager {
         LMFeedTokenManager.refreshToken = nil
         LMFeedTokenManager.accessToken = nil
     }
-}
-
-
-@propertyWrapper
-struct UserDefaultsBacked<Value: Codable> {
-    let key: String
-    let userDefaults: UserDefaults
-
-    init(key: String, userDefaults: UserDefaults = .standard) {
-        self.key = key
-        self.userDefaults = userDefaults
-    }
-
-    var wrappedValue: Value? {
-        get {
-            guard let data = userDefaults.data(forKey: key) else {
-                return nil
-            }
-            let decoder = JSONDecoder()
-            return try? decoder.decode(Value.self, from: data)
-        }
-        set {
-            let encoder = JSONEncoder()
-            if let value = newValue, 
-                let data = try? encoder.encode(value) {
-                userDefaults.set(data, forKey: key)
-            } else {
-                userDefaults.removeObject(forKey: key)
-            }
-            
-            userDefaults.synchronize()
-        }
-    }
-}
-
-struct LMFeedTokenManager {
-    @UserDefaultsBacked(key: "lmFeedAccessToken")
-    static var accessToken: String?
-    
-    @UserDefaultsBacked(key: "lmFeedRefreshToken")
-    static var refreshToken: String?
-}
-
-struct UserDetails {
-    @UserDefaultsBacked(key: "lmFeedUserDetails")
-    static var userDetails: User?
-    
-    @UserDefaultsBacked(key: "lmFeedAPIKey")
-    static var apiKey: String?
-}
-
-public struct LMFeedTokenResponse: Decodable {
-    public let accessToken: String
-    public let refreshToken: String
 }
