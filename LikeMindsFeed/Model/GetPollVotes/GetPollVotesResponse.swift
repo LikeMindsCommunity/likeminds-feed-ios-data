@@ -9,8 +9,8 @@ import Foundation
 
 public struct GetPollVotesResponse: Decodable {
     public struct Vote: Decodable {
-        let id: String?
-        let users: [String]?
+        public let id: String?
+        public let users: [String]?
 
         enum CodingKeys: String, CodingKey {
             case id = "_id"
