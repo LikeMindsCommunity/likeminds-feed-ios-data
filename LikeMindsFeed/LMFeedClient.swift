@@ -7,9 +7,15 @@
 
 import Foundation
 
+public protocol LMFeedSDKCallback: AnyObject {
+    func onAccessTokenExpiredAndRefreshed(accessToken: String, refreshToken: String)
+    func onRefreshTokenExpired(_ completionHandler: (((accessToken: String, refreshToken: String)?) -> Void)?)
+}
+
 public class LMFeedClient {
     let moduleName = "LMFeedClient-SDK"
     public private(set) static var shared = LMFeedClient()
+    static weak private(set) var tokenManager: LMFeedSDKCallback?
     
     private init() {}
     
@@ -18,17 +24,33 @@ public class LMFeedClient {
         return Self.shared
     }
     
-    public func lmCallback(_ lmCallback: LMCallback?) -> LMFeedClient {
-        guard let lmCallback = lmCallback else {
-            print("--No lmCallback--")
-            return Self.shared
-        }
-        let _ = FeedTokenManager.shared.lmCallback(lmCallback)
-        return Self.shared
-    }
-    
     public func build() -> LMFeedClient {
         return Self.shared
     }
     
+    public func getTokens() -> LMResponse<LMFeedTokenResponse> {
+        guard let accessToken = LMFeedTokenManager.accessToken,
+              let refreshToken = LMFeedTokenManager.refreshToken,
+              !accessToken.isEmpty,
+              !refreshToken.isEmpty else { return .failureResponse("Tokens not found") }
+        
+        let tokens = LMFeedTokenResponse(accessToken: accessToken, refreshToken: refreshToken)
+        
+        return .init(success: true, data: tokens, errorMessage: nil)
+    }
+    
+    public func setTokenManager(with tokenManager: LMFeedSDKCallback) {
+        Self.tokenManager = tokenManager
+    }
+    
+    public func getAPIKey() -> LMResponse<String> {
+        guard let apiKey = UserDetails.apiKey,
+              !apiKey.isEmpty else { return .failureResponse("API Key not found") }
+        
+        return .init(success: true, data: apiKey, errorMessage: nil)
+    }
+    
+    public func getUserDetails() -> User? {
+        UserDetails.userDetails
+    }
 }

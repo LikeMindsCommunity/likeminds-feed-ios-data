@@ -18,20 +18,14 @@ public extension LikeMindsCallback {
 }
 
 public class LMClient {
-    
     public static let shared = LMClient()
     private let moduleName = "LMClient-Core"
     
     private init() {}
-    
-    
     
     public func getBranding(request: BrandingRequest, response: LMFeedClientResponse<BrandingResponse>?) {
         FeedClientServiceRequest.getBranding(request: request, withModuleName: moduleName) { result in
             response?(result)
         }
     }
-    
-    
-    
 }

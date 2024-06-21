@@ -27,83 +27,76 @@ public extension LMCallback {
 final public class FeedTokenManager {
     /// Singleton object property
     public private(set) static var shared = FeedTokenManager()
-    /// Token manager callback
-    private weak var lmCallback: LMCallback?
+    
     /// Refresh token completion block
-    fileprivate var refreshTokenBlock: (() -> Void)?
+    private var refreshTokenBlock: [((String?) -> Void)?] = []
+    
     private var isRefreshingToken: Bool = false
-    var accessToken: String?
-    var refreshToken: String?
+    private var isRefreshAccessToken: Bool = false
+    
     /// Restrict to create another object of this singleton class
     private init(){}
-
-    public func lmCallback(_ lmCallback: LMCallback) -> FeedTokenManager {
-        Self.shared.lmCallback = lmCallback
-        return Self.shared
-    }
-
-    /// Refresh access token api call
-    func refreshInterceptor(_ completion: @escaping ()->Void ) {
+    
+    /// Fetch New Pair of Tokens
+    func onRefreshTokenExpired() {
         if isRefreshingToken { return }
-        guard let refreshToken = self.refreshToken else {
-            lmCallback?.login()
-            return
-        }
-        self.refreshTokenBlock = completion
-        self.isRefreshingToken = true
-        self.refreshAccessToken(refreshToken: refreshToken, withModuleName: "Token-Manager") { [weak self] response in
-            guard let initiateResponse = response.data, response.errorMessage == nil else {
-                self?.clearToken()
+        
+        isRefreshingToken = true
+        clearToken()
+        
+        LMFeedClient.tokenManager?.onRefreshTokenExpired { [weak self] tokens in
+            guard let tokens else {
+                self?.isRefreshAccessToken = false
                 self?.isRefreshingToken = false
-                self?.lmCallback?.login()
+                self?.refreshTokenBlock.removeAll()
                 return
             }
-            self?.updateToken(initiateResponse.accessToken, initiateResponse.refreshToken)
+            
+            self?.updateToken(tokens.accessToken, tokens.refreshToken)
+            
+            self?.refreshTokenBlock.forEach { com in
+                com?(tokens.accessToken)
+            }
+            self?.refreshTokenBlock.removeAll()
+            self?.isRefreshAccessToken = false
             self?.isRefreshingToken = false
-            completion()
         }
     }
     
-    func commonInterceptor(_ key: String = "", value: String = "") -> HTTPHeaders {
-        let accessToken = FeedTokenManager.shared.accessToken ?? ""
-        let buildVersion = BuildManager.buildVersion
-        return [
-            "x-platform-code": "ios",
-            "x-version-code": buildVersion,
-            "Cookie":"",
-            "x-sdk-source": "feed",
-            "Authorization": "Bearer " + accessToken
-        ]
-    }
-    
-    private func refreshAccessToken(refreshToken: String, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken(rtm: "")
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
-        DataNetwork.shared.request(for: url,
-                                   withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: refreshToken),
-                                   withParameters: networkPath.parameters,
-                                   withEncoding: networkPath.encoding,
-                                   withModuleName: moduleName) { (moduleName, responseData) in
-            guard let data = responseData as? Data else {return}
-            do {
-                let result = try JSONDecoder().decode(LMResponse<InitiateUserResponse>.self, from: data)
-                response?(result)
-            } catch let error {
-                response?(LMResponse.failureResponse(error.localizedDescription))
+    func refreshAccessToken(_ completion: @escaping (String?)->Void) {
+        refreshTokenBlock.append(completion)
+        
+        if isRefreshAccessToken { return }
+        
+        isRefreshAccessToken = true
+        
+        LMFeedClient.shared.refreshAccessToken { [weak self] response in
+            guard response.success,
+                  let accessToken = response.data?.accessToken,
+                  let refreshToken = response.data?.refreshToken else {
+                self?.isRefreshAccessToken = false
+                return
             }
-        } failureCallback: { (moduleName, error) in
-            response?(LMResponse.failureResponse(error.localizedDescription))
+            
+            self?.updateToken(accessToken, refreshToken)
+            
+            self?.refreshTokenBlock.forEach { com in
+                com?(accessToken)
+            }
+            self?.refreshTokenBlock.removeAll()
+            
+            LMFeedClient.tokenManager?.onAccessTokenExpiredAndRefreshed(accessToken: accessToken, refreshToken: refreshToken)
+            self?.isRefreshAccessToken = false
         }
     }
     
     func updateToken(_ accessToken: String?, _ refreshToken: String?) {
-        self.refreshToken = refreshToken
-        self.accessToken = accessToken
+        LMFeedTokenManager.refreshToken = refreshToken
+        LMFeedTokenManager.accessToken = accessToken
     }
     
     func clearToken() {
-        self.refreshToken = nil
-        self.accessToken = nil
+        LMFeedTokenManager.refreshToken = nil
+        LMFeedTokenManager.accessToken = nil
     }
 }

@@ -9,15 +9,9 @@
 import Foundation
 import Alamofire
 
-extension Data
-{
-    func jsonString() -> String
-    {
-        if let JSONString = String(data: self, encoding: String.Encoding.utf8)
-        {
-            return JSONString
-        }
-        return "Error in parsing"
+extension Data {
+    func jsonString() -> String {
+        String(data: self, encoding: String.Encoding.utf8) ?? "Error in parsing"
     }
     
     var prettyPrintedJSONString: NSString? { /// NSString gives us a nice sanitized debugDescription
@@ -139,99 +133,40 @@ internal final class DataNetwork {
             print("\n===Response Start===\n")
             debugPrint(responseData.prettyPrintedJSONString ?? "Unable To Parse JSON")
             print("\n===Response End===\n")
-            let jsondataString = responseData.jsonString()
+            
             if let httpResponse = response.response,
-               httpResponse.statusCode == 401,
-               jsondataString.range(of: "Invalid LTM!") != nil
-            {
-                lmLog("response - \(String(describing: jsondataString))")
-                FeedTokenManager.shared.refreshInterceptor {[weak self] in
-                    self?.request(for: url, withHTTPMethod: httpMethod, headers: ServiceRequest.httpHeaders(), withParameters: parameters, withEncoding: encoding, withModuleName: moduleName, successCallback: successCallback, failureCallback: failureCallback)
-                }
-                return
-            }
-            successCallback(moduleName, responseData)
-        }
-    }
-    
-    func request<T: Decodable>(for url:URL, withHTTPMethod httpMethod: Alamofire.HTTPMethod, headers: HTTPHeaders, withParameters parameters: Parameters? = nil, withEncoding encoding: ParameterEncoding, withResponseType objectType: T.Type, withModuleName moduleName:String, successCallback:@escaping SuccessCompletionBlock, failureCallback:@escaping FailureCompletionBlock) {
-        guard Reachability.currentReachabilityStatus != .notReachable else {
-            failureCallback(moduleName, .noInternet)
-            return
-        }
-        let request = AF.request(url,
-                                 method: httpMethod,
-                                 parameters: parameters,
-                                 encoding: encoding,
-                                 headers: headers)
-        
-        downloadResourceParams?.append(RequestParam(successCallback: successCallback, failureCallback: failureCallback, request: request, moduleName: moduleName))
-        
-        request.responseData { (response) in
-            lmLog("--------------------------")
-            lmLog("url - \(url)")
-            lmLog("request - \(request)")
-            lmLog("moduleName - \(moduleName)")
-            if let urlRequest = request.request, let httpBody = urlRequest.httpBody {
-                debugPrint("http request body - \(String(describing: String(data: httpBody, encoding: .utf8)))")
-            }
-            lmLog("headers - \(headers)")
-            guard let responseData = response.data else {
-                lmLog("failureCallback - \(response)")
-                if let error = response.error {
-                    switch error {
-                    case .sessionTaskFailed:
-                        self.request(for: url, withHTTPMethod: httpMethod, headers: headers, withParameters: parameters, withEncoding: encoding, withModuleName: moduleName, successCallback: successCallback, failureCallback: failureCallback)
-                        return
-                    default:
-                        break
+               httpResponse.statusCode == 401 {
+                
+                if url.absoluteString.contains("user/refresh") {
+                    /// Refresh Token has expired, trigger flow to get tokens from Core/Example Layer
+                    FeedTokenManager.shared.onRefreshTokenExpired()
+                } else {
+                    /// Access Token has expired, use refresh token to get new access token
+                    FeedTokenManager.shared.refreshAccessToken { [weak self] newAccessToken in
+                        var newHeaders = headers
+                        newHeaders["Authorization"] = "Bearer \(newAccessToken ?? "")"
+                        
+                        self?.request(
+                            for: url,
+                            withHTTPMethod: httpMethod,
+                            headers: newHeaders,
+                            withParameters: parameters,
+                            withEncoding: encoding,
+                            withModuleName: moduleName,
+                            successCallback: successCallback,
+                            failureCallback: failureCallback
+                        )
                     }
                 }
-                failureCallback(moduleName, .noResponse)
-                lmLog("--------------------------")
+                
                 return
             }
             
-            if let httpResponse = response.response,
-               httpResponse.statusCode == 401
-            {
-                let jsondataString = responseData.jsonString()
-                if jsondataString.range(of: "Invalid LTM!") != nil {
-                    lmLog("response - \(String(describing: jsondataString))")
-                    FeedTokenManager.shared.refreshInterceptor {}
-                    failureCallback(moduleName, .tokenExpire)
-                    return
-                }
-                failureCallback(moduleName, .noResponse)
-            }
-            do {
-                let lmResponse  = try JSONDecoder().decode(LMResponse<T>.self, from: responseData)
-                lmLog("response - \(String(describing: lmResponse))")
-                successCallback(moduleName, lmResponse)
-            } catch let error {
-                lmLog("response - \(String(describing: responseData.jsonString()))")
-                failureCallback(moduleName, .failedJsonParse(error.localizedDescription))
-            }
-            lmLog("--------------------------")
+            successCallback(moduleName, responseData)
         }
-    }
-}
-
-
-func dataIntercepter(data: Data?) {
-    do {
-        guard let data = data else {return}
-//        let json = try JSONDecoder().decode(SuccessFailureResponse.self, from: data)
-//        if !json.success && (json.route?.contains("guest_login") ?? false) {
-//            LikeMinds.shared.delegate?.loginRequiredCallback()
-//        }
-    } catch let error {
-        lmLog("json error parsing - \(#function) \(error)")
     }
 }
 
 func lmLog(_ items: Any...) {
-//    if AppManager.environment == .devtest {
-        print(items)
-//    }
+    debugPrint(items)
 }

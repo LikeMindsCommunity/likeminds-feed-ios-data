@@ -11,26 +11,16 @@ import UIKit
 public typealias LMFeedClientResponse<T: Decodable> = (LMResponse<T>) -> (Void)
 
 extension LMFeedClient {
-    
-    func initialize() {
-    }
-    
-    func saveExtrasValuesInLocalPreferences(extras: LMChatClient) {
-        let preferences = PreferencesFactory.userPreferences()
-        preferences.put(extras.getApiKey(), forKey: kPrefSdkApiKey)
-        if let deviceId = extras.getDeviceId() {
-            preferences.put(deviceId, forKey: kPrefDeviceUDID)
-        }
-        if let domain = extras.getDomainUrl() {
-            preferences.put(domain, forKey: kPrefDomainUrl)
-        }
-        _ = preferences.save()
-    }
-    
     public func initiateUser(request: InitiateUserRequest, response: LMFeedClientResponse<InitiateUserResponse>?) {
         FeedClientServiceRequest.initiateChatService(request, withModuleName: moduleName) { result in
-            FeedTokenManager.shared.accessToken = result.data?.accessToken
-            FeedTokenManager.shared.refreshToken = result.data?.refreshToken
+            if result.success {
+                if result.data?.appAccess == true {
+                    UserDetails.apiKey = request.apiKey
+                    UserDetails.userDetails = result.data?.user
+                    FeedTokenManager.shared.updateToken(result.data?.accessToken, result.data?.refreshToken)
+                }
+            }
+            
             response?(result)
         }
     }
@@ -161,6 +151,11 @@ extension LMFeedClient {
     
     public func logout(request: LogoutRequest, response: LMFeedClientResponse<NoData>?) {
         FeedClientServiceRequest.logout(request: request, withModuleName: moduleName) { result in
+            if result.success {
+                /// Clearing Tokens if logout is successful
+                FeedTokenManager.shared.clearToken()
+            }
+            
             response?(result)
         }
     }
@@ -230,6 +225,19 @@ extension LMFeedClient {
             response?(result)
         }
     }
+
+    public func validateUser(_ request: ValidateUserRequest, response: LMFeedClientResponse<ValidateUserResponse>?) {
+        FeedTokenManager.shared.updateToken(request.accessToken, request.refreshToken)
+        
+        LMFeedClientServiceRequest.validateUser(request, withModuleName: moduleName) { result in
+            if result.success {
+                if result.data?.appAccess == true {
+                    UserDetails.userDetails = result.data?.user
+                }
+            }
+            response?(result)
+        }
+    }
     
     public func addPollOption(_ request: AddPollOptionRequest, _ response: LMFeedClientResponse<AddPollOptionResponse>?) {
         LMFeedClientServiceRequest.addPollOption(request, withModuleName: moduleName) { result in
@@ -240,6 +248,33 @@ extension LMFeedClient {
     public func getPollVotes(_ request: GetPollVotesRequest, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
         LMFeedClientServiceRequest.getPollVotes(request, withModuleName: moduleName) { result in
             response?(result)
+        }
+    }
+    
+    func refreshAccessToken(_ response: LMFeedClientResponse<InitiateUserResponse>?) {
+        guard let refreshToken = LMFeedTokenManager.refreshToken else {
+            response?(.failureResponse("Unable To Fetch Refresh Token"))
+            return
+        }
+        
+        let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken
+        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else { return }
+        
+        DataNetwork.shared.request(for: url,
+                                   withHTTPMethod: networkPath.httpMethod,
+                                   headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: refreshToken),
+                                   withParameters: networkPath.parameters,
+                                   withEncoding: networkPath.encoding,
+                                   withModuleName: moduleName) { (moduleName, responseData) in
+            guard let data = responseData as? Data else {return}
+            do {
+                let result = try JSONDecoder().decode(LMResponse<InitiateUserResponse>.self, from: data)
+                response?(result)
+            } catch let error {
+                response?(LMResponse.failureResponse(error.localizedDescription))
+            }
+        } failureCallback: { (moduleName, error) in
+            response?(LMResponse.failureResponse(error.localizedDescription))
         }
     }
 }
