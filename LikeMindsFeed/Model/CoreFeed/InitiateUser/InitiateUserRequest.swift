@@ -34,7 +34,7 @@ public class InitiateUserRequest: Encodable {
         return self
     }
     
-    public func userName(_ userName: String) -> InitiateUserRequest {
+    public func userName(_ userName: String?) -> InitiateUserRequest {
         self.userName = userName
         return self
     }

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10FDA4C580083B6B09D5DB9D /* Pods_LikeMindsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 328FAAB8DE4E6C9E11287A03 /* Pods_LikeMindsFeed.framework */; };
+		4512AB95600DCDDAF737163A /* Pods_LikeMindsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E81B52CE3EB52E3B8509FE3 /* Pods_LikeMindsFeed.framework */; };
+		E53F1F892C086D9E00AB5451 /* ValidateUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53F1F882C086D9E00AB5451 /* ValidateUserRequest.swift */; };
+		E572DCC72C08811E0074B683 /* ValidateUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572DCC62C08811E0074B683 /* ValidateUserResponse.swift */; };
 		E592881E2AB97CA50047297B /* TopicFeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E592881D2AB97CA50047297B /* TopicFeedResponse.swift */; };
 		E5FD639A2AB9857C00F90466 /* TopicFeedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FD63992AB9857C00F90466 /* TopicFeedRequest.swift */; };
 		F46E15512A25BF37003C43BA /* FeedClientServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46E14D92A25BF37003C43BA /* FeedClientServiceRequest.swift */; };
@@ -108,9 +110,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		29B0CEC1A96B4126988A2002 /* Pods-LikeMindsFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LikeMindsFeed.release.xcconfig"; path = "Target Support Files/Pods-LikeMindsFeed/Pods-LikeMindsFeed.release.xcconfig"; sourceTree = "<group>"; };
-		328FAAB8DE4E6C9E11287A03 /* Pods_LikeMindsFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LikeMindsFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4DA5C6F47B73E5B6F9CC1003 /* Pods-LikeMindsFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LikeMindsFeed.debug.xcconfig"; path = "Target Support Files/Pods-LikeMindsFeed/Pods-LikeMindsFeed.debug.xcconfig"; sourceTree = "<group>"; };
+		487F2BB42481A75531B7AAC8 /* Pods-LikeMindsFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LikeMindsFeed.release.xcconfig"; path = "Target Support Files/Pods-LikeMindsFeed/Pods-LikeMindsFeed.release.xcconfig"; sourceTree = "<group>"; };
+		4E81B52CE3EB52E3B8509FE3 /* Pods_LikeMindsFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LikeMindsFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3A34352F179486121FF0AB7 /* Pods-LikeMindsFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LikeMindsFeed.debug.xcconfig"; path = "Target Support Files/Pods-LikeMindsFeed/Pods-LikeMindsFeed.debug.xcconfig"; sourceTree = "<group>"; };
+		E53F1F882C086D9E00AB5451 /* ValidateUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUserRequest.swift; sourceTree = "<group>"; };
+		E572DCC62C08811E0074B683 /* ValidateUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateUserResponse.swift; sourceTree = "<group>"; };
 		E592881D2AB97CA50047297B /* TopicFeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFeedResponse.swift; sourceTree = "<group>"; };
 		E5FD63992AB9857C00F90466 /* TopicFeedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFeedRequest.swift; sourceTree = "<group>"; };
 		F414169C299E41C000622058 /* LikeMindsFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LikeMindsFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,17 +220,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10FDA4C580083B6B09D5DB9D /* Pods_LikeMindsFeed.framework in Frameworks */,
+				4512AB95600DCDDAF737163A /* Pods_LikeMindsFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		97E6DBEC6972D4EF7D9968F0 /* Frameworks */ = {
+		3B2139F0C13A82472373D4CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				328FAAB8DE4E6C9E11287A03 /* Pods_LikeMindsFeed.framework */,
+				4E81B52CE3EB52E3B8509FE3 /* Pods_LikeMindsFeed.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -234,10 +238,19 @@
 		B225E8A19E3A94DAD7097CE6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4DA5C6F47B73E5B6F9CC1003 /* Pods-LikeMindsFeed.debug.xcconfig */,
-				29B0CEC1A96B4126988A2002 /* Pods-LikeMindsFeed.release.xcconfig */,
+				C3A34352F179486121FF0AB7 /* Pods-LikeMindsFeed.debug.xcconfig */,
+				487F2BB42481A75531B7AAC8 /* Pods-LikeMindsFeed.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E53F1F872C086D9200AB5451 /* ValidateUser */ = {
+			isa = PBXGroup;
+			children = (
+				E53F1F882C086D9E00AB5451 /* ValidateUserRequest.swift */,
+				E572DCC62C08811E0074B683 /* ValidateUserResponse.swift */,
+			);
+			path = ValidateUser;
 			sourceTree = "<group>";
 		};
 		E592881A2AB97C250047297B /* TopicFeed */ = {
@@ -271,7 +284,7 @@
 				F46E14D72A25BF37003C43BA /* LikeMindsFeed */,
 				F414169D299E41C000622058 /* Products */,
 				B225E8A19E3A94DAD7097CE6 /* Pods */,
-				97E6DBEC6972D4EF7D9968F0 /* Frameworks */,
+				3B2139F0C13A82472373D4CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -432,6 +445,7 @@
 		F46E14FE2A25BF37003C43BA /* CoreFeed */ = {
 			isa = PBXGroup;
 			children = (
+				E53F1F872C086D9200AB5451 /* ValidateUser */,
 				F46E14FF2A25BF37003C43BA /* Branding */,
 				F46E15022A25BF37003C43BA /* Core */,
 				F46E15052A25BF37003C43BA /* InitiateUser */,
@@ -796,7 +810,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F41416A5299E41C000622058 /* Build configuration list for PBXNativeTarget "LikeMindsFeed" */;
 			buildPhases = (
-				6C526673D3AD93CFA956E4D7 /* [CP] Check Pods Manifest.lock */,
+				BD2F9660D267CFBFA9B33523 /* [CP] Check Pods Manifest.lock */,
 				F4141697299E41C000622058 /* Headers */,
 				F4141698299E41C000622058 /* Sources */,
 				F4141699299E41C000622058 /* Frameworks */,
@@ -854,7 +868,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6C526673D3AD93CFA956E4D7 /* [CP] Check Pods Manifest.lock */ = {
+		BD2F9660D267CFBFA9B33523 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -902,6 +916,7 @@
 				F46E155C2A25BF37003C43BA /* LMClient.swift in Sources */,
 				F46E15802A25BF37003C43BA /* GetPostRequest.swift in Sources */,
 				F4E15EA32AA37F8900BAEB99 /* MemberMenu.swift in Sources */,
+				E572DCC72C08811E0074B683 /* ValidateUserResponse.swift in Sources */,
 				F46E15762A25BF37003C43BA /* GetNotificationFeedRequest.swift in Sources */,
 				F4AA542B2A4B682700AA9D2B /* LogoutRequest.swift in Sources */,
 				F46E15692A25BF37003C43BA /* DeleteCommentRequest.swift in Sources */,
@@ -969,6 +984,7 @@
 				F4E848A42A290DC800B15666 /* PinPostRequest.swift in Sources */,
 				F46E15862A25BF37003C43BA /* ReplyCommentRequest.swift in Sources */,
 				F46E15542A25BF37003C43BA /* LMFeedClient+Extension.swift in Sources */,
+				E53F1F892C086D9E00AB5451 /* ValidateUserRequest.swift in Sources */,
 				F46E15612A25BF37003C43BA /* Preferences.swift in Sources */,
 				F46E15912A25BF37003C43BA /* GetFeedResponse.swift in Sources */,
 				F46E15812A25BF37003C43BA /* SavePostRequest.swift in Sources */,
@@ -1107,7 +1123,7 @@
 		};
 		F41416A6299E41C000622058 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DA5C6F47B73E5B6F9CC1003 /* Pods-LikeMindsFeed.debug.xcconfig */;
+			baseConfigurationReference = C3A34352F179486121FF0AB7 /* Pods-LikeMindsFeed.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
@@ -1135,7 +1151,7 @@
 		};
 		F41416A7299E41C000622058 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29B0CEC1A96B4126988A2002 /* Pods-LikeMindsFeed.release.xcconfig */;
+			baseConfigurationReference = 487F2BB42481A75531B7AAC8 /* Pods-LikeMindsFeed.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;

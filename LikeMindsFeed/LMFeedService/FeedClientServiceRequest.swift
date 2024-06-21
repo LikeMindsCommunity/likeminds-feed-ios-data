@@ -12,6 +12,7 @@ class FeedClientServiceRequest: ServiceRequest {
     static func initiateChatService(_ request: InitiateUserRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.initiateChatClient(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpSdkHeaders(value: request.apiKey ?? ""),
