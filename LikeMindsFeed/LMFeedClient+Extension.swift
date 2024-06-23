@@ -220,6 +220,12 @@ extension LMFeedClient {
         }
     }
     
+    public func submitPollVoteRequest(_ request: SubmitPollVoteRequest, _ response: LMFeedClientResponse<NoData>?) {
+        LMFeedClientServiceRequest.submitPollVote(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+
     public func validateUser(_ request: ValidateUserRequest, response: LMFeedClientResponse<ValidateUserResponse>?) {
         FeedTokenManager.shared.updateToken(request.accessToken, request.refreshToken)
         
@@ -229,6 +235,18 @@ extension LMFeedClient {
                     UserDetails.userDetails = result.data?.user
                 }
             }
+            response?(result)
+        }
+    }
+    
+    public func addPollOption(_ request: AddPollOptionRequest, _ response: LMFeedClientResponse<AddPollOptionResponse>?) {
+        LMFeedClientServiceRequest.addPollOption(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
+    public func getPollVotes(_ request: GetPollVotesRequest, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
+        LMFeedClientServiceRequest.getPollVotes(request, withModuleName: moduleName) { result in
             response?(result)
         }
     }
