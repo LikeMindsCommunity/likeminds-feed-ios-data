@@ -8,25 +8,12 @@
 import Foundation
 import Alamofire
 
-/**
- * A protocol to handle login requried action
- *
- */
-public protocol LMCallback: AnyObject {
-    /// This method is called when the user is not logged in or guest
-    /// It is called when the user tries to perform an action that requires login
-    /// The user should be redirected to your appropriate login screen
-    func login()
-}
-
-/// Default implementation of delegate
-public extension LMCallback {
-    func login() {}
-}
-
 final public class FeedTokenManager {
     /// Singleton object property
     public private(set) static var shared = FeedTokenManager()
+    
+    private(set) var accessToken: String?
+    private(set) var refreshToken: String?
     
     /// Refresh token completion block
     private var refreshTokenBlock: [((String?) -> Void)?] = []
@@ -93,10 +80,16 @@ final public class FeedTokenManager {
     func updateToken(_ accessToken: String?, _ refreshToken: String?) {
         LMFeedTokenManager.refreshToken = refreshToken
         LMFeedTokenManager.accessToken = accessToken
+        
+        self.accessToken = accessToken
+        self.refreshToken = refreshToken
     }
     
     func clearToken() {
         LMFeedTokenManager.refreshToken = nil
         LMFeedTokenManager.accessToken = nil
+        
+        accessToken = nil
+        refreshToken = nil
     }
 }

@@ -12,7 +12,7 @@ import Alamofire
 class ServiceRequest {
     
     static func httpHeaders() -> HTTPHeaders {
-        let accessToken = LMFeedTokenManager.accessToken ?? ""
+        let accessToken = FeedTokenManager.shared.accessToken ?? ""
         let buildVersion = BuildManager.buildVersion
         return [
                 "x-platform-code": "ios",
@@ -24,7 +24,7 @@ class ServiceRequest {
     }
     
     static func deviceRegisterHeaders(headerKey: String = "x-api-key", value: String = "") -> HTTPHeaders {
-        let accessToken = LMFeedTokenManager.accessToken ?? ""
+        let accessToken = FeedTokenManager.shared.accessToken ?? ""
         let buildVersion = BuildManager.buildVersion
         return [
             "x-platform-code": "ios",
