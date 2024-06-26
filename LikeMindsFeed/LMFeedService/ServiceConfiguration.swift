@@ -57,7 +57,8 @@ struct ServiceAPIRequest {
     enum NetworkPath {
         //MARK:- SDK APIs
         case initiateChatClient(_ request: InitiateUserRequest)
-        case refreshServiceToken(rtm: String)
+        case validateUser
+        case refreshServiceToken
         case pushToken(_ request: RegisterDeviceRequest)
         case getBranding(_ request: BrandingRequest)
         case onboardingChatService
@@ -91,12 +92,16 @@ struct ServiceAPIRequest {
         case searchMembers(_ request: SearchMembersRequest)
         case getTopicFeed(_ request: TopicFeedRequest)
         case getCommunityConfiguration(_ request: GetCommunityConfigurationRequest)
+        case submitVote(_ request: SubmitPollVoteRequest)
+        case addPollOption(_ request: AddPollOptionRequest)
+        case getPollVotes(_ request: GetPollVotesRequest)
         
         var apiURL: String {
             switch self {
             case .getCommunityConfiguration(let request):
                 return "community/configurations?configuration_types=\(request.configurationTypes ?? [])"
-            case .initiateChatClient:
+            case .initiateChatClient,
+                    .validateUser:
                 return "sdk/initiate"
             case .refreshServiceToken:
                 return "user/refresh"
@@ -202,6 +207,16 @@ struct ServiceAPIRequest {
                 }
                 
                 return url
+            case .submitVote(let request):
+                guard let pollID = request.pollID else { return "" }
+                return "poll/\(pollID)/vote"
+            case .addPollOption(let request):
+                guard let pollID = request.pollID,
+                      request.pollText != nil else { return "" }
+                return "poll/\(pollID)"
+            case .getPollVotes(let request):
+                guard let pollID = request.pollID else { return "" }
+                return "poll/\(pollID)/vote?votes=\(request.options)&page=\(request.page)&page_size=\(request.pageSize)"
             }
         }
 
@@ -224,7 +239,9 @@ struct ServiceAPIRequest {
                  .getAllMembers,
                  .searchMembers,
                  .onboardingChatService,
-                 .getTopicFeed:
+                 .getTopicFeed,
+                 .getPollVotes,
+                 .validateUser:
                 return .get
             case .initiateChatClient,
                  .refreshServiceToken,
@@ -241,7 +258,9 @@ struct ServiceAPIRequest {
                  .pinPost,
                  .editPost,
                  .editComment,
-                 .likeComment:
+                 .likeComment,
+                 .submitVote,
+                 .addPollOption:
                 return .put
             case .deletePost,
                  .deleteComment:
@@ -273,7 +292,7 @@ struct ServiceAPIRequest {
             case .report(let request):
                 return request.requestParam()
             case .logout(let request):
-                return request.requestParam()//["refresh_token":refreshToken]
+                return request.requestParam()
             case .deletePost(let request):
                 return request.requestParam()
             case .deleteComment(let request):
@@ -282,6 +301,11 @@ struct ServiceAPIRequest {
                 return request.requestParam()
             case .editComment(let request):
                 return request.requestParam()
+            case .submitVote(let request):
+                return ["votes": request.votes]
+            case .addPollOption(let request):
+                guard let pollText = request.pollText else { return nil }
+                return ["text": pollText]
             default:
                 return nil
             }
