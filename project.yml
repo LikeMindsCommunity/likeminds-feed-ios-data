@@ -1,0 +1,20 @@
+name: LikeMindsFeed
+options:
+  bundleIdPrefix: com.sdk
+  deploymentTarget:
+    iOS: '13.0'
+schemes:
+  LikeMindsFeed:
+    build:
+      targets:
+        LikeMindsFeed: all
+targets:
+  LikeMindsFeed:
+    type: framework
+    platform: iOS
+    sources: 
+      - LikeMindsFeed
+    resources: 
+      - LikeMindsFeed/Resources
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.sdk.LMFeed
