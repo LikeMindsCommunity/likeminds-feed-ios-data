@@ -2,7 +2,7 @@ name: LikeMindsFeed
 options:
   bundleIdPrefix: com.sdk
   deploymentTarget:
-    iOS: '12.0'
+    iOS: '13.0'
 schemes:
   LikeMindsFeed:
     build:
@@ -17,8 +17,8 @@ targets:
     resources: 
       - LikeMindsFeed/Resources
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.sdk.LMFeed
+      PRODUCT_BUNDLE_IDENTIFIER: com.Collabmates.LikeMindsFeed
       GENERATE_INFOPLIST_FILE: YES
-      MARKETING_VERSION: 1.0.0
+      MARKETING_VERSION: 1.8.0
       CURRENT_PROJECT_VERSION: 1
-      INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © $(CURRENT_YEAR) Your Company. All rights reserved."
+      INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2024 CollabMates Pvt. Ltd. All rights reserved."
