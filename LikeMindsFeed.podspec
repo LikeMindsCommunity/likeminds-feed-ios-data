@@ -1,8 +1,8 @@
 Pod::Spec.new do |spec|
   spec.name         = "LikeMindsFeed"
   spec.version      = "1.7.3"
-  spec.summary      = "LikeMindsFeed"
-  spec.homepage     = "https://github.com/pushpendralike/LikeMinds-iOS-Feed-SDK"
+  spec.summary      = "Data Layer for LikeMindsFeed"
+  spec.homepage     = "https://docs.likeminds.community/feed/category/data"
 
   spec.license = { :type => 'Copyright', :text => <<-LICENSE
                    Copyright 2023
@@ -10,11 +10,11 @@ Pod::Spec.new do |spec|
                   LICENSE
                 }
 
-  spec.author             = { "pushpendrasingh" => "pushpendra.singh@likeminds.community" }
+  spec.author = { "pushpendrasingh" => "pushpendra.singh@likeminds.community" }
   
   spec.ios.deployment_target = "13.0"
 
-  spec.source       = { :git => "https://github.com/pushpendralike/LikeMinds-iOS-Feed-SDK.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/LikeMindsCommunity/likeminds-feed-iOS-data-xc.git", :tag => spec.version }
   spec.vendored_frameworks = "LikeMindsFeed.xcframework"
   spec.swift_version = "5"
 
