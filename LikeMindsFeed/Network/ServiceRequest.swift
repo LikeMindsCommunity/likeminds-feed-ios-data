@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 
 class ServiceRequest {
-    
     static func httpHeaders() -> HTTPHeaders {
         let accessToken = FeedTokenManager.shared.accessToken ?? ""
         let buildVersion = BuildManager.buildVersion
