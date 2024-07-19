@@ -24,9 +24,9 @@ Pod::Spec.new do |spec|
     :tag => spec.version 
   }
   
-  spec.vendored_frameworks = "LikeMindsFeed.xcframework"
+  spec.source_files = 'LikeMindsFeed/**/*.swift'
   spec.swift_version = "5"
-  
+
   spec.framework = "Foundation"
   spec.dependency "Alamofire", '~> 5.7.1'
 end
