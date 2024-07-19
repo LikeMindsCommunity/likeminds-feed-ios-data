@@ -24,11 +24,25 @@ public struct CommunityConfiguration: Codable {
     // MARK: - Value
     public struct Value: Codable {
         public let post: String?
+        public let comment: String?
+        public let like: ContainerValue?
         public let maxVideoSize, maxImageSize: Int?
         public let widgetsEnabled: Bool?
         
+        public struct ContainerValue: Codable {
+            public let entityName: String?
+            public let pasTenseName: String?
+            
+            enum CodingKeys: String, CodingKey {
+                case entityName = "entity_name"
+                case pasTenseName = "past_tense_verb"
+            }
+        }
+        
         enum CodingKeys: String, CodingKey {
             case post
+            case comment
+            case like = "like_entity_variable"
             case maxVideoSize = "max_video_size"
             case maxImageSize = "max_image_size"
             case widgetsEnabled = "widgets_enabled"
