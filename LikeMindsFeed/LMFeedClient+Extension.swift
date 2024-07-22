@@ -251,6 +251,12 @@ extension LMFeedClient {
         }
     }
     
+    public func searchPosts(_ request: SearchPostsRequest, _ response: LMFeedClientResponse<GetFeedResponse>?) {
+        LMFeedClientServiceRequest.searchPosts(request, withModuleName: moduleName) { result in
+            response?(result)
+        }
+    }
+    
     func refreshAccessToken(_ response: LMFeedClientResponse<InitiateUserResponse>?) {
         guard let refreshToken = LMFeedTokenManager.refreshToken else {
             response?(.failureResponse("Unable To Fetch Refresh Token"))

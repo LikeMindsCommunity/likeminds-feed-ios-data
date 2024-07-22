@@ -224,4 +224,35 @@ extension LMFeedClientServiceRequest {
             response?(.failureResponse(error.localizedDescription))
         }
     }
+    
+    static func searchPosts(_ request: SearchPostsRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedResponse>?) {
+        let networkPath = ServiceAPIRequest.NetworkPath.searchPost(request)
+        let path = "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        guard let url = URL(string: path ?? "") else {
+            response?(.failureResponse("Invalid Request"))
+            return
+        }
+        
+        DataNetwork.shared.request(
+            for: url,
+            withHTTPMethod: networkPath.httpMethod,
+            headers: ServiceRequest.httpHeaders(),
+            withEncoding: networkPath.encoding,
+            withModuleName: moduleName) { (_, responseData) in
+                guard let data = responseData as? Data else {
+                    response?(.failureResponse("Unable to parse Data"))
+                    return
+                }
+                
+                do {
+                    let result = try JSONDecoder().decode(LMResponse<GetFeedResponse>.self, from: data)
+                    response?(result)
+                } catch let error {
+                    response?(LMResponse.failureResponse(error.localizedDescription))
+                }
+            } failureCallback: { _, error in
+                response?(.failureResponse(error.localizedDescription))
+            }
+    }
 }
