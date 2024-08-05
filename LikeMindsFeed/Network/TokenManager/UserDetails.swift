@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct UserDetails {
+public struct UserDetails {
     @UserDefaultsBacked(key: "lmFeedUserDetails")
-    static var userDetails: User?
+    public static var userDetails: User?
     
     @UserDefaultsBacked(key: "lmFeedAPIKey")
     static var apiKey: String?
