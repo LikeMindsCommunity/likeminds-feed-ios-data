@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "LikeMindsFeed"
-  spec.version      = "1.8.0"
+  spec.version      = "1.9.0"
   spec.summary      = "Data Layer for LikeMindsFeed"
   spec.homepage     = "https://docs.likeminds.community/feed/category/data"
 

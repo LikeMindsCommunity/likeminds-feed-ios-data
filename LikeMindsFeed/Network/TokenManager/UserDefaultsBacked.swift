@@ -8,7 +8,7 @@
 import Foundation
 
 @propertyWrapper
-struct UserDefaultsBacked<Value: Codable> {
+public struct UserDefaultsBacked<Value: Codable> {
     let key: String
     let userDefaults: UserDefaults
 
@@ -17,7 +17,7 @@ struct UserDefaultsBacked<Value: Codable> {
         self.userDefaults = userDefaults
     }
 
-    var wrappedValue: Value? {
+    public var wrappedValue: Value? {
         get {
             guard let data = userDefaults.data(forKey: key) else {
                 return nil
