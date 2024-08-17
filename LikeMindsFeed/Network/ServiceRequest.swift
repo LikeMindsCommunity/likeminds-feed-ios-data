@@ -75,6 +75,20 @@ extension Encodable {
         guard let data = jsonData else {return ""}
         return NSString(string: data.asString)
     }
+    
+    func toJSON() -> [String: Any] {
+        let encoder = JSONEncoder()
+        var dict: [String: Any] = [:]
+        
+        do {
+            let jsonData = try encoder.encode(self)
+            dict = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] ?? [:]
+        } catch {
+            print("Error in encoding object")
+        }
+        
+        return dict
+    }
 }
 
 extension Data {

@@ -24,6 +24,7 @@ extension URL {
     }
 }
 
+// TODO: remove this useless piece of code
 public struct ServiceAPI {
     static let requestTimeout = TimeInterval(30)
     static let authBaseURL = ServiceConfiguration.authBaseURL
@@ -273,10 +274,7 @@ struct ServiceAPIRequest {
         }
 
         var requestTimeout: TimeInterval {
-            switch self {
-            default:
-                return ServiceAPI.requestTimeout
-            }
+            30
         }
 
         var parameters: Alamofire.Parameters? {

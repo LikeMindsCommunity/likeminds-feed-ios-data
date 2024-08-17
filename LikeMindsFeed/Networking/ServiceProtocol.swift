@@ -14,9 +14,72 @@ protocol ServiceProtocol {
     var baseURL: String { get }
     var endPoint: String { get }
     var httpMethod: HTTPMethod { get }
+    var httpHeaders: [String: Any] { get }
     var queryParams: [String: Any] { get }
-    var pathParams: [String: String] { get }
     var body: [String: Any] { get }
+}
+
+extension ServiceProtocol {
+    var baseURL: String {
+        ServiceConfiguration.authBaseURL
+    }
     
-    func fetchURLRequest() -> URLRequest?
+    var queryParams: [String: Any] { [:] }
+    
+    var body: [String: Any] { [:] }
+ 
+    // TODO: Write better logic
+    var httpHeaders: [String: Any] {
+        let accessToken = FeedTokenManager.shared.accessToken ?? ""
+        let buildVersion = BuildManager.buildVersion
+        return [
+            "x-platform-code": "ios",
+            "x-version-code": buildVersion,
+            "Cookie":"",
+            "x-sdk-source": "feed",
+            "Authorization": "Bearer " + accessToken
+        ]
+    }
+    
+    func fetchURLRequest() -> URLRequest? {
+        // Construct the URL
+        guard var urlComponents = URLComponents(string: baseURL) else {
+            return nil
+        }
+        
+        // Add endpoint to the path
+        urlComponents.path += endPoint
+        
+        // Add query parameters
+        if !queryParams.isEmpty {
+            urlComponents.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
+        }
+        
+        // Create the URL
+        guard let url = urlComponents.url else {
+            return nil
+        }
+        
+        // Create and configure the URLRequest
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod.rawValue
+        
+        // Add HTTP headers
+        for (key, value) in httpHeaders {
+            request.setValue("\(value)", forHTTPHeaderField: key)
+        }
+        
+        // Add body if it exists
+        if !body.isEmpty {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: body, options: [])
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            } catch {
+                print("Error serializing body: \(error)")
+                return nil
+            }
+        }
+        
+        return request
+    }
 }

@@ -17,16 +17,9 @@ public class LMFeedClient {
     public private(set) static var shared = LMFeedClient()
     static weak private(set) var tokenManager: LMFeedSDKCallback?
     
+    var newManager: some NetworkProtocol = NetworkLayer()
+    
     private init() {}
-    
-    public static func builder() -> LMFeedClient {
-        Self.shared = LMFeedClient()
-        return Self.shared
-    }
-    
-    public func build() -> LMFeedClient {
-        return Self.shared
-    }
     
     public func getTokens() -> LMResponse<LMFeedTokenResponse> {
         guard let accessToken = LMFeedTokenManager.accessToken,

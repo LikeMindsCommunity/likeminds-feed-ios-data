@@ -26,25 +26,25 @@ extension LMFeedClient {
     }
     
     public func getFeed(_ request: GetFeedRequest, _ response: LMFeedClientResponse<GetFeedResponse>?) {
-        LMFeedClientServiceRequest.getUniversalFeeds(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetFeedAPIRequest(request: request)) { (result: LMResponse<GetFeedResponse>) in
             response?(result)
         }
     }
     
     public func addPost(_ request: AddPostRequest, _ response:  LMFeedClientResponse<GetPostResponse>?) {
-        LMFeedClientServiceRequest.addPost(request, withModuleName: moduleName) { result in
+        newManager.request(request: AddPostAPIRequest(request: request)) { (result: LMResponse<GetPostResponse>) in
             response?(result)
         }
     }
     
     public func getPost(_ request: GetPostRequest, _ response:  LMFeedClientResponse<GetPostResponse>?) {
-        LMFeedClientServiceRequest.getPost(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetPostAPIRequest(request: request)) { (result: LMResponse<GetPostResponse>) in
             response?(result)
         }
     }
     
     public func getPostLikes(_ request: GetPostLikesRequest, _ response:  LMFeedClientResponse<GetPostLikeResponse>?) {
-        LMFeedClientServiceRequest.getPostLikes(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetPostLikeAPIRequest(request: request)) { (result: LMResponse<GetPostLikeResponse>) in
             response?(result)
         }
     }
