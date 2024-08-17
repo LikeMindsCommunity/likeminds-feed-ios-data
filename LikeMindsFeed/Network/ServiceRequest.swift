@@ -44,10 +44,6 @@ class ServiceRequest {
                 "Cookie":""]
     }
     
-    static func cancelRequests(withModuleName moduleName: String) {
-        DataNetwork.shared.cancelAllDownloads(for: moduleName)
-    }
-    
     static func requestParameters(encodedData: Data) -> Alamofire.Parameters {
         let json = try? JSONSerialization.jsonObject(with: encodedData, options: .fragmentsAllowed)
         guard let params = json as? Alamofire.Parameters else {

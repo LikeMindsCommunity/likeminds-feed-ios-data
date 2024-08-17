@@ -61,39 +61,19 @@ struct RequestParam {
 internal final class DataNetwork {
     
     static let shared = DataNetwork()
-    var downloadResourceParams:[RequestParam]?
     
     fileprivate init() {}
     
-    func cancelAllDownloads(for moduleName:String) {
-        guard let index = indexForModuleName(moduleName) else { return }
-        guard let resourceParams = downloadResourceParams else { return }
-        let request = resourceParams[index].request
-        request.cancel()
-    }
-    
-    func cancelAllDownloads() {
-        guard let params = downloadResourceParams else {return}
-        var resourceParams = params
-        for param in resourceParams {
-            let dataRequest = param.request
-            dataRequest.cancel()
-        }
-        resourceParams.removeAll()
-        downloadResourceParams = nil
-    }
-    
-    func indexForModuleName(_ moduleName: String) -> Array<RequestParam>.Index? {
-        guard let params = downloadResourceParams else {
-            return nil
-        }
-        let downloadParamIndex = params.firstIndex { downloadParam -> Bool in
-            return downloadParam.moduleName == moduleName
-        }
-        return downloadParamIndex
-    }
-    
-    func request(for url:URL, withHTTPMethod httpMethod: Alamofire.HTTPMethod, headers: HTTPHeaders, withParameters parameters: Parameters? = nil, withEncoding encoding: ParameterEncoding, withModuleName moduleName:String, successCallback:@escaping SuccessCompletionBlock, failureCallback:@escaping FailureCompletionBlock) {
+    func request(
+        for url:URL,
+        withHTTPMethod httpMethod: Alamofire.HTTPMethod,
+        headers: HTTPHeaders,
+        withParameters parameters: Parameters? = nil,
+        withEncoding encoding: ParameterEncoding,
+        withModuleName moduleName:String,
+        successCallback:@escaping SuccessCompletionBlock,
+        failureCallback:@escaping FailureCompletionBlock
+    ) {
         guard Reachability.currentReachabilityStatus != .notReachable else {
             failureCallback(moduleName, .noInternet)
             return
@@ -104,8 +84,6 @@ internal final class DataNetwork {
                                  parameters: parameters,
                                  encoding: encoding,
                                  headers: headers)
-        
-        downloadResourceParams?.append(RequestParam(successCallback: successCallback, failureCallback: failureCallback, request: request, moduleName: moduleName))
         
         request.responseData { (response) in
             print("\n===Request Start===\n")
