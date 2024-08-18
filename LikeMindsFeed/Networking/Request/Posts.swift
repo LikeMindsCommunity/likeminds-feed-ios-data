@@ -6,7 +6,7 @@
 //
 
 // MARK: universal feed
-struct GetFeedAPIRequest: ServiceProtocol {
+struct GetFeedAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/universal"
     }
@@ -29,8 +29,6 @@ struct GetFeedAPIRequest: ServiceProtocol {
         
         return params
     }
-
-    var body: [String : Any] = [:]
     
     let request: GetFeedRequest
     
@@ -41,7 +39,7 @@ struct GetFeedAPIRequest: ServiceProtocol {
 
 
 // MARK: get post
-struct GetPostAPIRequest: ServiceProtocol {
+struct GetPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)"
     }
@@ -62,7 +60,7 @@ struct GetPostAPIRequest: ServiceProtocol {
 
 
 // MARK: add post
-struct AddPostAPIRequest: ServiceProtocol {
+struct AddPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String { "feed/post" }
     
     var httpMethod: HTTPMethod { .post }
@@ -82,7 +80,7 @@ struct AddPostAPIRequest: ServiceProtocol {
 
 
 // MARK: edit post
-struct EditPostAPIRequest: ServiceProtocol {
+struct EditPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)"
     }
@@ -102,7 +100,7 @@ struct EditPostAPIRequest: ServiceProtocol {
 
 
 // MARK: delete post
-struct DeletePostAPIRequest: ServiceProtocol {
+struct DeletePostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)"
     }
@@ -126,7 +124,7 @@ struct DeletePostAPIRequest: ServiceProtocol {
 
 
 // MARK: get post likes
-struct GetPostLikeAPIRequest: ServiceProtocol {
+struct GetPostLikeAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         return "feed/post/\(request.postId!)/like"
     }
@@ -146,7 +144,7 @@ struct GetPostLikeAPIRequest: ServiceProtocol {
 }
 
 // MARK: like post
-struct LikePostAPIRequest: ServiceProtocol {
+struct LikePostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)/like"
     }
@@ -162,7 +160,7 @@ struct LikePostAPIRequest: ServiceProtocol {
 
 
 // MARK: save post
-struct SavePostAPIRequest: ServiceProtocol {
+struct SavePostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)/save"
     }
@@ -178,7 +176,7 @@ struct SavePostAPIRequest: ServiceProtocol {
 
 
 // MARK: pin post
-struct PinPostAPIRequest: ServiceProtocol {
+struct PinPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)/pin"
     }
@@ -194,7 +192,7 @@ struct PinPostAPIRequest: ServiceProtocol {
 
 
 // MARK: search posts
-struct SearchPostAPIRequest: ServiceProtocol {
+struct SearchPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "search/post"
     }
@@ -220,7 +218,7 @@ struct SearchPostAPIRequest: ServiceProtocol {
 // MARK: poll related queries
 
 // MARK: submit poll vote
-struct SubmitPollVoteAPIRequest: ServiceProtocol {
+struct SubmitPollVoteAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "poll/\(request.pollID!)/vote"
     }
@@ -240,7 +238,7 @@ struct SubmitPollVoteAPIRequest: ServiceProtocol {
 
 
 // MARK: add poll option
-struct AddPollOptionAPIRequest: ServiceProtocol {
+struct AddPollOptionAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "poll/\(request.pollID!)"
     }
@@ -260,7 +258,7 @@ struct AddPollOptionAPIRequest: ServiceProtocol {
 
 
 // MARK: get poll votes
-struct GetPollVoteAPIRequest: ServiceProtocol {
+struct GetPollVoteAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         return "poll/\(request.pollID!)/vote"
     }

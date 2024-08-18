@@ -12,13 +12,12 @@ public typealias LMFeedClientResponse<T: Decodable> = (LMResponse<T>) -> (Void)
 
 extension LMFeedClient {
     public func initiateUser(request: InitiateUserRequest, response: LMFeedClientResponse<InitiateUserResponse>?) {
-        FeedClientServiceRequest.initiateChatService(request, withModuleName: moduleName) { result in
-            if result.success {
-                if result.data?.appAccess == true {
-                    UserDetails.apiKey = request.apiKey
-                    UserDetails.userDetails = result.data?.user
-                    FeedTokenManager.shared.updateToken(result.data?.accessToken, result.data?.refreshToken)
-                }
+        newManager.request(request: InitiateUserAPIRequest(request: request)) { (result: LMResponse<InitiateUserResponse>) in
+            if result.success,
+               result.data?.appAccess == true {
+                UserDetails.apiKey = request.apiKey
+                UserDetails.userDetails = result.data?.user
+                FeedTokenManager.shared.updateToken(result.data?.accessToken, result.data?.refreshToken)
             }
             
             response?(result)
@@ -134,18 +133,16 @@ extension LMFeedClient {
     }
     
     public func registerDevice(request: RegisterDeviceRequest, response: LMFeedClientResponse<RegisterDeviceResponse>?) {
-        FeedClientServiceRequest.registerDevice(request: request, withModuleName: moduleName) { result in
+        newManager.request(request: RegisterDeviceAPIRequest(request: request)) { (result: LMResponse<RegisterDeviceResponse>) in
             response?(result)
         }
     }
     
     public func logout(request: LogoutRequest, response: LMFeedClientResponse<NoData>?) {
-        FeedClientServiceRequest.logout(request: request, withModuleName: moduleName) { result in
+        newManager.request(request: LogoutAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             if result.success {
-                /// Clearing Tokens if logout is successful
                 FeedTokenManager.shared.clearToken()
             }
-            
             response?(result)
         }
     }
@@ -207,12 +204,12 @@ extension LMFeedClient {
     public func validateUser(_ request: ValidateUserRequest, response: LMFeedClientResponse<ValidateUserResponse>?) {
         FeedTokenManager.shared.updateToken(request.accessToken, request.refreshToken)
         
-        LMFeedClientServiceRequest.validateUser(request, withModuleName: moduleName) { result in
-            if result.success {
-                if result.data?.appAccess == true {
-                    UserDetails.userDetails = result.data?.user
-                }
+        newManager.request(request: ValidateUserAPIRequest(request: request)) { (result: LMResponse<ValidateUserResponse>) in
+            if result.success,
+               result.data?.appAccess == true {
+                UserDetails.userDetails = result.data?.user
             }
+            
             response?(result)
         }
     }
@@ -241,24 +238,8 @@ extension LMFeedClient {
             return
         }
         
-        let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else { return }
-        
-        DataNetwork.shared.request(for: url,
-                                   withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpSdkHeaders(headerKey: "Authorization", value: refreshToken),
-                                   withParameters: networkPath.parameters,
-                                   withEncoding: networkPath.encoding,
-                                   withModuleName: moduleName) { (moduleName, responseData) in
-            guard let data = responseData as? Data else {return}
-            do {
-                let result = try JSONDecoder().decode(LMResponse<InitiateUserResponse>.self, from: data)
-                response?(result)
-            } catch let error {
-                response?(LMResponse.failureResponse(error.localizedDescription))
-            }
-        } failureCallback: { (moduleName, error) in
-            response?(LMResponse.failureResponse(error.localizedDescription))
+        newManager.request(request: RefreshAccessTokenAPIRequest(request: refreshToken)) { (result: LMResponse<InitiateUserResponse>) in
+            response?(result)
         }
     }
 }

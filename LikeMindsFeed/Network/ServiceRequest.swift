@@ -16,7 +16,6 @@ class ServiceRequest {
         return [
                 "x-platform-code": "ios",
                 "x-version-code": buildVersion,
-                "Cookie":"",
                 "x-sdk-source": "feed",
                 "Authorization": "Bearer " + accessToken
         ]
@@ -28,7 +27,6 @@ class ServiceRequest {
         return [
             "x-platform-code": "ios",
             "x-version-code": buildVersion,
-            "Cookie":"",
             headerKey: value,
             "x-sdk-source": "feed",
             "Authorization": "Bearer " + accessToken
@@ -40,8 +38,7 @@ class ServiceRequest {
         return ["\(headerKey)": sdkApiKey,
                 "x-platform-code": "ios",
                 "x-version-code": BuildManager.buildVersion,
-                "x-sdk-source": "feed",
-                "Cookie":""]
+                "x-sdk-source": "feed"]
     }
     
     static func requestParameters(encodedData: Data) -> Alamofire.Parameters {

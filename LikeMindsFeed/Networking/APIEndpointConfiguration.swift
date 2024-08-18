@@ -1,5 +1,5 @@
 //
-//  ServiceProtocol.swift
+//  APIEndpointConfiguration.swift
 //  LikeMindsFeed
 //
 //  Created by Devansh Mohata on 17/08/24.
@@ -10,16 +10,23 @@ enum HTTPMethod: String {
     case get, head, post, put, delete, connect, options, trace, patch
 }
 
-protocol ServiceProtocol {
+protocol APIEndpointConfiguration {
     var baseURL: String { get }
     var endPoint: String { get }
     var httpMethod: HTTPMethod { get }
-    var httpHeaders: [String: Any] { get }
+    var baseHTTPHeaders: [String: Any] { get }
+    var additionalHTTPHeaders: [String: Any] { get }
     var queryParams: [String: Any] { get }
     var body: [String: Any] { get }
 }
 
-extension ServiceProtocol {
+protocol RequestableAPIEndpointConfiguration: APIEndpointConfiguration {
+    associatedtype Request
+    var request: Request { get }
+}
+
+
+extension APIEndpointConfiguration {
     var baseURL: String {
         ServiceConfiguration.authBaseURL
     }
@@ -29,16 +36,25 @@ extension ServiceProtocol {
     var body: [String: Any] { [:] }
  
     // TODO: Write better logic
-    var httpHeaders: [String: Any] {
+    var baseHTTPHeaders: [String: Any] {
         let accessToken = FeedTokenManager.shared.accessToken ?? ""
         let buildVersion = BuildManager.buildVersion
+        
         return [
             "x-platform-code": "ios",
             "x-version-code": buildVersion,
-            "Cookie":"",
             "x-sdk-source": "feed",
             "Authorization": "Bearer " + accessToken
         ]
+    }
+    
+    var additionalHTTPHeaders: [String: Any] { [:] }
+    
+    private func aggregateHTTPHeaders() -> [String: Any] {
+        var headers = baseHTTPHeaders
+        headers.merge(additionalHTTPHeaders) { (_, new) in new }
+        
+        return headers
     }
     
     func fetchURLRequest() -> URLRequest? {
@@ -65,7 +81,8 @@ extension ServiceProtocol {
         request.httpMethod = httpMethod.rawValue
         
         // Add HTTP headers
-        for (key, value) in httpHeaders {
+        let headers = aggregateHTTPHeaders()
+        for (key, value) in headers {
             request.setValue("\(value)", forHTTPHeaderField: key)
         }
         

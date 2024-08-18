@@ -15,7 +15,7 @@ enum LMFeedNetworkError: Error {
 }
 
 protocol NetworkProtocol: AnyObject {
-    func request<T: Decodable>(request: ServiceProtocol, response: @escaping ((LMResponse<T>) -> Void))
+    func request<T: Decodable>(request: APIEndpointConfiguration, response: @escaping ((LMResponse<T>) -> Void))
 }
 
 final class NetworkLayer: NetworkProtocol {
@@ -27,7 +27,7 @@ final class NetworkLayer: NetworkProtocol {
         self.urlSession = urlSession
     }
     
-    func request<T: Decodable>(request: any ServiceProtocol, response: @escaping ((LMResponse<T>) -> Void)) {
+    func request<T: Decodable>(request: any APIEndpointConfiguration, response: @escaping ((LMResponse<T>) -> Void)) {
         guard let urlRequest = request.fetchURLRequest() else {
             response(LMResponse.failureResponse(LMFeedNetworkError.invalidRequest.localizedDescription))
             return
@@ -74,7 +74,7 @@ final class NetworkLayer: NetworkProtocol {
         }
     }
     
-    private func handleUnauthorizedResponse<T: Decodable>(request: any ServiceProtocol, originalResponse: @escaping ((LMResponse<T>) -> Void)) {
+    private func handleUnauthorizedResponse<T: Decodable>(request: any APIEndpointConfiguration, originalResponse: @escaping ((LMResponse<T>) -> Void)) {
         if request.endPoint == "user/refresh" {
             MyFeedTokenManager.shared.onRefreshTokenExpired()
         } else {
@@ -94,32 +94,40 @@ final class NetworkLayer: NetworkProtocol {
 
 extension URLRequest {
     func cURL() -> String {
-        let cURL = "curl -f"
-        let method = "-X \(self.httpMethod ?? "GET")"
-        let url = url.flatMap { "--url '\($0.absoluteString)'" }
+        var components: [String] = []
         
-        let header = self.allHTTPHeaderFields?
-            .map { "-H '\($0): \($1)'" }
-            .joined(separator: " ")
+        // Base cURL command
+        components.append("curl -f")
         
-        let data: String?
-        if let httpBody, !httpBody.isEmpty {
-            if let bodyString = String(data: httpBody, encoding: .utf8) { // json and plain text
-                let escaped = bodyString
-                    .replacingOccurrences(of: "'", with: "'\\''")
-                data = "--data '\(escaped)'"
-            } else { // Binary data
-                let hexString = httpBody
-                    .map { String(format: "%02X", $0) }
-                    .joined()
-                data = #"--data "$(echo '\#(hexString)' | xxd -p -r)""#
-            }
-        } else {
-            data = nil
+        // Method
+        components.append("-X \(httpMethod ?? "GET")")
+        
+        // URL
+        if let url = url?.absoluteString {
+            components.append("--url '\(url)'")
         }
         
-        return [cURL, method, url, header, data]
-            .compactMap { $0 }
-            .joined(separator: " ")
+        // Headers
+        if let headers = allHTTPHeaderFields {
+            for (key, value) in headers {
+                components.append("-H '\(key): \(value)'")
+            }
+        }
+        
+        // Body data
+        if let httpBody = httpBody, !httpBody.isEmpty {
+            if let bodyString = String(data: httpBody, encoding: .utf8) {
+                // JSON and plain text
+                let escaped = bodyString.replacingOccurrences(of: "'", with: "'\\''")
+                components.append("--data '\(escaped)'")
+            } else {
+                // Binary data
+                let hexString = httpBody.map { String(format: "%02X", $0) }.joined()
+                components.append(#"--data "$(echo '\#(hexString)' | xxd -p -r)""#)
+            }
+        }
+        
+        // Join components with newlines and indentation
+        return components.joined(separator: " \\\n    ")
     }
 }

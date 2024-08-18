@@ -6,7 +6,7 @@
 //
 
 // MARK: read notification
-struct MarkReadNotificationAPIRequest: ServiceProtocol {
+struct MarkReadNotificationAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/user/activity/\(request.activityId!)/mark_read"
     }
@@ -22,7 +22,7 @@ struct MarkReadNotificationAPIRequest: ServiceProtocol {
 
 
 // MARK: get notification count
-struct GetUnreadNotificationCountAPIRequest: ServiceProtocol {
+struct GetUnreadNotificationCountAPIRequest: APIEndpointConfiguration {
     var endPoint: String {
         "feed/user/activity/unread_count"
     }
@@ -32,7 +32,7 @@ struct GetUnreadNotificationCountAPIRequest: ServiceProtocol {
 
 
 // MARK: get notification
-struct GetNotificationFeedAPIRequest: ServiceProtocol {
+struct GetNotificationFeedAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         return "feed/user/activity"
     }

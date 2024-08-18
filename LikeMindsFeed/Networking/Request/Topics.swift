@@ -6,7 +6,7 @@
 //
 
 // MARK: topics
-struct TopicFeedAPIRequest: ServiceProtocol {
+struct TopicFeedAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/topic"
     }

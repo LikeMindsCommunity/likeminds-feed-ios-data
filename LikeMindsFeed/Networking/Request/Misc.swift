@@ -7,7 +7,7 @@
 
 
 // MARK: report
-struct ReportAPIRequest: ServiceProtocol {
+struct ReportAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "community/report"
     }
@@ -33,7 +33,7 @@ struct ReportAPIRequest: ServiceProtocol {
 
 
 // MARK: report tags
-struct GetReportTagAPIRequest: ServiceProtocol {
+struct GetReportTagAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "community/report/tag"
     }
@@ -53,7 +53,7 @@ struct GetReportTagAPIRequest: ServiceProtocol {
 
 
 // MARK: decode url
-struct DecodeUrlAPIRequest: ServiceProtocol {
+struct DecodeUrlAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "helper/url"
     }
@@ -73,7 +73,7 @@ struct DecodeUrlAPIRequest: ServiceProtocol {
 
 
 // MARK: fetch tagging list
-struct GetTaggingListAPIRequest: ServiceProtocol {
+struct GetTaggingListAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "community/tag"
     }

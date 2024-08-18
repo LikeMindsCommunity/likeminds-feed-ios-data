@@ -7,7 +7,7 @@
 
 
 // MARK: get comments
-struct GetCommentAPIRequest: ServiceProtocol {
+struct GetCommentAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         return "feed/post/\(request.postId!)/comment/\(request.commentId!)"
     }
@@ -28,7 +28,7 @@ struct GetCommentAPIRequest: ServiceProtocol {
 
 
 // MARK: add comment
-struct AddCommentAPIRequest: ServiceProtocol {
+struct AddCommentAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)/comment"
     }
@@ -49,7 +49,7 @@ struct AddCommentAPIRequest: ServiceProtocol {
 
 
 // MARK: edit comment
-struct EditCommentAPIRequest: ServiceProtocol {
+struct EditCommentAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)/comment/\(request.commentId!)"
     }
@@ -69,7 +69,7 @@ struct EditCommentAPIRequest: ServiceProtocol {
 
 
 // MARK: reply comment
-struct ReplyCommentAPIRequest: ServiceProtocol {
+struct ReplyCommentAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)/comment/\(request.commentId!)/comment"
     }
@@ -90,7 +90,7 @@ struct ReplyCommentAPIRequest: ServiceProtocol {
 
 
 // MARK: like comment
-struct LikeCommentAPIRequest: ServiceProtocol {
+struct LikeCommentAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)/comment/\(request.commentId!)/like"
     }
@@ -106,7 +106,7 @@ struct LikeCommentAPIRequest: ServiceProtocol {
 
 
 // MARK: get comment likes
-struct GetCommentLikesAPIRequest: ServiceProtocol {
+struct GetCommentLikesAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         return "feed/post/\(request.postId!)/comment/\(request.commentId!)/like"
     }
@@ -127,7 +127,7 @@ struct GetCommentLikesAPIRequest: ServiceProtocol {
 
 
 // MARK: delete comment
-struct DeleteCommentAPIRequest: ServiceProtocol {
+struct DeleteCommentAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
         "feed/post/\(request.postId!)/comment/\(request.commentId!)"
     }
