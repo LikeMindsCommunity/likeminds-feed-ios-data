@@ -50,37 +50,37 @@ extension LMFeedClient {
     }
     
     public func deletePost(_ request: DeletePostRequest, _ response:  LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.deletePost(request, withModuleName: moduleName) { result in
+        newManager.request(request: DeletePostAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
     
     public func deleteComment(_ request: DeleteCommentRequest, _ response:  LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.deleteComment(request, withModuleName: moduleName) { result in
+        newManager.request(request: DeleteCommentAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
     
     public func likePost(_ request: LikePostRequest, _ response:  LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.likePost(request, withModuleName: moduleName) { result in
+        newManager.request(request: LikePostAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
     
     public func savePost(_ request: SavePostRequest, _ response:  LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.savePost(request, withModuleName: moduleName) { result in
+        newManager.request(request: SavePostAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
     
     public func addComment(_ request: AddCommentRequest, _ response:  LMFeedClientResponse<GetCommentResponse>?) {
-        LMFeedClientServiceRequest.addComment(request, withModuleName: moduleName) { result in
+        newManager.request(request: AddCommentAPIRequest(request: request)) { (result: LMResponse<GetCommentResponse>) in
             response?(result)
         }
     }
     
     public func replyComment(_ request: ReplyCommentRequest, _ response:  LMFeedClientResponse<ReplyCommentResponse>?) {
-        LMFeedClientServiceRequest.replyComment(request, withModuleName: moduleName) { result in
+        newManager.request(request: ReplyCommentAPIRequest(request: request)) { (result: LMResponse<ReplyCommentResponse>) in
             response?(result)
         }
     }
