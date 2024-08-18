@@ -86,35 +86,25 @@ extension LMFeedClient {
     }
     
     public func getComment(_ request: GetCommentRequest, _ response:  LMFeedClientResponse<GetCommentResponse>?) {
-        LMFeedClientServiceRequest.getComment(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetCommentAPIRequest(request: request)) { (result: LMResponse<GetCommentResponse>) in
             response?(result)
         }
     }
     
     public func getCommentLikes(_ request: GetCommentLikesRequest, _ response:  LMFeedClientResponse<GetCommentsLikeResponse>?) {
-        LMFeedClientServiceRequest.getCommentLikes(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetCommentLikesAPIRequest(request: request)) { (result: LMResponse<GetCommentsLikeResponse>) in
             response?(result)
         }
     }
     
     public func likeComment(_ request: LikeCommentRequest, _ response:  LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.likeComment(request, withModuleName: moduleName) { result in
+        newManager.request(request: LikeCommentAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
     
     public func getMemberState(_ response:  LMFeedClientResponse<GetMemberStateResponse>?) {
-        LMFeedClientServiceRequest.getMemberState(withModuleName: moduleName) { result in
-            response?(result)
-        }
-    }
-    
-    func getFeedRoom(_ request: GetFeedRequest, _ response:  LMFeedClientResponse<GetFeedResponse>?) {
-        
-    }
-    
-    public func getFeedOfFeedRoom(_ request: GetFeedOfFeedRoomRequest, _ response:  LMFeedClientResponse<GetFeedOfFeedRoomResponse>?) {
-        LMFeedClientServiceRequest.getFeedOfFeedRoom(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetMemberAPIRequest()) { (result: LMResponse<GetMemberStateResponse>) in
             response?(result)
         }
     }
@@ -161,67 +151,55 @@ extension LMFeedClient {
     }
     
     public func pinPost(_ request: PinPostRequest, _ response:  LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.pinPost(request, withModuleName: moduleName) { result in
+        newManager.request(request: PinPostAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
     
     public func editPost(_ request: EditPostRequest, _ response:  LMFeedClientResponse<EditPostResponse>?) {
-        LMFeedClientServiceRequest.editPost(request, withModuleName: moduleName) { result in
+        newManager.request(request: EditPostAPIRequest(request: request)) { (result: LMResponse<EditPostResponse>) in
             response?(result)
         }
     }
     
     public func editComment(_ request: EditCommentRequest, _ response:  LMFeedClientResponse<EditCommentResponse>?) {
-        LMFeedClientServiceRequest.editComment(request, withModuleName: moduleName) { result in
+        newManager.request(request: EditCommentAPIRequest(request: request)) { (result: LMResponse<EditCommentResponse>) in
             response?(result)
         }
     }
     
     public func markReadNotification(_ request: MarkReadNotificationRequest, _ response:  LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.markReadNotification(request, withModuleName: moduleName) { result in
+        newManager.request(request: MarkReadNotificationAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
     
     public func getUnreadNotificationCount(_ response:  LMFeedClientResponse<GetUnreadNotificationCountResponse>?) {
-        LMFeedClientServiceRequest.getNotificationFeedUnreadCount(withModuleName: moduleName) { result in
+        newManager.request(request: GetUnreadNotificationCountAPIRequest()) { (result: LMResponse<GetUnreadNotificationCountResponse>) in
             response?(result)
         }
     }
     
     public func getNotificationFeed(_ request: GetNotificationFeedRequest, _ response:  LMFeedClientResponse<GetNotificationFeedResponse>?) {
-        LMFeedClientServiceRequest.getNotificationFeed(request, withModuleName: moduleName) { result in
-            response?(result)
-        }
-    }
-    
-    public func getAllMembers(_ request: GetAllMembersRequest, _ response:  LMFeedClientResponse<GetAllMembersResponse>?) {
-        LMFeedClientServiceRequest.getAllMembers(request, withModuleName: moduleName) { result in
-            response?(result)
-        }
-    }
-    
-    public func searchMembers(_ request: SearchMembersRequest, _ response:  LMFeedClientResponse<SearchMembersResponse>?) {
-        LMFeedClientServiceRequest.searchMembers(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetNotificationFeedAPIRequest(request: request)) { (result: LMResponse<GetNotificationFeedResponse>) in
             response?(result)
         }
     }
     
     public func getTopicFeed(_ request: TopicFeedRequest, _ response: LMFeedClientResponse<TopicFeedResponse>?) {
-        LMFeedClientServiceRequest.getTopicFeed(request, withModuleName: moduleName) { result in
+        newManager.request(request: TopicFeedAPIRequest(request: request)) { (result: LMResponse<TopicFeedResponse>) in
             response?(result)
         }
     }
     
     public func getCommunityConfiguration(_ request: GetCommunityConfigurationRequest, _ response: LMFeedClientResponse<GetCommunityConfigurationResponse>?) {
-        LMFeedClientServiceRequest.getCommunityConfiguration(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetCommunityConfigurationAPIRequest(request: request)) { (result: LMResponse<GetCommunityConfigurationResponse>) in
             response?(result)
         }
     }
     
     public func submitPollVoteRequest(_ request: SubmitPollVoteRequest, _ response: LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.submitPollVote(request, withModuleName: moduleName) { result in
+        newManager.request(request: SubmitPollVoteAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
@@ -240,19 +218,19 @@ extension LMFeedClient {
     }
     
     public func addPollOption(_ request: AddPollOptionRequest, _ response: LMFeedClientResponse<AddPollOptionResponse>?) {
-        LMFeedClientServiceRequest.addPollOption(request, withModuleName: moduleName) { result in
+        newManager.request(request: AddPollOptionAPIRequest(request: request)) { (result: LMResponse<AddPollOptionResponse>) in
             response?(result)
         }
     }
     
     public func getPollVotes(_ request: GetPollVotesRequest, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
-        LMFeedClientServiceRequest.getPollVotes(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetPollVoteAPIRequest(request: request)) { (result: LMResponse<GetPollVotesResponse>) in
             response?(result)
         }
     }
     
     public func searchPosts(_ request: SearchPostsRequest, _ response: LMFeedClientResponse<GetFeedResponse>?) {
-        LMFeedClientServiceRequest.searchPosts(request, withModuleName: moduleName) { result in
+        newManager.request(request: SearchPostAPIRequest(request: request)) { (result: LMResponse<GetFeedResponse>) in
             response?(result)
         }
     }
