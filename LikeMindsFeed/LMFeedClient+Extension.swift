@@ -110,25 +110,25 @@ extension LMFeedClient {
     }
 
     public func report(_ request: ReportRequest, _ response:  LMFeedClientResponse<NoData>?) {
-        LMFeedClientServiceRequest.report(request, withModuleName: moduleName) { result in
+        newManager.request(request: ReportAPIRequest(request: request)) { (result: LMResponse<NoData>) in
             response?(result)
         }
     }
     
     public func decodeUrl(_ request: DecodeUrlRequest, _ response: LMFeedClientResponse<DecodeUrlResponse>?) {
-        LMFeedClientServiceRequest.getOGTags(request, withModuleName: moduleName) { result in
+        newManager.request(request: DecodeUrlAPIRequest(request: request)) { (result: LMResponse<DecodeUrlResponse>) in
             response?(result)
         }
     }
     
     public func getReportTags(_ request: GetReportTagRequest, _ response:  LMFeedClientResponse<GetReportTagResponse>?) {
-        LMFeedClientServiceRequest.getReportTags(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetReportTagAPIRequest(request: request)) { (result: LMResponse<GetReportTagResponse>) in
             response?(result)
         }
     }
     
     public func getTaggingList(_ request: GetTaggingListRequest, _ response:  LMFeedClientResponse<GetTaggingListResponse>?) {
-        LMFeedClientServiceRequest.getTaggingList(request, withModuleName: moduleName) { result in
+        newManager.request(request: GetTaggingListAPIRequest(request: request)) { (result: LMResponse<GetTaggingListResponse>) in
             response?(result)
         }
     }
