@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 
 // TODO: remove this useless piece of code

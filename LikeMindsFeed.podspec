@@ -28,5 +28,4 @@ Pod::Spec.new do |spec|
   spec.swift_version = "5"
   
   spec.framework = "Foundation"
-  spec.dependency "Alamofire", '~> 5.7.1'
 end

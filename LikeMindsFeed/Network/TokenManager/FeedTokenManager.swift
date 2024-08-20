@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 final public class FeedTokenManager {
     /// Singleton object property
