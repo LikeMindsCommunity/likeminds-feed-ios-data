@@ -9,18 +9,18 @@
 // MARK: report
 struct ReportAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "community/report"
+        APIConstants.Endpoint.report
     }
     
     var httpMethod: HTTPMethod { .post }
     
     var body: [String : Any] {
         [
-            "entity_id": request.entityId!,
-            "uuid": request.uuid!,
-            "entity_type": request.entityType!,
-            "tag_id": request.tagId!,
-            "reason": request.reason!
+            APIConstants.Body.entityID: request.entityId!,
+            APIConstants.Body.uuid: request.uuid!,
+            APIConstants.Body.entityType: request.entityType!,
+            APIConstants.Body.tagID: request.tagId!,
+            APIConstants.Body.reason: request.reason!
         ]
     }
     
@@ -35,13 +35,13 @@ struct ReportAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: report tags
 struct GetReportTagAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "community/report/tag"
+        APIConstants.Endpoint.reportTag
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        ["type": request.type ?? 3]
+        [APIConstants.Body.type: request.type ?? 3]
     }
     
     let request: GetReportTagRequest
@@ -55,13 +55,13 @@ struct GetReportTagAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: decode url
 struct DecodeUrlAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "helper/url"
+        APIConstants.Endpoint.decodeURL
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        ["url": request.link!]
+        [APIConstants.QueryParam.url: request.link!]
     }
     
     let request: DecodeUrlRequest
@@ -75,17 +75,17 @@ struct DecodeUrlAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: fetch tagging list
 struct GetTaggingListAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "community/tag"
+        APIConstants.Endpoint.tagging
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        var params: [String: Any] = ["page": request.page,
-                                     "page_size": request.pageSize]
+        var params: [String: Any] = [APIConstants.QueryParam.page: request.page,
+                                     APIConstants.QueryParam.pageSize: request.pageSize]
         
         if !request.searchName.isEmpty {
-            params["search_name"] = request.searchName
+            params[APIConstants.QueryParam.searchName] = request.searchName
         }
         
         return params

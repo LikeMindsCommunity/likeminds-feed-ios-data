@@ -7,11 +7,27 @@
 
 import Foundation
 
-enum LMFeedNetworkError: Error {
+enum LMFeedNetworkError: Error, CustomStringConvertible {
+    case noInternet
     case invalidRequest
     case invalidResponse
     case invalidTokens
     case noData
+    
+    var description: String {
+        switch self {
+        case .noInternet:
+            "No internet connection found"
+        case .invalidRequest:
+            "unable to form valid request"
+        case .invalidResponse:
+            "unable to parse response"
+        case .invalidTokens:
+            "token set is not valid"
+        case .noData:
+            "no data in the response"
+        }
+    }
 }
 
 protocol NetworkProtocol: AnyObject {
@@ -89,45 +105,5 @@ final class NetworkLayer: NetworkProtocol {
                 }
             }
         }
-    }
-}
-
-extension URLRequest {
-    func cURL() -> String {
-        var components: [String] = []
-        
-        // Base cURL command
-        components.append("curl -f")
-        
-        // Method
-        components.append("-X \(httpMethod ?? "GET")")
-        
-        // URL
-        if let url = url?.absoluteString {
-            components.append("--url '\(url)'")
-        }
-        
-        // Headers
-        if let headers = allHTTPHeaderFields {
-            for (key, value) in headers {
-                components.append("-H '\(key): \(value)'")
-            }
-        }
-        
-        // Body data
-        if let httpBody = httpBody, !httpBody.isEmpty {
-            if let bodyString = String(data: httpBody, encoding: .utf8) {
-                // JSON and plain text
-                let escaped = bodyString.replacingOccurrences(of: "'", with: "'\\''")
-                components.append("--data '\(escaped)'")
-            } else {
-                // Binary data
-                let hexString = httpBody.map { String(format: "%02X", $0) }.joined()
-                components.append(#"--data "$(echo '\#(hexString)' | xxd -p -r)""#)
-            }
-        }
-        
-        // Join components with newlines and indentation
-        return components.joined(separator: " \\\n    ")
     }
 }

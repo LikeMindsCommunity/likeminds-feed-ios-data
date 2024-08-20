@@ -9,20 +9,6 @@
 import Foundation
 import Alamofire
 
-extension URL {
-    func valueOf(_ queryParamaterName: String) -> String? {
-        guard let url = URLComponents(string: self.absoluteString) else { return nil }
-        return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
-    }
-    func appending(_ queryItem: String, value: String?) -> URL {
-        guard var urlComponents = URLComponents(string: absoluteString) else { return absoluteURL }
-        var queryItems: [URLQueryItem] = urlComponents.queryItems?.filter({$0.name != queryItem}) ??  []
-        let queryItem = URLQueryItem(name: queryItem, value: value)
-        queryItems.append(queryItem)
-        urlComponents.queryItems = queryItems
-        return urlComponents.url!
-    }
-}
 
 // TODO: remove this useless piece of code
 public struct ServiceAPI {

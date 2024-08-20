@@ -28,7 +28,7 @@ protocol RequestableAPIEndpointConfiguration: APIEndpointConfiguration {
 
 extension APIEndpointConfiguration {
     var baseURL: String {
-        ServiceConfiguration.authBaseURL
+        APIConstants.baseURL
     }
     
     var queryParams: [String: Any] { [:] }
@@ -41,10 +41,10 @@ extension APIEndpointConfiguration {
         let buildVersion = BuildManager.buildVersion
         
         return [
-            "x-platform-code": "ios",
-            "x-version-code": buildVersion,
-            "x-sdk-source": "feed",
-            "Authorization": "Bearer " + accessToken
+            APIConstants.HeaderKey.platform: APIConstants.HeaderKey.platformCode,
+            APIConstants.HeaderKey.versionCode: buildVersion,
+            APIConstants.HeaderKey.sdkSource: APIConstants.HeaderKey.sdkSourceCode,
+            APIConstants.HeaderKey.authorization: "Bearer " + accessToken
         ]
     }
     

@@ -8,7 +8,7 @@
 // MARK: topics
 struct TopicFeedAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/topic"
+        APIConstants.Endpoint.topic
     }
     
     var httpMethod: HTTPMethod { .get }
@@ -16,16 +16,16 @@ struct TopicFeedAPIRequest: RequestableAPIEndpointConfiguration {
     var queryParams: [String : Any] {
         var params: [String: Any] = [:]
         
-        params["page"] = request.page
-        params["page_size"] = request.pageSize
+        params[APIConstants.QueryParam.page] = request.page
+        params[APIConstants.QueryParam.pageSize] = request.pageSize
         
         if request.isEnabled {
-            params["is_enabled"] = true
+            params[APIConstants.QueryParam.isEnabled] = true
         }
         
         if let search = request.search {
-            params["search"] = search
-            params["search_type"] = request.searchType
+            params[APIConstants.QueryParam.search] = search
+            params[APIConstants.QueryParam.searchType] = request.searchType
         }
         
         return params

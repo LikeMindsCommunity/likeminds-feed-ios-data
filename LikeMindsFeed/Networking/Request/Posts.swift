@@ -8,15 +8,15 @@
 // MARK: universal feed
 struct GetFeedAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/universal"
+        APIConstants.Endpoint.universalFeed
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
         var params: [String: Any] = [
-            "page": request.page,
-            "page_size": request.pageSize
+            APIConstants.QueryParam.page: request.page,
+            APIConstants.QueryParam.pageSize: request.pageSize
         ]
         
         if !request.topics.isEmpty {
@@ -24,7 +24,7 @@ struct GetFeedAPIRequest: RequestableAPIEndpointConfiguration {
                 .joined(separator: ",")
                 .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed
                 ) ?? ""
-            params["topic_ids"] = topics
+            params[APIConstants.QueryParam.topicIds] = topics
         }
         
         return params
@@ -41,14 +41,14 @@ struct GetFeedAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: get post
 struct GetPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/post/\(request.postId!)"
+        APIConstants.postEndpoint(for: request.postId!)
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        ["page": request.page,
-         "page_size": request.pageSize]
+        [APIConstants.QueryParam.page: request.page,
+         APIConstants.QueryParam.pageSize: request.pageSize]
     }
     
     let request: GetPostRequest
@@ -61,11 +61,11 @@ struct GetPostAPIRequest: RequestableAPIEndpointConfiguration {
 
 // MARK: add post
 struct AddPostAPIRequest: RequestableAPIEndpointConfiguration {
-    var endPoint: String { "feed/post" }
+    var endPoint: String {
+        APIConstants.Endpoint.post
+    }
     
     var httpMethod: HTTPMethod { .post }
-    
-    var queryParams: [String : Any] = [:]
     
     var body: [String : Any] {
         request.toJSON()
@@ -82,7 +82,7 @@ struct AddPostAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: edit post
 struct EditPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/post/\(request.postId!)"
+        APIConstants.postEndpoint(for: request.postId!)
     }
     
     var httpMethod: HTTPMethod { .put }
@@ -102,14 +102,14 @@ struct EditPostAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: delete post
 struct DeletePostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/post/\(request.postId!)"
+        APIConstants.postEndpoint(for: request.postId!)
     }
     
     var httpMethod: HTTPMethod { .delete }
     
     var body: [String : Any] {
         if let reason = request.reason {
-            return ["delete_reason": reason]
+            return [APIConstants.Body.deleteReason: reason]
         }
         
         return [:]
@@ -126,14 +126,14 @@ struct DeletePostAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: get post likes
 struct GetPostLikeAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        return "feed/post/\(request.postId!)/like"
+        APIConstants.likePostEndpoint(for: request.postId!)
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        ["page": request.page,
-         "page_size": request.pageSize]
+        [APIConstants.QueryParam.page: request.page,
+         APIConstants.QueryParam.pageSize: request.pageSize]
     }
     
     let request: GetPostLikesRequest
@@ -146,7 +146,7 @@ struct GetPostLikeAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: like post
 struct LikePostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/post/\(request.postId!)/like"
+        APIConstants.likePostEndpoint(for: request.postId!)
     }
     
     var httpMethod: HTTPMethod { .put }
@@ -162,7 +162,7 @@ struct LikePostAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: save post
 struct SavePostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/post/\(request.postId!)/save"
+        APIConstants.savePostEndpoint(for: request.postId!)
     }
     
     var httpMethod: HTTPMethod { .put }
@@ -178,7 +178,7 @@ struct SavePostAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: pin post
 struct PinPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/post/\(request.postId!)/pin"
+        APIConstants.pinPostEndpoint(for: request.postId!)
     }
     
     var httpMethod: HTTPMethod { .put }
@@ -194,16 +194,16 @@ struct PinPostAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: search posts
 struct SearchPostAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "search/post"
+        APIConstants.Endpoint.search
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        ["search": request.search,
-         "search_type": request.searchType,
-         "page": request.page,
-         "page_size": request.page]
+        [APIConstants.QueryParam.search: request.search,
+         APIConstants.QueryParam.searchType: request.searchType,
+         APIConstants.QueryParam.page: request.page,
+         APIConstants.QueryParam.pageSize: request.pageSize]
     }
     
     let request: SearchPostsRequest
@@ -220,13 +220,13 @@ struct SearchPostAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: submit poll vote
 struct SubmitPollVoteAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "poll/\(request.pollID!)/vote"
+        APIConstants.pollVoteEndpoint(for: request.pollID!)
     }
     
     var httpMethod: HTTPMethod { .put }
     
     var body: [String : Any] {
-        ["votes": request.votes]
+        [APIConstants.Body.votes: request.votes]
     }
     
     let request: SubmitPollVoteRequest
@@ -240,13 +240,13 @@ struct SubmitPollVoteAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: add poll option
 struct AddPollOptionAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "poll/\(request.pollID!)"
+        APIConstants.pollEndpoint(for: request.pollID!)
     }
     
     var httpMethod: HTTPMethod { .put }
     
     var body: [String : Any] {
-        ["text": request.pollText!]
+        [APIConstants.Body.text: request.pollText!]
     }
     
     let request: AddPollOptionRequest
@@ -260,15 +260,15 @@ struct AddPollOptionAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: get poll votes
 struct GetPollVoteAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        return "poll/\(request.pollID!)/vote"
+        APIConstants.pollVoteEndpoint(for: request.pollID!)
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        ["votes": request.options,
-         "page": request.page,
-         "page_size": request.pageSize]
+        [APIConstants.QueryParam.votes: request.options,
+         APIConstants.QueryParam.page: request.page,
+         APIConstants.QueryParam.pageSize: request.pageSize]
     }
     
     let request: GetPollVotesRequest

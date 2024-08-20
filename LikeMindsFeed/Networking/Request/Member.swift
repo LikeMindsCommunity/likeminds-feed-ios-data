@@ -9,23 +9,23 @@
 // MARK: Initiate SDK
 struct InitiateUserAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "sdk/initiate"
+        APIConstants.Endpoint.initiateSDK
     }
     
     var httpMethod: HTTPMethod { .post }
     
     var body: [String : Any] {
-        ["user_name": request.userName!,
-         "uuid": request.uuid!,
-         "is_guest": request.isGuest ?? false]
+        [APIConstants.QueryParam.userName: request.userName!,
+         APIConstants.QueryParam.uuid: request.uuid!,
+         APIConstants.QueryParam.isGuest: request.isGuest ?? false]
     }
     
-    var baseHTTPHeaders: [String : Any] {
+    var baseHTTPHeaders: [String: Any] {
         [
-            "x-platform-code": "ios",
-            "x-version-code": BuildManager.buildVersion,
-            "x-sdk-source": "feed",
-            "x-api-key": request.apiKey!
+            APIConstants.HeaderKey.platform: APIConstants.HeaderKey.platform,
+            APIConstants.HeaderKey.versionCode: BuildManager.buildVersion,
+            APIConstants.HeaderKey.sdkSource: APIConstants.HeaderKey.sdkSourceCode,
+            APIConstants.HeaderKey.apiKey: request.apiKey!
         ]
     }
     
@@ -39,7 +39,7 @@ struct InitiateUserAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: get member state
 struct GetMemberAPIRequest: APIEndpointConfiguration {
     var endPoint: String {
-        "community/member/state"
+        APIConstants.Endpoint.memberState
     }
     
     var httpMethod: HTTPMethod { .get }
@@ -49,18 +49,18 @@ struct GetMemberAPIRequest: APIEndpointConfiguration {
 // MARK: logout use
 struct LogoutAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "user/logout"
+        APIConstants.Endpoint.logout
     }
     
     var httpMethod: HTTPMethod { .post }
     
     var additionalHTTPHeaders: [String : Any] {
-        ["x-device-id": request.deviceId!]
+        [APIConstants.HeaderKey.deviceId: request.deviceId!]
     }
     
     
     var body: [String : Any] {
-        ["refresh_token": request.refreshToken!]
+        [APIConstants.Body.refreshToken: request.refreshToken!]
     }
     
     let request: LogoutRequest
@@ -74,17 +74,17 @@ struct LogoutAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: register device
 struct RegisterDeviceAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "user/device/push"
+        APIConstants.Endpoint.registerDevice
     }
     
     var httpMethod: HTTPMethod { .post }
     
     var additionalHTTPHeaders: [String : Any] {
-        ["x-device-id": request.deviceId!]
+        [APIConstants.HeaderKey.deviceId: request.deviceId!]
     }
     
     var body: [String : Any] {
-        ["token": request.token!]
+        [APIConstants.Body.token: request.token!]
     }
     
     let request: RegisterDeviceRequest
@@ -98,13 +98,13 @@ struct RegisterDeviceAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: refresh LTM
 struct RefreshAccessTokenAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "user/refresh"
+        APIConstants.Endpoint.refreshToken
     }
     
     var httpMethod: HTTPMethod { .post }
     
     var additionalHTTPHeaders: [String : Any] {
-        ["Authorization": request]
+        [APIConstants.HeaderKey.authorization: request]
     }
     
     let request: String
@@ -118,14 +118,10 @@ struct RefreshAccessTokenAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: validate use
 struct ValidateUserAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "sdk/initiate"
+        APIConstants.Endpoint.initiateSDK
     }
     
     var httpMethod: HTTPMethod { .get }
-    
-    var additionalHTTPHeaders: [String : Any] {
-        ["Authorization": request.accessToken]
-    }
     
     let request: ValidateUserRequest
     
@@ -138,13 +134,13 @@ struct ValidateUserAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: community config
 struct GetCommunityConfigurationAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "community/configurations"
+        APIConstants.Endpoint.communityConfig
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        ["configuration_types": request.configurationTypes ?? []]
+        [APIConstants.QueryParam.configurationType: request.configurationTypes ?? []]
     }
     
     let request: GetCommunityConfigurationRequest

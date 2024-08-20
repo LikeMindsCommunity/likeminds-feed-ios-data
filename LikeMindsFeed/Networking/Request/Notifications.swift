@@ -8,7 +8,7 @@
 // MARK: read notification
 struct MarkReadNotificationAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        "feed/user/activity/\(request.activityId!)/mark_read"
+        APIConstants.markRead(for: request.activityId!)
     }
     
     var httpMethod: HTTPMethod { .post }
@@ -24,7 +24,7 @@ struct MarkReadNotificationAPIRequest: RequestableAPIEndpointConfiguration {
 // MARK: get notification count
 struct GetUnreadNotificationCountAPIRequest: APIEndpointConfiguration {
     var endPoint: String {
-        "feed/user/activity/unread_count"
+        APIConstants.Endpoint.notificationCount
     }
     
     var httpMethod: HTTPMethod { .get }
@@ -34,14 +34,14 @@ struct GetUnreadNotificationCountAPIRequest: APIEndpointConfiguration {
 // MARK: get notification
 struct GetNotificationFeedAPIRequest: RequestableAPIEndpointConfiguration {
     var endPoint: String {
-        return "feed/user/activity"
+        APIConstants.Endpoint.notification
     }
     
     var httpMethod: HTTPMethod { .get }
     
     var queryParams: [String : Any] {
-        ["page": request.page,
-         "page_size": request.pageSize]
+        [APIConstants.QueryParam.page: request.page,
+         APIConstants.QueryParam.pageSize: request.pageSize]
     }
     
     let request: GetNotificationFeedRequest

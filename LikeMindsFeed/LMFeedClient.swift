@@ -13,7 +13,6 @@ public protocol LMFeedSDKCallback: AnyObject {
 }
 
 public class LMFeedClient {
-    let moduleName = "LMFeedClient-SDK"
     public private(set) static var shared = LMFeedClient()
     static weak private(set) var tokenManager: LMFeedSDKCallback?
     
