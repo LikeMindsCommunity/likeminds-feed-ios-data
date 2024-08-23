@@ -11,7 +11,7 @@ import Foundation
 public class AttachmentMeta: Codable {
     public var attachmentUrl: String?
     public var format, name: String?
-    public var pageCount, duration, size: Int? // size in bytes, duration in seconds
+    public var width, height, pageCount, duration, size: Int? // size in bytes, duration in seconds
     public var ogTags: OGTags?
     public private(set) var coverImageUrl: String?
     public private(set) var title: String?
@@ -32,6 +32,8 @@ public class AttachmentMeta: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.attachmentUrl = try container.decodeIfPresent(String.self, forKey: .attachmentUrl)
         self.format = try container.decodeIfPresent(String.self, forKey: .format)
+        self.width = try container.decodeIfPresent(Int.self, forKey: .width)
+        self.height = try container.decodeIfPresent(Int.self, forKey: .height)
         self.size = try container.decodeIfPresent(Int.self, forKey: .size)
         self.duration = try container.decodeIfPresent(Int.self, forKey: .duration)
         self.pageCount = try container.decodeIfPresent(Int.self, forKey: .pageCount)
@@ -67,10 +69,22 @@ public class AttachmentMeta: Codable {
         case multSelectNo = "multiple_select_number"
         case isAnonymous = "is_anonymous"
         case allowAddOptions = "allow_add_option"
+        case width = "width"
+        case height = "height"
     }
     
     public func attachmentUrl(_ attachmentUrl: String) -> AttachmentMeta {
         self.attachmentUrl = attachmentUrl
+        return self
+    }
+    
+    public func height(_ height: Int) -> AttachmentMeta {
+        self.height = height
+        return self
+    }
+    
+    public func width(_ width: Int) -> AttachmentMeta {
+        self.width = width
         return self
     }
     
