@@ -9,7 +9,7 @@ import Foundation
 
 class FeedClientServiceRequest: ServiceRequest {
     
-    static func initiateChatService(_ request: InitiateUserRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
+    static func initiateUser(_ request: InitiateUserRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.initiateChatClient(request)
         guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
         
@@ -19,7 +19,7 @@ class FeedClientServiceRequest: ServiceRequest {
                                    withParameters: networkPath.parameters,
                                    withEncoding: networkPath.encoding,
                                    withModuleName: moduleName) { (moduleName, responseData) in
-            guard let data = responseData as? Data else {return}
+            guard let data = responseData as? Data else { return }
             do {
                 let result = try JSONDecoder().decode(LMResponse<InitiateUserResponse>.self, from: data)
                 response?(result)
@@ -44,26 +44,6 @@ class FeedClientServiceRequest: ServiceRequest {
             guard let data = responseData as? Data else {return}
             do {
                 let result = try JSONDecoder().decode(LMResponse<RegisterDeviceResponse>.self, from: data)
-                response?(result)
-            } catch let error {
-                response?(LMResponse.failureResponse(error.localizedDescription))
-            }
-        } failureCallback: { (moduleName, error) in
-            response?(LMResponse.failureResponse(error.localizedDescription))
-        }
-    }
-    
-    static func getBranding(request: BrandingRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<BrandingResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.getBranding(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
-        DataNetwork.shared.request(for: url,
-                                   withHTTPMethod: networkPath.httpMethod,
-                                   headers: ServiceRequest.httpHeaders(),
-                                   withEncoding: networkPath.encoding,
-                                   withModuleName: moduleName) { (moduleName, responseData) in
-            guard let data = responseData as? Data else {return}
-            do {
-                let result = try JSONDecoder().decode(LMResponse<BrandingResponse>.self, from: data)
                 response?(result)
             } catch let error {
                 response?(LMResponse.failureResponse(error.localizedDescription))

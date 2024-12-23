@@ -12,7 +12,7 @@ public typealias LMFeedClientResponse<T: Decodable> = (LMResponse<T>) -> (Void)
 
 extension LMFeedClient {
     public func initiateUser(request: InitiateUserRequest, response: LMFeedClientResponse<InitiateUserResponse>?) {
-        FeedClientServiceRequest.initiateChatService(request, withModuleName: moduleName) { result in
+        FeedClientServiceRequest.initiateUser(request, withModuleName: moduleName) { result in
             if result.success {
                 if result.data?.appAccess == true {
                     UserDetails.apiKey = request.apiKey
