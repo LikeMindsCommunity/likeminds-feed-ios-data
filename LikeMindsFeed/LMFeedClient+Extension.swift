@@ -21,7 +21,6 @@ extension LMFeedClient {
                 UserDetails.userDetails = result.data?.user
                 FeedTokenManager.shared.updateToken(result.data?.accessToken, result.data?.refreshToken)
             }
-            
             response?(result)
         }
     }
