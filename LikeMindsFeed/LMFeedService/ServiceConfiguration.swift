@@ -60,7 +60,6 @@ struct ServiceAPIRequest {
         case validateUser
         case refreshServiceToken
         case pushToken(_ request: RegisterDeviceRequest)
-        case getBranding(_ request: BrandingRequest)
         case onboardingChatService
         case universalFeed(_ request: GetFeedRequest)
         case addPost(_ request: AddPostRequest)
@@ -108,8 +107,6 @@ struct ServiceAPIRequest {
                 return "user/refresh"
             case .pushToken:
                 return "user/device/push"
-            case .getBranding:
-                return ""
             case .onboardingChatService:
                 return "sdk/onboarding"
             case .universalFeed(let request):
@@ -228,7 +225,6 @@ struct ServiceAPIRequest {
             case .universalFeed,
                  .getCommunityConfiguration,
                  .getPostLikes,
-                 .getBranding,
                  .getPost,
                  .getComment,
                  .getCommentsLikes,

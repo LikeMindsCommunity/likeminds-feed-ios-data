@@ -10,5 +10,5 @@ import Foundation
 // MARK: - GetCommentsResponse
 public struct GetCommentResponse: Codable {
     public let comment: Comment?
-    public let users: [ String: User]?
+    public let users: [String: User]?
 }
