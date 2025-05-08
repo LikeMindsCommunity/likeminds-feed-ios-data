@@ -11,7 +11,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getUniversalFeeds(_ request: GetFeedRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.universalFeed(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -32,7 +36,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func addPost(_ request: AddPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPostResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.addPost(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -53,7 +61,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getOGTags(_ request: DecodeUrlRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<DecodeUrlResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.urlDetails(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -74,7 +86,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getPost(_ request: GetPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPostResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getPost(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -95,7 +111,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getPostLikes(_ request: GetPostLikesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPostLikeResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getPostLikes(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -116,7 +136,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func deletePost(_ request: DeletePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.deletePost(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -137,7 +161,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func savePost(_ request: SavePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.savePost(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -158,7 +186,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func deleteComment(_ request: DeleteCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.deleteComment(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -179,7 +211,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func likePost(_ request: LikePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.likePost(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -200,7 +236,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func addComment(_ request: AddCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.addComment(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -221,7 +261,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func replyComment(_ request: ReplyCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<ReplyCommentResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.replyOnComment(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -242,7 +286,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getComment(_ request: GetCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getComment(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -263,7 +311,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getCommentLikes(_ request: GetCommentLikesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentsLikeResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getCommentsLikes(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -284,7 +336,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func likeComment(_ request: LikeCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.likeComment(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -305,7 +361,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getMemberState(withModuleName moduleName: String, _ response: LMFeedClientResponse<GetMemberStateResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getMemberState
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -326,7 +386,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getFeedOfFeedRoom(_ request: GetFeedOfFeedRoomRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedOfFeedRoomResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getFeedGroup(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -347,7 +411,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func report(_ request: ReportRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.report(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -368,7 +436,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getReportTags(_ request: GetReportTagRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetReportTagResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getReportTags(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -389,7 +461,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getTaggingList(_ request: GetTaggingListRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetTaggingListResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.fetchTaggingList(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -410,7 +486,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func pinPost(_ request: PinPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.pinPost(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -431,7 +511,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func editPost(_ request: EditPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<EditPostResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.editPost(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -452,7 +536,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func editComment(_ request: EditCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<EditCommentResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.editComment(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -473,8 +561,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func getTopicFeed(_ request: TopicFeedRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<TopicFeedResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getTopicFeed(request)
-        let urlString = (ServiceAPI.authBaseURL + networkPath.apiURL).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        guard let url =  URL(string: urlString) else { return }
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -495,9 +586,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     
     static func validateUser(_ request: ValidateUserRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<ValidateUserResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.validateUser
-        
-        guard let urlString = (ServiceAPI.authBaseURL + networkPath.apiURL).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: urlString) else { return }
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         
         var headers = ServiceRequest.httpHeaders()
         headers["Authorization"] = "Bearer \(request.accessToken)"

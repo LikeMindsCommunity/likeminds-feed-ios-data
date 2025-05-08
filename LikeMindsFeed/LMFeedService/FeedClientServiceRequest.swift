@@ -11,7 +11,11 @@ class FeedClientServiceRequest: ServiceRequest {
     
     static func initiateUser(_ request: InitiateUserRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<InitiateUserResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.initiateChatClient(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
@@ -34,7 +38,11 @@ class FeedClientServiceRequest: ServiceRequest {
     static func registerDevice(request: RegisterDeviceRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<RegisterDeviceResponse>?) {
         
         let networkPath = ServiceAPIRequest.NetworkPath.pushToken(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.deviceRegisterHeaders(headerKey: "x-device-id", value: request.deviceId ?? ""),
@@ -57,7 +65,11 @@ class FeedClientServiceRequest: ServiceRequest {
         let networkPath = ServiceAPIRequest.NetworkPath.logout(request)
         var headers = ServiceRequest.httpHeaders()
         headers["x-device-id"] = request.deviceId ?? ""
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: headers,
