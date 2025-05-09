@@ -267,7 +267,7 @@ struct ServiceAPIRequest {
                 
             case .addPollOption(let request):
                 // guard let pollID = request.pollID, request.pollText != nil else { return Endpoint(path: "", queryItems: []) }
-                return Endpoint(path: paths.getPollPath(pollId: request.pollID ?? ""), queryItems: [])
+                return Endpoint(path: paths.getPollPath(pollId: request.pollID), queryItems: [])
                 
             case .getPollVotes(let request):
                 // guard let pollID = request.pollID else { return Endpoint(path: "", queryItems: []) }
@@ -279,7 +279,7 @@ struct ServiceAPIRequest {
                     URLQueryItem(name: keys.page, value: "\(request.page)"),
                     URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)")
                 ]
-                return Endpoint(path: paths.getPollVotePath(pollId: request.pollID ?? ""), queryItems: queryItems)
+                return Endpoint(path: paths.getPollVotePath(pollId: request.pollID), queryItems: queryItems)
                 
             case .searchPost(let request):
                 let queryItems = [
@@ -376,8 +376,7 @@ struct ServiceAPIRequest {
             case .submitVote(let request):
                 return ["votes": request.votes]
             case .addPollOption(let request):
-                guard let pollText = request.pollText else { return nil }
-                return ["text": pollText]
+                return ["text": request.pollText]
             default:
                 return nil
             }

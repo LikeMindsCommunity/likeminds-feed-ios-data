@@ -160,6 +160,12 @@ extension LMFeedClientServiceRequest {
     }
     
     static func submitPollVote(_ request: SubmitPollVoteRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        
+        guard let pollID = request.pollID else {
+            response?(LMResponse.failureResponse("Invalid URL   "))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.submitVote(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -220,6 +226,9 @@ extension LMFeedClientServiceRequest {
     }
     
     static func getPollVotes(_ request: GetPollVotesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
+        
+        
+        
         let networkPath = ServiceAPIRequest.NetworkPath.getPollVotes(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
