@@ -85,6 +85,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func getPost(_ request: GetPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPostResponse>?) {
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return 
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.getPost(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -110,6 +115,13 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func getPostLikes(_ request: GetPostLikesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPostLikeResponse>?) {
+        
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
+        
         let networkPath = ServiceAPIRequest.NetworkPath.getPostLikes(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -135,6 +147,12 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func deletePost(_ request: DeletePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        
+        
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         let networkPath = ServiceAPIRequest.NetworkPath.deletePost(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -160,6 +178,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func savePost(_ request: SavePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.savePost(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -185,6 +208,11 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func deleteComment(_ request: DeleteCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.deleteComment(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -210,6 +238,12 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func likePost(_ request: LikePostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.likePost(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -235,6 +269,13 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func addComment(_ request: AddCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentResponse>?) {
+        
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
+        
         let networkPath = ServiceAPIRequest.NetworkPath.addComment(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -260,6 +301,13 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func replyComment(_ request: ReplyCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<ReplyCommentResponse>?) {
+        
+        guard let postId = request.postId,
+              let commentId = request.commentId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.replyOnComment(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -285,6 +333,14 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func getComment(_ request: GetCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentResponse>?) {
+        
+        guard let postId = request.postId,
+              let commentId = request.commentId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
+        
         let networkPath = ServiceAPIRequest.NetworkPath.getComment(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -310,6 +366,12 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func getCommentLikes(_ request: GetCommentLikesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommentsLikeResponse>?) {
+        
+        
+        guard let postId = request.postId ,let commentId = request.commentId  else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         let networkPath = ServiceAPIRequest.NetworkPath.getCommentsLikes(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -335,6 +397,12 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func likeComment(_ request: LikeCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.likeComment(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -485,6 +553,10 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func pinPost(_ request: PinPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         let networkPath = ServiceAPIRequest.NetworkPath.pinPost(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -510,6 +582,12 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func editPost(_ request: EditPostRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<EditPostResponse>?) {
+        
+        guard let postId = request.postId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.editPost(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -535,6 +613,12 @@ class LMFeedClientServiceRequest: ServiceRequest {
     }
     
     static func editComment(_ request: EditCommentRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<EditCommentResponse>?) {
+        guard let postId = request.postId,
+              let commentId = request.commentId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.editComment(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {

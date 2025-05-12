@@ -8,8 +8,8 @@
 import Foundation
 
 public final class AddPollOptionRequest: Encodable {
-    private(set) var pollID: String
-    private(set) var pollText: String
+    private(set) var pollID: String?
+    private(set) var pollText: String?
     
     private init(builder: Builder) {
         self.pollID = builder.pollID
@@ -21,15 +21,15 @@ public final class AddPollOptionRequest: Encodable {
     }
     
     public class Builder {
-        var pollID: String = ""
-        var pollText: String = ""
+        var pollID: String?
+        var pollText: String?
         
         public init() { }
         
         /// Sets the poll ID
         /// - Parameter pollID: ID of the poll
         /// - Returns: Builder instance for method chaining
-        public func pollID(_ pollID: String) -> Builder {
+        public func pollID(_ pollID: String?) -> Builder {
             self.pollID = pollID
             return self
         }
@@ -37,7 +37,7 @@ public final class AddPollOptionRequest: Encodable {
         /// Sets the poll option text
         /// - Parameter pollText: Text for the poll option
         /// - Returns: Builder instance for method chaining
-        public func pollText(_ pollText: String) -> Builder {
+        public func pollText(_ pollText: String?) -> Builder {
             self.pollText = pollText
             return self
         }
@@ -53,12 +53,15 @@ public final class AddPollOptionRequest: Encodable {
     /// - Returns: Builder instance with current values
     public func toBuilder() -> Builder {
         var builder = Builder()
-        builder = builder.pollID(self.pollID)
-            .pollText(self.pollText)
+        if let pollID = self.pollID {
+            builder = builder.pollID(pollID)
+        }
+        if let pollText = self.pollText {
+            builder = builder.pollText(pollText)
+        }
         return builder
     }
     
-    /// Coding keys for JSON encoding
     enum CodingKeys: String, CodingKey {
         case pollID = "poll_id"
         case pollText = "text"

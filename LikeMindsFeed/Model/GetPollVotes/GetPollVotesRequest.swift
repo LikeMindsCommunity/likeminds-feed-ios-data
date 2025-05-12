@@ -8,7 +8,7 @@
 import Foundation
 
 public final class GetPollVotesRequest: Encodable {
-    private(set) var pollID: String
+    private(set) var pollID: String?
     private(set) var options: [String]
     private(set) var page: Int
     private(set) var pageSize: Int
@@ -25,7 +25,7 @@ public final class GetPollVotesRequest: Encodable {
     }
     
     public class Builder {
-        var pollID: String = ""
+        var pollID: String?
         var options: [String] = []
         var page: Int = 1
         var pageSize: Int = 10
@@ -35,7 +35,7 @@ public final class GetPollVotesRequest: Encodable {
         /// Sets the poll ID
         /// - Parameter pollID: ID of the poll
         /// - Returns: Builder instance for method chaining
-        public func pollID(_ pollID: String) -> Builder {
+        public func pollID(_ pollID: String?) -> Builder {
             self.pollID = pollID
             return self
         }
@@ -75,8 +75,10 @@ public final class GetPollVotesRequest: Encodable {
     /// - Returns: Builder instance with current values
     public func toBuilder() -> Builder {
         var builder = Builder()
-        builder = builder.pollID(self.pollID)
-            .options(self.options)
+        if let pollID = self.pollID {
+            builder = builder.pollID(pollID)
+        }
+        builder = builder.options(self.options)
             .page(self.page)
             .pageSize(self.pageSize)
         return builder

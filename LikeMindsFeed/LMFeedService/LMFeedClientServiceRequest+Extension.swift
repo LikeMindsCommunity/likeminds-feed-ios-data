@@ -60,6 +60,12 @@ extension LMFeedClientServiceRequest {
     }
     
     static func markReadNotification(_ request: MarkReadNotificationRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        
+        guard let activityId = request.activityId else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.markReadNotificationFeed(request)
         let endpoint = networkPath.apiURL
         guard let url = endpoint.url else {
@@ -162,7 +168,7 @@ extension LMFeedClientServiceRequest {
     static func submitPollVote(_ request: SubmitPollVoteRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         
         guard let pollID = request.pollID else {
-            response?(LMResponse.failureResponse("Invalid URL   "))
+            response?(LMResponse.failureResponse("Invalid URL"))
             return
         }
         
@@ -194,6 +200,12 @@ extension LMFeedClientServiceRequest {
     
     
     static func addPollOption(_ request: AddPollOptionRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<AddPollOptionResponse>?) {
+        
+        guard let pollID = request.pollID else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.addPollOption(request)
         
         let endpoint = networkPath.apiURL
@@ -227,7 +239,10 @@ extension LMFeedClientServiceRequest {
     
     static func getPollVotes(_ request: GetPollVotesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
         
-        
+        guard let pollID = request.pollID else {
+            response?(LMResponse.failureResponse("Invalid URL"))
+            return
+        }
         
         let networkPath = ServiceAPIRequest.NetworkPath.getPollVotes(request)
         let endpoint = networkPath.apiURL

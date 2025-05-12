@@ -72,6 +72,10 @@ public final class Paths {
         return "\(post)/\(postId)/comment/\(commentId)"
     }
     
+    func getAddPostCommentPath(postId: String) -> String {
+        return "\(post)/\(postId)/comment"
+    }
+    
     func getPostCommentReplyPath(postId: String, commentId: String) -> String {
         return "\(post)/\(postId)/comment/\(commentId)/comment"
     }

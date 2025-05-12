@@ -98,7 +98,6 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.universalFeed, queryItems: queryItems)
                 
             case .getPost(let request):
-                // guard let postId = request.postId else { return Endpoint(path: "", queryItems: []) }
                 let queryItems = [
                     URLQueryItem(name: keys.page, value: "\(request.page)"),
                     URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)")
@@ -109,7 +108,6 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.post, queryItems: [])
                 
             case .getComment(let request):
-                // guard let postId = request.postId, let commentId = request.commentId else { return Endpoint(path: "", queryItems: []) }
                 let queryItems = [
                     URLQueryItem(name: keys.page, value: "\(request.page)"),
                     URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)")
@@ -117,11 +115,9 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.getPostCommentPath(postId: request.postId ?? "", commentId: request.commentId ?? ""), queryItems: queryItems)
                 
             case .addComment(let request):
-                // guard let postId = request.postId else { return Endpoint(path: "", queryItems: []) }
-                return Endpoint(path: "\(paths.post)/\(request.postId ?? "")/comment", queryItems: [])
+                return Endpoint(path: paths.getAddPostCommentPath(postId: request.postId ?? ""), queryItems: [])
                 
             case .getPostLikes(let request):
-                // guard let postId = request.postId else { return Endpoint(path: "", queryItems: []) }
                 let queryItems = [
                     URLQueryItem(name: keys.page, value: "\(request.page)"),
                     URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)")
@@ -129,11 +125,9 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.getPostLikePath(postId: request.postId ?? ""), queryItems: queryItems)
                 
             case .deletePost(let request):
-                // guard let postId = request.postId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPostPath(postId: request.postId ?? ""), queryItems: [])
                 
             case .deleteComment(let request):
-                // guard let postId = request.postId, let commentId = request.commentId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPostCommentPath(postId: request.postId ?? "", commentId: request.commentId ?? ""), queryItems: [])
                 
             case .likePost(let request):
@@ -141,7 +135,6 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.getPostLikePath(postId: request.postId ?? ""), queryItems: [])
                 
             case .likeComment(let request):
-                // guard let postId = request.postId, let commentId = request.commentId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getCommentLikePath(postId: request.postId ?? "", commentId: request.commentId ?? ""), queryItems: [])
                 
             case .getCommentsLikes(let request):
@@ -153,7 +146,6 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.getCommentLikePath(postId: request.postId ?? "", commentId: request.commentId ?? ""), queryItems: queryItems)
                 
             case .replyOnComment(let request):
-                // guard let postId = request.postId, let commentId = request.commentId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPostCommentReplyPath(postId: request.postId ?? "", commentId: request.commentId ?? ""), queryItems: [])
                 
             case .getMemberState:
@@ -176,7 +168,6 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.helperUrl, queryItems: queryItems)
                 
             case .savePost(let request):
-                // guard let postId = request.postId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPostSavePath(postId: request.postId ?? ""), queryItems: [])
                 
             case .logout:
@@ -189,15 +180,12 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.communityReportTag, queryItems: queryItems)
                 
             case .pinPost(let request):
-                // guard let postId = request.postId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPostPinPath(postId: request.postId ?? ""), queryItems: [])
                 
             case .editPost(let request):
-                // guard let postId = request.postId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPostPath(postId: request.postId ?? ""), queryItems: [])
                 
             case .editComment(let request):
-                // guard let postId = request.postId, let commentId = request.commentId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPostCommentPath(postId: request.postId ?? "", commentId: request.commentId ?? ""), queryItems: [])
                 
             case .fetchTaggingList(let request):
@@ -220,7 +208,6 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.userActivity, queryItems: queryItems)
                 
             case .markReadNotificationFeed(let request):
-                // guard let activityId = request.activityId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getActivityMarkReadPath(activityId: request.activityId ?? ""), queryItems: [])
                 
             case .getNotificationFeedUnreadCout:
@@ -262,15 +249,12 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.topicFeed, queryItems: queryItems)
                 
             case .submitVote(let request):
-                // guard let pollID = request.pollID else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPollVotePath(pollId: request.pollID ?? ""), queryItems: [])
                 
             case .addPollOption(let request):
-                // guard let pollID = request.pollID, request.pollText != nil else { return Endpoint(path: "", queryItems: []) }
-                return Endpoint(path: paths.getPollPath(pollId: request.pollID), queryItems: [])
+                return Endpoint(path: paths.getPollPath(pollId: request.pollID ?? ""), queryItems: [])
                 
             case .getPollVotes(let request):
-                // guard let pollID = request.pollID else { return Endpoint(path: "", queryItems: []) }
                 let queryItems = [
                     URLQueryItem(
                         name: keys.votes,
@@ -279,7 +263,7 @@ struct ServiceAPIRequest {
                     URLQueryItem(name: keys.page, value: "\(request.page)"),
                     URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)")
                 ]
-                return Endpoint(path: paths.getPollVotePath(pollId: request.pollID), queryItems: queryItems)
+                return Endpoint(path: paths.getPollVotePath(pollId: request.pollID ?? ""), queryItems: queryItems)
                 
             case .searchPost(let request):
                 let queryItems = [
