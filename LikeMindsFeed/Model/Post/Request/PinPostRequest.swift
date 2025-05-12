@@ -7,24 +7,45 @@
 
 import Foundation
 
-public class PinPostRequest: Encodable {
+public final class PinPostRequest: Encodable {
+    private(set) var postId: String?
     
-    var postId: String?
-    
-    /// Initiate method
-    private init() {}
-    
-    public static func builder() -> PinPostRequest {
-        return PinPostRequest()
+    private init(builder: Builder) {
+        self.postId = builder.postId
     }
     
-    public func build() -> PinPostRequest {
-        return self
+    public static func builder() -> Builder {
+        return Builder()
     }
     
-    public func postId(_ postId: String) -> PinPostRequest {
-        self.postId = postId
-        return self
+    public class Builder {
+        var postId: String?
+        
+        public init() { }
+        
+        /// Sets the post ID
+        /// - Parameter postId: ID of the post to pin
+        /// - Returns: Builder instance for method chaining
+        public func postId(_ postId: String) -> Builder {
+            self.postId = postId
+            return self
+        }
+        
+        /// Builds the PinPostRequest instance
+        /// - Returns: Configured PinPostRequest
+        public func build() -> PinPostRequest {
+            return PinPostRequest(builder: self)
+        }
+    }
+    
+    /// Converts the current request to a builder for modifications
+    /// - Returns: Builder instance with current values
+    public func toBuilder() -> Builder {
+        var builder = Builder()
+        if let postId = self.postId {
+            builder = builder.postId(postId)
+        }
+        return builder
     }
     
     enum CodingKeys: String, CodingKey {

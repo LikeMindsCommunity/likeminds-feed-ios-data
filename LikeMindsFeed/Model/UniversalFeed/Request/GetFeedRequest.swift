@@ -7,40 +7,72 @@
 
 import Foundation
 
-public class GetFeedRequest: Encodable {
-    var page: Int = 1 //page number of home feed chat
-    var pageSize: Int = 10
-    var topics: [String] = []
+public final class GetFeedRequest: Encodable {
+    private(set) var page: Int = 1
+    private(set) var pageSize: Int = 10
+    private(set) var topics: [String] = []
     
-    /// Initiate method
-    private init() {}
-    
-    public static func builder() -> GetFeedRequest {
-        return GetFeedRequest()
+    private init(builder: Builder) {
+        self.page = builder.page
+        self.pageSize = builder.pageSize
+        self.topics = builder.topics
     }
     
-    public func build() -> GetFeedRequest {
-        return self
+    public static func builder() -> Builder {
+        return Builder()
     }
     
-    public func page(_ page: Int) -> GetFeedRequest {
-        self.page = page
-        return self
+    public class Builder {
+        var page: Int = 1
+        var pageSize: Int = 10
+        var topics: [String] = []
+        
+        public init() { }
+        
+        /// Sets the page number
+        /// - Parameter page: Page number for pagination (default: 1)
+        /// - Returns: Builder instance for method chaining
+        public func page(_ page: Int) -> Builder {
+            self.page = page
+            return self
+        }
+        
+        /// Sets the page size
+        /// - Parameter pageSize: Number of items per page (default: 10)
+        /// - Returns: Builder instance for method chaining
+        public func pageSize(_ pageSize: Int) -> Builder {
+            self.pageSize = pageSize
+            return self
+        }
+        
+        /// Sets the topics
+        /// - Parameter topics: Array of topic IDs
+        /// - Returns: Builder instance for method chaining
+        public func topics(_ topics: [String]) -> Builder {
+            self.topics = topics
+            return self
+        }
+        
+        /// Builds the GetFeedRequest instance
+        /// - Returns: Configured GetFeedRequest
+        public func build() -> GetFeedRequest {
+            return GetFeedRequest(builder: self)
+        }
     }
     
-    public func pageSize(_ pageSize: Int) -> GetFeedRequest {
-        self.pageSize = pageSize
-        return self
-    }
-    
-    public func topics(_ topics: [String]) -> GetFeedRequest {
-        self.topics = topics
-        return self
+    /// Converts the current request to a builder for modifications
+    /// - Returns: Builder instance with current values
+    public func toBuilder() -> Builder {
+        var builder = Builder()
+        builder = builder.page(self.page)
+        builder = builder.pageSize(self.pageSize)
+        builder = builder.topics(self.topics)
+        return builder
     }
     
     enum CodingKeys: String, CodingKey {
-        case pageSize = "page_size",
-             topics = "topic_ids",
-             page
+        case pageSize = "page_size"
+        case topics = "topic_ids"
+        case page
     }
 }
