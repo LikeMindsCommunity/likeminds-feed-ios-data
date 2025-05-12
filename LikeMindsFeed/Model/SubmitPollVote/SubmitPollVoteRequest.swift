@@ -45,10 +45,7 @@ public final class SubmitPollVoteRequest: Encodable {
         /// Builds the SubmitPollVoteRequest instance
         /// - Returns: Configured SubmitPollVoteRequest
         /// - Throws: SubmitPollVoteError if pollID is not provided
-        public func build() throws -> SubmitPollVoteRequest {
-            guard let _ = pollID else {
-                throw SubmitPollVoteError.pollIDNotProvided
-            }
+        public func build() -> SubmitPollVoteRequest {
             return SubmitPollVoteRequest(builder: self)
         }
     }
