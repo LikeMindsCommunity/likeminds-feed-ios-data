@@ -27,6 +27,7 @@ public final class Constant {
 public final class Paths {
     public static let shared = Paths()
     
+    private init() {}
     // MARK: - Feed APIs
     let universalFeed = "/feed/universal"
     let post = "/feed/post"

@@ -62,7 +62,7 @@ extension LMFeedClientServiceRequest {
     static func markReadNotification(_ request: MarkReadNotificationRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         
         guard let activityId = request.activityId else {
-            response?(LMResponse.failureResponse("Invalid URL"))
+            response?(LMResponse.failureResponse("Invalid Request"))
             return
         }
         
@@ -168,7 +168,7 @@ extension LMFeedClientServiceRequest {
     static func submitPollVote(_ request: SubmitPollVoteRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
         
         guard let pollID = request.pollID else {
-            response?(LMResponse.failureResponse("Invalid URL"))
+            response?(LMResponse.failureResponse("Invalid Request"))
             return
         }
         
@@ -202,7 +202,7 @@ extension LMFeedClientServiceRequest {
     static func addPollOption(_ request: AddPollOptionRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<AddPollOptionResponse>?) {
         
         guard let pollID = request.pollID else {
-            response?(LMResponse.failureResponse("Invalid URL"))
+            response?(LMResponse.failureResponse("Invalid Request"))
             return
         }
         
@@ -240,7 +240,7 @@ extension LMFeedClientServiceRequest {
     static func getPollVotes(_ request: GetPollVotesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
         
         guard let pollID = request.pollID else {
-            response?(LMResponse.failureResponse("Invalid URL"))
+            response?(LMResponse.failureResponse("Invalid Request"))
             return
         }
         
@@ -250,14 +250,6 @@ extension LMFeedClientServiceRequest {
           response?(LMResponse.failureResponse("Invalid URL"))
           return
         }
-
-//        let path = "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-//        
-//        guard let url = URL(string: path ?? "") else {
-//            response?(.failureResponse("Invalid Request"))
-//            return
-//        }
-//        
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -287,13 +279,6 @@ extension LMFeedClientServiceRequest {
           response?(LMResponse.failureResponse("Invalid URL"))
           return
         }
-
-//        let path = "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-//        
-//        guard let url = URL(string: path ?? "") else {
-//            response?(.failureResponse("Invalid Request"))
-//            return
-//        }
         
         DataNetwork.shared.request(
             for: url,
