@@ -11,11 +11,14 @@ public final class GetFeedRequest: Encodable {
     private(set) var page: Int = 1
     private(set) var pageSize: Int = 10
     private(set) var topics: [String] = []
+    private(set) var startFeedWithPostIds: [String] = []
+    
     
     private init(builder: Builder) {
         self.page = builder.page
         self.pageSize = builder.pageSize
         self.topics = builder.topics
+        self.startFeedWithPostIds = builder.startFeedWithPostIds
     }
     
     public static func builder() -> Builder {
@@ -26,6 +29,7 @@ public final class GetFeedRequest: Encodable {
         var page: Int = 1
         var pageSize: Int = 10
         var topics: [String] = []
+        var startFeedWithPostIds: [String] = []
         
         public init() { }
         
@@ -53,6 +57,14 @@ public final class GetFeedRequest: Encodable {
             return self
         }
         
+        /// Sets the post IDs to start feed with
+        /// - Parameter postIds: Array of post IDs to start feed with
+        /// - Returns: Builder instance for method chaining
+        public func startFeedWithPostIds(_ postIds: [String]) -> Builder {
+            self.startFeedWithPostIds = postIds
+            return self
+        }
+        
         /// Builds the GetFeedRequest instance
         /// - Returns: Configured GetFeedRequest
         public func build() -> GetFeedRequest {
@@ -67,6 +79,7 @@ public final class GetFeedRequest: Encodable {
         builder = builder.page(self.page)
         builder = builder.pageSize(self.pageSize)
         builder = builder.topics(self.topics)
+        builder = builder.startFeedWithPostIds(self.startFeedWithPostIds)
         return builder
     }
     
@@ -74,5 +87,6 @@ public final class GetFeedRequest: Encodable {
         case pageSize = "page_size"
         case topics = "topic_ids"
         case page
+        case startFeedWithPostIds = "start_feed_with_post_ids"
     }
 }
