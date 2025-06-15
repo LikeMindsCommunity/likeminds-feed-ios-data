@@ -87,7 +87,8 @@ struct ServiceAPIRequest {
             case .universalFeed(let request):
                 var queryItems = [
                     URLQueryItem(name: keys.page, value: "\(request.page)"),
-                    URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)")
+                    URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)"),
+                    URLQueryItem(name: keys.startFeedWithPostIds, value: "\(request.startFeedWithPostIds)")
                 ]
                 
                 if !request.topics.isEmpty {

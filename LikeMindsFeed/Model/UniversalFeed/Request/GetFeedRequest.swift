@@ -87,6 +87,6 @@ public final class GetFeedRequest: Encodable {
         case pageSize = "page_size"
         case topics = "topic_ids"
         case page
-        case startFeedWithPostIds = "start_feed_with_post_ids"
+        case startFeedWithPostIds = "post_ids"
     }
 }

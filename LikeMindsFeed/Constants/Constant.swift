@@ -37,7 +37,7 @@ public final class Paths {
     let communityConfigurations = "/community/configurations"
     let communityMemberState = "/community/member/state"
     let communityReport = "/community/report"
-    let communityReportTag = "/community/report/tags"
+    let communityReportTag = "/community/report/tag"
     let communityMember = "/community/member"
     let communityMemberSearch = "/community/member/search"
     let communityTag = "/community/tag"
@@ -119,6 +119,7 @@ public final class Keys {
   public let pageSize = "page_size"
   public let search = "search"
   public let searchType = "search_type"
+public let startFeedWithPostIds = "post_ids"
 
   // MARK: - Feed Parameters
   public let postId = "post_id"
