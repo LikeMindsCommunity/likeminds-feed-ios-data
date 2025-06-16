@@ -15,6 +15,7 @@ public enum AttachmentType: Int, Encodable {
     case widget = 5
     case poll = 6
     case article = 7
+    case reel = 11
     case unknown = -1
 }
 
