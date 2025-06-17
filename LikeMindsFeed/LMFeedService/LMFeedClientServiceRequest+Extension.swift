@@ -250,14 +250,6 @@ extension LMFeedClientServiceRequest {
           response?(LMResponse.failureResponse("Invalid URL"))
           return
         }
-
-//        let path = "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-//        
-//        guard let url = URL(string: path ?? "") else {
-//            response?(.failureResponse("Invalid Request"))
-//            return
-//        }
-//        
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
