@@ -87,7 +87,8 @@ struct ServiceAPIRequest {
             case .universalFeed(let request):
                 var queryItems = [
                     URLQueryItem(name: keys.page, value: "\(request.page)"),
-                    URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)")
+                    URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)"),
+                    URLQueryItem(name: keys.startFeedWithPostIds, value: "\(request.startFeedWithPostIds)")
                 ]
                 
                 if !request.topics.isEmpty {
@@ -131,14 +132,13 @@ struct ServiceAPIRequest {
                 return Endpoint(path: paths.getPostCommentPath(postId: request.postId ?? "", commentId: request.commentId ?? ""), queryItems: [])
                 
             case .likePost(let request):
-                // guard let postId = request.postId else { return Endpoint(path: "", queryItems: []) }
                 return Endpoint(path: paths.getPostLikePath(postId: request.postId ?? ""), queryItems: [])
                 
             case .likeComment(let request):
                 return Endpoint(path: paths.getCommentLikePath(postId: request.postId ?? "", commentId: request.commentId ?? ""), queryItems: [])
                 
             case .getCommentsLikes(let request):
-                // guard let postId = request.postId, let commentId = request.commentId else { return Endpoint(path: "", queryItems: []) }
+            
                 let queryItems = [
                     URLQueryItem(name: keys.page, value: "\(request.page)"),
                     URLQueryItem(name: keys.pageSize, value: "\(request.pageSize)")
