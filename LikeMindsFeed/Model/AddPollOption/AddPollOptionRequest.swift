@@ -8,27 +8,62 @@
 import Foundation
 
 public final class AddPollOptionRequest: Encodable {
-    var pollID: String!
-    var pollText: String!
+    private(set) var pollID: String?
+    private(set) var pollText: String?
     
-    /// Initiate method
-    private init() {}
-    
-    public static func builder() -> AddPollOptionRequest {
-        return AddPollOptionRequest()
+    private init(builder: Builder) {
+        self.pollID = builder.pollID
+        self.pollText = builder.pollText
     }
     
-    public func build() -> AddPollOptionRequest {
-        return self
+    public static func builder() -> Builder {
+        return Builder()
     }
     
-    public func pollID(_ pollID: String) -> AddPollOptionRequest {
-        self.pollID = pollID
-        return self
+    public class Builder {
+        var pollID: String?
+        var pollText: String?
+        
+        public init() { }
+        
+        /// Sets the poll ID
+        /// - Parameter pollID: ID of the poll
+        /// - Returns: Builder instance for method chaining
+        public func pollID(_ pollID: String?) -> Builder {
+            self.pollID = pollID
+            return self
+        }
+        
+        /// Sets the poll option text
+        /// - Parameter pollText: Text for the poll option
+        /// - Returns: Builder instance for method chaining
+        public func pollText(_ pollText: String?) -> Builder {
+            self.pollText = pollText
+            return self
+        }
+        
+        /// Builds the AddPollOptionRequest instance
+        /// - Returns: Configured AddPollOptionRequest
+        public func build() -> AddPollOptionRequest {
+            return AddPollOptionRequest(builder: self)
+        }
     }
     
-    public func pollText(_ pollText: String) -> AddPollOptionRequest {
-        self.pollText = pollText
-        return self
+    /// Converts the current request to a builder for modifications
+    /// - Returns: Builder instance with current values
+    public func toBuilder() -> Builder {
+        var builder = Builder()
+        if let pollID = self.pollID {
+            builder = builder.pollID(pollID)
+        }
+        if let pollText = self.pollText {
+            builder = builder.pollText(pollText)
+        }
+        return builder
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case pollID = "poll_id"
+        case pollText = "text"
     }
 }

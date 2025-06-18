@@ -7,23 +7,45 @@
 
 import Foundation
 
-public class LikePostRequest: Encodable {
-    var postId: String?
+public final class LikePostRequest: Encodable {
+    private(set) var postId: String?
     
-    /// Initiate method
-    private init() {}
-    
-    public static func builder() -> LikePostRequest {
-        return LikePostRequest()
+    private init(builder: Builder) {
+        self.postId = builder.postId
     }
     
-    public func build() -> LikePostRequest {
-        return self
+    public static func builder() -> Builder {
+        return Builder()
     }
     
-    public func postId(_ postId: String) -> LikePostRequest {
-        self.postId = postId
-        return self
+    public class Builder {
+        var postId: String?
+        
+        public init() { }
+        
+        /// Sets the post ID
+        /// - Parameter postId: ID of the post to like
+        /// - Returns: Builder instance for method chaining
+        public func postId(_ postId: String) -> Builder {
+            self.postId = postId
+            return self
+        }
+        
+        /// Builds the LikePostRequest instance
+        /// - Returns: Configured LikePostRequest
+        public func build() -> LikePostRequest {
+            return LikePostRequest(builder: self)
+        }
+    }
+    
+    /// Converts the current request to a builder for modifications
+    /// - Returns: Builder instance with current values
+    public func toBuilder() -> Builder {
+        var builder = Builder()
+        if let postId = self.postId {
+            builder = builder.postId(postId)
+        }
+        return builder
     }
     
     enum CodingKeys: String, CodingKey {
