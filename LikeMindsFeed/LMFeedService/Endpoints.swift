@@ -1,3 +1,5 @@
+import Foundation
+
 public struct Endpoint {
     let path: String
     let queryItems: [URLQueryItem]
