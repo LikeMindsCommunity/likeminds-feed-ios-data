@@ -11,7 +11,11 @@ extension LMFeedClientServiceRequest {
     
     static func getNotificationFeed(_ request: GetNotificationFeedRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetNotificationFeedResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getNotificationFeed(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -32,7 +36,11 @@ extension LMFeedClientServiceRequest {
     
     static func getNotificationFeedUnreadCount(withModuleName moduleName: String, _ response: LMFeedClientResponse<GetUnreadNotificationCountResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getNotificationFeedUnreadCout
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -52,8 +60,18 @@ extension LMFeedClientServiceRequest {
     }
     
     static func markReadNotification(_ request: MarkReadNotificationRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
+        
+        guard let activityId = request.activityId else {
+            response?(LMResponse.failureResponse("Invalid Request"))
+            return
+        }
+        
         let networkPath = ServiceAPIRequest.NetworkPath.markReadNotificationFeed(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -74,7 +92,11 @@ extension LMFeedClientServiceRequest {
     
     static func getAllMembers(_ request: GetAllMembersRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetAllMembersResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getAllMembers(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -95,7 +117,11 @@ extension LMFeedClientServiceRequest {
     
     static func searchMembers(_ request: SearchMembersRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<SearchMembersResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.searchMembers(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -116,7 +142,11 @@ extension LMFeedClientServiceRequest {
     
     static func getCommunityConfiguration(_ request: GetCommunityConfigurationRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetCommunityConfigurationResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.getCommunityConfiguration(request)
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else {return}
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -136,11 +166,17 @@ extension LMFeedClientServiceRequest {
     }
     
     static func submitPollVote(_ request: SubmitPollVoteRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<NoData>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.submitVote(request)
         
-        guard let url = URL(string: "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)") else {
-            response?(.failureResponse("Invalid Request"))
+        guard let pollID = request.pollID else {
+            response?(LMResponse.failureResponse("Invalid Request"))
             return
+        }
+        
+        let networkPath = ServiceAPIRequest.NetworkPath.submitVote(request)
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
         }
         
         DataNetwork.shared.request(for: url,
@@ -164,12 +200,20 @@ extension LMFeedClientServiceRequest {
     
     
     static func addPollOption(_ request: AddPollOptionRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<AddPollOptionResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.addPollOption(request)
         
-        guard let url = URL(string: "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)") else {
-            response?(.failureResponse("Invalid Request"))
+        guard let pollID = request.pollID else {
+            response?(LMResponse.failureResponse("Invalid Request"))
             return
         }
+        
+        let networkPath = ServiceAPIRequest.NetworkPath.addPollOption(request)
+        
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
+
         
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
@@ -194,15 +238,18 @@ extension LMFeedClientServiceRequest {
     }
     
     static func getPollVotes(_ request: GetPollVotesRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetPollVotesResponse>?) {
-        let networkPath = ServiceAPIRequest.NetworkPath.getPollVotes(request)
         
-        let path = "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        
-        guard let url = URL(string: path ?? "") else {
-            response?(.failureResponse("Invalid Request"))
+        guard let pollID = request.pollID else {
+            response?(LMResponse.failureResponse("Invalid Request"))
             return
         }
         
+        let networkPath = ServiceAPIRequest.NetworkPath.getPollVotes(request)
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
                                    headers: ServiceRequest.httpHeaders(),
@@ -227,11 +274,10 @@ extension LMFeedClientServiceRequest {
     
     static func searchPosts(_ request: SearchPostsRequest, withModuleName moduleName: String, _ response: LMFeedClientResponse<GetFeedResponse>?) {
         let networkPath = ServiceAPIRequest.NetworkPath.searchPost(request)
-        let path = "\(ServiceAPI.authBaseURL)\(networkPath.apiURL)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        
-        guard let url = URL(string: path ?? "") else {
-            response?(.failureResponse("Invalid Request"))
-            return
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
         }
         
         DataNetwork.shared.request(

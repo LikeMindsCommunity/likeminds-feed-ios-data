@@ -7,29 +7,59 @@
 
 import Foundation
 
-public class LikeCommentRequest: Encodable {
-    var postId: String?
-    var commentId: String?
+public final class LikeCommentRequest: Encodable {
+    private(set) var postId: String?
+    private(set) var commentId: String?
     
-    /// Initiate method
-    private init() {}
-    
-    public static func builder() -> LikeCommentRequest {
-        return LikeCommentRequest()
+    private init(builder: Builder) {
+        self.postId = builder.postId
+        self.commentId = builder.commentId
     }
     
-    public func build() -> LikeCommentRequest {
-        return self
+    public static func builder() -> Builder {
+        return Builder()
     }
     
-    public func postId(_ postId: String) -> LikeCommentRequest {
-        self.postId = postId
-        return self
+    public class Builder {
+        var postId: String?
+        var commentId: String?
+        
+        public init() { }
+        
+        /// Sets the post ID
+        /// - Parameter postId: ID of the post containing the comment
+        /// - Returns: Builder instance for method chaining
+        public func postId(_ postId: String) -> Builder {
+            self.postId = postId
+            return self
+        }
+        
+        /// Sets the comment ID
+        /// - Parameter commentId: ID of the comment to like
+        /// - Returns: Builder instance for method chaining
+        public func commentId(_ commentId: String) -> Builder {
+            self.commentId = commentId
+            return self
+        }
+        
+        /// Builds the LikeCommentRequest instance
+        /// - Returns: Configured LikeCommentRequest
+        public func build() -> LikeCommentRequest {
+            return LikeCommentRequest(builder: self)
+        }
     }
     
-    public func commentId(_ commentId: String) -> LikeCommentRequest {
-        self.commentId = commentId
-        return self
+    /// Converts the current request to a builder for modifications
+    /// - Returns: Builder instance with current values
+    public func toBuilder() -> Builder {
+        var builder = Builder()
+        if let postId = self.postId {
+            builder = builder.postId(postId)
+        }
+        if let commentId = self.commentId {
+            builder = builder.commentId(commentId)
+        }
+        return builder
     }
     
     enum CodingKeys: String, CodingKey {

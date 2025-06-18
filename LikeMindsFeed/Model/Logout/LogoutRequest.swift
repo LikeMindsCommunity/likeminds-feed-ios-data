@@ -7,33 +7,63 @@
 
 import Foundation
 
-public class LogoutRequest: Encodable {
-    var refreshToken: String?
-    var deviceId: String?
+public final class LogoutRequest: Encodable {
+    private(set) var refreshToken: String?
+    private(set) var deviceId: String?
     
-    /// Initiate method
-    private init() {}
-    
-    public static func builder() -> LogoutRequest {
-        return LogoutRequest()
+    private init(builder: Builder) {
+        self.refreshToken = builder.refreshToken
+        self.deviceId = builder.deviceId
     }
     
-    public func build() -> LogoutRequest {
-        return self
+    public static func builder() -> Builder {
+        return Builder()
+    }
+    
+    public class Builder {
+        var refreshToken: String?
+        var deviceId: String?
+        
+        public init() { }
+        
+        /// Sets the refresh token
+        /// - Parameter refreshToken: Refresh token for logout
+        /// - Returns: Builder instance for method chaining
+        public func refreshToken(_ refreshToken: String) -> Builder {
+            self.refreshToken = refreshToken
+            return self
+        }
+        
+        /// Sets the device ID
+        /// - Parameter deviceId: Device token for logout
+        /// - Returns: Builder instance for method chaining
+        public func deviceId(_ deviceId: String) -> Builder {
+            self.deviceId = deviceId
+            return self
+        }
+        
+        /// Builds the LogoutRequest instance
+        /// - Returns: Configured LogoutRequest
+        public func build() -> LogoutRequest {
+            return LogoutRequest(builder: self)
+        }
+    }
+    
+    /// Converts the current request to a builder for modifications
+    /// - Returns: Builder instance with current values
+    public func toBuilder() -> Builder {
+        var builder = Builder()
+        if let refreshToken = self.refreshToken {
+            builder = builder.refreshToken(refreshToken)
+        }
+        if let deviceId = self.deviceId {
+            builder = builder.deviceId(deviceId)
+        }
+        return builder
     }
     
     enum CodingKeys: String, CodingKey {
         case refreshToken = "refresh_token"
         case deviceId = "device_token"
-    }
-    
-    public func refreshToken(_ refreshToken: String) -> LogoutRequest {
-        self.refreshToken = refreshToken
-        return self
-    }
-    
-    public func deviceId(_ deviceId: String) -> LogoutRequest {
-        self.deviceId = deviceId
-        return self
     }
 }

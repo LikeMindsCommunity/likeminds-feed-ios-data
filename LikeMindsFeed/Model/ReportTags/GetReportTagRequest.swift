@@ -11,22 +11,44 @@ import Foundation
 //    case 
 //}
 
-public class GetReportTagRequest: Encodable {
-    var type: Int?
-
-    /// Initiate method
-    private init() {}
+public final class GetReportTagRequest: Encodable {
+    private(set) var type: Int?
     
-    public static func builder() -> GetReportTagRequest {
-        return GetReportTagRequest()
+    private init(builder: Builder) {
+        self.type = builder.type
     }
     
-    public func build() -> GetReportTagRequest {
-        return self
+    public static func builder() -> Builder {
+        return Builder()
     }
     
-    public func type(_ type: Int) -> GetReportTagRequest {
-        self.type = type
-        return self
+    public class Builder {
+        var type: Int?
+        
+        public init() { }
+        
+        /// Sets the report tag type
+        /// - Parameter type: Type of report tag to fetch
+        /// - Returns: Builder instance for method chaining
+        public func type(_ type: Int) -> Builder {
+            self.type = type
+            return self
+        }
+        
+        /// Builds the GetReportTagRequest instance
+        /// - Returns: Configured GetReportTagRequest
+        public func build() -> GetReportTagRequest {
+            return GetReportTagRequest(builder: self)
+        }
+    }
+    
+    /// Converts the current request to a builder for modifications
+    /// - Returns: Builder instance with current values
+    public func toBuilder() -> Builder {
+        var builder = Builder()
+        if let type = self.type {
+            builder = builder.type(type)
+        }
+        return builder
     }
 }

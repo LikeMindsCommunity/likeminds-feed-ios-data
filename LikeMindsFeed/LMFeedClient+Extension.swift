@@ -264,7 +264,11 @@ extension LMFeedClient {
         }
         
         let networkPath = ServiceAPIRequest.NetworkPath.refreshServiceToken
-        guard let url:URL = URL(string: ServiceAPI.authBaseURL + networkPath.apiURL) else { return }
+        let endpoint = networkPath.apiURL
+        guard let url = endpoint.url else {
+          response?(LMResponse.failureResponse("Invalid URL"))
+          return
+        }
         
         DataNetwork.shared.request(for: url,
                                    withHTTPMethod: networkPath.httpMethod,
