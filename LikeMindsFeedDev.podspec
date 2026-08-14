@@ -4,13 +4,7 @@ Pod::Spec.new do |spec|
   spec.summary      = "Data Layer for LikeMindsFeed"
   spec.homepage     = "https://docs.likeminds.community/feed/category/data"
 
-  spec.license = { 
-    :type => 'Copyright', 
-    :text => <<-LICENSE
-      Copyright 2023
-      Permission is granted to...
-    LICENSE
-  }
+  spec.license = { :type => 'Apache-2.0', :file => 'LICENSE' }
 
   spec.author = { 
     "Pushpendra Singh" => "pushpendra.singh@likeminds.community",
